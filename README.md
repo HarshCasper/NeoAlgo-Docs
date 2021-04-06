@@ -6,5 +6,5 @@ Bringing an all Open-Source Platform to study Data Structures and Algorithms ⚡
 
 Write the following commands:
 
-- To install: yarn install
-- To start: yarn start
+- To install: `yarn install`
+- To start: `yarn start`
