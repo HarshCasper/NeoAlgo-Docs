@@ -16,6 +16,12 @@ The Core Maintainers are responsible for maintaining [NeoAlgo](https://github.co
 
 [<img src="https://i.imgur.com/TAhbF1h.jpg" width="250"/>](https://i.imgur.com/TAhbF1h.jpg )
 
+### Apoorve Goyal
+
+[<img src="https://i.imgur.com/7BBGWw2.jpg" width="250"/>](https://i.imgur.com/7BBGWw2.jpg)
+
+Apoorve Goyal is a Computer Engineering Sophomore at Zakir Hussain College of Engineering and Technology, Aligarh Muslim University. He is a part-time freelancer and tutor, Hackathon mentor and a Competitive Programmer. Connect with him on [LinkedIn](https://www.linkedin.com/in/apoorve-goyal/) and [GitHub](https://github.com/ankitaggarwal23).
+
 ### Ankit Aggarwal
 
 [<img src="https://i.imgur.com/ihJyOs1.jpg " width="250"/>](https://i.imgur.com/ihJyOs1.jpg)
@@ -27,6 +33,12 @@ Ankit Aggarwal is a Senior Undergrad from Sri Sairam College of Engineering, Ban
 [<img src="https://i.imgur.com/qbFrZog.png" width="250"/>](https://i.imgur.com/qbFrZog.png)
 
 Bhavishya Pandit is a freelancer, machine learning mentor, Linkedin content creator and speaker. As one of the early members of Tesseract Coding, his expertise is shaped around Python, machine learning, deep learning, computer vision, NLP, automation, web scraping, open innovation and also creating music playlists. Connect with him on [LinkedIn](https://www.linkedin.com/in/bhavishya-pandit/) and [GitHub](https://github.com/bhav09).
+
+### Ganesh Tiwari 
+
+[<img src="https://i.imgur.com/usXBZe9.jpg" width="250"/>](https://i.imgur.com/usXBZe9.jpg)
+
+Ganesh Tiwari is a Gold Microsoft Learn Student Ambassador and a User-Interface Engineer at Megdap Innovation Labs. He likes building softwares, relations and respectable communities. Connect with him on [LinkedIn](https://www.linkedin.com/in/gat786) and [GitHub](https://github.com/gat786).
 
 ### Rajiv Ranjan Singh 
 
