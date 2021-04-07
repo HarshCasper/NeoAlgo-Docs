@@ -2,7 +2,7 @@
 module.exports = {
   title: 'NeoAlgo',
   tagline: 'Bringing all Data Structures and Algorithms under one Roof ⚡',
-  url: 'neoalgo.tesseractcoding.com',
+  url: 'https://neoalgo.tesseractcoding.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
