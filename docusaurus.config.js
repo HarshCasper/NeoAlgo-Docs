@@ -10,7 +10,16 @@ module.exports = {
   organizationName: 'Tesseract Coding', 
   projectName: 'NeoAlgo', 
   onBrokenLinks: 'ignore',
+  // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    announcementBar: {
+      id: 'support_us', // Any value that will identify this message.
+      content:
+        'We are looking for contributors. Please start <a target="_blank" rel="noopener noreferrer" href="https://github.com/TesseractCoding/NeoAlgo-Docs/issues">here</a>',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42', 
+      isCloseable: true,
+    },
     colorMode: {
       defaultMode: 'light',
       switchConfig: {

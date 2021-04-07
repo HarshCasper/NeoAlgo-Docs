@@ -6,7 +6,7 @@ module.exports = {
       items: [
         'introduction/About-NeoAlgo',
         'introduction/development-setup',
-        'introduction/contributor-handbook'
+        'introduction/contributor-handbook',
       ]
     },
     {
