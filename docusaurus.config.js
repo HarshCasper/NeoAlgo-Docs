@@ -9,6 +9,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'Tesseract Coding', 
   projectName: 'NeoAlgo', 
+  onBrokenLinks: 'ignore',
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
