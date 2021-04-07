@@ -16,6 +16,12 @@ The Core Maintainers are responsible for maintaining [NeoAlgo](https://github.co
 
 [<img src="https://i.imgur.com/TAhbF1h.jpg" width="250"/>](https://i.imgur.com/TAhbF1h.jpg )
 
+### Anush Krishna V
+
+[<img src="https://i.imgur.com/qkwafAs.jpg" width="250"/>](https://i.imgur.com/qkwafAs.jpg)
+
+Anush is a Microsoft Learn Student Ambassador, Auth0 Ambassador and an active Hackathon Participant/Mentor. He was the Lead Organizer of DevScript Winter of Code, one of the largest Open-Source Hackathons in India. Connect with him on [LinkedIn](https://www.linkedin.com/in/anush-krishna-v-8270941a0/) and [GitHub](https://github.com/anushkrishnav)
+
 ### Apoorve Goyal
 
 [<img src="https://i.imgur.com/7BBGWw2.jpg" width="250"/>](https://i.imgur.com/7BBGWw2.jpg)
