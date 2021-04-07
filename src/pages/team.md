@@ -20,7 +20,7 @@ The Core Maintainers are responsible for maintaining [NeoAlgo](https://github.co
 
 [<img src="https://i.imgur.com/7BBGWw2.jpg" width="250"/>](https://i.imgur.com/7BBGWw2.jpg)
 
-Apoorve Goyal is a Computer Engineering Sophomore at Zakir Hussain College of Engineering and Technology, Aligarh Muslim University. He is a part-time freelancer and tutor, Hackathon mentor and a Competitive Programmer. Connect with him on [LinkedIn](https://www.linkedin.com/in/apoorve-goyal/) and [GitHub](https://github.com/ankitaggarwal23).
+Apoorve Goyal is a Computer Engineering Sophomore at Zakir Hussain College of Engineering and Technology, Aligarh Muslim University. He is a part-time freelancer and tutor, Hackathon mentor and a Competitive Programmer. Connect with him on [LinkedIn](https://www.linkedin.com/in/apoorve-goyal/) and [GitHub](https://github.com/apoorve73).
 
 ### Ankit Aggarwal
 
