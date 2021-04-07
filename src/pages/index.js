@@ -8,32 +8,32 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
+    title: 'Centralized & Unified',
     imageUrl: 'img/tesseract-coding-trees.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        NeoAlgo aims to bring all Data Structures and Algorithms under one roof. Get started with high quality learning and resources
+        to level up your understanding about Data Structures and Algorithms.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Free & Open Source',
     imageUrl: 'img/tesseract-coding-algorithms.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        NeoAlgo strives forward for an Open-Source Community development. Come and conribute to NeoAlgo and NeoAlgo docs and be a 
+        part of our expanding Open-Source project. 
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Collaboration & Contribution',
     imageUrl: 'img/tesseract-coding-programming.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Collaborate with Developers and Writers to produce high-quality content in and around Data Structures & Algorithms. Plug in your
+        contributions in an active feedback loop with maintainers and learn from the community.
       </>
     ),
   },
@@ -59,8 +59,9 @@ export default function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      permalink={'/'}
+      description={'Bringing all Data Structures and Algorithms under one roof'}
+    >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -71,6 +72,7 @@ export default function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted,
               )}
+              style={{ color: '#FFF' }}
               to={useBaseUrl('docs/')}>
               Get Started
             </Link>

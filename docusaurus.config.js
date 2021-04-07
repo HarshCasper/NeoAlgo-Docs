@@ -64,6 +64,8 @@ module.exports = {
             {
               label: 'Getting Started',
               to: 'docs/',
+              backgroundColor: '#fafbfc',
+              textColor: '#ffffff', 
             },
           ],
         },
