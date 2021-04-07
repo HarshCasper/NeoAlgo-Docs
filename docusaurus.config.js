@@ -1,19 +1,32 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'NeoAlgo',
+  tagline: 'Bringing all Data Structures and Algorithms under one Roof ⚡',
+  url: 'neoalgo.tesseractcoding.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Tesseract Coding', 
+  projectName: 'NeoAlgo', 
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      switchConfig: {
+        darkIcon: '🌙',
+        darkIconStyle: {
+          marginLeft: '2px',
+        },
+        lightIcon: '💡',
+        lightIconStyle: {
+          marginLeft: '1px',
+        },
+      }
+    },
     navbar: {
-      title: 'My Site',
+      title: 'NeoAlgo',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Tesseract Coding Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -24,8 +37,9 @@ module.exports = {
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'left'},
+		{to: 'team', label: 'Team', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/TesseractCoding/NeoAlgo-Docs',
           label: 'GitHub',
           position: 'right',
         },
@@ -47,16 +61,16 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/tesseract-coding',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'discord.tesseractcoding.com',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/TesseractCoding',
             },
           ],
         },
@@ -69,12 +83,12 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/TesseractCoding/NeoAlgo-Docs',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Tesseract Coding; Built with Docusaurus.`,
     },
   },
   presets: [
@@ -85,13 +99,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/TesseractCoding/NeoAlgo-Docs/edit/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/TesseractCoding/NeoAlgo-Docs/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
