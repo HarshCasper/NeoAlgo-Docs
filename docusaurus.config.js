@@ -67,7 +67,7 @@ module.exports = {
             },
             {
               label: 'Discord',
-              href: 'discord.tesseractcoding.com',
+              href: 'http://discord.tesseractcoding.com/',
             },
             {
               label: 'Twitter',
