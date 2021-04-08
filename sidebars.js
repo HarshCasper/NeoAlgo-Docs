@@ -31,7 +31,8 @@ module.exports = {
       label: 'Sorting Algorithms',
       items: [
         'sorting-algorithms/sorting-algorithms',
-        'sorting-algorithms/bubble-sort'
+        'sorting-algorithms/bubble-sort',
+        'sorting-algorithms/insertion-sort'
       ],
     },
     {
