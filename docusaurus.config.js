@@ -12,6 +12,10 @@ module.exports = {
   onBrokenLinks: 'ignore',
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    googleAnalytics: {
+      trackingID: "UA-194155806-1",
+      anonymizeIP: true,
+    },
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
