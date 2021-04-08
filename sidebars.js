@@ -14,7 +14,8 @@ module.exports = {
       label: 'Searching Algorithms',
       items: [
         'searching-algorithms/searching-algorithms',
-        'searching-algorithms/linear-search'
+        'searching-algorithms/linear-search',
+        'searching-algorithms/interpolation-search'
       ],
     },
     {
