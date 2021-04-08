@@ -23,9 +23,9 @@ Number    - 15 6 16 2 13 8 16
 Ciphertext- P  G  Q C N  I  Q
 ```
 
-## Algorithmic Steps
+## Algorithm
 
-All the letters from `A` to `Z` are assigned a fixed number from 0 to 25. `A` is assigned 0, `B` is assigned 1, ....... , `Z` is assinged 25.
+All the letters from `A` to `Z` are assigned a fixed number from 0 to 25. `A` is assigned 0, `B` is assigned 1, ....... , `Z` is assigned 25.
 
 ### Encryption
 
@@ -35,7 +35,7 @@ Encryption is done character by character. Encryption function is defined as:
 
 ``Enc(m, k) := (m + k) (mod 26)``
 
-Here, m is the character being encrypted and k is the shift.
+Here, `m` is the character being encrypted and `k` is the shift.
 
 ### Decryption
 
@@ -45,7 +45,7 @@ Decryption is done character by character. Decryption function is defined as:
 
 ``Dec(c, k) := (c - k) (mod 26)``
 
-Here, c is the character being decrypted and k is the shift.
+Here, `c` is the character being decrypted and `k` is the shift.
 
 ## Code
 
