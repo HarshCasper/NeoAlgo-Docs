@@ -13,7 +13,7 @@ module.exports = {
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
     googleAnalytics: {
-      trackingID: 'UA-194155806-1',
+      trackingID: "UA-194155806-1",
       anonymizeIP: true,
     },
     announcementBar: {
