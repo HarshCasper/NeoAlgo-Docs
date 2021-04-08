@@ -23,20 +23,18 @@ Result : 1634 is an Armstrong Number.
 
 ## Algorithm
 
- - Start
- - Input number `num`.
+ - Input the number `num`.
  - Calculate the number of digits in `num`. Let this be stored in `order`.
  - For each digit `d` in `num`, compute `d` raised to the power of `order`.
  - Calculate the sum of each `d` to the power of `order` for all the digits in `num` and store in variable `sum`.
  - Compare `sum` and `num`. If equal, return `An Armstrong Number`. Else, return `Not an Armstrong Number`.
- - End.
 
 ## Code 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-  defaultValue="js"
+  defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
@@ -163,8 +161,8 @@ Enter a number: 123
 123 is not an Armstrong Number.
 ```
 ## Complexity Analysis
-- Time Complexity: O(log(n))
-- Space Complexity: O(1)
+- Time Complexity: `O(log(n))`
+- Space Complexity: `O(1)`
 
 ## Credits 
  - [Supritha R S](https://github.com/suprithars111) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/armstrong_number.cpp)
