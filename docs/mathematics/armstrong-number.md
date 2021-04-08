@@ -3,4 +3,237 @@ title: Armstrong Number
 slug: /mathematics/armstrong-number
 ---
 
-This page would serve our needs for documentation of the Armstrong Number.
+## What is an Armstrong Number?
+
+An Armstrong Number is an n-digit number whose sum of the nth powers of the number is equal to the number itself. Other names include Narcissistic Number, Perfect Digital Invariant, and Plus Perfect Number.
+
+## Explanation
+Let ``pqrs`` be a number. Then, 
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=(&space;p^4&space;&plus;&space;q^4&space;&plus;&space;r^4&space;&plus;&space;s^4&space;)&space;=&space;pqrs" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(&space;p^4&space;&plus;&space;q^4&space;&plus;&space;r^4&space;&plus;&space;s^4&space;)&space;=&space;pqrs" title="( p^4 + q^4 + r^4 + s^4 ) = pqrs" /></a>
+
+Since, ``pqrs`` is a 4-digit number, n = 4. This is why each digit is raised to the power of 4.
+#### Quick Example : 
+Let 1634 be the number taken. Here 1634 is a four-digit number, therefore n = 4.
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=(1^4&space;&plus;&space;6^4&space;&plus;&space;3^4&space;&plus;&space;4^4)&space;=&space;(1&plus;1296&plus;81&plus;256)&space;=&space;1634" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(1^4&space;&plus;&space;6^4&space;&plus;&space;3^4&space;&plus;&space;4^4)&space;=&space;(1&plus;1296&plus;81&plus;256)&space;=&space;1634" title="(1^4 + 6^4 + 3^4 + 4^4) = (1+1296+81+256) = 1634" /></a>
+
+Result : 1634 is an Armstrong Number.
+
+## Algorithmic Steps
+
+ 1. Start
+ 2. Input number ``num``.
+ 3. Calculate the number of digits in ``num``. Let this be stored in ``order``.
+ 4. For each digit ``d`` in ``num``, compute ``d`` raised to the power of ``order``.
+ 5. Calculate the sum of each ``d`` to the power of ``order`` for all the digits in ``num`` and store in variable ``sum``.
+ 6. Compare ``sum`` and ``num``. If equal, return ``An Armstrong Number``. Else, return ``Not an Armstrong Number``.
+ 7. End.
+
+## Code 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="js"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to check whether the Number is Armstrong Number or Not.
+
+bool is_armstrong(int n)
+
+{
+
+	if (n < 0)
+
+	{
+
+		return false;
+
+	}
+
+	int sum = 0;
+
+	int var = n;
+
+	int number_of_digits = floor(log10(n) + 1);
+	
+	while (var > 0)
+
+	{
+
+		int rem = var % 10;
+
+		sum = sum + pow(rem, number_of_digits);
+
+		var = var / 10;
+
+	}
+
+	return n == sum;
+
+}
+
+int main()
+
+{
+
+	cout << "Enter the Number: " << endl;
+
+	int n;
+
+	cin >> n;
+
+	if (is_armstrong(n))
+
+		cout << n << " is an Armstrong Number." << endl;
+
+	else
+
+		cout << n << " is not an Armstrong Number." << endl;
+
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# This program checks whether a number is an armstrong number or not
+
+import math
+
+def no_of_digits(n : int) -> int:
+
+	count = 0
+
+	while n > 0:
+
+		count += 1
+
+		n = n // 10
+
+	return count
+
+def add(n : int) -> int:
+
+	temp = n
+
+	tot = 0
+
+	nod = no_of_digits(temp)
+
+	while n > 0:
+
+		r = n % 10
+
+		tot += r ** nod
+
+		n = n // 10
+
+	return tot
+
+def checkArmstrong(num : int) -> bool:
+
+	return add(num) == num
+
+num = int(input("Enter the number: "))
+
+if checkArmstrong(num):
+
+	print(num," is an Armstrong Number.")
+
+else:
+
+	print(num," is not an Armstrong Number.")
+```
+
+</TabItem>
+<TabItem value="java">
+
+
+```java
+import java.util.*;
+
+public class ArmstrongNumber
+
+{
+
+	static int length_number(int num){
+
+		return String.valueOf(num).length();
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter the number: ");
+
+		int num = sc.nextInt();
+
+		int res = num;
+
+		int val = 0;
+
+		int len = length_number(num);
+
+		while(res>0){
+
+			int temp = res % 10;
+
+			val += Math.pow(temp, len);
+
+			res = res / 10;
+
+		}
+
+		if(num == val) System.out.println(num+" is an Armstrong Number.");
+
+		else System.out.println(num+" is not an Armstrong Number.");
+
+	}
+
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output 
+#### Input :
+```
+Enter the number: 153
+```
+
+#### Output :
+```
+153 is an Armstrong Number.
+```
+#### Input :
+```
+Enter a number: 123
+```
+#### Output :
+```
+123 is not an Armstrong Number.
+```
+
+### Time Complexity: O(log(n))
+### Space Complexity: O(1)
+## Credits 
+ - [Supritha R S](https://github.com/suprithars111) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/armstrong_number.cpp)
+ - [Sukriti Dawar](https://github.com/sukritidawar) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/CheckArmstrongNumber.py)
+ - [Rohan Gawhade](https://github.com/rohangawhade) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/ArmstrongNumber.java)
