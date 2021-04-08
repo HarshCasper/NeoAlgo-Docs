@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-slug: /
+slug: /remove-it-later
 ---
 
 ## Step 1: Generate a new Docusaurus site
