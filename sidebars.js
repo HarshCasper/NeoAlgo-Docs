@@ -11,6 +11,13 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Code Playgrounds',
+      items: [
+        'code-playgrounds/python-playground',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Searching Algorithms',
       items: [
         'searching-algorithms/searching-algorithms',
