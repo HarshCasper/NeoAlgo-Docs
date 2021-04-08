@@ -3,13 +3,25 @@ title: Caesar Cipher
 slug: /cryptography/caesar-cipher
 ---
 
-## What is Caesar cipher?
+## Introduction
 
 Caesar cipher is one of the earliest knowm ciphers. It is also known as shift cipher. It is a simple substitution cipher in which each letter of the given plaintext is **shifted** down by a certain fixed number of places known as _shift_.
 
 ## Explaination
 
 With a shift of 2, A would be replaced by C, B would be replaced by D, and so on. The value of shift is the same for all letters of the plaintext. To decrypt the ciphertext, letters of ciphertext are **shifted** up by the same _shift_. Caesar cipher is not at all secure. In fact, even without the knowledge of the _shift_, the cipher can easily be broken as there are only 26 possible values of the shift.
+
+Example:
+
+Plaintext -  N E O  A L  G O
+
+Number    - 13 4 14 0 11 6 14
+
+Let us take shift = 2
+
+Number    - 15 6 16 2 13 8 16
+
+Ciphertext- P  G  Q C N  I  Q
 
 ## Algorithmic Steps
 
@@ -37,7 +49,18 @@ Here, c is the character being decrypted and k is the shift.
 
 ## Code
 
-### C++
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
 
 ```cpp
 #include<bits/stdc++.h>
@@ -75,7 +98,8 @@ int main() {
 }
 ```
 
-### Python
+</TabItem>
+<TabItem value="py">
 
 ```python
 # Function to decrypt a caesar ciphered message
@@ -161,7 +185,10 @@ if __name__ == '__main__':
         print("Wrong Choice")
 ```
 
-## Sample I/O
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
 
 ### Input:
 
@@ -190,17 +217,10 @@ Line 3: 2
 Encrypted message : Jgnnq
 ```
 
-## Time Complexity
+## Complexity Analysis
 
-```
-O(n)
-```
-
-## Space Complexity
-
-```
-O(n)
-```
+    - Time complexity - O(n)
+    - Space complexity - O(n)
 
 ## Credits
 
