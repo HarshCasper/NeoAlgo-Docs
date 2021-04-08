@@ -10,8 +10,13 @@ module.exports = {
   organizationName: 'Tesseract Coding', 
   projectName: 'NeoAlgo', 
   onBrokenLinks: 'ignore',
+  plugins: ['@docusaurus/plugin-google-analytics'],
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    googleAnalytics: {
+      trackingID: 'UA-194155806-1',
+      anonymizeIP: true,
+    },
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
