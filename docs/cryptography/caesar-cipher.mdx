@@ -11,17 +11,17 @@ Caesar cipher is one of the earliest knowm ciphers. It is also known as shift ci
 
 With a shift of 2, A would be replaced by C, B would be replaced by D, and so on. The value of shift is the same for all letters of the plaintext. To decrypt the ciphertext, letters of ciphertext are **shifted** up by the same _shift_. Caesar cipher is not at all secure. In fact, even without the knowledge of the _shift_, the cipher can easily be broken as there are only 26 possible values of the shift.
 
-Example:
+Let's have one example:
 
+```
 Plaintext -  N E O  A L  G O
-
 Number    - 13 4 14 0 11 6 14
 
 Let us take shift = 2
 
 Number    - 15 6 16 2 13 8 16
-
 Ciphertext- P  G  Q C N  I  Q
+```
 
 ## Algorithmic Steps
 
@@ -203,24 +203,12 @@ Shift: 3
 Cipher: WHVVHUDFWFRGLQJ
 ```
 
-### Input:
-
-```
-Line 1: 1
-Line 2: "Hello"
-Line 3: 2
-```
-
-### Output:
-
-```
-Encrypted message : Jgnnq
-```
-
 ## Complexity Analysis
 
-    - Time complexity - O(n)
-    - Space complexity - O(n)
+```
+Time complexity - O(n)
+Space complexity - O(n)
+```
 
 ## Credits
 
