@@ -10,7 +10,6 @@ module.exports = {
   organizationName: 'Tesseract Coding', 
   projectName: 'NeoAlgo', 
   onBrokenLinks: 'ignore',
-  plugins: ['@docusaurus/plugin-google-analytics'],
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
     googleAnalytics: {
