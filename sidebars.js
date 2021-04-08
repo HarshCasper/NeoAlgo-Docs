@@ -14,6 +14,7 @@ module.exports = {
       label: 'Code Playgrounds',
       items: [
         'code-playgrounds/python-playground',
+        'code-playgrounds/java-playground',
       ]
     },
     {
