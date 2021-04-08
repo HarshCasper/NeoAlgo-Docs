@@ -129,9 +129,20 @@ def linearSearch(arr, x):
 
 # Sample Input and Output
 
+
+## Sample 1 for the C++
+
 ### Input :
 
 ```
+Enter number of elements:5
+Enter the elements 1 2 4 3 5
+Enter element to search 3
+```
+### Output :
+
+```
+Found at 3
 
 ```
 
