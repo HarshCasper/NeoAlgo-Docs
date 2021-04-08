@@ -45,14 +45,14 @@ hi    -> Ending index in arr[]
 
 ## Code
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs
-  defaultValue="py"
+  defaultValue="cpp"
   values={[
-    { label: 'Python', value: 'py', },
     { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
   ]
 }>
 
@@ -140,11 +140,11 @@ main()
 
 ```cpp
 //INTERPOLATION SEARCH
-#include<bits/stdc++.h> //Importing library (This is the special type of library which will include all basic libraries)
+#include<bits/stdc++.h>
 
 using namespace std;
 
-// If the searching element is present it will return its index, else it will return -1. 
+// If the searching element is present it will return its index, else it will return -1.
 
 int interpolationSearch(int arr[], int n, int x) {
   int low = 0, high = (n - 1); //Assigning lower index as 0 and higher index as n-1
@@ -154,19 +154,19 @@ int interpolationSearch(int arr[], int n, int x) {
       if (arr[low] == x) return low;
       return -1;
     }
-    // Probing the position with keeping uniform distribution in mind. 
+    // Probing the position with keeping uniform distribution in mind.
     int pos = low + (((double)(high - low) /
       (arr[high] - arr[low])) * (x - arr[low]));
 
-    // Condition of element to be found 
+    // Condition of element to be found
     if (arr[pos] == x)
       return pos;
 
-    // If x is larger, x is in upper part 
+    // If x is larger, x is in upper part
     if (arr[pos] < x)
       low = pos + 1;
 
-    // If x is smaller, x is in the lower part 
+    // If x is smaller, x is in the lower part
     else
       high = pos - 1;
   }
@@ -215,13 +215,13 @@ int main()
 
   //Entering the searching element
   std::cout << "\n\nEnter the element to be searched: " << std::endl;
-  cin >> x; //Element to be searched 
+  cin >> x; //Element to be searched
   int index = interpolationSearch(arr, n, x);
-  //If element was found 
+  //If element was found
   if (index != -1)
     cout << "Element found at index " << index; //Returning the index pf the element
   else
-    cout << "Element not found."; //Returning -1 as element has not found 
+    cout << "Element not found."; //Returning -1 as element has not found
 
   return 0;
 }
@@ -230,7 +230,7 @@ int main()
 </TabItem>
 </Tabs>
 
-## Sample I/O  
+## Sample I/O
 
 ### Sample Input
 
@@ -251,8 +251,8 @@ Enter the size of array : 5
 Enter elements :
 The elements entered are:
 [1, 5, 7, 2, 9]
-The sorted array is: 
-[1, 2, 5, 7, 9] 
+The sorted array is:
+[1, 2, 5, 7, 9]
 
 Enter the element to be searched: 7
 Element found at index 3
@@ -260,17 +260,16 @@ Element found at index 3
 
 ## Complexity Analysis
 
-n : number of the elements in the array
+- n : number of the elements in the array
 
-### Time Complexity:
+- Time Complexity:
 
-- **Best Case**: O (1)
-- **Average Case**: O (log log n)
-- **Worst Case**: O (N)
+  - **Best Case**: O (1)
+  - **Average Case**: O (log log n)
+  - **Worst Case**: O (N)
 
-### Space Complexity: O (1)
+- Space Complexity: O (1)
 
-## Credits 
-- [Sharvari Raut](https://github.com/sharur7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Interpolation_Search.py)
-- [Sharvari Raut](https://github.com/sharur7) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Interpolation_Search.cpp)
+## Credits
 
+- [Sharvari Raut](https://github.com/sharur7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Interpolation_Search.py) and the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Interpolation_Search.cpp)
