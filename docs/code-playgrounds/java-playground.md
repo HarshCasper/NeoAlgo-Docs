@@ -3,4 +3,4 @@ title: Java Playground
 slug: /code-playgrounds/java
 ---
 
-<iframe height="800px" width="125%" src="https://replit.com/@ErbeusGriffin/NeoAlgo-Java-Playground?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe src="https://trinket.io/embed/java/98552196f8?start=result&showInstructions=true" width="125%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
