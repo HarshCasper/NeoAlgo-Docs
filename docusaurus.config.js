@@ -12,6 +12,9 @@ module.exports = {
   onBrokenLinks: 'ignore',
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    prism: {
+      additionalLanguages: ['java'],
+    },
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
