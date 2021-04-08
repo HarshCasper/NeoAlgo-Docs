@@ -3,7 +3,7 @@ title: Linear Search
 slug: /searching-algorithms/linear-search
 ---
 
-# What is Linear Search
+# Introduction
 
 Linear search is the simplest of the search algorithms. The motive of any searching algorithm is to search for the presence of a key element in the collection of elements( arrays, linked lists, etc). Linear search starts the search of the key element(the element whose presence in the given list is to be searched) sequentially, from the beginning to the list until it is found. 
 
@@ -16,6 +16,7 @@ In linear search, we follow the following algorithm:
 2. If the element compared is same as the key, then return the index of the element which matched the key
 
 3. If the key does not match any element scanned in the array, then return -1
+
 
 # Explanation for Linear Search
 
@@ -65,6 +66,19 @@ In linear search, we follow the following algorithm:
 
 # Code
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="js"
+  values={[
+    { label: 'JavaScript', value: 'js', },
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
@@ -111,7 +125,9 @@ int main()
 }
 
 ```
+</TabItem>
 
+<TabItem value="py">
 
 ```python   
 
@@ -126,6 +142,8 @@ def linearSearch(arr, x):
         print("Not Found")
 
 ```
+</TabItem>
+<Tabs>
 
 # Sample Input and Output
 
@@ -152,8 +170,8 @@ Linear search gives linear access to the elements. In the best case, when the el
 
 In linear search, no extra space is used to store anything. So the space complexity is O(1).
 
-### Time Complexity: O(n)
-### Time Complexity: O(1)
+Time Complexity: O(n)
+Time Complexity: O(1)
 
 
 
