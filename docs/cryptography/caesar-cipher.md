@@ -3,4 +3,207 @@ title: Caesar Cipher
 slug: /cryptography/caesar-cipher
 ---
 
-This page would serve our needs for documentation of the Caesar Cipher.
+## What is Caesar cipher?
+
+Caesar cipher is one of the earliest knowm ciphers. It is also known as shift cipher. It is a simple substitution cipher in which each letter of the given plaintext is **shifted** down by a certain fixed number of places known as _shift_.
+
+## Explaination
+
+With a shift of 2, A would be replaced by C, B would be replaced by D, and so on. The value of shift is the same for all letters of the plaintext. To decrypt the ciphertext, letters of ciphertext are **shifted** up by the same _shift_. Caesar cipher is not at all secure. In fact, even without the knowledge of the _shift_, the cipher can easily be broken as there are only 26 possible values of the shift.
+
+## Algorithmic Steps
+
+All the letters from A to Z are assigned a fixed number from 0 to 25. A is assigned 0, B is assigned 1, ....... , Z is assinged 25.
+
+### Encryption
+
+All characters of the plaintext are first translated to numbers.
+
+Encryption is done character by character. Encryption function is defined as:
+
+``Enc(m, k) := (m + k) (mod 26)``
+
+Here, m is the character being encrypted and k is the shift.
+
+### Decryption
+
+All characters of the ciphertext are first translated to numbers.
+
+Decryption is done character by character. Decryption function is defined as:
+
+``Dec(c, k) := (c - k) (mod 26)``
+
+Here, c is the character being decrypted and k is the shift.
+
+## Code
+
+### C++
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+/* Encrypts the plain text message into a cipher 
+text by simply replacing each letter of a given 
+text by a letter '3' places down the alphabet. */
+string encode(string plain) {
+	
+	string encrypt = "";
+	int length = plain.length();
+	for(int i = 0;i < length; ++i) {
+		if(plain[i] <= 91) {
+			//uppercase letter
+			encrypt += char((plain[i] - 65 + 3)%26 + 65);
+		} else if(plain[i] > 97) {
+			//lowercase letter
+			encrypt += char((plain[i] - 97 + 3)%26 + 97);
+		}
+	}
+
+	return encrypt;
+}
+
+int main() {
+	
+	string plain,encrypt;
+	cout<<"Enter the plain text: ";
+	cin>>plain;
+	
+	encrypt = encode(plain);
+	cout<<"Cipher Text: "<<encrypt<<endl;
+
+}
+```
+
+### Python
+
+```python
+# Function to decrypt a caesar ciphered message
+def decrypt(text, shift):
+    message = ""
+
+    # Looping through all the characters present in text
+    for character in range(len(text)):
+
+        # Saving current character in current_character
+        current_character = text[character]
+
+        # If current characater is space adding it directly to message
+        if current_character == ' ':
+            message += current_character
+            continue
+
+        # If current characater is an uppercase letter adding it after shifting with key value to message
+        if current_character.isupper():
+            message += chr((ord(current_character) - shift - 65) % 26 + 65)
+            continue
+
+        # If current characater is an lowercase letter adding it after shifting with key value to message
+        if current_character.islower():
+            message += chr((ord(current_character) - shift - 97) % 26 + 97)
+            continue
+
+    # Returning the message
+    return message
+
+
+# Encrypt Caesar Cipher Messages
+
+# Function to encrypt a message
+def encrypt(text, shift):
+    message = ""
+
+    # Looping through all the characters present in text
+    for character in range(len(text)):
+
+        # Saving current character in current_character
+        current_character = text[character]
+
+        # If current characater is space adding it directly to message
+        if current_character == ' ':
+            message += current_character
+            continue
+
+        # If current characater is an uppercase letter adding it after shifting with key value to message
+        if current_character.isupper():
+            message += chr((ord(current_character) + shift - 65) % 26 + 65)
+            continue
+
+        # If current characater is an lowercase letter adding it after shifting with key value to message
+        if current_character.islower():
+            message += chr((ord(current_character) + shift - 97) % 26 + 97)
+            continue
+
+    # Returning message
+    return message
+
+
+# Driver main function
+if __name__ == '__main__':
+    choice = input("Choose 1 for ENCRYPT and 2 for DECRYPT : ")
+    if int(choice) == 1:
+        print("Enter message to encrypt")
+        text = input()
+        print("Enter key value")
+        shift = int(input())
+        encrypted_message = encrypt(text, shift)
+        print("Encrypted message : " + encrypted_message)
+
+    elif int(choice) == 2:
+        print("Enter message to decrypt")
+        text = input()
+        print("Enter key value")
+        shift = int(input())
+        decrypted_message = decrypt(text, shift)
+        print("Decrypted message : " + decrypted_message)
+
+    else:
+        print("Wrong Choice")
+```
+
+## Sample I/O
+
+### Input:
+
+```
+Text : TESSERACTCODING
+Shift: 3
+```
+
+### Output:
+
+```
+Cipher: WHVVHUDFWFRGLQJ
+```
+
+### Input:
+
+```
+Line 1: 1
+Line 2: "Hello"
+Line 3: 2
+```
+
+### Output:
+
+```
+Encrypted message : Jgnnq
+```
+
+## Time Complexity
+
+```
+O(n)
+```
+
+## Space Complexity
+
+```
+O(n)
+```
+
+## Credits
+
+   - [Sejal-G](https://github.com/Sejal-G) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/Caeser_Cipher.cpp)
+
+   - [SayaniG371](https://github.com/SayaniG371) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Caesar_Cipher.py)
