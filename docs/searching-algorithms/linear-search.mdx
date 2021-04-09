@@ -3,27 +3,22 @@ title: Linear Search
 slug: /searching-algorithms/linear-search
 ---
 
----
-title: Linear Search
-slug: /searching-algorithms/linear-search
----
+## Introduction
 
-# Introduction
-
-Linear search is the simplest of the search algorithms. The motive of any searching algorithm is to search for the presence of a key element in the collection of elements( arrays, linked lists, etc). Linear search starts the search of the key element(the element whose presence in the given list is to be searched) sequentially, from the beginning to the list until it is found. 
+Linear search is the simplest of the search algorithms. The motive of any searching algorithm is to search for the presence of a key element in the collection of elements( arrays, linked lists, etc). Linear search starts the search of the key element(the element whose presence in the given list is to be searched) sequentially. 
 
 # Algorithm
 
 In linear search, we follow the following algorithm:
 
-* Starting from the leftmost element of the array, compare each element with the key element
+* Starting from the left-most element of the array, compare each element with the key element
 
-* If the element compared is same as the key, then return the index of the element which matched the key
+* If the element compared is same as the key element, then return the index of the element which matched the key
 
-* If the key does not match any element scanned in the array, then return -1
+* If the key does not match any element scanned in the array, then return `-1`
 
 
-# Explanation for Linear Search
+## Explanation for Linear Search
 
 ### Example 1
 
@@ -57,7 +52,7 @@ In linear search, we follow the following algorithm:
 
 ```
 
-# Code
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -137,7 +132,7 @@ def linearSearch(arr, x):
 </TabItem>
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
 
 ## Sample 1 for the C++
@@ -156,7 +151,7 @@ Found at 3
 
 ```
 
-# Complexity Analysis
+## Complexity Analysis
 
 Linear search gives linear access to the elements. In the best case, when the element to be searched is present in the first position, then only one iteration will be required. In the worst case when the element to be searched is present in the last position, linear search will have to go through all the elements. Therefore its time complexity is O(n).
 
@@ -168,5 +163,5 @@ In linear search, no extra space is used to store anything. So the space complex
 
 
 ### Credits
-[Utkarsh Chaurasia](https://github.com/UtkarshChaurasia) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Linear_Search.cpp) and the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Linear_Search.py)
+* [Utkarsh Chaurasia](https://github.com/UtkarshChaurasia) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Linear_Search.cpp) and the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Linear_Search.py)
 
