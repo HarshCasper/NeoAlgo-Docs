@@ -66,7 +66,7 @@ module.exports = {
         'mathematics/mathematics',
         'mathematics/armstrong-number',
 	      'mathematics/factorial-of-number',
-        'mathematics/prime-number'
+        'mathematics/prime-number',
         'mathematics/factorial-of-number',
 	      'mathematics/happy-number'
       ],
