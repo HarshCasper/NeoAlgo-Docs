@@ -5,45 +5,81 @@ slug: /sorting-algorithms/heap-sort
 
 # Introduction
 
-Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array for sorting in ascending or descending order N times.
-It is similar to Selection Sort, the only difference is that it uses Heap data structure for finding minimum or maximum element.
+Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array 
+for sorting in ascending or descending order N times.It is similar to Selection Sort, the only difference is that it uses Heap data structure 
+for finding minimum or maximum element. It is a In-Place and Non-Stable Sorting Algorithm.
+
+- Binary Heap: It is a complete binary tree represented using array.There are two types of Binary Heap:
+
+    - **MaxHeap**: Both left and right subtree of every node contains smaller elements
+    - **MinHeap**: Both left and right subtree of every node contains greater elements
+
+- Formulas:
+
+  - **Left Child**:     2*i+1
+  - **Right Child**:    2*i+2
+  - **Parent**:         floor((i-1)/2)
+
+`i` is the number of elements in the array.
 
 # Algorithm
 
-In Heap Sort, we follow the following algorithm:
+Heap Sort for Sorting in Increasing Order:
 
-* First we will convert array into MaxHeap
+* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`, `(n-2)/2` is the last internal node
 
 * Swap the root of the MaxHeap with the last element of the MaxHeap 
 
 * Reduce the size of MaxHeap by 1 from the last and call Heapify on the root.
 
-* Perform step 2 and step 3 N-1 times
+* Perform step 2 and step 3 `N-1` times
+
+Heap Sort for Sorting in Decreasing Order:
+
+* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`, `(n-2)/2` is the last internal node
+
+* Swap the root of the MinHeap with the last element of the MinHeap 
+
+* Reduce the size of MinHeap by 1 from the last and call Heapify on the root.
+
+* Perform step 2 and step 3 `N-1` times
 
 # Explanation for Heap Sort
 
 ### Example 
 
 ```
- | 4 | 1 | 2 | 7 |
+Input Array: 4 1 2 7
 
- Converting it to MaxHeap:
- | 7 | 4 | 2 | 1 |
+    4(0)
+   /    \
+ 1(1)   2(2)
+ /
+7(3)I 
 
- Swaping first and last element of Heap and reducing the size by 1
- | 1 | 4 | 2 || 7 |
+The numbers in bracket represent the indices of the array
 
- Calling Heapify on root
- | 4 | 1 | 2 || 7 |
-
- Swaping first and last element of Heap and reducing the size by 1
- | 2 | 1 || 4 | 7 |
-
- Calling Heapify on root
- | 2 | 1 || 4 | 7 |
-
- Swaping first and last element of Heap and reducing the size by 1
- | 1 || 2 | 4 | 7 |
+Converting it to MaxHeap:
+ 
+    4(0)                       4(0)                       7(0) 
+   /    \                     /    \                     /    \
+ 1(1)   2(2)      ->        7(1)   2(2)      ->        4(1)   2(2)
+ /                          /                          /
+7(3)                      1(3)                       1(3)
+             
+          Applying Heapify           Applying Heapify 
+             on index 1                 on index 0
+               
+Swapping root with last element of MaxHeap and reducing the size of MaxHeap
+ 
+    7(0)                       1(0)                       4(0)                      2(0)                      2(0)                      1(0)                     1(0)
+   /    \                     /    \                     /    \                    /    \                    /    \                    /    \                   /    \
+ 4(1)   2(2)      ->        4(1)   2(2)      ->       1(1)   2(2)      ->       1(1)   4(2)      ->       1(1)   4(2)      ->       2(1)   4(2)      ->      2(1)    4(2)
+ /                          /                          /                         /                         /                         /                        /
+1(3)                      7(3)                       7(3)                      1(3)                      7(3)                      7(3)                     7(3)
+                          
+           Swapping index             Applying Heapify          Swapping index           Applying Heapify           Swapping index            Applying Heapify
+              0 and 3                    on index 0                0 and 2                  on index 0                 0 and 1                   on index 0
 ```
 # Code
 
@@ -55,7 +91,6 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
-    { label: 'Java', value: 'java', },
   ]
 }>
 <TabItem value="cpp">
@@ -64,72 +99,45 @@ import TabItem from '@theme/TabItem';
 #include <iostream>
 using namespace std;
 
- /* Convert the Given array of elements into Max Heap where "i"th element is parent, 
-     "2*i"th element is left child and "2*(i+1)" is right child in array representation */
-void CreateMaxHeap(int A[],int n)  
-{
-    int temp=A[n],i=n;
-    while(i>1 && temp > A[i/2])   
-    {
-        A[i]=A[i/2];
-        i=i/2;
-    }
-    A[i]=temp;
-}
-
-void DisplayHeap(int A[],int size)   // Display the Sorted elements in heap after deletion
-{
-    for(int i=1;i<=size;i++)
-    {
-        cout << A[i] << " ";
-    }
-    cout <<endl;
+void Heapify(int arr[],int idx,int size){
+    int l=2*idx+1;
+    int r=2*idx+2;
+    int maxx=idx;
     
-}
+    if(l<size && arr[l]>arr[maxx])maxx=l;
+    if(r<size && arr[r]>arr[maxx])maxx=r;
 
-void DeleteHeap(int A[],int n)   // Here we delete only root element which is Max and insert into into last element of Heap Array 
-{
-    int i,j,tmp,root;
-    i=1;
-    j=2*i;
-    root=A[1];      //Swap the root element with last element in Array
-    A[1]=A[n];
-    A[n]=root;
-    while(j<n-1)
+    swap(arr[maxx],arr[idx]);
+    if(maxx!=idx)
     {
-        if(A[j+1] > A[j])   //Inorder to maintain Max heap,Elements in array is arranged
-        {
-            j=j+1;
-        }
-        if(A[j] > A[i])
-        {
-         tmp=A[i];
-         A[i]=A[j];
-         A[j]=tmp;
-         i=j;
-         j=2*i;
-        }
-        else
-        {
-            break;
-        }
-        
+        Heapify(arr,maxx,size);
     }
 }
 
 int main()
 {
-    int A[8]={0,30,25,40,10,50,20,5};
-    for(int i=2;i<=7;i++)          
+    cout<<"Enter elements to be sorted :";
+    int n;
+    cin>>n;
+
+    int arr[n];
+    for(int i=0;i<n;i++)cin>>arr[i];
+
+    for(int i=(n-2)/2;i>=0;i--)          
     {
-        CreateMaxHeap(A,i);   //Max Heap is created 
+       Heapify(arr,i,n); 
     }
-    cout << "After performing Heap sort via deletion:" << endl;
-    for(int i=7;i>=1;i--)
+
+    for(int i=n-1;i>=1;i--)
     {
-        DeleteHeap(A,i);
+        swap(arr[0],arr[i]);
+        Heapify(arr,0,i);
     }
-    DisplayHeap(A,7);  // Display Sorted elements in increasing order
+    
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
 ```
@@ -144,146 +152,50 @@ def heapify(arr, length, index):
     largest_num_index = index
     left_index = (index * 2) + 1
     right_index = (index * 2) + 2
-
+ 
     if(left_index < length and arr[index] < arr[left_index]):
         largest_num_index = left_index
-
+ 
     if(right_index < length and arr[largest_num_index] < arr[right_index]):
         largest_num_index = right_index
-
+ 
     # if index is not the largest, make it the largest!
     # and run it again!
     if(largest_num_index != index):
         arr[index], arr[largest_num_index] = arr[largest_num_index], arr[index]
         heapify(arr, length, largest_num_index)
-
-
+ 
+ 
 def heap_sort(arr):
     # need array length to create indices
     length = len(arr)
-
+ 
     for index in range(length, -1, -1):
         # ask about functions modifying arrays without return value
         # build max heap
         heapify(arr, length, index)
-
+ 
     # for each sorted heap, swap the root and the last number
     for index in range(length - 1, 0, -1):
         arr[index], arr[0] = arr[0], arr[index]
         # then call heapify again with the new array
         heapify(arr, index, 0)
-
-
+ 
+ 
 # Taking Elements to be Sorted
-data = [int(input())
-        for index in range(int(input("Enter elements to be sorted : ")))]
+
+data = []
+n = int(input("Enter the Size of Array : "))
+ 
+for i in range(n):
+    data.append(int(input()))
+    
 # Sending element to get sorted
 heap_sort(data)
+ 
 # Priting Elements after Getting Sorted
-print(data)
-```
-</TabItem>
-
-<TabItem value="java">
-
-```java
-import java.util.*;
-
-class HeapSort {
-
-    private static void heapSort(int arr[]) {
-        int size = arr.length;
-
-        System.out.println("Time to make first max heap:");
-        long startTime = System.nanoTime();
-        // calling buildHeap() to rearrange along with creating max heap
-        for(int i = size/2 - 1; i>=0; i--) {
-            buildHeap(arr, size, i);
-        }
-        long stopTime = System.nanoTime();
-        System.out.println((stopTime - startTime)*0.000000001);
-
-        System.out.println("Time to make sort using max heaps and putting largest element in the end:");
-        startTime = System.nanoTime();
-        // exchanging and extracting elements one by one from the final heap to sort the array
-        for(int i = size-1; i>0; i--) {
-
-            // swap the current root and last term
-            swap(arr, i, 0);
-
-            // doing max heap again
-            buildHeap(arr, i, 0);
-        }
-        stopTime = System.nanoTime();
-        System.out.println((stopTime - startTime)*0.000000001);
-    }
-
-    private static void buildHeap(int arr[], int size, int i) {
-
-        int max = i;
-        int leftNode = 2 * i + 1;
-        int rightNode = 2 * i + 2;
-
-        // for max heap root must be greater than both nodes, so we compare to check this
-        if(leftNode<size && arr[leftNode]>arr[max]) {
-            // left node larger than current root
-            max = leftNode;
-        }
-
-        if(rightNode<size && arr[rightNode]>arr[max]) {
-            // right node larger than left node and current root
-            max = rightNode;
-        }
-
-        if (max != i) {
-            // root is not greatest
-            swap(arr, max, i);
-
-            // since this sub-heap got rearranged we need to rearrange all sub-heaps before this recursively
-            buildHeap(arr, size, max);
-        }
-    }
-
-    private static void swap(int arr[], int pos1, int pos2) {
-        int temp = arr[pos1];
-        arr[pos1] = arr[pos2];
-        arr[pos2] = temp;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // taking input array
-        System.out.println("Enter size of array:");
-        int size = sc.nextInt();
-        int arr[] = new int[size];
-        System.out.println("Enter array elements:");
-        for (int i = 0; i < size; i++) {
-            arr[i] = sc.nextInt();
-        }
-
-        // before sorting
-        System.out.println("Array before heap sort:");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-
-        long startTime = System.nanoTime();
-        heapSort(arr);
-        long stopTime = System.nanoTime();
-        System.out.println("Time to sort the array:");
-        System.out.println((stopTime - startTime)*0.000000001);
-
-        // after sorting
-        System.out.println("Array after heap sort:");
-        for (int i=0; i<arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-        sc.close();
-    }
-}
+for d in data:
+    print(d, end = " ")
 ```
 </TabItem>
 
@@ -303,7 +215,7 @@ Enter elements to be sorted : 5
 ```
 ### Output :
 ```
-[10, 20, 30, 40, 50]
+10 20 30 40 50
 ```
 
 # Complexity Analysis
@@ -319,8 +231,4 @@ Enter elements to be sorted : 5
 - Space Complexity: O (1)
 
 ### Credits
-* [Arun Kumar G](https://github.com/GudlaArunKumar) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/HeapSort.cpp)
-
 * [Avinash Kr. Ranjan](https://github.com/avinashkranjan) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Heap_sort.py)
-
-* [Ritvij Kumar Sharma](https://github.com/ritvij14) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/HeapSort.java)
