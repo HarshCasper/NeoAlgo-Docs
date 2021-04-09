@@ -9,13 +9,13 @@ Krishnamurthy Number is a number whose sum of the factorial of digits is equal t
 
 ## Explanation
 
-Consider a number `n` = `pqr` (where p, q, and r are its individual digits). Then it is said to be a Krishnamurthy number if and only if,
+Consider a number `n` = `pqr` (where `p`, `q`, and `r` are its individual digits). The number `n` would be considered Krishnamurthy number if and only if,
 
 ```
 p! + q! + r! = pqr = n
 ```
 
-For Example, consider n = 145
+For Example, consider `n` = 145
 
 ```
 1! + 4! + 5! = 145
@@ -33,21 +33,7 @@ Let us assume that the given number be `num`,
     -   Set `rem = temp % 10`
     -   Set `sum = sum + factorial(rem)`
     -   Divide temp by 10.
--   Check if the value of `temp` is equal to `num`, If YES return true, Else return false
-
-```
-krishnamurthy_number(num):
-    temp = num
-    sum = 0
-    while(temp > 0)
-        rem = temp % 10
-        sum = sum + factorial(rem)
-        temp = temp ÷ 10
-    if(sum == num)
-        return true
-    else
-        return false
-```
+-   If the value of `temp` is equal to `num`, then return `true`, Else return `false`
 
 In the above algorithm it is assumed that `factorial(num)` returns the factorial of `num`. To know more about the factorial of a number visit [here](./factorial-of-number.mdx)
 
@@ -163,12 +149,10 @@ The given number 145 is a Krishnamurthy number.
 
 ## Complexity Analysis
 
-```
-Time complexity - O(n * log(n)), where 'n' is the given number
-Space complexity - O(1)
-```
+-   Time complexity - O(`n` \* log(`n`)), where `n` is the given number
+-   Space complexity - O(1)
 
 ## Credits
 
--   [Somparna Chakrabarti](https://github.com/Somparna-c) for [Source Code in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/krishnamurthy_number.cpp)
--   [Shaik Javeed Suhail](https://github.com/javeed3157) for [Source Code in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Strong_Number.py)
+-   [Somparna Chakrabarti](https://github.com/Somparna-c) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/krishnamurthy_number.cpp)
+-   [Shaik Javeed Suhail](https://github.com/javeed3157) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Strong_Number.py)
