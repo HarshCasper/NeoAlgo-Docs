@@ -1,4 +1,5 @@
 module.exports = {
+
   docs: [
     {
       type: 'category',
@@ -66,6 +67,8 @@ module.exports = {
         'mathematics/armstrong-number',
 	      'mathematics/factorial-of-number',
         'mathematics/prime-number'
+        'mathematics/factorial-of-number',
+	      'mathematics/happy-number'
       ],
     },
     {
@@ -105,7 +108,8 @@ module.exports = {
       label: 'Cryptography',
       items: [
         'cryptography/cryptography',
-        'cryptography/caesar-cipher'
+        'cryptography/caesar-cipher',
+	'cryptography/vigenere-cipher'
       ],
     },
     {
