@@ -1,0 +1,206 @@
+---
+title: Selection Sort
+slug: /sorting-algorithms/selection-sort
+---
+
+# Introduction
+
+Selection Sort is a sorting algorithm which finds out the smallest element in unsorted part in each iteration and put it to the last of sorted part.
+It does less memory writes as compared to other sorting algorithms.
+
+# Algorithm
+
+In Selection Sort, we follow the following algorithm:
+
+* First we will find the smallest element in the range [0,n-1] and swap it with the element at 0th index
+
+* Then we will find the smallest element int the range [1,n-1] and swap it with the element at 1st index
+
+* We keep on increasing the left part of the range until it reaches n-1 and do the above mentioned process
+
+# Explanation for Selection Sort
+
+### Example 1
+
+```
+   0   1   2   3
+ | 4 | 1 | 2 | 7 |
+
+ [0,3] min_idx=1 
+ swap(arr[min_idx],arr[0]);
+
+ | 1 | 4 | 2 | 7 |
+
+ [1,3] min_idx=2
+ swap(arr[min_idx],arr[1]);
+
+ | 1 | 2 | 4 | 7 |
+
+ [2,3] min_idx=2 yar 
+ swap(arr[min_idx],arr[2]);
+```
+### Example 2
+
+```
+   0   1   2   3
+ | 1 | 8 | 5 | 2 |
+
+ [0,3] min_idx=0
+ swap(arr[min_idx],arr[0]);
+
+ | 1 | 8 | 5 | 2 |
+
+ [1,3] min_idx=3
+ swap(arr[min_idx],arr[1]);
+
+ | 1 | 2 | 4 | 8 |
+
+ [2,3] min_idx=2 
+ swap(arr[min_idx],arr[2]);
+```
+
+# Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+void swapping(int &a, int &b) {         //swap the content of a and b
+   int temp;
+   temp = a;
+   a = b;
+   b = temp;
+}
+
+
+void display(int *array, int size) {
+   for(int i = 0; i<size; i++)
+      cout << array[i] << " ";
+   cout << endl;
+}
+
+
+void selection_sort(int *array, int size) {
+   int i, j, imin;
+   for(i = 0; i<size-1; i++) {
+      imin = i;   //get index of minimum data
+      for(j = i+1; j<size; j++)
+         if(array[j] < array[imin])
+            imin = j;
+         //placing in correct position
+         swap(array[i], array[imin]);
+   }
+}
+int main() {
+   int n;
+   cout << "Enter the number of elements: ";
+   cin >> n;
+   int arr[n];           //create an array with given number of elements
+   cout << "Enter elements:" << endl;
+   for(int i = 0; i<n; i++) {
+      cin >> arr[i];
+   }
+   cout << "Array before Sorting: ";
+   display(arr, n);
+   selection_sort(arr, n);
+   cout << "Array after Sorting: ";
+   display(arr, n);
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def selection_sort(nums):
+    for i in range(len(nums)):
+        lowest_value_index = i
+        for j in range(i + 1, len(nums)):
+            if nums[j] < nums[lowest_value_index]:
+                lowest_value_index = j
+        nums[i], nums[lowest_value_index] = nums[lowest_value_index], nums[i]
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+ class SelectionSort
+{
+	public static void main(String[] args) {
+		int indexI,arrayLength,indexJ,temp=0,minElementIndex=0;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter size of array");
+		arrayLength=sc.nextInt();
+		int array[]=new int[arrayLength];
+		System.out.println("Enter Elements of array");
+		for(indexI=0;indexI<arrayLength;indexI++)
+		array[indexI]=sc.nextInt();
+		for(indexI=0;indexI<arrayLength;indexI++)
+		{   
+		    minElementIndex=indexI;
+		    for(indexJ=indexI+1;indexJ<=arrayLength-1;indexJ++)
+		    {
+		        if(array[minElementIndex]>array[indexJ])
+		        minElementIndex=indexJ;
+		      }
+		        
+		        temp=array[indexI];
+		        array[indexI]=array[minElementIndex];
+		        array[minElementIndex]=temp;
+		      }
+		  
+		  for(indexI=0;indexI<arrayLength;indexI++)
+		    System.out.println(array[indexI]);
+		}
+		}
+```
+</TabItem>
+
+</Tabs>
+
+# Sample Input and Output
+
+### Input :
+
+```
+Enter number of elements:5
+Enter the elements: 5 4 3 2 1 
+```
+### Output :
+```
+Array before Sorting: 5 4 3 2 1 
+Array after  Sorting: 1 2 3 4 5
+```
+
+# Complexity Analysis
+ 
+`n` is the number of elements in the array.
+
+- Time Complexity:
+
+  - **Best Case**: O (n)
+  - **Average Case**: O (n<sup>2</sup>)
+  - **Worst Case**: O (n<sup>2</sup>)
+
+- Space Complexity: O (1)
+
+### Credits
+* [Debojyoti Chakraborty](https://github.com/sparkingdark) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/selection_sort.cpp)
+
+* [A N U S H](https://github.com/anushkrishnav) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Selection_Sort.py)
+
+* [Parjanya Aditya Shukla](https://github.com/parjanyaacoder) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/SelectionSort.java)
