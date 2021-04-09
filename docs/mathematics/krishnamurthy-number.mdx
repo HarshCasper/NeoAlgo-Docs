@@ -1,0 +1,174 @@
+---
+title: Krishnamurthy Number
+slug: /mathematics/krishnamurthy-number
+---
+
+## Introduction
+
+Krishnamurthy Number is a number whose sum of the factorial of digits is equal to the number itself. The Number is named after the Indian speaker U. G. Krishnamurti. The number is also known as Strong number or Peterson number.
+
+## Explanation
+
+Consider a number `n` = `pqr` (where p, q, and r are its individual digits). Then it is said to be a Krishnamurthy number if and only if,
+
+```
+p! + q! + r! = pqr = n
+```
+
+For Example, consider n = 145
+
+```
+1! + 4! + 5! = 145
+```
+
+Hence 145 is a Krishnamurthy number.
+
+## Algorithm
+
+Let us assume that the given number be `num`,
+
+-   Store the value of the given number in a temporary variable `temp`.
+-   Declare a variable `sum` and set its value to 0.
+-   Begin a While loop till `temp > 0`
+    -   Set `rem = temp % 10`
+    -   Set `sum = sum + factorial(rem)`
+    -   Divide temp by 10.
+-   Check if the value of `temp` is equal to `num`, If YES return true, Else return false
+
+```
+krishnamurthy_number(num):
+    temp = num
+    sum = 0
+    while(temp > 0)
+        rem = temp % 10
+        sum = sum + factorial(rem)
+        temp = temp ÷ 10
+    if(sum == num)
+        return true
+    else
+        return false
+```
+
+In the above algorithm it is assumed that `factorial(num)` returns the factorial of `num`. To know more about the factorial of a number visit [here](./factorial-of-number.mdx)
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+//CPP Program to find whether a number is a Krishnamurthy number
+
+#include<iostream>
+
+//Function to calculate the factorial of the individual digits
+
+int Factorial ( int n )
+{
+    if ( n == 1 || n == 0 )
+    {
+        return 1;
+    }
+    return n * Factorial( n - 1 );
+}
+
+int Krishnamurthy_No ( int num )
+{
+    int digit, sum = 0 ,copy = num;
+
+    //Running a loop till we have extracted all the digits from the copy of the given number
+
+    while ( copy > 0 )
+    {
+        digit = copy % 10;
+        sum = sum + Factorial ( digit );
+        copy = copy / 10;
+    }
+    return sum;
+}
+
+int main ()
+{
+    int number, digit, sum = 0;
+    std::cout << "Enter the number: ";
+    std::cin >> number;
+    int answer = Krishnamurthy_No ( number );
+
+    //Comparing if calculated sum adds up to the number
+
+    if ( answer == number)
+    {
+        std:: cout <<"The given number "<< number <<" is a Krishnamurthy number.";
+    }
+    else
+    {
+        std:: cout <<"The given number "<< number <<" is not a Krishnamurthy number.";
+    }
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def factorial(n) :
+    p = 1
+    for i in range(1 , n + 1) :
+        p = p * i
+    return p
+
+print("Enter the number: ", end="")
+number = int(input())
+temp = number
+sums = 0
+if number > 0 :
+    while temp > 0 :
+        remainder = temp % 10
+        sums = sums + factorial(remainder)
+        temp = temp // 10
+    if sums == number :
+        print("The given number {} is a Krishnamurthy number.".format(number))
+    else :
+        print("The given number {} is not a Krishnamurthy number.".format(number))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input
+
+```
+Enter the number: 45
+```
+
+### Output
+
+```
+The given number 145 is a Krishnamurthy number.
+```
+
+## Complexity Analysis
+
+```
+Time complexity - O(n * log(n)), where 'n' is the given number
+Space complexity - O(1)
+```
+
+## Credits
+
+-   [Somparna Chakrabarti](https://github.com/Somparna-c) for [Source Code in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/krishnamurthy_number.cpp)
+-   [Shaik Javeed Suhail](https://github.com/javeed3157) for [Source Code in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Strong_Number.py)
