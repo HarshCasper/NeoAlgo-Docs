@@ -105,7 +105,8 @@ module.exports = {
       label: 'Cryptography',
       items: [
         'cryptography/cryptography',
-        'cryptography/caesar-cipher'
+        'cryptography/caesar-cipher',
+	'cryptography/vigenere-cipher'
       ],
     },
     {
