@@ -30,8 +30,9 @@ Ciphertext - X I M K P E Y
   - Now, we have successfully generated the keyword. We can now proceed to the encryption process.
   - Pick a letter in the plaintext and its corresponding letter in the keyword. The keyword letter and the plaintext letter are used as the row index and column index. The entry at the (row, column) pair gives us the respective ciphertext.
   - Here, the first letter in the plaintext is `N`, and in the keyword is `K`. Now, (`K`, `N`) represents (row, column) index. Using this index we get `X`, which is the first letter of the ciphertext. We repeat till we reach the end of the plaintext.
-  - Also, the encryption process can be done by using the algebraic formula. Convert `A` to `Z` to numbers. `A` is converted to `0`, `B` to `1`, . . . . . , `Z` to `25`. ciphertext = (plaintext + keyword) % 26. Here, `N` becomes `13`. `k` becomes `10`. So, the ciphertext becomes, (13 + 10) % 26 = 23. Converting it back to ASCII, we get ciphertext as `X``.
-  - Similarly, plaintext = (ciphertext - keyword) % 26. Provided codes are implemented using this method.
+  - Also, the encryption process can be done by using the algebraic formula. Convert `A` to `Z` to numbers. `A` is converted to `0`, `B` to `1`, . . . . . , `Z` to `25`. 
+  - So, `ciphertext = (plaintext + keyword) % 26`. Here, `N` becomes `13`. `k` becomes `10`. So, the ciphertext becomes, (13 + 10) % 26 = 23. Converting it back to ASCII, we get ciphertext as `X`.
+  - Similarly, `plaintext = (ciphertext - keyword) % 26`. Provided codes are implemented using this method.
 
 ## Algorithm
 
@@ -219,10 +220,9 @@ Decrypted message: NEOALGO
 
 ## Complexity Analysis
 
-```
-Time Complexity - O(n)
-Space Complexity - O(1)
-```
+  - Time Complexity  - `O(n)`
+  - Space Complexity - `O(1)`
+
 
 ## Credits
 
