@@ -51,22 +51,22 @@ import TabItem from '@theme/TabItem';
 import java.util.*;
 
 //This function checks if a number is a magic number
-class Magicnumber{ 
+class Magicnumber{
     static boolean magicNumber(int n){
          int sum = 0;
          /*We loop till the number is greater than 0 or we
-           get a single digit sum of the digits of the number*/  
+           get a single digit sum of the digits of the number*/
          while(n>0 || sum>9){
                //This is the iterating step.
                if(n == 0){
                   n =sum;
-                  sum = 0; 
+                  sum = 0;
                }
                else{
                   //We find the sum of the digits of number
                   sum += n%10;
-                  n = Math.floorDiv(n,10); 
-               } 
+                  n = Math.floorDiv(n,10);
+               }
          }
          /*After we get a single digit sum, we check if
            it 1, then it is a magic number and we return True.*/
@@ -76,21 +76,21 @@ class Magicnumber{
          else{
             return false;
          }
-    }    
+    }
 
     public static void main(String[] args){
          Scanner scan = new Scanner(System.in);
          System.out.print("Enter a number to check if it's a magic number: ");
          //Taking input from user
          int n = scan.nextInt();
-         //checker  
+         //checker
          boolean check = magicNumber(n);
-         //If the above function returns true, it means n is Magic number 
+         //If the above function returns true, it means n is Magic number
          if(check == true)
              System.out.println("The number "+n+" is a magic number!");
          else
-             System.out.println("The number "+n+" is not a magic number!");       
-    }     
+             System.out.println("The number "+n+" is not a magic number!");
+    }
 }
 ```
 
@@ -98,7 +98,7 @@ class Magicnumber{
 <TabItem value="py">
 
 ```py
-def is_Magic_number(number):    
+def is_Magic_number(number):
     sum_digits = 0
     ''' We loop till the number is greater than 0 or we
     get a single digit sum of the digits of the number.'''
