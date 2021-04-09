@@ -3,48 +3,46 @@ title: Heap Sort
 slug: /sorting-algorithms/heap-sort
 ---
 
-# Introduction
+## Introduction
 
-Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array 
-for sorting in ascending or descending order N times.It is similar to Selection Sort, the only difference is that it uses Heap data structure 
-for finding minimum or maximum element. It is a In-Place and Non-Stable Sorting Algorithm.
+Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array for sorting in ascending or descending order `N` times. It is similar to Selection Sort, with the only difference is that it uses Heap data structure for finding minimum or maximum element. It is a In-Place and Non-Stable Sorting Algorithm.
 
-- Binary Heap: It is a complete binary tree represented using array.There are two types of Binary Heap:
+- BINARY HEAP: It is a complete binary tree represented using array. There are two types of Binary Heap:
 
     - **MaxHeap**: Both left and right subtree of every node contains smaller elements
     - **MinHeap**: Both left and right subtree of every node contains greater elements
 
 - Formulas:
 
-  - **Left Child**:     2*i+1
-  - **Right Child**:    2*i+2
-  - **Parent**:         floor((i-1)/2)
+  - **Left Child**:     `2*i+1`
+  - **Right Child**:    `2*i+2`
+  - **Parent**:         `floor((i-1)/2)`
 
-`i` is the number of elements in the array.
+`i` is the index of array
 
 # Algorithm
 
 Heap Sort for Sorting in Increasing Order:
 
-* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`, `(n-2)/2` is the last internal node
+* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
 
 * Swap the root of the MaxHeap with the last element of the MaxHeap 
 
 * Reduce the size of MaxHeap by 1 from the last and call Heapify on the root.
 
-* Perform step 2 and step 3 `N-1` times
+* Perform step 2 and step 3 
 
 Heap Sort for Sorting in Decreasing Order:
 
-* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`, `(n-2)/2` is the last internal node
+* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
 
 * Swap the root of the MinHeap with the last element of the MinHeap 
 
 * Reduce the size of MinHeap by 1 from the last and call Heapify on the root.
 
-* Perform step 2 and step 3 `N-1` times
+* Perform step 2 and step 3 
 
-# Explanation for Heap Sort
+## Explanation for Heap Sort
 
 ### Example 
 
@@ -81,7 +79,7 @@ Swapping root with last element of MaxHeap and reducing the size of MaxHeap
            Swapping index             Applying Heapify          Swapping index           Applying Heapify           Swapping index            Applying Heapify
               0 and 3                    on index 0                0 and 2                  on index 0                 0 and 1                   on index 0
 ```
-# Code
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -218,7 +216,7 @@ Enter elements to be sorted : 5
 10 20 30 40 50
 ```
 
-# Complexity Analysis
+## Complexity Analysis
 
 `n` is the number of elements in the array.
 
