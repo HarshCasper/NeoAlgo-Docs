@@ -5,7 +5,7 @@ slug: /data-structures/binary-tree
 
 ## Introduction
 
-Binary tree is a non-linear data structure where tree nodes have `atmost two children`. The topmost node is called the root node and the node having no children is referred as the leaf node. Each binary tree has two parts, left subtree and right subtree. Binary trees are commonly used to implement binary search tree, expression trees, tournament trees and binary heaps.
+Binary tree is a non-linear data structure where tree nodes have **atmost two children**. The topmost node is called the root node and the node having no children is referred as the leaf node. Each binary tree has two parts, left subtree and right subtree. Binary trees are commonly used to implement binary search tree, expression trees, tournament trees and binary heaps.
 
 ![1](https://user-images.githubusercontent.com/70858557/114189238-9d058d00-9967-11eb-89f3-2a3fd9b54b95.PNG)
 
@@ -16,7 +16,7 @@ There are two types of memory representation of a binary tree:
 
 **Linear Representation**
                                     
-Here the binary tree elements are stored in the memory using `linked list`. Each node has three parts, the `data` item, `pointer to the left node` and `pointer to the right node`. It also has a root pointer pointing to the root of binary tree which remains null when the tree is empty.
+Here the binary tree elements are stored in the memory using linked list. Each node has three parts, the `data` item, `pointer to the left node` and `pointer to the right node`. It also has a root pointer pointing to the root of binary tree which remains null when the tree is empty.
 
 **Sequential Representation**
 
@@ -98,10 +98,10 @@ void binaryTree::insertKeys(vector<int> keys){
     }
 }
 
-// When called for the first time(when root IS initialized as NULL), insertKey(int)
-// initializes root to point to a node data type. This node data type gets it key_value
-// as key(argument) and child nodes as NULL.
-// For all calls other than the first time, it further calls insertKey(int, node*)
+/* When called for the first time(when root IS initialized as NULL), insertKey(int)
+   initializes root to point to a node data type. This node data type gets it key_value
+   as key(argument) and child nodes as NULL.
+   For all calls other than the first time, it further calls insertKey(int, node*)*/
 void binaryTree::insertKey(int key){
     if(root!=NULL){
         insertKey(key, root);
@@ -114,11 +114,11 @@ void binaryTree::insertKey(int key){
     }
 }
 
-// inserts the key, such that the Tree follows the definition of a binary tree.
-// the function travels down the tree starting from the root to find a suitable position.
-// if key is less than the key_value at a node, function calls itself with its left subtree.
-// if key is greater than the key_value at a node, function calls itself with its right subtree.
-// When it reaches a suitable place, it creates a new node. This node gets key_value as key and child nodes as NULL
+/* inserts the key, such that the Tree follows the definition of a binary tree.
+   the function travels down the tree starting from the root to find a suitable position.
+   if key is less than the key_value at a node, function calls itself with its left subtree.
+   if key is greater than the key_value at a node, function calls itself with its right subtree.
+   When it reaches a suitable place, it creates a new node. This node gets key_value as key and child nodes as NULL*/
 void binaryTree::insertKey(int key, node* leaf){
     if(key< leaf->key_value){
         if(leaf->left!=NULL){
@@ -150,8 +150,8 @@ void binaryTree::preOrderTraversal_recursive(){
     preOrderTraversal_recursive(root);
 }
 
-// for a particular node, function prints its key_value and recursively calls
-// its left and right subtree(in that order).
+/* for a particular node, function prints its key_value and recursively calls
+   its left and right subtree(in that order).*/
 void binaryTree::preOrderTraversal_recursive(node* leaf){
     if(leaf!=NULL){
         cout<<leaf->key_value<<" ";
@@ -160,13 +160,10 @@ void binaryTree::preOrderTraversal_recursive(node* leaf){
     }
 }
 
-// if root is NULL, function exits
-// otherwise, it works as follows: 1. Sets root as current node.
-// 2. It outputs the key_value of the current node,
-// and pushes the address of its right subtree in stack. Also, sets current node as address of its left subtree
-// This continues till the current node is NULL.
-// 3. When it reaches NULL i.e. no left subtree is available, it sets current node as top value in the
-// stack and pops it from the stack. Then it repeats step 2.
+/* If root= NULL, function exits, else: 
+1. Root is set as current node.
+2. key_value of the current node is the output, and address of its right subtree is pushed in stack. Also, sets current node as address of its left subtree. This continues until, current node = NULL.
+3. On reaching NULL i.e. no left subtree is available, it sets current node as top value in the stack and pops it from the stack. Then it repeats step 2.*/
 void binaryTree::preOrderTraversal_iterative(){
     cout<<"PreOrderTraversal(iterative): ";
     if(root==NULL)
@@ -191,11 +188,14 @@ void binaryTree::preOrderTraversal_iterative(){
 
 int main(){
     binaryTree Tree;
-    vector<int> elements = {25,15,50,10,22,35,70,4,12,18,24,31,44,66,80}; //the elements to be inserted in the tree
+    //the elements to be inserted in the tree
+    vector<int> elements = {25,15,50,10,22,35,70,4,12,18,24,31,44,66,80};
     Tree.insertKeys(elements);
-    Tree.preOrderTraversal_recursive(); //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    Tree.preOrderTraversal_recursive(); 
     cout<<endl;
-    Tree.preOrderTraversal_iterative(); //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    Tree.preOrderTraversal_iterative(); 
     cout<<endl;
 }
 ```
@@ -259,14 +259,16 @@ class Tree:
 
         return self.path
 
-treeNodesArray = list(input().split(','))
-preOrdertree = Tree()
-preOrdertree.createTree(treeNodesArray)
+if __name__ == "__main__":
 
-#### Pre-Order Traversal :- root.val -> root.left -> root.right
+    treeNodesArray = list(input().split(','))
+    preOrdertree = Tree()
+    preOrdertree.createTree(treeNodesArray)
 
-print(preOrdertree.recursive_preorder_traversal(preOrdertree.root, []))  
-print(preOrdertree.iterative_preorder_traversal(preOrdertree.root))  
+    #### Pre-Order Traversal :- root.val -> root.left -> root.right
+
+    print("PreOrderTraversal(recursive):",preOrdertree.recursive_preorder_traversal(preOrdertree.root, []))  
+    print("PreOrderTraversal(iterative):",preOrdertree.iterative_preorder_traversal(preOrdertree.root))  
 ```
 
 </TabItem>
@@ -289,7 +291,8 @@ print(preOrdertree.iterative_preorder_traversal(preOrdertree.root))
 using namespace std;
 #include<stack>
 
-class treenode{       //class treenode 
+//class treenode
+class treenode{       
     int data;
     treenode *left;
     treenode *right;
@@ -302,7 +305,8 @@ class tree{
     tree(){
         root = NULL;
     }
-    void create(){               //create function accepting root and recusively calling other function
+    //create function accepting root and recusively calling other function
+    void create(){               
         char ch;
         root = new treenode();
         cout<<"Enter the data for root node"<<endl;
@@ -320,7 +324,8 @@ class tree{
         char ch;
         cout<<"Enter the postion l / r where u want to insert the element"<<endl;
         cin>>ch;
-        if(ch=='l' || ch=='L'){        //checking if pos is l
+        //checking if pos is l
+        if(ch=='l' || ch=='L'){        
             if(root->left==NULL){
                 curr = new treenode();
                 cin>>curr->data;
@@ -331,7 +336,8 @@ class tree{
                 create(root->left);
             }
         }
-        else if(ch=='r' || ch=='R'){       //checking if pos is r
+        //checking if pos is r
+        else if(ch=='r' || ch=='R'){       
             if(root->right==NULL){
                 curr= new treenode();
                 cin>>curr->data;
@@ -346,19 +352,22 @@ class tree{
     void inorder_rec(){                  
         inorder_rec(root);
     }
-    void inorder_rec(treenode *temp){       //recursive inorder   
+    //recursive inorder 
+    void inorder_rec(treenode *temp){         
         if(temp!=NULL){
             inorder_rec(temp->left);
             cout<<temp->data<<" ";
             inorder_rec(temp->right);
         }
     }
-    void inorder_nonrec(){          //non recursive using stack
+    //non recursive using stack
+    void inorder_nonrec(){         
         treenode *temp;
         stack<treenode *> s;
         temp = root;
         while(1){
-            while(temp!=NULL){                //firstly travesing left of tree
+            //firstly travesing left of tree
+            while(temp!=NULL){                
                 s.push(temp);
                 temp=temp->left;
             }
@@ -439,9 +448,10 @@ class Tree:
 			    curr = stack.pop()
 			    print(curr.data, end=' ')
 			    curr = curr.right
-print("Enter the input in the sequence :- root.val root->left root->right (enter null if empty)")
-NodesArray = list(input().split(' '))
-InOrdertree = Tree()
+if __name__ == "__main__":
+    print("Enter the input in the sequence :- root.val root->left root->right (enter null if empty)")
+    NodesArray = list(input().split(' '))
+    InOrdertree = Tree()
 ```
 
 </TabItem>
@@ -703,7 +713,7 @@ public class postorder_Traversal {
 ## Sample I/O
 
 
-### Pre-Order Traversal:
+#### Pre-Order Traversal:
 
 **Sample Input**
 
@@ -717,7 +727,7 @@ PreOrderTraversal(recursive): 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
 PreOrderTraversal(iterative): 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80 
 ```
 
-### In-Order Traversal:
+#### In-Order Traversal:
 
 **Sample Input**
 ```
@@ -749,7 +759,7 @@ n
 1 2 3 4 5
 ```
 
-### Post-Order Traversal:
+#### Post-Order Traversal:
 
 **Sample Input**
 
@@ -773,20 +783,20 @@ Your post order traversed tree:
 
 ## Credits
 
-### Pre-Order Traversal:
+#### Pre-Order Traversal:
 
-[Pradeep](https://github.com/pradeep98) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_preOrder_traversal.py)
+- [Pradeep](https://github.com/pradeep98) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_preOrder_traversal.py)
 
-[Akhil Manoj](https://github.com/AkM-2018) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/BinaryTree_PreorderTraversal.cpp)
+- [Akhil Manoj](https://github.com/AkM-2018) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/BinaryTree_PreorderTraversal.cpp)
 
-### In-Order Traversal:
+#### In-Order Traversal:
 
-[Rutuja Dhanawade](https://github.com/rutujadhanawade) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_Iterative_InOrder_Traversal.py)
+- [Rutuja Dhanawade](https://github.com/rutujadhanawade) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_Iterative_InOrder_Traversal.py)
 
-[Divyang Bagla](https://github.com/bagladivyang03) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/pull/429/files#diff-d3685d9e8086d5a3770bde25bf868b3f4422c8d521dddefd078c2793558c5ef5)
+- [Divyang Bagla](https://github.com/bagladivyang03) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/pull/429/files#diff-d3685d9e8086d5a3770bde25bf868b3f4422c8d521dddefd078c2793558c5ef5)
 
-### Post-Order Traversal:
+#### Post-Order Traversal:
 
-[Aditya Jetely](https://github.com/AdityaJ7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Binary_tree_post_order.py)
+- [Aditya Jetely](https://github.com/AdityaJ7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Binary_tree_post_order.py)
 
-[Nitanshu Lokhande](https://github.com/nlok5923) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/ds/postorder_Traversal.java)
+- [Nitanshu Lokhande](https://github.com/nlok5923) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/ds/postorder_Traversal.java)
