@@ -64,6 +64,7 @@ module.exports = {
       items: [
         'mathematics/mathematics',
         'mathematics/armstrong-number'
+        'mathematics/prime-number'
       ],
     },
     {
