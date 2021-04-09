@@ -36,7 +36,11 @@
   width: 200px;
 }
 
+.getStarted {
+  color: white !important;
+}
+
 .getStarted:hover {
-  color: black;
+  color: black !important;
   background-color: white;
 }
