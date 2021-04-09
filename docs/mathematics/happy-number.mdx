@@ -5,11 +5,11 @@ slug: /mathematics/happy-number
 
 ## Introduction
 
-A number is called a happy number if it converges to 1 after a sequential operation wherein each step we replace the original number by the sum of the squares of its individual digits.When we have a digit given to us, we perform the operation, the sum of squares of its individual digits but in some cases, we might arrive at the same number which we already came across. In such cases, we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
+A number is called a happy number if it converges to 1 after a sequential operation wherein each step we replace the original number by the sum of the squares of its individual digits. When a digit is inputted, we calculate the sum of squares of its individual digits. We find that in some cases, we arrive at the same number that we earlier came across during our calculation. In such cases, we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
 
 ## Explanation
 
-If the number we calculate by the sum of squares appears again in the loop. In such a case, we don't see the loop terminating. So such a number is not a happy number.
+If the number we are processing by calculating their sum of squares appears again in the loop, we will not see the loop terminating. Such a number cannot be considered as a happy number.
 
 Let's have an example for each case: 
 ```
@@ -151,11 +151,7 @@ def sum_square_digits(number):
     return sum_squares
 
 ''' This function takes a number as input and checks
-    if the number is a happy number. The idea behind
-    the code is - we maintain two variables. The second
-    variable is one step ahead of the first one. If
-    the first variable becomes 1 so the second will be
-    1 anyhow, because 1*1 = 1. So, we terminate the loop.'''
+    if the number is a happy number or not.'''
 def is_happy_number(number):
 
     first = number
