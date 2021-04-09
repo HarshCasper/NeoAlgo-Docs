@@ -7,9 +7,12 @@ slug: /cryptography/caesar-cipher
 
 Caesar cipher is one of the earliest known ciphers. It is also known as shift cipher. It is a simple substitution cipher in which each letter of the given plaintext is **shifted** down by a certain fixed number of places known as _shift_.
 
-## Explaination
+## Explanation
 
-With a shift of 2, `A` would be replaced by `C`, `B` would be replaced by `D`, and so on. The value of shift is the same for all letters of the plaintext. To decrypt the ciphertext, letters of ciphertext are **shifted** up by the same _shift_. Caesar cipher is not at all secure. In fact, even without the knowledge of the _shift_, the cipher can easily be broken as there are only 26 possible values of the shift.
+With a shift of 2, `A` would be replaced by `C`, `B` would be replaced by `D`, and so on. The value of shift is the same
+for all letters of the plaintext. To decrypt the ciphertext, letters of ciphertext are **shifted** up by the
+same _shift_. Caesar cipher is not at all secure. In fact, even without the knowledge of the _shift_, the cipher
+can easily be broken as there are only 26 possible values of the shift.
 
 Let's have one example:
 
@@ -25,7 +28,8 @@ Ciphertext- P  G  Q C N  I  Q
 
 ## Algorithm
 
-All the letters from `A` to `Z` are assigned a fixed number from 0 to 25. `A` is assigned 0, `B` is assigned 1, ....... , `Z` is assigned 25.
+All the letters from `A` to `Z` are assigned a fixed number from 0 to 25. `A` is assigned 0, `B`
+is assigned 1, ....... , `Z` is assigned 25.
 
 ### Encryption
 
@@ -153,13 +157,13 @@ def decrypt(text, shift):
             message += current_character
             continue
 
-        ''' If current characater is an uppercase letter adding it after
+        ''' If current character is an uppercase letter adding it after
 	    shifting with key value to message'''
         if current_character.isupper():
             message += chr((ord(current_character) - shift - 65) % 26 + 65)
             continue
 
-        ''' If current characater is an lowercase letter adding it after shifting
+        ''' If current character is an lowercase letter adding it after shifting
 	    with key value to message'''
         if current_character.islower():
             message += chr((ord(current_character) - shift - 97) % 26 + 97)
@@ -181,18 +185,18 @@ def encrypt(text, shift):
         # Saving current character in current_character
         current_character = text[character]
 
-        # If current characater is space adding it directly to message
+        # If current character is space adding it directly to message
         if current_character == ' ':
             message += current_character
             continue
 
-        ''' If current characater is an uppercase letter adding it after shifting
+        ''' If current character is an uppercase letter adding it after shifting
 	    with key value to message'''
         if current_character.isupper():
             message += chr((ord(current_character) + shift - 65) % 26 + 65)
             continue
 
-        ''' If current characater is an lowercase letter adding it after shifting
+        ''' If current character is an lowercase letter adding it after shifting
 	    with key value to message'''
         if current_character.islower():
             message += chr((ord(current_character) + shift - 97) % 26 + 97)
