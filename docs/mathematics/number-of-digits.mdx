@@ -1,0 +1,154 @@
+---
+title: Number of Digits
+slug: /mathematics/number-of-digits
+---
+
+# Introduction
+
+In this article we will see how to calculate the number of digits in a number.
+
+# Algorithm
+
+* We will make a cnt variable and initilize it to 0
+
+* We will keep on dividing the number by 10 and increase the cnt variable until the number becomes zero
+
+# Explanation 
+
+### Example 1
+
+```
+ 4568          cnt=0
+ 
+ 4568/10=456   cnt=1
+ 
+ 456/10=45     cnt=2
+ 
+ 45/10=4       cnt=3
+ 
+ 4/10=0        cnt=4
+```
+### Example 2
+
+```
+ 789          cnt=0
+ 
+ 789/10=78    cnt=1
+ 
+ 78/10=7      cnt=2
+ 
+ 7/10=0       cnt=3
+```
+
+# Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int sum_of_digits(int num)
+{
+    int cnt = 0;
+    while (num != 0)
+    {
+        cnt++;
+        // Removing the least significant digit
+        num = num / 10;
+    }
+    return cnt;
+}
+
+int main()
+{
+    int num, cnt;
+    cout << "\nEnter the number: ";
+    cin >> num;
+
+    // If the number is negative, convert it into positive
+    if (num < 0)
+    {
+        num = num * -1;
+    }
+
+    // Call the function
+    cnt = sum_of_digits(num);
+    // Print the obtained count
+    cout << "The number of digits in the given number is: " << cnt;
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+public class CountDigits {
+
+	public static void countdigit(int n) {
+	        int count=0;
+		while(n!=0){
+                count=count+1;
+                n=n/10;
+              }
+             System.out.println(count);   
+
+	}
+	
+	public static void main(String[] args) {
+
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.print("Enter a number : ");
+		int n=sc.nextInt();
+		
+		System.out.println("Number of digits in a number are : ");
+		countdigit(n);
+				
+	}
+```
+</TabItem>
+
+</Tabs>
+
+# Sample Input and Output
+
+### Input :
+
+```
+Enter the number: 8965
+```
+### Output :
+```
+The number of digits in the given number is: 4
+```
+
+# Complexity Analysis
+
+`n` is the number of digits in the number.
+
+- Time Complexity:
+
+  - **Best Case**: O (n)
+  - **Average Case**: O (n)
+  - **Worst Case**: O (n)
+
+- Space Complexity: O (1)
+
+### Credits
+* [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_digits.cpp)
+
+* [Arpit](https://github.com/infoarpit) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/countDigits/iterative.java)
