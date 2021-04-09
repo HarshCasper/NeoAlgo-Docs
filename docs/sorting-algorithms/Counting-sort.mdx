@@ -1,0 +1,206 @@
+---
+title: Counting Sort
+slug: /sorting-algorithms/Counting-sort
+---
+
+# Introduction
+
+Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements.
+In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of
+previous counts.And this modified count array shows that how many elements are smaller than that element. Then make the final array
+that contains sorted elements.Make sure that elements are in small range.
+
+# Algorithm
+
+In Counting Sort, we follow the following algorithm:
+
+* first we store the occurence of elements in a count array.
+
+* Then modify the count array such that every index store the sum of previous count.
+
+* Then travesre the given array from end(so that stability maintains) and checkin our modified count array.
+
+* And take an final array(output) and store the elements.
+
+* We get our sorted elements in output array.
+
+# Explanation for Counting Sort
+
+### Example 1
+
+<img src="../../static/img/counting-sort.png" width="500" height="350"/>
+
+```
+
+ Array arr[4]:        
+ | 5 | 1 | 4 | 1 | 3 | 1 | 2 | 5 |                               
+ Store the occurence in count array
+ | 0 | 3 | 1 | 1 | 1 | 2 | 0 | 0 | 0 | 0 |
+ Modify the count array
+ | 0 | 3 | 4 | 5 | 6 | 8 | 8 | 8 | 8 | 8 |
+then make an output array from given array and modified count array
+| 1 | 1 | 1 | 2 | 3 | 4 | 5 | 5 |
+  Sorted!! 
+
+```
+
+# Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int Min(long long int A[], long long int n) {
+        long long int min = 100000;
+
+        // finds the maximum element of the array
+        for (long long int i = 0; i < n; i++) {
+                if (A[i] < min) {
+                        min = A[i];
+                }
+        }
+        return min;
+}
+
+int Max(long long int A[], long long int n) {
+        long long int max = A[0];
+
+        // finds the maximum element of the array
+        for (long long int i = 0; i < n; i++) {
+                if (A[i] > max) {
+                        max = A[i];
+                }
+        }
+        return max;
+}
+
+void CountSort(long long int A[], long long int n) {
+        long long int max = Max(A, n);
+        long long int min = Min(A, n);
+        int* count = new int [max- min + 1];
+
+        // initializes the count array with all elements to zero
+        for (long long int i = 0; i < n; i++) {
+                count[A[i]-min] = 0;
+        }
+
+        // updates the count array with frequencies of given numbers
+        for (long long int i = 0; i < n; i++) {
+                count[A[i]-min]++;
+        }
+
+        int k = 0;
+
+        for (int j = max; j >= min; j--)
+        {
+                for (int i = 0; i < count[j - min]; i++)
+                {
+                        A[k++] = j;
+                }
+        }
+
+        delete [] count;
+}
+
+int main() {
+
+        long long int n;
+        long long int A[100000];
+        cout << "Enter the size of array" << endl;
+        cin >> n;
+        cout << "Enter the elements of the array" << endl;
+
+            // inputs numbers from the user in an array
+        for (long long int i = 0; i < n; i++) {
+                cin >> A[i];
+        }
+
+        CountSort(A, n);
+
+        cout << "The sorted array is :" << endl;
+
+        // prints the sorted array
+        for (long long int i = n-1; i >=0; i--) {
+                cout << A[i] << " ";
+        }
+        cout << endl;
+        return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def counting_sort(l, k=None):
+    #  creating an array for counting elements
+    if k == None:
+        arr = [0]*1000
+    else:
+        arr = [0]*(k+1)
+    # counting the occurrence of elements
+    for i in l:
+        arr[i]+=1
+    # generating sorted array
+    l=[]
+    for i in range(len(arr)):
+        l+=[i]*arr[i]
+    return l
+
+
+if __name__ == "__main__":
+    l = list(map(int,input("Enter the elements of the array: ").split()))
+    l = counting_sort(l)
+    print("The sorted array is: ",*l)
+
+
+```
+</TabItem>
+</Tabs>
+
+# Sample Input and Output
+
+
+## Sample 1 
+
+### Input :
+
+```
+Enter the size of array: 8
+
+Enter the elements of the array: 5 1 4 1 3 2 1 5
+```
+### Output :
+
+```
+The sorted array is: 1 1 1 2 3 4 5 5
+```
+
+# Time & Space Complexity
+ 
+Worst Case Complexity: O(n+k)
+
+Best Case Complexity: O(n+k)
+
+Average Case Complexity: O(n+k)
+
+where n is size of an array , and k is element range of the array.
+
+### Credits
+1. [Sarthak Saxena](https://github.com/Sarthak-9) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/counting_sort)
+
+2. [Ananya9878](https://github.com/Ananya9878) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Counting_Sort.py)
