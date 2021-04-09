@@ -87,7 +87,8 @@ module.exports = {
       label: 'Competitive Programming',
       items: [
         'competitive-programming/competitive-programming',
-        'competitive-programming/anagram-numbers'
+        'competitive-programming/anagram-numbers',
+        'competitive-programming/max-number-from-array'
       ],
     },
     {
