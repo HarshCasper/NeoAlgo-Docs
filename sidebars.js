@@ -107,7 +107,8 @@ module.exports = {
       items: [
         'cryptography/cryptography',
         'cryptography/caesar-cipher',
-	'cryptography/vigenere-cipher'
+	'cryptography/vigenere-cipher',
+	'cryptography/keyword-cipher'
       ],
     },
     {
