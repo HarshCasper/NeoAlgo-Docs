@@ -1,0 +1,118 @@
+---
+title: Maximum number formed from numbers in array
+slug: /competitive-programming/max-number-from-array
+---
+
+# Introduction
+
+To form the maximum number possible from an array of single-digit numbers, we have to sort the array in desscending order. The numbers appended in the descending order gives the maximum number.
+However, the same algorithm cannot be used for array containing both two-digit and single-digit numbers. 
+For example, if the array contains two elements, 2 and 21, then according to the algorithm used for the single digits, if we sort the array in descending order and append them, then the maximum number will be 212.
+But this is wrong. The maximum number that can be formed from this array is 221.
+Therefore, we need to use a separate algorithm.
+
+# Algorithm
+
+1. Input the numbers as string
+2. Sort the array of strings based on the following comparison criteria
+    * While sorting the array using comparison, create two separate strings XY and YX, if X and Y are the two strings being compared
+    * XY is the string created by appending X and Y in order
+    * YX is the string created by appending Y and X in order.
+    * Compare XY and YX and whichever is greater, should be placed before the other in the array
+
+# Examples
+
+## Example 1
+
+Let the array be {21,2}
+While sorting, two strings are created : XY = 212 and YZ = 221
+As XY<YZ, therefore, the array is sorted as {2,21}
+Therefore, the maximum number is 221
+
+## Example 2
+Let the array be {34,17}
+While sorting, two strings are created: XY = 3417 and YX = 1734
+As XY>YX, the sorted array is {34,17} and the maximum number formed is 3417.
+
+# Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', }
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+
+#include <bits/stdc++.h>
+using namespace std;
+int myCompare(string X, string Y)
+{
+    string XY = X.append(Y);
+    string YX = Y.append(X);
+    return XY.compare(YX) > 0 ? 1 : 0;
+}
+int printLargest(vector<string> str)
+{
+    sort(str.begin(), str.end(), myCompare);
+    for (int i = 0; i < str.size(); i++)
+        cout << str[i];
+}
+int main()
+{
+    vector<string> str;
+    cout << "Enter the number of elements in array\n";
+    long long int n;
+    cin >> n;
+    string s;
+    cout<< "\nEnter the elements\n";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> s;
+        str.push_back(s);
+    }
+    cout << "The maximum number : "; 
+    printLargest(str);
+}
+
+```
+</TabItem>
+</Tabs>
+
+# Sample Input and Output
+
+## Sample 1
+### Input:
+Enter the number of elements in array
+3
+Enter the elements
+10 21 34
+
+### Output:
+The maximum number : 342110
+
+## Sample 2
+
+### Input:
+Enter the number of elements in array
+4
+Enter the elements
+12 21 33 26
+
+### Output:
+The maximum number : 33262112
+
+# Complexity Analysis
+
+* Time Complexity: O(n)
+* Space Complexity : O(1)
+
+# Credit
+
+[Sayani Mallick](https://github.com/SAY-droid427/) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/maxNumber.cpp)
