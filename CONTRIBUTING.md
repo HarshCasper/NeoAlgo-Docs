@@ -163,9 +163,9 @@ Here goes your blog content
 
 ## Summary
 
-- [Contribution workflow](#Step-1-:-Find-an-issue)
-- [How to create an article?](#add-a-new-article-:page_with_curl:)
-- [How to create a blog?](#add-a-blog-post-:writing_hand:)
+[Contribution workflow](#Step-1-:-Find-an-issue)  
+[How to create an article?](#add-a-new-article-:page_with_curl:)  
+[How to create a blog?](#add-a-blog-post-:writing_hand:)  
 
 ## Here are some 9 Rules
 
