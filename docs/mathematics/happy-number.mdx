@@ -5,8 +5,7 @@ slug: /mathematics/happy-number
 
 ## Introduction
 
-A number is called a happy number if it converges to 1 after a sequential operations
-where in each step we replace the orginal number by the sum of the squres of its individual digits.   
+A number is called a happy number if it converges to 1 after a sequential operations where in each step we replace the orginal number by the sum of the squres of its individual digits.
 
 ## Explanation
 
@@ -36,12 +35,11 @@ Sequential Steps :
 1^2 + 4^2 + 5^2 = 42
 4^2 + 2^2  = 20
 2^2 + 0^2  = 4
-
 ```
 
 ## Algorithmic Steps
 
-- Impliment a function which computes the sum of squares of the individual digits and returns the sum.
+ -Impliment a function which computes the sum of squares of the individual digits and returns the sum.
 - We assign 2 variables which keep track of the sum of squares in single iteration and two iterations 
   using the above function implimented repeatedly.
 - We check if these two variables return us the same value.
@@ -138,8 +136,6 @@ class HappyNumber{
    }
 
 }
-
-
 ```
 
 </TabItem>
@@ -208,8 +204,6 @@ if __name__=='__main__':
         print("The given number", number, "is a happy number!")
     else:
         print("The given number", number, "is not a happy number!")
-
-
 ```
 
 </TabItem>
@@ -249,12 +243,10 @@ The given number 4 is not a happy number!
 ```
 Time  complexity - O(logn)
 Space complexity - O(1)
-
 ```
 
 ## Credits
 
 - [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/HappyNumber.java)
-
 - [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Happy_Number.py)
 
