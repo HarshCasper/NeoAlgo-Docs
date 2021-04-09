@@ -1,0 +1,792 @@
+---
+title: Binary Tree
+slug: /data-structures/binary-tree
+---
+
+## Introduction
+
+Binary tree is a non-linear data structure where tree nodes have `atmost two children`. The topmost node is called the root node and the node having no children is referred as the leaf node. Each binary tree has two parts, left subtree and right subtree. Binary trees are commonly used to implement binary search tree, expression trees, tournament trees and binary heaps.
+
+![1](https://user-images.githubusercontent.com/70858557/114189238-9d058d00-9967-11eb-89f3-2a3fd9b54b95.PNG)
+
+## Binary tree memory representation
+There are two types of memory representation of a binary tree:
+- Linked Representation
+- Sequential Representation
+
+**Linear Representation**
+                                    
+Here the binary tree elements are stored in the memory using `linked list`. Each node has three parts, the `data` item, `pointer to the left node` and `pointer to the right node`. It also has a root pointer pointing to the root of binary tree which remains null when the tree is empty.
+
+**Sequential Representation**
+
+Here an `array` is used to store the tree elements. Size of array equals to the total number of nodes in the binary tree where the `root` node is present at `1st` index. And the left and right children of an `ith` index node is present at `2i` and `2i + 1` locations respectively.
+
+## Algorithm
+
+***Pre-Order Traversal:***
+
+- Traverse the root first                                                         
+- Traverse the left subtree 
+- Traverse the right subtree 
+
+***In-Order Traversal:***
+
+- Traverse the left subtree 
+- Traverse the root
+- Traverse the right subtree 
+
+***Post-Order Traversal:***
+
+- Traverse the left subtree
+- Traverse the right subtree 
+- Traverse the root
+
+## Code
+
+### Pre-Order Traversal:
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+// every node of the binary tree is represented by a 'node' data type
+struct node{
+    int key_value;  // value the node holds
+    node* left;     // address of its left child
+    node* right;    // address of its right child
+};
+
+class binaryTree{
+    private:
+        node* root;
+        void insertKey(int key, node* leaf);
+        void preOrderTraversal_recursive(node* leaf);
+    public:
+        binaryTree();
+        void insertKeys(vector<int> keys);
+        void insertKey(int key);
+        void preOrderTraversal_recursive();
+        void preOrderTraversal_iterative();
+};
+
+// constructor. initializes root to NULL
+binaryTree::binaryTree(){
+    root = NULL;
+}
+
+// accepts a vector and calls insertKey(int) iteratively.
+void binaryTree::insertKeys(vector<int> keys){
+    int len = keys.size();
+    for(int i=0;i<len;i++){
+        insertKey(keys[i]);
+    }
+}
+
+// When called for the first time(when root IS initialized as NULL), insertKey(int)
+// initializes root to point to a node data type. This node data type gets it key_value
+// as key(argument) and child nodes as NULL.
+// For all calls other than the first time, it further calls insertKey(int, node*)
+void binaryTree::insertKey(int key){
+    if(root!=NULL){
+        insertKey(key, root);
+    }
+    else{
+        root = new node;
+        root->key_value = key;
+        root->left = NULL;
+        root->right = NULL;
+    }
+}
+
+// inserts the key, such that the Tree follows the definition of a binary tree.
+// the function travels down the tree starting from the root to find a suitable position.
+// if key is less than the key_value at a node, function calls itself with its left subtree.
+// if key is greater than the key_value at a node, function calls itself with its right subtree.
+// When it reaches a suitable place, it creates a new node. This node gets key_value as key and child nodes as NULL
+void binaryTree::insertKey(int key, node* leaf){
+    if(key< leaf->key_value){
+        if(leaf->left!=NULL){
+            insertKey(key, leaf->left);
+        }
+        else{
+            leaf->left = new node;
+            leaf->left->key_value = key;
+            leaf->left->left = NULL;
+            leaf->left->right = NULL;
+        }
+    }
+    else if(key>= leaf->key_value){
+        if(leaf->right!=NULL){
+            insertKey(key, leaf->right);
+        }
+        else{
+            leaf->right = new node;
+            leaf->right->key_value = key;
+            leaf->right->left = NULL;
+            leaf->right->right = NULL;
+        }
+    }
+}
+
+// calls preOrderTraversal_recursive, a private member-function
+void binaryTree::preOrderTraversal_recursive(){
+    cout<<"PreOrderTraversal(recursive): ";
+    preOrderTraversal_recursive(root);
+}
+
+// for a particular node, function prints its key_value and recursively calls
+// its left and right subtree(in that order).
+void binaryTree::preOrderTraversal_recursive(node* leaf){
+    if(leaf!=NULL){
+        cout<<leaf->key_value<<" ";
+        preOrderTraversal_recursive(leaf->left);
+        preOrderTraversal_recursive(leaf->right);
+    }
+}
+
+// if root is NULL, function exits
+// otherwise, it works as follows: 1. Sets root as current node.
+// 2. It outputs the key_value of the current node,
+// and pushes the address of its right subtree in stack. Also, sets current node as address of its left subtree
+// This continues till the current node is NULL.
+// 3. When it reaches NULL i.e. no left subtree is available, it sets current node as top value in the
+// stack and pops it from the stack. Then it repeats step 2.
+void binaryTree::preOrderTraversal_iterative(){
+    cout<<"PreOrderTraversal(iterative): ";
+    if(root==NULL)
+        return;
+    stack<node*> nodeAddr;
+    node* currentNode = root;
+
+    while(currentNode!=NULL || !nodeAddr.empty()){
+        while(currentNode!=NULL){
+            cout<<currentNode->key_value<<" ";
+            if(currentNode->right!=NULL){
+                nodeAddr.push(currentNode->right);
+            }
+            currentNode = currentNode->left;
+        }
+        if(!nodeAddr.empty()){
+            currentNode = nodeAddr.top();
+            nodeAddr.pop();
+        }
+    }
+}
+
+int main(){
+    binaryTree Tree;
+    vector<int> elements = {25,15,50,10,22,35,70,4,12,18,24,31,44,66,80}; //the elements to be inserted in the tree
+    Tree.insertKeys(elements);
+    Tree.preOrderTraversal_recursive(); //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    cout<<endl;
+    Tree.preOrderTraversal_iterative(); //expected: 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80
+    cout<<endl;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+class Tree:
+    def __init__(self):
+        self.root = None
+
+    def createTree(self, treeNodesArray):
+        queue = []
+        self.root = node(int(treeNodesArray.pop(0)))
+        queue.append(self.root)
+        size = len(queue)
+        while treeNodesArray:
+            while size:
+                root = queue.pop(0)
+                if root:
+                    val = treeNodesArray.pop(0)
+                    if val == 'null':
+                        root.left = None
+                    else:
+                        root.left = node(int(val))
+                        queue.append(root.left)
+                    val = treeNodesArray.pop(0)
+                    if val == 'null':
+                        root.right = None
+                    else:
+                        root.right = node(int(val))
+                        queue.append(root.right)
+                size -= 1
+            size = len(queue)
+
+    def recursive_preorder_traversal(self, root, path):
+        if root:
+            path.append(root.val)
+            self.recursive_preorder_traversal(root.left, path)
+            self.recursive_preorder_traversal(root.right, path)
+        return path
+
+    def iterative_preorder_traversal(self, root):
+        self.path = []
+        stack = [] 
+        while stack or root:
+            while root:
+                self.path.append(root.val)   
+                stack.append(root) 
+                root = root.left            
+            root = stack.pop()                
+            root = root.right                
+
+        return self.path
+
+treeNodesArray = list(input().split(','))
+preOrdertree = Tree()
+preOrdertree.createTree(treeNodesArray)
+
+#### Pre-Order Traversal :- root.val -> root.left -> root.right
+
+print(preOrdertree.recursive_preorder_traversal(preOrdertree.root, []))  
+print(preOrdertree.iterative_preorder_traversal(preOrdertree.root))  
+```
+
+</TabItem>
+</Tabs>
+
+### In-Order Traversal:
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+#include<stack>
+
+class treenode{       //class treenode 
+    int data;
+    treenode *left;
+    treenode *right;
+    friend class tree;
+};
+
+class tree{
+    treenode *root;
+    public:
+    tree(){
+        root = NULL;
+    }
+    void create(){               //create function accepting root and recusively calling other function
+        char ch;
+        root = new treenode();
+        cout<<"Enter the data for root node"<<endl;
+        cin>>root->data;
+        root->left=root->right=NULL;
+        do{
+            create(root);
+            cout<<"Do u want to enter more data ?"<<endl;
+            cin>>ch;
+        }
+        while(ch=='Y' || ch=='y');
+    }
+    void create(treenode *root){
+        treenode *curr;
+        char ch;
+        cout<<"Enter the postion l / r where u want to insert the element"<<endl;
+        cin>>ch;
+        if(ch=='l' || ch=='L'){        //checking if pos is l
+            if(root->left==NULL){
+                curr = new treenode();
+                cin>>curr->data;
+                curr->left=curr->right=NULL;
+                root->left=curr;
+            }
+            else{
+                create(root->left);
+            }
+        }
+        else if(ch=='r' || ch=='R'){       //checking if pos is r
+            if(root->right==NULL){
+                curr= new treenode();
+                cin>>curr->data;
+                curr->left=curr->right=NULL;
+                root->right=curr;
+            }
+            else{
+                create(root->right);
+            }
+        } 
+    }
+    void inorder_rec(){                  
+        inorder_rec(root);
+    }
+    void inorder_rec(treenode *temp){       //recursive inorder   
+        if(temp!=NULL){
+            inorder_rec(temp->left);
+            cout<<temp->data<<" ";
+            inorder_rec(temp->right);
+        }
+    }
+    void inorder_nonrec(){          //non recursive using stack
+        treenode *temp;
+        stack<treenode *> s;
+        temp = root;
+        while(1){
+            while(temp!=NULL){                //firstly travesing left of tree
+                s.push(temp);
+                temp=temp->left;
+            }
+            if(s.empty()){
+                break;
+            }
+            temp = s.top();
+            s.pop();
+            cout<<temp->data<<" ";
+            temp=temp->right; 
+        }
+        cout<<endl;
+    }
+};
+
+int main(){
+    tree t;
+    t.create();
+    t.inorder_rec();
+    cout<<endl;
+    t.inorder_nonrec();
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+# InOrder tree traversal using python3 (Iterative)
+
+class node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class Tree:
+    def __init__(self):
+        self.root = None
+
+    # creation of tree.
+    def createTree(self, NodesArray):
+        queue = []
+        self.root = node(int(NodesArray.pop(0)))
+        queue.append(self.root)
+        size = len(queue)
+        while NodesArray:
+            while size:
+                root = queue.pop(0)
+                if root:
+                    data = NodesArray.pop(0)
+                    if data == 'null':
+                        root.left = None
+                    else:
+                        root.left = node(int(data))
+                        queue.append(root.left)
+                    data = NodesArray.pop(0)
+                    if data == 'null':
+                        root.right = None
+                    else:
+                        root.right = node(int(data))
+                        queue.append(root.right)
+                size -= 1
+            size = len(queue)
+
+    # Iterative function to perform in-order traversal of the tree
+    def inorderIterative(self,root):
+	    stack = []
+	    curr = root
+	    while stack or curr:
+        # if current node is not null, push it to the stack
+		    if curr:
+		    	stack.append(curr)
+		    	curr = curr.left
+		    else:
+			# else if current node is null, we pop an element from the stack,print it and finally set current node to its right child
+			    curr = stack.pop()
+			    print(curr.data, end=' ')
+			    curr = curr.right
+print("Enter the input in the sequence :- root.val root->left root->right (enter null if empty)")
+NodesArray = list(input().split(' '))
+InOrdertree = Tree()
+```
+
+</TabItem>
+</Tabs>
+
+### Post-Order Traversal:
+
+<Tabs
+  defaultValue="py"
+  values={[
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="py">
+
+```python
+class Node:
+    def _init_(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class Tree:
+    def _init_(self):
+        self.root = None
+
+    # Function to insert nodes into tree
+    def insert(self, array_of_nodes):
+
+        # Queue to create the tree
+        queue = []
+        self.root = Node(int(array_of_nodes.pop(0)))
+        queue.append(self.root)
+        size_of_queue = len(queue)
+
+        # Logic for nodes insertion
+        while array_of_nodes:
+            while size_of_queue:
+                root = queue.pop(0)
+                if root:
+                    value = array_of_nodes.pop(0)
+                    if value == 'null':
+                        root.left = None
+                    else:
+                        root.left = Node(int(value))
+                        queue.append(root.left)
+                    value = array_of_nodes.pop(0)
+                    if value == 'null':
+                        root.right = None
+                    else:
+                        root.right = Node(int(value))
+                        queue.append(root.right)
+                size_of_queue -= 1
+            size_of_queue = len(queue)
+
+    # Function to perform Post order traversal on our tree
+    def postorder_traversal(self, root):
+
+        if not root:
+            return []
+
+        # This will be our main list that contains the traversed tree
+        self.traversed = []
+
+        # This list will help in the creation of traversed list
+        helper_stack = [root]
+
+        # Keeping track of visited nodes
+        left_visited_nodes = set()
+        right_visited_nodes = set()
+
+        # Main logic for post order traversal
+        while helper_stack:
+
+            # Temporary list of nodes to check visited nodes
+            temp = helper_stack[-1]
+
+            # Checking left childs
+            while temp.left and temp not in left_visited_nodes:
+                helper_stack.append(temp.left)
+                left_visited_nodes.add(temp)
+                temp = temp.left
+
+            # Checking right childs
+            if temp.right and temp not in right_visited_nodes:
+                right_visited_nodes.add(temp)
+                helper_stack.append(temp.right)
+                temp = temp.right
+
+            else:
+                temp = helper_stack.pop()
+                self.traversed.append(temp.value)
+
+        return self.traversed
+
+
+def main():
+
+    user_defined_tree = list(
+        input("Enter the elements of your tree: ").split(','))
+
+    postorder_tree = Tree()
+    postorder_tree.insert(user_defined_tree)
+
+    print("Your post order traversed tree:")
+
+    # Final traversed tree
+    tree = postorder_tree.postorder_traversal(postorder_tree.root)
+    print(tree)
+
+
+main()
+```
+
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+class node{
+    int value;
+    node left;
+    node right;
+
+    node(int key)
+    {
+        value = key;
+        left = null;
+        right = null;
+    }
+    node(int key, node left, node right )
+    {
+        this.value = key;
+        this.left = left;
+        this.right = right;
+
+    }
+
+}
+class stack
+{
+    node[] array = new node[10000];
+    private int top;
+    stack()
+    {
+        top = 0;
+    }
+    void push(node item)
+    {
+        array[++top] = item;
+    }
+    node pop()
+    {
+
+        int temp  = top;
+        --top;
+        return array[temp];
+    }
+    boolean isEmpty()
+    {
+        if(top == 0)
+         return true;
+         else
+         return false;
+    }
+}
+public class postorder_Traversal {
+    node root;
+    void postorder_traversal_Iterative()
+    {
+        stack stack1 = new stack();
+        stack stack2 = new stack();
+        if(root == null)
+        return;
+        stack1.push(root);
+        while(!stack1.isEmpty())
+        {
+            node item = stack1.pop();
+            stack2.push(item);
+            if(item.left!=null)
+            {
+                stack1.push(item.left);
+            }
+            if(item.right!=null)
+            {
+                stack1.push(item.right);
+            }
+        }
+        while(!stack2.isEmpty())
+        {
+            node item = stack2.pop();
+            System.out.print(item.value+" ");
+        }
+        System.out.print("\n");
+    }
+    public void postorderRecursive(node root)
+    {
+        if(root == null)
+        return;
+        postorderRecursive(root.left);
+        postorderRecursive(root.right);
+        System.out.print(root.value + " ");
+
+    }
+    void postorder_traversal_recursive()
+    {
+        postorderRecursive(root);
+    }
+    public postorder_Traversal(){
+        root=takeInput(null,false);
+    }
+      node takeInput(node parent,Boolean isleftorright){
+          Scanner s = new Scanner(System.in);
+        if(parent==null){
+            System.out.println("Enter the value of root node");
+        }
+        else {
+            if(isleftorright){
+                System.out.println("enter the value of left child of "+parent.value);
+            }
+            else {
+                System.out.println("enter the value of right child "+parent.value);
+            }
+        }
+        int value=s.nextInt();
+        node node=new node(value,null,null);
+        boolean choice;
+        System.out.println("Do you have left child of "+node.value);
+        choice=s.nextBoolean();
+        if(choice){
+            node.left=takeInput(node,true);
+        }
+
+        System.out.println("Do you have right child of "+node.value);
+        choice=s.nextBoolean();
+        if(choice){
+            node.right=takeInput(node,false);
+        }
+        return node;
+    }
+
+    public static void main(String args[])
+    {
+      postorder_Traversal binaryTree = new postorder_Traversal();  
+      binaryTree.postorder_traversal_Iterative();
+      binaryTree.postorder_traversal_recursive();
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+## Sample I/O
+
+
+### Pre-Order Traversal:
+
+**Sample Input**
+
+```
+25,15,50,10,22,35,70,4,12,18,24,31,44,66,80
+```
+**Sample Output**
+
+```
+PreOrderTraversal(recursive): 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80 
+PreOrderTraversal(iterative): 25 15 10 4 12 22 18 24 50 35 31 44 70 66 80 
+```
+
+### In-Order Traversal:
+
+**Sample Input**
+```
+Enter the data for root node
+3
+Enter the postion l / r where u want to insert the element
+l
+2
+Do u want to enter more data ?
+y
+Enter the postion l / r where u want to insert the element
+l
+1
+Do u want to enter more data ?
+y
+Enter the postion l / r where u want to insert the element
+r
+4
+Do u want to enter more data ?
+y
+Enter the postion l / r where u want to insert the element
+r
+5
+Do u want to enter more data ?
+n
+```
+**Sample Output**
+```
+1 2 3 4 5
+```
+
+### Post-Order Traversal:
+
+**Sample Input**
+
+```
+Enter the elements of your tree: 2,3,4,5,6,1,7
+```
+**Sample Output**
+
+```
+Your post order traversed tree:
+[5, 6, 3, 1, 7, 4, 2]
+```
+
+## Complexity Analysis
+
+ `n` is the number of nodes in the tree.
+
+- Time Complexity: O(n)
+
+- Space Complexity: O(n)
+
+## Credits
+
+### Pre-Order Traversal:
+
+[Pradeep](https://github.com/pradeep98) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_preOrder_traversal.py)
+
+[Akhil Manoj](https://github.com/AkM-2018) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/BinaryTree_PreorderTraversal.cpp)
+
+### In-Order Traversal:
+
+[Rutuja Dhanawade](https://github.com/rutujadhanawade) and [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Tree_Iterative_InOrder_Traversal.py)
+
+[Divyang Bagla](https://github.com/bagladivyang03) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/pull/429/files#diff-d3685d9e8086d5a3770bde25bf868b3f4422c8d521dddefd078c2793558c5ef5)
+
+### Post-Order Traversal:
+
+[Aditya Jetely](https://github.com/AdityaJ7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Binary_tree_post_order.py)
+
+[Nitanshu Lokhande](https://github.com/nlok5923) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/ds/postorder_Traversal.java)
