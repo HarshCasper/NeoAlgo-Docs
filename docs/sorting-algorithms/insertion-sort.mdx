@@ -12,10 +12,10 @@ A simple sorting algorithm which works on the idea of picking elements from the 
 ## Algorithm
 
 For sorting an array of size n in ascending order:
-1. Start your loop from arr[1] till arr[n].
-2. Compare the selected element of the current iteration (key) to the element before it.
-3. If this key is smaller than its predecessor, compare it to the elements before the predecessor.
-4. Shift all the greater elements up by one position to make space for the smaller element.
+- Start your loop from `arr[1]` till `arr[n]`.
+- Compare the selected element of the current iteration (key) to the element before it.
+- If this key is smaller than its predecessor, compare it to the elements before the predecessor.
+- Shift all the greater elements up by one position to make space for the smaller element.
 
 ## Code
 
@@ -100,13 +100,6 @@ This is a pure Python implementation of the insertion sort algorithm
     :parameter array: A mutable ordered collection with comparable items inside
     
     :return : the same collection ordered by ascending
-    Examples:
-    >>> insertion_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
-    >>> insertion_sort([])
-    []
-    >>> insertion_sort([-2, -5, -45])
-    [-45, -5, -2]
 """
 def insertion_sort(array):
     # Loop from the second element of the array until
