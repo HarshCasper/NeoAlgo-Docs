@@ -9,6 +9,11 @@ A simple sorting algorithm which works on the idea of picking elements from the 
 
 ![Imgur](https://i.imgur.com/Ora9Q1J.png)
 
+- As we can see above, we start from the first 2 elements on the left. Comparing them we know that 3 < 4 so we need to position 3 before 4, so we swap their positions. 
+- Next, 2 becomes the key element which we compare with all elements before it until we find something smaller than 2. Since 2 is smaller than both 3 and 4, we place it at the beginning of the array which is its correct position.
+- Since 12 is already larger than any element before it, its position is correct (for the current iteration).
+- Finally, comparing 9 with its predecessors, we see it's only smaller than 12 so we swap the positions of 9 and 12 to get the fully sorted array.
+
 ## Algorithm
 
 For sorting an array of size n in ascending order:
@@ -184,4 +189,5 @@ After Insertion sort:
 
 ## Credits
 
-- [Rajiv Singh](https://github.com/iamrajiv) for C++ implementation and [Ricardo Prins](https://github.com/ricardoprins) for python implementation.
+- [Rajiv Singh](https://github.com/iamrajiv) for the C++ implementation.
+- [Keshav Jha](https://github.com/keshav304) for the python implementation.
