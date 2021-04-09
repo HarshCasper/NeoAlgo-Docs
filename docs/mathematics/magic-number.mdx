@@ -51,15 +51,12 @@ import TabItem from '@theme/TabItem';
 import java.util.*;
 
 //This function checks if a number is a magic number
-class Magicnumber{
-    
+class Magicnumber{ 
     static boolean magicNumber(int n){
-         
          int sum = 0;
          /*We loop till the number is greater than 0 or we
            get a single digit sum of the digits of the number*/  
          while(n>0 || sum>9){
-               
                //This is the iterating step.
                if(n == 0){
                   n =sum;
@@ -71,7 +68,6 @@ class Magicnumber{
                   n = Math.floorDiv(n,10); 
                } 
          }
-
          /*After we get a single digit sum, we check if
            it 1, then it is a magic number and we return True.*/
          if(sum == 1){
@@ -80,27 +76,21 @@ class Magicnumber{
          else{
             return false;
          }
-
     }    
 
     public static void main(String[] args){
-
          Scanner scan = new Scanner(System.in);
          System.out.print("Enter a number to check if it's a magic number: ");
          //Taking input from user
          int n = scan.nextInt();
-         
          //checker  
          boolean check = magicNumber(n);
-         
          //If the above function returns true, it means n is Magic number 
          if(check == true)
              System.out.println("The number "+n+" is a magic number!");
          else
              System.out.println("The number "+n+" is not a magic number!");       
-
     }     
-
 }
 ```
 
@@ -108,20 +98,17 @@ class Magicnumber{
 <TabItem value="py">
 
 ```py
-def is_Magic_number(number):
-    
+def is_Magic_number(number):    
     sum_digits = 0
     ''' We loop till the number is greater than 0 or we
     get a single digit sum of the digits of the number.'''
     while(number > 0 or sum_digits > 9):
-
         # This is the iterating step.
         if(number == 0):
             ''' We replace the number by the sum of its
             digits. And set the sum to zero.'''
             number = sum_digits
             sum_digits = 0
-
         else:
             # We find the sum of the digits of number
             sum_digits += number % 10
@@ -131,7 +118,6 @@ def is_Magic_number(number):
     it 1, then it is a magic number and we return True.'''
     if(sum_digits == 1):
         return True
-
     # Else we return False
     else:
         return False
@@ -141,11 +127,9 @@ if __name__=='__main__':
 
     # Take input from the user
     number = int(input("Enter a number to check if it's a magic number: "))
-
     # Call the magic number function
     if(is_Magic_number(number)):
         print("The number", number, "is a magic number.")
-
     else:
         print("The number", number, "is not a magic number.")
 ```
