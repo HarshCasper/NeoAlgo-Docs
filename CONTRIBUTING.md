@@ -128,15 +128,19 @@ Issues can be used to keep track of bugs, enhancements, or other requests.
 
 - Install the Project locally. You need to use NodeJS and Yarn (Instructions are on [README.md](README.md))
 - Find the directory in `docs` where this should ideally go. Let's say it goes in searching-algorithms, so create a file in there named interpolation-search.mdx
-- Once you do that, go over to sidebar.js in your forked repo, and go over to this [line](https://github.com/TesseractCoding/NeoAlgo-Docs/blob/781088e0adbcebf313213e937ebe5ed21564bbd2/sidebars.js#L17) and add searching-algorithms/interpolation-search
+- Once you do that, go over to `sidebar.js` in your forked repo, and go over to this [line](https://github.com/TesseractCoding/NeoAlgo-Docs/blob/781088e0adbcebf313213e937ebe5ed21564bbd2/sidebars.js#L17) and add searching-algorithms/interpolation-search
 - The basic layout for the article should be:
   - Introduction
   - Explanation
-  - Algorithmic Steps
+  - Algorithm
   - Code (Use C++/Java and Python; At least two languages should be present and pick up code from NeoAlgo with apt credits to author)
   - Sample I/O
-  - Time & Space Complexity
-- Always check the application build and see if your article is being correctly rendered on the local server
+  - Complexity Analysis
+- Always check the application build and see if your article is being correctly rendered on the local server.
+- Build the site once to check if the build is successful.
+  ```nodejs
+  yarn build
+  ```
 
 ## Add a blog post :writing_hand:
 
@@ -154,7 +158,7 @@ author_image_url: https://github.com/<author_username>.png
 Here goes your blog content
 ```
 
-A new blog post is now available at `http://localhost:3000/blog/greetings`.
+- A new blog post is now available at `http://localhost:3000/blog/greetings`.
 
 
 ## Summary
@@ -163,18 +167,15 @@ A new blog post is now available at `http://localhost:3000/blog/greetings`.
 - [How to create an article?](#add-a-new-article-:page_with_curl:)
 - [How to create a blog?](#add-a-blog-post-:writing_hand:)
 
-## Here are some 12 Rules
+## Here are some 9 Rules
 
 #### You should be following while doing Open-Source to make your Contributions shine during the whole process:
 
 - Be Nice, Be Respectful (BNBR)
 - Check if the Issue you created, exists or not.
 - Make proper commit messages and document your PR well.
-- Always add Comments in your Code and explain it at points.
-- Dynamic Input is always preferred over static Driver Code.
 - Squash your commits before you push them.
 - Always create a Pull Request from a Branch; Never from the Master.
-- Follow proper Code conventions. Using i, j in Loops show a poor understanding of Code Quality. Use proper Variable, Function Names.
 - Issues would be served on "First Come, First Serve" basis.
 - Issues would be tagged as Easy, Medium, Hard. Scores would be assigned on the difficulty of Issue you solve.
 - Code would be reviewed by Mentors before they are merged. Every PR requires 3 Reviews.
