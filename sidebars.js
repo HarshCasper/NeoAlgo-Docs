@@ -39,7 +39,8 @@ module.exports = {
       label: 'Data Structures',
       items: [
         'data-structures/data-structures',
-        'data-structures/binary-tree'
+        'data-structures/binary-tree',
+        'data-structures/palindromic-linked-list'
       ],
     },
     {
