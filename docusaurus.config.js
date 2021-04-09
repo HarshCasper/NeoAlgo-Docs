@@ -15,6 +15,10 @@ module.exports = {
     prism: {
       additionalLanguages: ['java'],
     },
+    googleAnalytics: {
+      trackingID: "UA-194155806-1",
+      anonymizeIP: true,
+    },
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
