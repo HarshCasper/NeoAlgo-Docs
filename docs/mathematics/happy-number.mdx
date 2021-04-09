@@ -5,17 +5,11 @@ slug: /mathematics/happy-number
 
 ## Introduction
 
-A number is called a happy number if it converges to 1 after a sequential operation wherein each step we 
-replace the original number by the sum of the squares of its individual digits.When we have a digit given
-to us, we perform the operation,  the sum of squares of its individual digits but in some cases, we might
-arrive at the same number which we already came across. In such cases, we can clearly see that it would never
-terminate so such numbers are not considered as happy numbers.
+A number is called a happy number if it converges to 1 after a sequential operation wherein each step we replace the original number by the sum of the squares of its individual digits.When we have a digit given to us, we perform the operation, the sum of squares of its individual digits but in some cases, we might arrive at the same number which we already came across. In such cases, we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
 
 ## Explanation
 
-When we have a digit given to us, we perform the operation, the sum of squares of its individual
-digits but in some cases, we might arrive at the same number which we already came across. In such cases,
-we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
+Given a number, we take the sum of squares of its individual digits and replace it with the number. Now if we arrive at the same number after a sertain number iterations. we say such numbers are not considered as happy numbers.
 
 Let's have an example for each case: 
 ```
@@ -41,9 +35,8 @@ Sequential Steps :
 ```
 
 ## Algorithm
-- Impliment a function which computes the sum of squares of the individual digits and returns the sum.
-- We assign 2 variables which keep track of the sum of squares in single iteration and two iterations 
-  using the above function implimented repeatedly.
+- Implement a function that computes the sum of squares of the individual digits and returns the sum.
+- We assign 2 variables that keep track of the sum of squares in a single iteration and two iterations using the above function implemented repeatedly.
 - We check if these two variables return us the same value.
 - If they do so then we say it is a happy number else not.
 
@@ -212,26 +205,26 @@ if __name__=='__main__':
 ## Sample Input and Output
 
 
-### Input:
+#### Input:
 
 
 ```
 Enter a number to check if it's a happy number or not: 13
 ```
 
-### Output:
+#### Output:
 
 ```
 The given number 13 is a happy number!
 ```
-### Input:
+#### Input:
  
  
 ```
 Enter a number to check if it's a happy number or not: 4
 ```
  
-### Output:
+#### Output:
  
 ```
 The given number 4 is not a happy number!
