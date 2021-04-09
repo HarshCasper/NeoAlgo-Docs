@@ -51,7 +51,7 @@ $ git branch ISSUE_NUMBER
 
 You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your username.
 
-- Switch to the Develeopment branch. Never develop on the `main` branch. Push in the command:
+- Switch to the Development branch. Never develop on the `main` branch. Push in the command:
 
 ```git
 $ git checkout ISSUE_NUMBER
@@ -79,6 +79,7 @@ Start Coding 👩‍💻👨‍💻
 
 - Once you've staged the files that you want to include in your commit, you're ready. Make appropriate commits with proper commit messages. Commit messages should be short and descriptive of your change. If you are looking through your repository's history, you'll be guided by the commit messages, so they should tell a story.  
    Make a commit by pushing the command:
+  
   ```git
   $ git commit -m "Your Message"
   ```
@@ -86,6 +87,7 @@ Start Coding 👩‍💻👨‍💻
 ### Step 6: Push your changes
 
 - Upload all local branch commits to the remote repository.
+  
   ```git
   $ git push
   ```
@@ -138,6 +140,7 @@ Issues can be used to keep track of bugs, enhancements, or other requests.
   - Complexity Analysis
 - Always check the application build and see if your article is being correctly rendered on the local server.
 - Once you are done with the changes and are ready to make a PR, please build the website once using the below command. It would ensure that the build is successful.   
+  
   ```bash
   yarn build
   ```
@@ -172,4 +175,4 @@ Here goes your blog content
 - Issues would be served on "First Come, First Serve" basis.
 - Issues would be tagged as Easy, Medium, Hard. Scores would be assigned on the difficulty of Issue you solve.
 - Code would be reviewed by Mentors before they are merged. Every PR requires 3 Reviews.
-- No person can take up more than 2 Issues at a single point of time.
+- No person can take up more than 2 Issues at a single point in time.
