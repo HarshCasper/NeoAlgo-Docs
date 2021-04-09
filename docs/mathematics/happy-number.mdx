@@ -13,9 +13,8 @@ When we have a digit given to us, we perform the operation, sum of squares of it
 digits but in some case we might arrive at the same number which we already came across. In such cases
 we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
 
+###Let's have an example for each case
 ```
-Let's have an example for each case
-
 Input number : 13
 Output       : Is Happy Number
 
@@ -39,7 +38,7 @@ Sequential Steps :
 
 ## Algorithmic Steps
 
- -Impliment a function which computes the sum of squares of the individual digits and returns the sum.
+-Impliment a function which computes the sum of squares of the individual digits and returns the sum.
 - We assign 2 variables which keep track of the sum of squares in single iteration and two iterations 
   using the above function implimented repeatedly.
 - We check if these two variables return us the same value.
@@ -60,7 +59,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="java">
 
 ```java
-
 import java.util.*;
 
 class HappyNumber{
@@ -142,7 +140,6 @@ class HappyNumber{
 <TabItem value="py">
 
 ```py
-
 def sum_square_digits(number):
 
     sum_squares = 0
@@ -249,4 +246,3 @@ Space complexity - O(1)
 
 - [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/HappyNumber.java)
 - [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Happy_Number.py)
-
