@@ -63,7 +63,8 @@ module.exports = {
       label: 'Mathematics',
       items: [
         'mathematics/mathematics',
-        'mathematics/armstrong-number'
+        'mathematics/armstrong-number',
+        'mathematics/reverse-a-number,'
       ],
     },
     {
