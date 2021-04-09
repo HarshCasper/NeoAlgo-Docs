@@ -1,13 +1,13 @@
 ---
-title: Factorial
-slug: /mathematics/Factorial
+title: Factorial of a number
+slug: /mathematics/factorial-of-number
 ---
 
 ## Introduction
 
 Factorial of a number `n` is defined as the product of all positive integers less than or equal to `n`. Factorial function is defined for all non-negative integers. The value of `0!` is `1`.
 
-## Explaination
+## Explanation
 
 For a non-negative integer say `n`, factorial of `n` is defined as follows:
 
@@ -34,17 +34,25 @@ Factorial(6) = 6 * 5 * 4 * 3 * 2 * 1 = 720 = 6 * Factorial(5)
 
 For a given number `n`,
 
+ - If `n` == `1`, return `1`.
+ - Else recursively return `n` * `factorial(n - 1)`
+
 ```
-factorial(n) = n * factorial(n - 1)
+factorial(n):
+    if(n == 1)
+        return 1
+    else
+        return n * factorial(n - 1)
 ```
 
 ### Iterative
 
 For a given number `n`,
 
-Multiply numbers starting from `1` to `n` using a for loop.
-
-Return the factorial
+ - Declare a variable factorial and initialize it to `1`.
+ - For `num` starting from `1` to `n`.
+ - Compute `factorial` = `factorial` * `num`
+ - Add the end of the for loop return `factorial`.
 
 ```
 factorial = 1
@@ -116,6 +124,7 @@ int main() {
 <TabItem value="py">
 
 ```python
+# Iterative implementation for factorial
 def fact(x):
     result = 1
     for i in range(1,x):

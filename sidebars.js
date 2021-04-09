@@ -64,7 +64,7 @@ module.exports = {
       items: [
         'mathematics/mathematics',
         'mathematics/armstrong-number',
-	'mathematics/factorial'
+	'mathematics/factorial-of-number'
       ],
     },
     {
