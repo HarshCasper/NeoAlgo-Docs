@@ -5,7 +5,7 @@ slug: /cryptography/caesar-cipher
 
 ## Introduction
 
-Caesar cipher is one of the earliest knowm ciphers. It is also known as shift cipher. It is a simple substitution cipher in which each letter of the given plaintext is **shifted** down by a certain fixed number of places known as _shift_.
+Caesar cipher is one of the earliest known ciphers. It is also known as shift cipher. It is a simple substitution cipher in which each letter of the given plaintext is **shifted** down by a certain fixed number of places known as _shift_.
 
 ## Explaination
 
@@ -93,10 +93,10 @@ string decode(string cipher, int key) {
 	for(int i = 0;i < length; ++i) {
 		if(cipher[i] <= 91) {
 			//uppercase letter
-			decrypt += char((cipher[i] - 65 - key)%26 + 65);
+			decrypt += char((cipher[i] - 65 - key + 26)%26 + 65);
 		} else if(cipher[i] >= 97) {
 			//lowercase letter
-			decrypt += char((cipher[i] - 97 - key)%26 + 97);
+			decrypt += char((cipher[i] - 97 - key + 26)%26 + 97);
 		}
 	}
 
