@@ -1,0 +1,192 @@
+---
+title: Magic Number
+slug: /mathematics/magic-number
+---
+
+## Introduction
+
+A number is called a magic number if it converges to `1` after a sequential operation wherein each step we replace the original number by the sum of its digits until the sum reaches a single digit. If the single-digit corresponds to  `1`, only then we say it is a magic number.
+
+## Explanation
+
+If the number we are processing by calculating their sum converges to a single digit which is not `1`. Then such a number cannot be considered as a magic number.
+
+Let's have one example: 
+```
+Input number : 112222
+Output       : Is Magic Number
+
+Sequential steps :
+1+1+2+2+2+2 = 10
+1+0 = 01
+
+Input number : 123
+Output       : Not a Magic Number
+ 
+Sequential steps :
+1+2+3 = 06
+```
+
+## Algorithm
+
+- We run a while loop until the given number converges to a single digit.
+- Now we check if the number after computations is  `1` or not.
+- If found `1` then we say it is a magic number else not.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+//This function checks if a number is a magic number
+class Magicnumber{
+    
+    static boolean magicNumber(int n){
+         
+         int sum = 0;
+         /*We loop till the number is greater than 0 or we
+           get a single digit sum of the digits of the number*/  
+         while(n>0 || sum>9){
+               
+               //This is the iterating step.
+               if(n == 0){
+                  n =sum;
+                  sum = 0; 
+               }
+               else{
+                  //We find the sum of the digits of number
+                  sum += n%10;
+                  n = Math.floorDiv(n,10); 
+               } 
+         }
+
+         /*After we get a single digit sum, we check if
+           it 1, then it is a magic number and we return True.*/
+         if(sum == 1){
+            return true;
+         }
+         else{
+            return false;
+         }
+
+    }    
+
+    public static void main(String[] args){
+
+         Scanner scan = new Scanner(System.in);
+         System.out.print("Enter a number to check if it's a magic number: ");
+         //Taking input from user
+         int n = scan.nextInt();
+         
+         //checker  
+         boolean check = magicNumber(n);
+         
+         //If the above function returns true, it means n is Magic number 
+         if(check == true)
+             System.out.println("The number "+n+" is a magic number!");
+         else
+             System.out.println("The number "+n+" is not a magic number!");       
+
+    }     
+
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def is_Magic_number(number):
+    
+    sum_digits = 0
+    ''' We loop till the number is greater than 0 or we
+    get a single digit sum of the digits of the number.'''
+    while(number > 0 or sum_digits > 9):
+
+        # This is the iterating step.
+        if(number == 0):
+            ''' We replace the number by the sum of its
+            digits. And set the sum to zero.'''
+            number = sum_digits
+            sum_digits = 0
+
+        else:
+            # We find the sum of the digits of number
+            sum_digits += number % 10
+            number = number // 10
+
+    ''' After we get a single digit sum, we check if
+    it 1, then it is a magic number and we return True.'''
+    if(sum_digits == 1):
+        return True
+
+    # Else we return False
+    else:
+        return False
+
+# Drivers function
+if __name__=='__main__':
+
+    # Take input from the user
+    number = int(input("Enter a number to check if it's a magic number: "))
+
+    # Call the magic number function
+    if(is_Magic_number(number)):
+        print("The number", number, "is a magic number.")
+
+    else:
+        print("The number", number, "is not a magic number.")
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter a number to check if it's a magic number: 112222
+```
+
+### Output:
+
+```
+The number 112222 is a magic number.
+```
+
+### Input:
+ 
+```
+Enter a number to check if it's a magic number: 123
+```
+ 
+### Output:
+ 
+```
+The number 123 is not a magic number.
+```
+
+## Complexity Analysis
+
+```
+Time  complexity - O(logn)
+Space complexity - O(1)
+```
+
+## Credits
+
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/Magicnumber.java)
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Magic_Number.py)
