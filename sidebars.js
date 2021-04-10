@@ -70,6 +70,7 @@ module.exports = {
         'mathematics/prime-number',
         'mathematics/factorial-of-number',
         'mathematics/happy-number',
+        'mathematics/matrix-addition'
       ],
     },
     {
