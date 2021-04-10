@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -65,10 +66,11 @@ module.exports = {
                 "mathematics/mathematics",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
+                "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-		            "mathematics/neon-number",
-                "mathematics/anagram-number"
+		"mathematics/neon-number",
+		"mathematics/anagram-number"
             ],
         },
         {
