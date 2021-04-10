@@ -65,7 +65,7 @@ module.exports = {
       items: [
         'mathematics/mathematics',
         'mathematics/armstrong-number',
-	      'mathematics/factorial-of-number',
+        'mathematics/factorial-of-number',
         'mathematics/prime-number',
         'mathematics/factorial-of-number',
         'mathematics/happy-number',
@@ -110,7 +110,7 @@ module.exports = {
       items: [
         'cryptography/cryptography',
         'cryptography/caesar-cipher',
-	'cryptography/vigenere-cipher'
+        'cryptography/vigenere-cipher'
       ],
     },
     {
