@@ -1,5 +1,5 @@
 module.exports = {
-
+	
     docs: [
         {
             type: "category",
@@ -33,6 +33,7 @@ module.exports = {
             items: [
                 "sorting-algorithms/sorting-algorithms",
                 "sorting-algorithms/bubble-sort",
+                "sorting-algorithms/heap-sort",
             ],
         },
         {
