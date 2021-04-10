@@ -7,14 +7,12 @@ slug: /searching-algorithms
 
 Searching is a method of finding whether an element or a value exists in the given list of elements or values. If the element exists, then it returns its position. In the real world, there are many useful applications based on searching, be that seeking a whole database to find a certain file or it might be a simple connection from your contact list. If you wanna find something from a collection of items, you gotta need this algorithmic process.
 
-Few Notable examples -
-* Finding a particular user from a social media network
-* Looking for the desired word from a dictionary
-* Querying the availability of products from an eCommerce website
+Few Notable examples :
+* Finding a particular user from a social media network.
+* Looking for the desired word from a dictionary.
+* Querying the availability of products from an eCommerce website.
 * Using it to solve other problems including, knapsack, sudoku, etc.
 * Helping search engines to display the right results.
-
-and many as such.
 
 ## Searching Algorithm
 
@@ -22,7 +20,7 @@ In computer terms, an algorithm that solves the searching problem is a searching
 
 With that said, many smart minds, came up with their way of searching techniques - or to be clear in terms - searching algorithms to perform searching.
 
-Below is the list of some Searching Algorithms -
+Below is the list of some Searching Algorithms :
 * Linear Search
 * Binary Search
 * Jump Search
@@ -35,19 +33,19 @@ Below is the list of some Searching Algorithms -
 
 There might be many such algorithms ( with the above mentioned ), but only those are good which are sufficient in most cases. In short, only those are considered as good which has good time complexity ( run time ) & space complexity ( space-time ).
 
-Let's go one by one & find out which is good over the other 
+Let's go one by one & find out which is good over the other.
 
 ### Linear Search
 
 As the name hints, it works linearly. Meaning, it starts from the very first element till it finds the required/asked element in the collection. Clearly, 
-1. Best Case - The element to be searched, is the first element
-2. Worst Case - The element to be searched, is the endmost element
+1. Best Case - The element to be searched, is the first element.
+2. Worst Case - The element to be searched, is the endmost element.
 
 The practical uses of linear search are a very rare cause of the way its search. It's quite costly (w.r.t time) to go for, e.x., it will be really hard for AWS developers to go through the complete database from the starting point to get what they want. 
 
 ### Binary Search
 
-Widely used algorithm, where elements are searched in a unique way of "Divide and Conquer". Elaborating, the algorithm works as - 
+Widely used algorithm, where elements are searched in a unique way of "Divide and Conquer". Elaborating, the algorithm works as : 
 
 > Get the collection and divide it into two sub-collections until you won't get the element.
 
@@ -57,17 +55,17 @@ While stating, it should be clear that it works on sorted collection. Disadvanta
 
 ### Jump Search
 
-With the mindl flow as of binary search, jump search adds its jump step to do searching. 
+With the mind flow as of binary search, jump search adds its jump step to do searching. 
 
-> Take a fixed number of jumps to skip few elements
+> Take a fixed number of jumps to skip few elements.
 
 If the collection contains, some, 36 elements then the jump search will take a jump of 6 from the starting i.e Jump from index 0 to 6, then check if the given element is smaller than the 6th element of the collection, if it is, then loops through these 0 to 6 elements to get that element i.e performing a linear search.
 
-As you can note, it works on sorted collection of elements only.
+ As you can note, it works on a sorted collection of elements only.
 
 ### Interpolation Search
 
-An improvement over the binary search, interpolation works by calculating the probe position using a formula -
+An improvement over the binary search, interpolation works by calculating the probe position using a formula :
 
 ```mdx
 
@@ -86,25 +84,24 @@ If the calculated pos ( probe position ) matches the element to be searched, the
 
 Exponential search works on a sorted collection of items. The algorithm is about finding the range in which the key will be lying & then passing that range to binary search to get that desired element.
 
-The range is decided as - 
+The range is decided as :
 1. Start with position 0th index, do the check i.e the element at position 0 matches with the element to be searched. If not, 
-2. Start from 1st index to `i * 2`th index, where `i` starts from 1,
-    <br /> Get the range i.e., 1st index to index till i * 2, do the check, if not
-    <br /> increase value of i
-3. Follow step 2 until the endIndex of the range is larger than the key. If found,
-4. Pass that range to the binary search algorithm
+2. Start from 1st index to `i * 2`th index, where `i` starts from 1,  <br />
+    Get the range i.e., 1st index to index till `i * 2`, do the check, if not, increase value of `i`
+3. Follow step `2` until the endIndex of the range is larger than the key. If found,
+4. Pass that range to the binary search algorithm.
 
 
 ### Fibonacci Search
 
-Based on the famous mathematical series called Fibonacci, the Fibonacci search works in a manner of finding the smallest fib element which is greater than equal to the element to be searched in the collection. Fibonacci series is as -
+Based on the famous mathematical series called Fibonacci, the Fibonacci search works in a manner of finding the smallest fib element which is greater than equal to the element to be searched in the collection. Fibonacci series is as :
 
 | 0   | 1   | 1   | 2   | 3   | 5   | 8   | 13   | 21   | 34   |
 | --- | --- | --- | --- | --- | --- | --- | ---  | ---  | --- |
 
-which is a series of elements whose value is computed from the sum of the previous two elements - `Fib(k) = Fib(k-1) + Fib(k-2)`
+which is a series of elements whose value is computed from the sum of the previous two elements : `Fib(k) = Fib(k-1) + Fib(k-2)`
 
-> Find the fib element from the derived Fibonacci series, based on the result, recur the half sub array
+> Find the fib element from the derived Fibonacci series, based on the result, recur the half sub array.
 
 As one might notice, it is a `Divide and Conquer` principle which needs a sorted collection of items to perform the search operation.
 
