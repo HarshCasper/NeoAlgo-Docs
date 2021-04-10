@@ -70,7 +70,6 @@ module.exports = {
         'mathematics/factorial-of-number',
 	'mathematics/happy-number',
 	'mathematics/magic-number'
-	      'mathematics/happy-number'
       ],
     },
     {
