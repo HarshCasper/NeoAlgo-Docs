@@ -16,7 +16,7 @@ The Core Maintainers are responsible for maintaining [NeoAlgo](https://github.co
 
 [<img src="https://i.imgur.com/TAhbF1h.jpg" width="250"/>](https://i.imgur.com/TAhbF1h.jpg)
 
-Abhinav Anand is an avid learner with a knack for algorithms, machine learning and backend development. He likes building community and has mentored participants in open source programs and hackathons in the past. Currently he is writing a paper on genetic algorithm. Apart from that his interests lies in world history and geo politics. Conenct with him on [LinkedIn](https://www.linkedin.com/in/atarax/) and [GitHub](https://github.com/atarax665).
+Abhinav Anand is an avid learner with a knack for algorithms, machine learning and backend development. He likes building community and has mentored participants in open source programs and hackathons in the past. Currently, he is writing a paper on genetic algorithm. Apart from that his interests lies in world history and geo-politics. Connect with him on [LinkedIn](https://www.linkedin.com/in/atarax/) and [GitHub](https://github.com/atarax665).
 
 ### Anush Krishna V
 
@@ -46,13 +46,13 @@ Bhavishya Pandit is a freelancer, machine learning mentor, Linkedin content crea
 
 [<img src="https://i.imgur.com/usXBZe9.jpg" width="250"/>](https://i.imgur.com/usXBZe9.jpg)
 
-Ganesh Tiwari is a Gold Microsoft Learn Student Ambassador and a User-Interface Engineer at Megdap Innovation Labs. He likes building softwares, relations and respectable communities. Connect with him on [LinkedIn](https://www.linkedin.com/in/gat786) and [GitHub](https://github.com/gat786).
+Ganesh Tiwari is a Gold Microsoft Learn Student Ambassador, and a User-Interface Engineer at Megdap Innovation Labs. He likes building software, relations and respectable communities. Connect with him on [LinkedIn](https://www.linkedin.com/in/gat786) and [GitHub](https://github.com/gat786).
 
 ### Harsh Bardhan Mishra
 
 [<img src="https://i.imgur.com/Owk4NoA.jpg" width="250"/>](https://i.imgur.com/Owk4NoA.jpg)
 
-Harsh Bardhan Mishra is an Intern at Red Hat, and he was an Explorer Fellow at Major League Hacking and a Software Engineer Intern at Qxf2 in the past. He likes System Design, DevOps, Algorithms and in his free time he writes stories and maintain the open-source community at Tesseract Coding. Connect with him on [LinkedIn](https://www.linkedin.com/in/harshcasper) and [GitHub](https://github.com/harshcasper).
+Harsh Bardhan Mishra is an Intern at Red Hat, and he was an Explorer Fellow at Major League Hacking, and a Software Engineer Intern at Qxf2 in the past. He likes System Design, DevOps, Algorithms and in his free time he writes stories and maintain the open-source community at Tesseract Coding. Connect with him on [LinkedIn](https://www.linkedin.com/in/harshcasper) and [GitHub](https://github.com/harshcasper).
 
 ### Rajiv Ranjan Singh 
 
@@ -64,7 +64,7 @@ Rajiv Ranjan Singh is a Polymath and believe in rigorous and intuitive learning.
 
 [<img src="https://i.imgur.com/lvu8q0L.jpg" width="250"/>](https://i.imgur.com/lvu8q0L.jpg)
 
-Rohan Rout is currently a SDE Intern at Sabre Corporation and previously was an Explorer Fellow at Major League Hacking and a Google Summer of Code Student Developer at Mozilla. He is in his Final Year of studies at Manipal Institute of Technology with an acute expertise in MERN Stack Development and  Computer Vision. He also has a keen interest in the theory of antimatter and behavioral psychology. Connect with him on [LinkedIn](https://www.linkedin.com/in/routrohan/) and [GitHub](https://github.com/routrohan).
+Rohan Rout is currently a SDE Intern at Sabre Corporation and previously was an Explorer Fellow at Major League Hacking, and a Google Summer of Code Student Developer at Mozilla. He is in his Final Year of studies at Manipal Institute of Technology with an acute expertise in MERN Stack Development and  Computer Vision. He also has a keen interest in the theory of antimatter and behavioral psychology. Connect with him on [LinkedIn](https://www.linkedin.com/in/routrohan/) and [GitHub](https://github.com/routrohan).
 
 ### Siddharth Pandey
 

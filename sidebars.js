@@ -60,12 +60,16 @@ module.exports = {
       ],
     },
     {
-      type: 'category',
-      label: 'Mathematics',
+      type: "category",
+      label: "Mathematics",
       items: [
-        'mathematics/mathematics',
-        'mathematics/armstrong-number',
-	  'mathematics/factorial-of-number'
+          "mathematics/mathematics",
+          "mathematics/armstrong-number",
+          "mathematics/factorial-of-number",
+          "mathematics/magic-number",
+          "mathematics/happy-number",
+          "mathematics/krishnamurthy-number",
+          "mathematics/neon-number",
       ],
     },
     {
@@ -145,4 +149,4 @@ module.exports = {
       ],
     },
   ],
-};
+}
