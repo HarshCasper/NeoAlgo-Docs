@@ -46,15 +46,15 @@ $ git rebase upstream/<branch-name>
 - `cd` into the parent directory. Now create a branch of the master by pushing the command
 
 ```git
-$ git checkout -b <YOUR_USERNAME>
+$ git branch ISSUE_NUMBER
 ```
 
-You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your username.
+You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your issue number.
 
 - Switch to the Development branch. Never develop on the `main` branch. Push in the command:
 
 ```git
-$ git checkout <YOUR_USERNAME>
+$ git checkout ISSUE_NUMBER
 ```
 
 Voila! You've completed the initial setup :smiley:
@@ -89,7 +89,7 @@ Start Coding 👩‍💻👨‍💻
 - Upload all local branch commits to the remote repository.
   
   ```git
-  $ git push
+  $ git push origin <branch_name>
   ```
 
 ### Step 7: Creating a Pull Request
