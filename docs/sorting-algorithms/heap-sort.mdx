@@ -20,32 +20,10 @@ Heap Sort is a sorting algorithm which extracts the maximum or minimum element f
 
 `i` is the index of array
 
-## Algorithm
 
-Heap Sort for Sorting in Increasing Order:
+## Explanation 
 
-* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
-
-* Swap the root of the MaxHeap with the last element of the MaxHeap 
-
-* Reduce the size of MaxHeap by 1 from the last and call Heapify on the root.
-
-* Perform step 2 and step 3 
-
-Heap Sort for Sorting in Decreasing Order:
-
-* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
-
-* Swap the root of the MinHeap with the last element of the MinHeap 
-
-* Reduce the size of MinHeap by 1 from the last and call Heapify on the root.
-
-* Perform step 2 and step 3 
-
-## Explanation for Heap Sort
-
-### Example 
-
+Let's have one example: 
 ```
 Input Array: 4 1 2 7
 
@@ -79,6 +57,29 @@ Swapping root with last element of MaxHeap and reducing the size of MaxHeap
            Swapping index             Applying Heapify          Swapping index           Applying Heapify           Swapping index            Applying Heapify
               0 and 3                    on index 0                0 and 2                  on index 0                 0 and 1                   on index 0
 ```
+
+## Algorithm
+
+Heap Sort for Sorting in Increasing Order:
+
+* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
+
+* Swap the root of the MaxHeap with the last element of the MaxHeap 
+
+* Reduce the size of MaxHeap by 1 from the last and call Heapify on the root.
+
+* Perform step 2 and step 3 
+
+Heap Sort for Sorting in Decreasing Order:
+
+* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
+
+* Swap the root of the MinHeap with the last element of the MinHeap 
+
+* Reduce the size of MinHeap by 1 from the last and call Heapify on the root.
+
+* Perform step 2 and step 3 
+
 ## Code
 
 import Tabs from '@theme/Tabs';
