@@ -69,7 +69,7 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-		            "mathematics/neon-number",
+		        "mathematics/neon-number",
                 "mathematics/count-of-digits",
             ],
         },
