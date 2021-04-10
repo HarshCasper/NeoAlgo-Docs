@@ -46,7 +46,7 @@ $ git rebase upstream/<branch-name>
 - `cd` into the parent directory. Now create a branch of the master by pushing the command
 
 ```git
-$ git branch ISSUE_NUMBER
+$ git checkout -b <YOUR_USERNAME>
 ```
 
 You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your username.
@@ -54,7 +54,7 @@ You can now check the branches by pushing in the command: `git branch`. You will
 - Switch to the Development branch. Never develop on the `main` branch. Push in the command:
 
 ```git
-$ git checkout ISSUE_NUMBER
+$ git checkout <YOUR_USERNAME>
 ```
 
 Voila! You've completed the initial setup :smiley:
@@ -72,7 +72,7 @@ Start Coding 👩‍💻👨‍💻
   To stage all the changed files, type in:
 
   ```git
-  $ git add --all
+  $ git add --all  or  $ git add .
   ```
 
   This command snapshots the file in preparation for versioning and further adds it to the staging area.
