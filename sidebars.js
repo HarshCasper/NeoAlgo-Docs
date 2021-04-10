@@ -82,7 +82,8 @@ module.exports = {
       label: 'Graph Algorithms',
       items: [
         'graph-algorithms/graph-algorithms',
-        'graph-algorithms/breadth-first-search'
+        'graph-algorithms/breadth-first-search',
+        'graph-algorithms/kruskals-algorithm'
       ],
     },
     {
