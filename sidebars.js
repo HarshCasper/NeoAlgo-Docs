@@ -1,4 +1,5 @@
 module.exports = {
+
   docs: [
     {
       type: 'category',
@@ -22,7 +23,8 @@ module.exports = {
       label: 'Searching Algorithms',
       items: [
         'searching-algorithms/searching-algorithms',
-        'searching-algorithms/linear-search'
+        'searching-algorithms/linear-search',
+        'searching-algorithms/interpolation-search'
       ],
     },
     {
@@ -62,7 +64,11 @@ module.exports = {
       label: 'Mathematics',
       items: [
         'mathematics/mathematics',
-        'mathematics/armstrong-number'
+        'mathematics/armstrong-number',
+	      'mathematics/factorial-of-number',
+        'mathematics/prime-number',
+        'mathematics/factorial-of-number',
+	      'mathematics/happy-number'
       ],
     },
     {
@@ -102,7 +108,8 @@ module.exports = {
       label: 'Cryptography',
       items: [
         'cryptography/cryptography',
-        'cryptography/caesar-cipher'
+        'cryptography/caesar-cipher',
+	'cryptography/vigenere-cipher'
       ],
     },
     {
