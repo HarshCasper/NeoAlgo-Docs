@@ -31,14 +31,14 @@ Sequential steps:
 ## Algorithm
 
 - `x` and `y` are with respective to inputs `a` and `b`. 
-- `a.x + b.y = gcd`.
+- `a.x + b.y = gcd`
 - `x1` and `y1` are with respective to inputs `b%a` and `a`. 
--`(b%a).x1 + a.y1 = gcd`.
+- `(b%a).x1 + a.y1 = gcd`
 - We calculate the above values of `x1` and `y1` at every iteration.
-- Then we put `b%a = (b - (⌊b/a⌋).a)` in above equation to get :
+- Then we put `b%a = (b - (⌊b/a⌋).a)` in the equation to get :
 - `(b - (⌊b/a⌋).a).x1 + a.y1  = gcd`
 - This equation can also be written as `b.x1 + a.(y1 - (⌊b/a⌋).x1) = gcd`
-- So, the coeffitients 'a' and 'b' :
+- So, the coeffitients `a` and `b` :
 - `x = y1 - ⌊b/a⌋ * x1`  `y = x1`
 
 ## Code
