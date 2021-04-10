@@ -5,7 +5,7 @@ slug: /sorting-algorithm/insertion-sort
 
 ## Introduction
 
-A simple sorting algorithm which works on the idea of picking elements from the unsorted part one by one and inserting them into their right positions in the sorted part. The array is virtually divided into 2 parts, a sorted one and an unsorted one. Just like we arrange a group of shuffled pages according to their page numbers, values form unsorted part are picked and placed at the right positions in the sorted portion.
+A simple sorting algorithm which works on the idea of picking elements from the unsorted part one by one and inserting them into their right positions in the sorted part. The array is virtually divided into 2 parts, a sorted one and an unsorted one. Just like we arrange a group of shuffled pages according to their page numbers, values from unsorted parts are picked and placed at the right positions in the sorted portion.
 
 ![Imgur](https://i.imgur.com/Ora9Q1J.png)
 
@@ -148,10 +148,15 @@ def insertion_sort(array):
 if __name__ == "__main__":
 
 
-    user_input = list(map(int, input("Enter array elements:\n").split(',')))
+    user_input = []
+    n = int(input("Enter size of array: "))
+    print("Enter array elements:\n")
+    for i in range(0, n):
+      user_input.append(int(input()))
     
     # calling the insertion_sort function
-    sorted_collection =insertion_sort(user_input)
+    sorted_collection = insertion_sort(user_input)
+    print("After insertion sort")
     print(sorted_collection)
 ```
 
@@ -163,23 +168,22 @@ if __name__ == "__main__":
 ### Sample Input
 
 ```bash
+Enter the size of list:
+6
+Enter the numbers:
 5
-3
-1
-9
-8
+0
 2
+1
 4
-7
+3
 ```
 
 ### Sample Output
 
 ```bash
-Before Insertion sort: 
-5   3   1   9   8   2   4   7
 After Insertion sort: 
-1   2   3   4   5   7   8   9
+0   1   2   3   4   5
 ```
 
 ## Complexity Analysis
