@@ -78,6 +78,13 @@ Siddharth Pandey is a sophomore pursuing a Bachelor of Technology in Computer Sc
 
 Vijaya Gajanan is a first year masters student at UMass Amherst. Her interests include general software development, machine learning, video games, and cats. Connect with her on [LinkedIn](https://www.linkedin.com/in/vijayagb/) and [GitHub](https://github.com/vgb-codes).
 
+### Vybhav Chaturvedi
+
+[<img src="https://i.postimg.cc/bNfg4jNr/IMG-20180728-174633.jpg" width="250"/>](https://i.postimg.cc/bNfg4jNr/IMG-20180728-174633.jpg)
+
+Vybhav Chaturvedi is an open-source enthusiast, part-time writer, and a football buff. He is currently working on his research related to "Emotions, BioSignals and Stress reduction." He has a keen interest in Machine learning, Deep learning, and Big Data.
+Connect with him here on [LinkedIn](https://www.linkedin.com/in/vybhav-chaturvedi-0ba82614a/) and [GitHub](https://github.com/vybhav72954).
+
 ## Past Maintainers 
 
 In the past, we were joined by a lot of maintainers through various Open-Source programs. NeoAlgo would never be what it is today without the huge contributions from these maintainers who have moved on to greater things.
