@@ -5,29 +5,13 @@ slug: /sorting-algorithms/Quick-sort
 
 # Introduction
 
-Quick Sort is a sorting algorithm which follows Divide and Conquer. In this algorithm it picks an element as a pivot
-and arrange the array according to this pivot element.The condition to arrange the array according to pivot element
-is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot.
-And all the elements which are greater than pivot must lie on the right side of the pivot. 
-This can be done in-place, requiring small additional amounts of memory to perform the sorting.  
-
-# Algorithm
-
-In Quick Sort, we follow the following algorithm:
-
-* first we have to pick a pivot element.
-
-* Then partition the array according to pivot element(smaller or equal elements than pivot must lies on left side and greater on right).
-
-* Then apply same steps 1 & 2 on the left part of pivot and right part of pivot recursively.
-
-* We do step 3 until we left with single element.
+Quick Sort is a sorting algorithm which follows Divide and Conquer. In this algorithm it picks an element as a pivot and arrange the array according to this pivot element.The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot.Quick sort is not a in-place algorithm but to make it in-place it requires additional amounts of array.
 
 # Explanation for Quick Sort
-
+In this algorithm firstly it picks an pivot element and arrange the array according to this pivot element.The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot. After that follow same approach on left part of pivot and right part of pivot respectively until we left with single element and finally we got our array sorteed.
 ### Example 1
 
-<img src="../../static/img/quick-sort.png" width="500" height="350"/>
+<img src="https://i.imgur.com/BEbTHiO.png" width="500" height="350"/>
 
 ```
 
@@ -45,7 +29,7 @@ In Quick Sort, we follow the following algorithm:
 
 ```
 ### Example 2
-<img src="../../static/img/quick-sort2.png" width="500" height="350"/>
+<img src="https://i.imgur.com/eBPyIBt.png" width="500" height="350"/>
 
 ```
  Array arr[5]:        
@@ -61,6 +45,17 @@ Pivot from right part= 60
  | 20 | 30 | 50 || 60 || 70 |
 Sorted!!
 ```
+# Algorithm
+
+In Quick Sort, we follow the following algorithm:
+
+* First we have to pick a pivot element
+
+* Partition the array according to the pivot element, where the smaller or equal elements compare to the pivot must lie on the left side and greater on the right side.
+
+* Apply the previous two steps on the left part of the pivot and the right part of the pivot respectively.
+
+* Apply the step 3 until we left with single element.
 
 # Code
 
