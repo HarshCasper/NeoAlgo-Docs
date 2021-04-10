@@ -75,13 +75,16 @@ public class Neon_number {
      */
     public static boolean isNeon(int num) {
 
-        // Accumulator :-> A running total is a sum of numbers that accumulate with each iteration of a loop
-        int n, sum = 0; // assuming sum as accumulator
-
+        /* Accumulator :-> A running total is a sum of numbers that accumulate with each iteration of a loop
+           assuming sum as accumulator*/
+        int n, sum = 0;
         n = num * num;
-        while (n != 0) { // running loop till we consider all the digits of the squared number
-            sum += (n % 10); //getting the last digit & adding the last digit to sum
-            n /= 10; // neglecting the last number which we have counted
+        // running loop till we consider all the digits of the squared number
+        while (n != 0) { 
+            //getting the last digit & adding the last digit to sum 
+            sum += (n % 10);
+            // neglecting the last number which we have counted 
+            n /= 10; 
         }
 
         if (sum == num)
@@ -110,6 +113,7 @@ def Neon_number(number) :
     else :
         print(number,"is not a Neon number")
 
+if __name__ == '__main__':
 number = int(input("Enter a number : "))
 Neon_number(number)
 ```
