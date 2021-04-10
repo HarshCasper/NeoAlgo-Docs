@@ -3,48 +3,43 @@ title: Reverse a Number
 slug: /mathematics/reverse-a-number
 ---
 
-# Introduction
+## Introduction
 
-In this article we will see how to reverse the given number.
+The reverse of a number is a number that is obtained when a number is traversed from right to left.
 
-# Algorithm
+## Explanation 
 
-* We will make a rev variable and initilize it by 0
+We will make a reverse variable and initialize it to `0`. Then we will keep on extracting the least significant digit from the number by doing the modulus by `10` and adding it to the reverse variable after multiplying it by `10` till the number becomes `0`. 
 
-* We will extract the last element(using modulus operator) and remove last digit(by dividing by 10)
-
-* Now we will push the extracted element to the rev variable
-
-* We will keep on repeating step 2 and step 3 until the number becomes zero 
-
-# Explanation 
-
-### Example 1
-
+Let's have one example:
 ```
- 4568          rev=0
- 
- 4568     last=no%10    rev=rev*10+last
- 
- 456/10=45     cnt=2
- 
- 45/10=4       cnt=3
- 
- 4/10=0        cnt=4
-```
-### Example 2
+num=4568          
+rev=0
 
-```
- 789          cnt=0
- 
- 789/10=78    cnt=1
- 
- 78/10=7      cnt=2
- 
- 7/10=0       cnt=3
+rev = rev*10 + num%10 = 8
+num = num/10 = 456 
+
+rev = rev*10 + num%10 = 86
+num = num/10 = 45
+
+rev = rev*10 + num%10 = 865
+num = num/10 = 4 
+
+rev = rev*10 + num%10 = 8654
+num = num/10 = 0
 ```
 
-# Code
+## Algorithm
+
+* We will make a rev variable and initialize it by `0`.
+
+* We will extract the least significant digit by doing modulus by `10` and remove the last digit by dividing by `10`.
+
+* Now we will multiply the rev variable by `10` and add extracted element to it.
+
+* Apply the previous two steps until the number becomes `0`. 
+
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -53,94 +48,71 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
-    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
   ]
 }>
 <TabItem value="cpp">
 
 ```cpp
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int sum_of_digits(int num)
-{
-    int cnt = 0;
-    while (num != 0)
-    {
-        cnt++;
-        // Removing the least significant digit
-        num = num / 10;
-    }
-    return cnt;
+int reverse(int num) {
+  int rev = 0;
+  do {
+    rev = rev * 10 + num % 10;
+    num = num / 10;
+  } while (num > 0);
+
+  return rev;
 }
 
-int main()
-{
-    int num, cnt;
-    cout << "\nEnter the number: ";
-    cin >> num;
+int main() {
+  int num;
+  cout << "Enter the number: ";
+  cin >> num;
 
-    // If the number is negative, convert it into positive
-    if (num < 0)
-    {
-        num = num * -1;
-    }
-
-    // Call the function
-    cnt = sum_of_digits(num);
-    // Print the obtained count
-    cout << "The number of digits in the given number is: " << cnt;
-    return 0;
+  cout << "The reverse of the given number is: " << reverse(num);
+  return 0;
 }
 ```
 </TabItem>
 
-<TabItem value="java">
+<TabItem value="py">
 
-```java
-import java.util.Scanner;
+```python   
+def reverse(n):
+    rev = 0
+    while True:
+        if n == 0:
+            break
+        rev = rev * 10 + n % 10
+        n = n // 10
+    return rev
 
-public class CountDigits {
 
-	public static void countdigit(int n) {
-	        int count=0;
-		while(n!=0){
-                count=count+1;
-                n=n/10;
-              }
-             System.out.println(count);   
+n = int(input('Enter the number :'))
 
-	}
-	
-	public static void main(String[] args) {
-
-		Scanner sc=new Scanner(System.in);
-		
-		System.out.print("Enter a number : ");
-		int n=sc.nextInt();
-		
-		System.out.println("Number of digits in a number are : ");
-		countdigit(n);
-				
-	}
+print 'The reverse of the given number is: {} '.format(reverse(n))
 ```
 </TabItem>
 
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
 ### Input :
 
 ```
-Enter the number: 8965
+Enter the number: 1234
 ```
 ### Output :
 ```
-The number of digits in the given number is: 4
+The reverse of the given number is: 4321
 ```
 
-# Complexity Analysis
+## Complexity Analysis
 
 `n` is the number of digits in the number.
 
@@ -152,7 +124,4 @@ The number of digits in the given number is: 4
 
 - Space Complexity: O (1)
 
-### Credits
-* [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_digits.cpp)
-
-* [Arpit](https://github.com/infoarpit) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/countDigits/iterative.java)
+## Credits
