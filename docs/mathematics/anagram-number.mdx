@@ -1,0 +1,185 @@
+---
+title: Anagram Number
+slug: /mathematics/anagram-number
+---
+
+## Introduction
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Similarly, a number `X` is said to be an anagram of some other number `Y`, if `X` can be made equal to `Y` just by rearranging the digits in it.
+
+## Explanation
+
+Let `X` = `2354` and `Y` = `5324`. Now, for `X` to be an anagram of `Y`, we must be able to form `Y` from `X` by rearranging digits in `X`. Here, we can clearly see that all the digits present in `Y` are also present in `X`. So, `X` can be rearranged to get `Y`. Hence, they are an anagram of each other.
+
+```
+X = 2  3   5 4
+     \ |  /  |
+      \| /   |
+       \/    |
+      /|\    |
+     / | \   |
+Y = 5  3  2  4
+```
+
+## Algorithm
+
+First approach:
+
+  - Input two numbers `num1` and `num2`.
+  - Create two arrays `A[]` and `B[]`, where `A[i]` and `B[i]` will store the number of occurrences of digit `i` in `num1` and `num2` respectively. 
+  - Traverse the arrays. If for any digit `i`, ` A[i] != B[i]`, the given numbers are not anagrams of each other, else they are.
+
+Second approach:
+
+  - Input two numbers `num1` and `num2` as strings.
+  - Sort the string.
+  - If the sorted strings are equal, the given numbers are anagrams of each other.
+  - Else they are not.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+import java.lang.String;
+
+public class Anagram {
+
+	static boolean isAnagram(String num1, String num2) {
+		
+		boolean check = true;
+		int first_length[] = new int[256];
+
+		/* system provided the ASCII table which had 256
+		characters and each ASCII code(numerical code) was
+		assigned to one character.*/
+
+		int second_length[] = new int[256];
+		for (char each_char : num1.toCharArray()) {
+			int index = (int) each_char;
+			first_length[index]++;
+		}
+
+		for (char each_char : num2.toCharArray()) {
+			int index = (int) each_char;
+			second_length[index]++;
+		}
+
+		//Comparing each character from one number to other.
+		for (int i = 0; i < 256; i++) {
+			if (first_length[i] != second_length[i]) {
+				check = false;
+				break;
+			}
+		}
+		return check;
+	}
+
+        public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter 1st number: ");
+		String num1 = scan.next();
+
+		System.out.print("Enter 2nd number: ");
+		String num2 = scan.next();
+		scan.close();
+		
+		boolean result = isAnagram(num1, num2);
+		if(result) {
+			System.out.println("\nThe two numbers are Anagram.");
+		}
+		else {
+			System.out.println("\nThe two numbers are not Anagram.");
+		}
+	}
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def checkAnagram(num1, num2):
+
+    #Checking if length of the numbers are same
+    if len(num1) == len(num2):
+
+        #Sorting both the numbers
+        sorted_num1 = sorted(num1)
+        sorted_num2 = sorted(num2)
+
+        #Checking if both sorted numbers are same or not
+        if sorted_num1 == sorted_num2:
+            return "\nThe two numbers are Anagram."
+        
+        else:
+            return "\nThe two numbers are not Anagram."
+
+    else:
+        return "\nThe two numbers are not Anagram."
+            
+def main():
+
+    #User input for both the numbers
+    num1 = input("Enter 1st number: ")
+    num2 = input("Enter 2nd number: ")
+    
+    #function call for checking if numbers are anagram
+    print(checkAnagram(num1, num2))
+
+main()
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter 1st number: 7543
+Enter 2nd number: 3574
+```
+
+#### Output
+
+```
+The two numbers are Anagram.
+```
+
+#### Input
+
+```
+Enter 1st number: 1234
+Enter 2nd number: 1235
+```
+
+#### Output
+
+```
+The two numbers are not Anagram.
+```
+
+## Complexity Analysis
+
+  - Time Complexity : `O(n)`
+  - Space Complexity: `O(1)`
+
+## Credits
+
+  - [Ruchi Sahu](https://github.com/RuchiGitHu) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/Anagram.java)
+  - [Batul Makada](https://github.com/batul02) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cp/anagram_problem.py)
