@@ -3,63 +3,46 @@ title: Selection Sort
 slug: /sorting-algorithms/selection-sort
 ---
 
-# Introduction
+## Introduction
 
 Selection Sort is a sorting algorithm which finds out the smallest element in unsorted part in each iteration and put it to the last of sorted part.
 It does less memory writes as compared to other sorting algorithms.
 
-# Algorithm
+## Explanation 
+
+Let's have one example: 
+```
+arr: 5 4 3 2 1
+
+Find the minimum element in arr[0...4]
+and place it at beginning
+
+arr: 1 4 3 2 5 
+
+Find the minimum element in arr[1...4]
+and place it at beginning in arr[1...4]
+
+arr: 1 2 3 4 5 
+
+Find the minimum element in arr[2...4]
+and place it at beginning in arr[2...4]
+
+arr: 1 2 3 4 5 
+
+Find the minimum element in arr[3...4]
+and place it at beginning in arr[3...4]
+```
+## Algorithm
 
 In Selection Sort, we follow the following algorithm:
 
-* First we will find the smallest element in the range [0,n-1] and swap it with the element at 0th index
+- First we will find the smallest element in the range [0,n-1] and swap it with the element at 0th index
 
-* Then we will find the smallest element int the range [1,n-1] and swap it with the element at 1st index
+- Then we will find the smallest element int the range [1,n-1] and swap it with the element at 1st index
 
-* We keep on increasing the left part of the range until it reaches n-1 and do the above mentioned process
+- We keep on increasing the left part of the range until it reaches n-1 and do the above mentioned process
 
-# Explanation for Selection Sort
-
-### Example 1
-
-```
-   0   1   2   3
- | 4 | 1 | 2 | 7 |
-
- [0,3] min_idx=1 
- swap(arr[min_idx],arr[0]);
-
- | 1 | 4 | 2 | 7 |
-
- [1,3] min_idx=2
- swap(arr[min_idx],arr[1]);
-
- | 1 | 2 | 4 | 7 |
-
- [2,3] min_idx=2 yar 
- swap(arr[min_idx],arr[2]);
-```
-### Example 2
-
-```
-   0   1   2   3
- | 1 | 8 | 5 | 2 |
-
- [0,3] min_idx=0
- swap(arr[min_idx],arr[0]);
-
- | 1 | 8 | 5 | 2 |
-
- [1,3] min_idx=3
- swap(arr[min_idx],arr[1]);
-
- | 1 | 2 | 4 | 8 |
-
- [2,3] min_idx=2 
- swap(arr[min_idx],arr[2]);
-```
-
-# Code
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -69,7 +52,6 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
-    { label: 'Java', value: 'java', },
   ]
 }>
 <TabItem value="cpp">
@@ -78,31 +60,33 @@ import TabItem from '@theme/TabItem';
 #include<bits/stdc++.h>
 using namespace std;
 
-void selection_sort(int *array, int size) {
-   int i, j, imin;
-   for(i = 0; i<size-1; i++) {
-      imin = i;   //get index of minimum data
-      for(j = i+1; j<size; j++)
-         if(array[j] < array[imin])
-            imin = j;
-         //placing in correct position
-         swap(array[i], array[imin]);
-   }
+void selection_sort(vector <int> &arr, int n) 
+{
+   int i=0;
+   while(i<n)
+   {
+      int mini=i;
+      int j=i+1;
+      while(j<n)
+      {
+         if(arr[j]<arr[mini])mini=j;
+         j++;
+      }
+      swap(arr[mini],arr[i]);
+      i++;
+   }   
 }
+
 int main() {
    int n;
-   cout << "Enter the number of elements: ";
+   cout << "Enter the size of array:";
    cin >> n;
-   int arr[n];           //create an array with given number of elements
-   cout << "Enter elements:" << endl;
-   for(int i = 0; i<n; i++) {
-      cin >> arr[i];
-   }
-   cout << "Array before Sorting: ";
-   display(arr, n);
+   vector <int> arr(n);
+   for(auto &e:arr)cin>>e;
    selection_sort(arr, n);
-   cout << "Array after Sorting: ";
-   display(arr, n);
+   for(auto e:arr)cout<<e<<" ";
+
+   return 0;
 }
 ```
 </TabItem>
@@ -122,35 +106,33 @@ def selection_sort(nums):
 
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
 ### Input :
 
 ```
-Enter number of elements:5
-Enter the elements: 5 4 3 2 1 
+Enter the size of array: 5
+5
+4 
+3 
+2 
+1 
 ```
 ### Output :
 ```
-Array before Sorting: 5 4 3 2 1 
-Array after  Sorting: 1 2 3 4 5
+1 2 3 4 5
 ```
 
-# Complexity Analysis
+## Complexity Analysis
  
 `n` is the number of elements in the array.
 
 - Time Complexity:
 
-  - **Best Case**: O (n)
+  - **Best Case**: O (n<sup>2</sup>)
   - **Average Case**: O (n<sup>2</sup>)
   - **Worst Case**: O (n<sup>2</sup>)
 
 - Space Complexity: O (1)
 
-### Credits
-* [Debojyoti Chakraborty](https://github.com/sparkingdark) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/selection_sort.cpp)
-
-* [A N U S H](https://github.com/anushkrishnav) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Selection_Sort.py)
-
-* [Parjanya Aditya Shukla](https://github.com/parjanyaacoder) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/SelectionSort.java)
+## Credits
