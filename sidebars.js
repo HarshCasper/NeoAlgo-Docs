@@ -71,9 +71,10 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-		"mathematics/neon-number",
-		"mathematics/extended-euclidean-Algorithm",   
-		"mathematics/anagram-number"
+                "mathematics/palindrome-number",
+                "mathematics/neon-number",
+                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/anagram-number"
             ],
         },
         {
