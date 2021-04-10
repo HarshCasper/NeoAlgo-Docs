@@ -70,8 +70,8 @@ module.exports = {
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
                 "mathematics/happy-number",
-                "mathematics/palindrome-number",
                 "mathematics/krishnamurthy-number",
+                "mathematics/palindrome-number",
                 "mathematics/neon-number",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/anagram-number"
