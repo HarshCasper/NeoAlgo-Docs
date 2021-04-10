@@ -1,5 +1,5 @@
 module.exports = {
-
+	
     docs: [
         {
             type: "category",
@@ -33,6 +33,8 @@ module.exports = {
             items: [
                 "sorting-algorithms/sorting-algorithms",
                 "sorting-algorithms/bubble-sort",
+                "sorting-algorithms/selection-sort",
+                "sorting-algorithms/heap-sort",
             ],
         },
         {
@@ -71,6 +73,7 @@ module.exports = {
                 "mathematics/krishnamurthy-number",
 		"mathematics/neon-number",
 		"mathematics/extended-euclidean-Algorithm"   
+		"mathematics/anagram-number"
             ],
         },
         {
