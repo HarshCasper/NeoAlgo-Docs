@@ -33,7 +33,7 @@ module.exports = {
       items: [
         'sorting-algorithms/sorting-algorithms',
         'sorting-algorithms/bubble-sort',
-        '/sorting-algorithms/merge-sort'
+        'sorting-algorithms/merge-sort'
       ],
     },
     {
