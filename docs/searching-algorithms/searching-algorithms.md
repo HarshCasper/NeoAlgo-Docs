@@ -67,6 +67,78 @@ As you can note, it works on sorted collection of elements only.
 
 ### Interpolation Search
 
-As written in the list, Binary Search is quite a famous dude among the rest with its reason of consuming the lesser time & thus being efficient.
+An improvement over the binary search, interpolation works by calculating the probe position using a formula -
+
+```mdx
+
+pos =  startIndex + 
+       [
+           (searchKey - array[startIndex]) * (endIndex - lowIndex) /
+           (array[endIndex] - array[startIndex]) 
+       ]
+
+```
+
+If the calculated pos ( probe position ) matches the element to be searched, then it returns the position of the element. Else it will check whether the element is larger than the element present at the probe position ( pos ), and if so, then it will search the element in the right sub-array.
 
 
+### Exponential Search
+
+Exponential search works on a sorted collection of items. The algorithm is about finding the range in which the key will be lying & then passing that range to binary search to get that desired element.
+
+The range is decided as - 
+1. Start with position 0th index, do the check i.e the element at position 0 matches with the element to be searched. If not, 
+2. Start from 1st index to `i * 2`th index, where `i` starts from 1,
+    <br /> Get the range i.e., 1st index to index till i * 2, do the check, if not
+    <br /> increase value of i
+3. Follow step 2 until the endIndex of the range is larger than the key. If found,
+4. Pass that range to the binary search algorithm
+
+
+### Fibonacci Search
+
+Based on the famous mathematical series called Fibonacci, the Fibonacci search works in a manner of finding the smallest fib element which is greater than equal to the element to be searched in the collection. Fibonacci series is as -
+
+| 0   | 1   | 1   | 2   | 3   | 5   | 8   | 13   | 21   | 34   |
+| --- | --- | --- | --- | --- | --- | --- | ---  | ---  | --- |
+
+which is a series of elements whose value is computed from the sum of the previous two elements - `Fib(k) = Fib(k-1) + Fib(k-2)`
+
+> Find the fib element from the derived Fibonacci series, based on the result, recur the half sub array
+
+As one might notice, it is a `Divide and Conquer` principle which needs a sorted collection of items to perform the search operation.
+
+
+## Complexity Analysis
+
+|                      | Best Case | Worst Case | Average Case   | Space Complexity  |
+|----------------------|-----------|------------|----------------|-------------------|
+| Linear Search        | O(1)      | O(n)       | O(n/2)         | O(1)              |
+| Binary Search        | O(1)      | O(log n)   | O(log n)       | O(log n) / O(1)   |
+| Jump Search          | O(1)      | O(√n)      | O(√n)          | O(1)              |
+| Interpolation Search | O(1)      | O(n)       | O(log(log(n))) | O(1)              |
+| Exponential Search   | O(1)      | O(log n)   | O(log n)       | O(log n) / O(1)   |
+| Fibonacci Search     | O(1)      | O(log n)   | O(log n)       | O(1)              |
+
+
+ <Highlight color="#000">Note</Highlight> - The space complexity of binary & exponential search is written as - O(log n)/O(1) cause of the different approaches in which they can be implemented. If the approach is recursive, then space complexity will be O(log n) else for the normal iterative approach, its O(1) of space complexity.
+
+## Conclusion
+
+Taking note of efficiency and both the complexities, a good choice of a searching algorithm should be made.
+
+
+<!-- Highlighting purpose -->
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '5px',
+      color: '#fff',
+      padding: '0.2rem 0.5rem',
+      fontSize: '0.9rem'
+    }}>
+    {children}
+  </span>
+);
