@@ -70,7 +70,7 @@ module.exports = {
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
 		"mathematics/neon-number",
-		"mathematics/extended-euclidean-algorithm",    
+		"mathematics/extended-euclidean-algorithm"   
             ],
         },
         {
