@@ -77,44 +77,25 @@ import TabItem from '@theme/TabItem';
 <TabItem value="cpp">
 
 ```cpp
-//The length of vector should be >= length of the resultant factorial
 #include<bits/stdc++.h>
 using namespace std;
 
-/*The function takes a number and multiplies the number in the school's old fashioned
-way. Herein we multiply the complete digit by one digit and then add the results to get
-the final resultant. The carry is carried forwarded and in the end the final result gets
-stored in the array/vector. */
-
-void factorial(int val)
-{
-    int carry = 0;       
-    vector <int> arr(10000, 0);   
-    arr[0] = 1;                   
-    int k = 0;                         
-
-    for(int i = 1; i <= val; i++) {
-        for(int j = 0;j <= k; j++) {      
-            arr[j] = arr[j] * i + carry;
-            carry = arr[j] / 10;
-            arr[j] = arr[j] % 10;
-        }
-        while(carry) {        
-            k++;
-            arr[k] = carry % 10;
-            carry /= 10;
-        }   
-    }
-    for(int i = k; i >= 0; i--) {  
-        cout<<arr[i];
-    }
-    cout << "\n";
+//This function calculates the factorial iteratively
+void factorial(int val) {
+    int f = 1;
+    if (val>0) {
+       for(int i=1;i<=val;i++){
+          f = f*i;
+       }
+       cout << "The factorial of " << val << " is: "<< f << endl;
+    }   
 }
-int main() {
+
+// driver function
+int main(void) {
     int num;
     cout << "Enter the number: ";
     cin>>num;
-    cout << "\nThe factorial of " << num << " is: ";
     factorial(num);
     return 0;
 }
