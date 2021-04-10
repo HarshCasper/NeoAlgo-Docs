@@ -5,30 +5,14 @@ slug: /sorting-algorithms/Counting-sort
 
 # Introduction
 
-Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements.
-In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of
-previous counts.And this modified count array shows that how many elements are smaller than that element. Then make the final array
-that contains sorted elements.Make sure that elements are in small range.
-
-# Algorithm
-
-In Counting Sort, we follow the following algorithm:
-
-* first we store the occurence of elements in a count array.
-
-* Then modify the count array such that every index store the sum of previous count.
-
-* Then travesre the given array from end(so that stability maintains) and checkin our modified count array.
-
-* And take an final array(output) and store the elements.
-
-* We get our sorted elements in output array.
+Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements.In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of previous counts.And this modified count array shows that how many elements are smaller than that element. Then make the final array that contains sorted elements.Make sure that elements are in small range.
 
 # Explanation for Counting Sort
+First store the occurence of each elements in count array . Then modify the count array by storing the sum of counts of previous index and this modified array tell us how many elements are smaller than that elements. Make an output array which contained sorted elements. Output array is build with the help of given(input) array and modified count array by traversing the input array from right to left(last to first).
 
 ### Example 1
 
-<img src="../../static/img/counting-sort.png" width="500" height="350"/>
+<img src="https://i.imgur.com/2TkzRQz.png" width="500" height="350"/>
 
 ```
 
@@ -43,6 +27,19 @@ then make an output array from given array and modified count array
   Sorted!! 
 
 ```
+# Algorithm
+
+In Counting Sort, we follow the following algorithm:
+
+* First we store the occurence of elements in a count array.
+
+* Modify the count array such that every index store the sum of previous count.
+
+* Travesre the given array from end(so that stability maintains) and put the elements by checking our modified count array and given(input) array.
+
+* And take an final array(output) and store the elements.
+
+* We get our sorted elements in output array.
 
 # Code
 
