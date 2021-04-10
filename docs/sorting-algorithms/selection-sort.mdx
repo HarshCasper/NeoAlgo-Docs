@@ -11,7 +11,7 @@ Selection sort is a sorting algorithm that finds out the smallest element in the
 
 First, we will find out the smallest element in the range `[0,n-1]` and swap the smallest element with the element at index `0`. Then we will find the smallest element in the range `[1,n-1]` and swap it will the element at index `1` and we keep on reducing the range and swapping the smallest element with the first element in the range till the array gets sorted.
 
-Let's have one example: 
+Let's have an array arr[] where we have the following elements: 5 4 3 2 1
 ```
 arr: 5 4 3 2 1
 
@@ -37,11 +37,11 @@ and swap it with arr[3]
 
 In Selection Sort, we follow the following algorithm:
 
-- First we will find the smallest element in the range `[0,n-1]` and swap it with the element at `0th` index
+- First we will find the smallest element in the range `[0,n-1]` and swap it with the element at `0th` index.
 
-- Then we will find the smallest element int the range `[1,n-1]` and swap it with the element at `1st` index
+- Then we will find the smallest element int the range `[1,n-1]` and swap it with the element at `1st` index.
 
-- We keep on increasing the left part of the range until it reaches `n-1` and do the above mentioned process
+- We keep on increasing the left part of the range until it reaches `n-1` and do the above mentioned process.
 
 ## Code
 
@@ -83,6 +83,7 @@ int main() {
    cout << "Enter the size of array:";
    cin >> n;
    vector <int> arr(n);
+   cout << "Enter the elements of array:";
    for(auto &e:arr)cin>>e;
    selection_sort(arr, n);
    for(auto e:arr)cout<<e<<" ";
@@ -111,6 +112,7 @@ def selectionSort(array, n):
 data = []
 n = int(input("Enter the size of array :"))
  
+print('Enter the elements of array:');
 for i in range(n):
     data.append(int(input()))
     
@@ -131,6 +133,7 @@ for d in data:
 
 ```
 Enter the size of array: 5
+Enter the elements of array:
 5
 4 
 3 

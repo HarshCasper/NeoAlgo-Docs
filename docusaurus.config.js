@@ -12,6 +12,9 @@ module.exports = {
   onBrokenLinks: 'ignore',
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    prism: {
+      additionalLanguages: ['java'],
+    },
     googleAnalytics: {
       trackingID: "UA-194155806-1",
       anonymizeIP: true,
