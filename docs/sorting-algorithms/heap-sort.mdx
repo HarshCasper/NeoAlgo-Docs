@@ -7,12 +7,12 @@ slug: /sorting-algorithms/heap-sort
 
 Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array for sorting in ascending or descending order `N` times. It is similar to Selection Sort, with the only difference is that it uses Heap data structure for finding minimum or maximum element. It is a In-Place and Non-Stable Sorting Algorithm.
 
-- BINARY HEAP: It is a complete binary tree represented using array. There are two types of Binary Heap:
+- **Binary Heap**: It is a complete binary tree represented using array. There are two types of Binary Heap:
 
     - **MaxHeap**: Both left and right subtree of every node contains smaller elements
     - **MinHeap**: Both left and right subtree of every node contains greater elements
 
-- Formulas:
+- **Formulas**:
 
   - **Left Child**:     `2*i+1`
   - **Right Child**:    `2*i+2`
@@ -184,7 +184,7 @@ def heap_sort(arr):
 # Taking Elements to be Sorted
 
 data = []
-n = int(input("Enter the Size of Array : "))
+n = int(input("Enter elements to be sorted :"))
  
 for i in range(n):
     data.append(int(input()))
