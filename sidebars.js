@@ -72,8 +72,9 @@ module.exports = {
                 "mathematics/happy-number",
                 "mathematics/palindrome-number",
                 "mathematics/krishnamurthy-number",
-		            "mathematics/neon-number",
-		            "mathematics/anagram-number"
+                "mathematics/neon-number",
+                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/anagram-number"
             ],
         },
         {
@@ -111,7 +112,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher"],
         },
         {
             type: "category",
