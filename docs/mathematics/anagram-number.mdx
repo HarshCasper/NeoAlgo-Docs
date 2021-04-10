@@ -23,16 +23,16 @@ Y = 5  3  2  4
 
 ## Algorithm
 
-First approach:
+Efficient approach:
 
   - Input two numbers `num1` and `num2`.
   - Create two arrays `A[]` and `B[]`, where `A[i]` and `B[i]` will store the number of occurrences of digit `i` in `num1` and `num2` respectively. 
   - Traverse the arrays. If for any digit `i`, ` A[i] != B[i]`, the given numbers are not anagrams of each other, else they are.
 
-Second approach:
+Another approach:
 
   - Input two numbers `num1` and `num2` as strings.
-  - Sort the string.
+  - Sort the string. NOTE - The time complexity will vary depending upon the type of sort used.
   - If the sorted strings are equal, the given numbers are anagrams of each other.
   - Else they are not.
 
