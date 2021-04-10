@@ -5,42 +5,43 @@ slug: /sorting-algorithms/selection-sort
 
 ## Introduction
 
-Selection Sort is a sorting algorithm which finds out the smallest element in unsorted part in each iteration and put it to the last of sorted part.
-It does less memory writes as compared to other sorting algorithms.
+Selection sort is a sorting algorithm that finds out the smallest element in the unsorted part in each iteration and puts it to the last of the sorted part. It does less memory writes as compared to other sorting algorithms. It is not stable and In place sorting algorithm. It takes the same time in every case `(best, average, worst)`.
 
 ## Explanation 
+
+First, we will find out the smallest element in the range `[0,n-1]` and swap the smallest element with the element at index `0`. Then we will find the smallest element in the range `[1,n-1]` and swap it will the element at index `1` and we keep on reducing the range and swapping the smallest element with the first element in the range till the array gets sorted.
 
 Let's have one example: 
 ```
 arr: 5 4 3 2 1
 
 Find the minimum element in arr[0...4]
-and place it at beginning
+and swap it with arr[0]
 
 arr: 1 4 3 2 5 
 
 Find the minimum element in arr[1...4]
-and place it at beginning in arr[1...4]
+and swap it with arr[1]
 
 arr: 1 2 3 4 5 
 
 Find the minimum element in arr[2...4]
-and place it at beginning in arr[2...4]
+and swap it with arr[2]
 
 arr: 1 2 3 4 5 
 
 Find the minimum element in arr[3...4]
-and place it at beginning in arr[3...4]
+and swap it with arr[3]
 ```
 ## Algorithm
 
 In Selection Sort, we follow the following algorithm:
 
-- First we will find the smallest element in the range [0,n-1] and swap it with the element at 0th index
+- First we will find the smallest element in the range `[0,n-1]` and swap it with the element at `0th` index
 
-- Then we will find the smallest element int the range [1,n-1] and swap it with the element at 1st index
+- Then we will find the smallest element int the range `[1,n-1]` and swap it with the element at `1st` index
 
-- We keep on increasing the left part of the range until it reaches n-1 and do the above mentioned process
+- We keep on increasing the left part of the range until it reaches `n-1` and do the above mentioned process
 
 ## Code
 
@@ -94,13 +95,31 @@ int main() {
 <TabItem value="py">
 
 ```python   
-def selection_sort(nums):
-    for i in range(len(nums)):
-        lowest_value_index = i
-        for j in range(i + 1, len(nums)):
-            if nums[j] < nums[lowest_value_index]:
-                lowest_value_index = j
-        nums[i], nums[lowest_value_index] = nums[lowest_value_index], nums[i]
+def selectionSort(array, n):
+	i = 0
+	while i < n:
+		mini = i
+		j = i + 1
+		while j < n:
+			if array[j] < array[mini]:
+				mini = j
+			j += 1
+		(array[i], array[mini]) = (array[mini], array[i])
+		i += 1       	
+
+
+data = []
+n = int(input("Enter the size of array :"))
+ 
+for i in range(n):
+    data.append(int(input()))
+    
+# Sending element to get sorted
+selectionSort(data, n)
+ 
+# Priting Elements after Getting Sorted
+for d in data:
+    print(d, end = " ")
 ```
 </TabItem>
 
