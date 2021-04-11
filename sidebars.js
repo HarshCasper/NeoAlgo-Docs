@@ -72,10 +72,13 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-                "mathematics/palindrome-number",
                 "mathematics/neon-number",
+                "mathematics/anagram-number",
+                "mathematics/sum-of-digits",
+                "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/anagram-number",
+                "mathematics/mystery-number",
                 "mathematics/matrix-addition"
             ],
         },
@@ -93,6 +96,7 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/kruskals-algorithm",
             ],
         },
         {
