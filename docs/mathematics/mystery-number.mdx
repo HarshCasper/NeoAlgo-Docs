@@ -116,7 +116,7 @@ public class Mystery {
 	}
 
 	// This function checks if the number is a mystery number
-	static int isMystery(int number) {
+	static boolean isMystery(int number) {
 
 		// We iterate till the middle of the number
 		for(int i = 1; i <= number / 2; i++) {
@@ -127,11 +127,11 @@ public class Mystery {
 			if(i + rev == number) {
 				// If its is equal to the given number we return and print
 				System.out.println("\nThe two digits are: " + i + " " + rev);
-				return 1;
+				return true;
 			}
 		}
-		// Else return -1
-		return -1;
+		// Else return false
+		return false;
 	}
 
 	public static void main(String args[]) {
@@ -143,10 +143,10 @@ public class Mystery {
 		scan.close();
 
 		// Calling the mystery function
-		int result = isMystery(number);
+		boolean result = isMystery(number);
 
 		// If the result is 1, the number is a mystery number
-		if(result == 1) {
+		if(result) {
 			System.out.println("The given number " + number + " is a Mystery number.");
 		}
 
