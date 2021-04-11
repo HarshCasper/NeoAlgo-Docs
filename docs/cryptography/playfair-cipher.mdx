@@ -11,9 +11,12 @@ Playfair cipher is a digraph substitution cipher. By this, we mean that we ciphe
 
 We first check if the given plain text is of even length or not. If found even, we don't require to do anything else we format it by adding a `Z` at the end. Also, we replace `J` in plaintext with `I` if found. Now we generate a `5x5` key matrix which we use to cipher the plaintext. We construct this matrix by putting the alphabets of key in the same order without repetition of alphabets and we fill the later spaces with the remaining alphabets in alphabetical order.
 
-We need to note that as we have only `25` spaces for `26` alphabets, generally `J` is omitted. Now we encrypt the plaintext letters pairwise. we take one pair and check for the positions of those letters in the key matrix generated. If we find them in the same row then we pick the right side letter to encrypt(If the letter is at the end we pick the first letter in the row). Similarly, if we find them in the same column then we take the letter below it(If the letter is at the end we pick the first letter in the column). But if both the letters are neither in the same row nor column, then we form a rectangle with these two letters and take the letters on the horizontal opposite corner of the rectangle to encrypt.
+We need to note that as we have only `25` spaces for `26` alphabets, generally `J` is omitted. Now we encrypt the plaintext letters pairwise. we take one pair and check for the positions of those letters in the key matrix generated. If we find them in the same row then we pick the right side letter to encrypt. If the letter is at the end we pick the first letter in the row.
+
+Similarly, if we find them in the same column then we take the letter below it. If the letter is at the end, we pick the first letter in the column. But if both the letters are neither in the same row nor column, then we form a rectangle with these two letters and take the letters on the horizontal opposite corner of the rectangle to encrypt.
 
 Let's have one example: 
+
 ```
 Input : 
 
@@ -41,10 +44,10 @@ Encrypted text will be kbekdv
 
 ## Algorithm
 
-- We first check if the length of the plaintext is even or not.
-- if found not even then we format it by adding `Z` at the end and also replace `j' with `i` in the plaintext.
-- Now we construct the `5x5` key Matrix.
-- We now generate the key matrix by fill it with the keyword and the remaining spaces with the other alphabets without repetition.
+- First check if the length of the plaintext is even or not.
+- If found, not even then we format it by adding `Z` at the end and also replace `j` with `i` in the plain text.
+- Now we construct a `5x5` key matrix.
+- Now we generate the key matrix by filling it with the keyword and the remaining spaces with the other alphabets without repetition.
 - Now we start encrypting by picking `2` letters at a time from plaintext and replacing them with corresponding encrypted alphabets from the key matrix.
 
 ## Code
@@ -499,10 +502,10 @@ Your Encrypted text is kbekdv
 
 ## Complexity Analysis
 
-- Time  complexity - O(n+m)
-- Space complexity -O(n+m)
+- Time  complexity: `O(n+m)`
+- Space complexity: `O(n+m)`
 
 ## Credits
 
-- [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cryptography/PlayFairCipher.java)
-- [Nandini Bansal](https://github.com/nandinib1999) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Playfair_Cipher.py)
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cryptography/PlayFairCipher.java)
+- [Nandini Bansal](https://github.com/nandinib1999) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Playfair_Cipher.py)
