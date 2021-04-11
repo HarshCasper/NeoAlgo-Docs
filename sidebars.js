@@ -1,4 +1,4 @@
-module.exports = {	
+module.exports = {
 
     docs: [
         {
@@ -36,6 +36,7 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/merge-sort"
             ],
         },
         {
@@ -118,7 +119,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher"],
         },
         {
             type: "category",
