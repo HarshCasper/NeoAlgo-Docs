@@ -1,0 +1,160 @@
+---
+title: Neon Number
+slug: /mathematics/neon-number
+---
+
+## Introduction
+
+A number is called a neon number if the sum of individual digits of the square of the number is the same as the original number.
+
+## Explanation
+
+We calculate the square of the given number and then we compute the sum of the individual digits. If the resultant number after this computation is the same as the original number then we say it is a neon number.
+
+Let's have one example:
+```
+Input  : 9
+Output : Is Neon Number
+
+Sequential steps :
+9^2 = 81
+8+1 = 9
+
+Input  : 12
+Output : Not Neon Number
+
+Sequential steps :
+12^2 = 144
+1+4+4 = 9
+```
+
+## Algorithm
+
+- We calculate the square of the given number as input.
+- Now compute the sum of individual digits.
+- Check if the computed number is the same as original number or not.
+- If it is the same as the original number then we call it a neon number else not.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+public class Neon_number {
+
+    public static void main(String[] args) {
+
+        System.out.print("Enter a number : ");
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        if (isNeon(n))
+            // checking the number is Neon or not
+            System.out.println(n + " is Neon number");
+        else
+            System.out.println(n + " is not a Neon number");
+    }
+
+    /*
+      method to check the given number is Neon or not
+      @param num for storing the value given by user
+      @return ture if number is Neon else return false
+     */
+    public static boolean isNeon(int num) {
+
+        /* Accumulator :-> A running total is a sum of numbers that accumulate with each iteration of a loop
+           assuming sum as accumulator*/
+        int n, sum = 0;
+        n = num * num;
+        // running loop till we consider all the digits of the squared number
+        while (n != 0) { 
+            //getting the last digit & adding the last digit to sum 
+            sum += (n % 10);
+            // neglecting the last number which we have counted 
+            n /= 10; 
+        }
+
+        if (sum == num)
+            return true;
+
+        return false;
+    }
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def Neon_number(number) :
+    # Calculating the square of the number
+    square_number = pow(number,2)
+    # Calculating the sum of digits of the square of the number
+    sum_of_digits = 0
+    while square_number != 0 :
+        digit = square_number % 10
+        sum_of_digits += digit
+        square_number = square_number // 10
+    if sum_of_digits == number :
+        print(number,"is a Neon number")
+    else :
+        print(number,"is not a Neon number")
+
+if __name__ == '__main__':
+number = int(input("Enter a number : "))
+Neon_number(number)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter a number : 9
+```
+
+### Output:
+
+```
+9 is a Neon number
+```
+
+Input:
+ 
+```
+Enter a number : 12
+```
+ 
+### Output:
+ 
+```
+12 is not a Neon number
+```
+
+## Complexity Analysis
+
+```
+Time  complexity - O(logn)
+Space complexity - O(1)
+```
+
+## Credits
+
+- [Anand Dasani](https://github.com/ananddasani) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/Neon_number.java)
+- [omniasalah276](https://github.com/omniasalah276) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Neon_number.py)
