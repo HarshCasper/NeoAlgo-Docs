@@ -113,20 +113,25 @@ import math
 
 def sum_of_divisors(n):
     i = 1
+    #Initilizing sum as 0
     sum = 0
     while True:
         if i > math.sqrt(n):
             break
+        #Adding factor i to sum 
         if n % i == 0 and i == math.sqrt(n):
             sum += i
+        #Adding factors i and n/i to sum     
         elif n % i == 0:
             sum += i
             sum += n // i
         i += 1
     return sum
 
+#Taking Input
 n = int(input("Enter the number :"))
 
+#Printing Output
 print("The sum of the divisors is: {} ".format(sum_of_divisors(n)))
 ```
 </TabItem>
@@ -151,11 +156,11 @@ The sum of the divisors is: 91
 
 - Time Complexity:
 
-  - **Best Case**: O (sqrt(n))
-  - **Average Case**: O (sqrt(n))
-  - **Worst Case**: O (sqrt(n))
+  - **Best Case**: `O(sqrt(n))`
+  - **Average Case**: `O(sqrt(n))`
+  - **Worst Case**: `O(sqrt(n))`
 
-- Space Complexity: O (1)
+- Space Complexity: `O(1)`
 
 ## Credits
 * [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/sum_of_divisors.cpp)
