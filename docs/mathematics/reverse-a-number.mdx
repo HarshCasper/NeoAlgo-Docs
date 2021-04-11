@@ -31,11 +31,11 @@ num = num/10 = 0
 
 ## Algorithm
 
-* We will make a rev variable and initialize it by `0`.
+* We will make a `rev` variable and initialize it by `0`.
 
-* We will extract the least significant digit by doing modulus by `10` and remove the last digit by dividing by `10`.
+* We will divide the number by `10` and store it into `temp`.
 
-* Now we will multiply the rev variable by `10` and add extracted element to it.
+* We will multiply the `rev` variable by `10` and add `temp` to it.
 
 * Apply the previous two steps until the number becomes `0`. 
 
@@ -55,13 +55,17 @@ import TabItem from '@theme/TabItem';
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
+//Function to do reverse
 int reverse(int num) {
+  //Initializing rev as 0
   int rev = 0;
   do {
+    //Adding the last digit
     rev = rev * 10 + num % 10;
+
+    //Removing the last digit
     num = num / 10;
   } while (num > 0);
 
@@ -70,9 +74,12 @@ int reverse(int num) {
 
 int main() {
   int num;
+
+  //Taking Input 
   cout << "Enter the number: ";
   cin >> num;
 
+  //Printing Output
   cout << "The reverse of the given number is: " << reverse(num);
   return 0;
 }
@@ -81,20 +88,26 @@ int main() {
 
 <TabItem value="py">
 
-```python   
+```python 
+#Function to do reverse  
 def reverse(n):
+    #Initializing rev as 0
     rev = 0
     while True:
         if n == 0:
             break
+        #Adding the last digit
         rev = rev * 10 + n % 10
+
+        #Removing the last digit
         n = n // 10
     return rev
 
-
+#Taking input from user
 n = int(input('Enter the number :'))
 
-print 'The reverse of the given number is: {} '.format(reverse(n))
+#Printing the output
+print ("The reverse of the given number is: {} ".format(reverse(n)))
 ```
 </TabItem>
 
@@ -118,10 +131,10 @@ The reverse of the given number is: 4321
 
 - Time Complexity:
 
-  - **Best Case**: O (n)
-  - **Average Case**: O (n)
-  - **Worst Case**: O (n)
+  - **Best Case**: `O(n)`
+  - **Average Case**: `O(n)`
+  - **Worst Case**: `O(n)`
 
-- Space Complexity: O (1)
+- Space Complexity: `O(1)`
 
 ## Credits
