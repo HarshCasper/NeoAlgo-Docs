@@ -49,7 +49,7 @@ $ git rebase upstream/<branch-name>
 $ git branch ISSUE_NUMBER
 ```
 
-You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your username.
+You can now check the branches by pushing in the command: `git branch`. You will see the `main` branch and another branch with your issue number.
 
 - Switch to the Development branch. Never develop on the `main` branch. Push in the command:
 
@@ -72,7 +72,7 @@ Start Coding 👩‍💻👨‍💻
   To stage all the changed files, type in:
 
   ```git
-  $ git add --all
+  $ git add --all  or  $ git add .
   ```
 
   This command snapshots the file in preparation for versioning and further adds it to the staging area.
@@ -89,7 +89,7 @@ Start Coding 👩‍💻👨‍💻
 - Upload all local branch commits to the remote repository.
   
   ```git
-  $ git push
+  $ git push origin <branch_name>
   ```
 
 ### Step 7: Creating a Pull Request
