@@ -74,28 +74,12 @@ using namespace std;
 #include<iostream>
 using namespace std;
 
-int main()
+void linearSearch(int arr[],int n,int key)
 {
-  int n,i,a;
-  // initialize position variable as -1
-  int pos=-1;    
-  cout<<"Enter number of elements: ";
-  cin>>n;
-  cout<<"Enter the elements "<<endl;
-  int arr[n];
-
-  for(i=0;i<n;i++)
-  {
-    cin>>arr[i];
-  }
-  cout<<"Enter element to search ";
-  cin>>a;
-  
-  //loop from 0th to nth element of array
   for(i=0;i<n;i++)    
   {
     //check whether number is present
-    if(arr[i]==a)       
+    if(arr[i]==key)       
     {
       //if found update pos to i i.e. position of the element
       pos = i;       
@@ -108,6 +92,24 @@ int main()
   {
     cout<<"Not Found";
   }
+}
+
+int main()
+{
+  int n,i,a;
+  // initialize position variable as -1
+  int pos=-1;    
+  cout<<"Enter number of elements: ";
+  cin>>n;
+  cout<<"Enter the elements: ";
+  int arr[n];
+  for(i=0;i<n;i++)
+  {
+    cin>>arr[i];
+  }
+  cout<<"Enter element to be searched: ";
+  cin>>key;  
+  linearSearch(arr,n,key);
   return 0;
 }
 
@@ -128,6 +130,16 @@ def linearSearch(arr, x):
     if pos == -1:
         print("Not Found")
 
+if __name__=="__main__":
+    arr=[]
+    n=int(input("Enter number of elements: "))
+    print("Enter the elements: ")
+    for i in range(0,n):
+      element=int(input())
+      arr.append(element)
+    key=int(input("Enter element to be searched: "))
+    linearSearch(arr,key)
+
 ```
 </TabItem>
 </Tabs>
@@ -135,20 +147,30 @@ def linearSearch(arr, x):
 ## Sample Input and Output
 
 
-## Sample 1 for the C++
+## Sample 1 
 
 ### Input :
 
 ```
 Enter number of elements:5
 Enter the elements 1 2 4 3 5
-Enter element to search 3
+Enter element to be searched 3
 ```
 ### Output :
-
 ```
 Found at 3
 
+```
+
+## Sample 2
+```
+Enter number of elements:5
+Enter the elements 1 2 4
+Enter element to be searched 3
+```
+### Output :
+```
+Not Found
 ```
 
 ## Complexity Analysis
