@@ -1,0 +1,150 @@
+---
+title: Count of Divisors
+slug: /mathematics/count-of-divisors
+---
+
+## Introduction
+
+Count of divisors refers to the count of numbers in the range `1 to n` which perfectly divides `n`.
+
+## Explanation 
+
+We will make a count variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and not equal to `sqrt(n)` we will increment the count by `2` as `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and is equal to `sqrt(n)` we will increment the count by `1` only as both `i` and `n/i` will be same. 
+
+Let's have one example: 
+```
+num = 9
+range = [1,3]
+cnt = 0
+
+num = 9
+i=1
+divisors = 1 , 9/1=9
+cnt = cnt + 2 =2
+
+num = 9
+i=2
+9 is not divisible by i
+
+num = 9
+i=3
+divisors = 3 , 9/3=3
+cnt = cnt + 1 = 3
+Here we will increase the cnt by 1 as i is equal to sqrt(num) 
+```
+
+## Algorithm
+
+* We will make a count variable and initialize it to `0`.
+
+* We will make a variable `i` iterate it on the range `[1, sqrt(n)]`. 
+
+* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will increment the count variable by `2` as `n` will also be divisible `n/i` as `n*(n/i) = n`.
+
+* If `n` is divisible by `i` and is equal to `sqrt(n)` we will increment the count variable by `1` as both `n` and `n/i` are the same.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int count_of_divisors(int num)
+{
+    int cnt = 0;
+    int limit = (int) sqrt(num);
+    for(int i = 1; i < limit; i++)
+    {
+        if(num % i == 0)
+        {
+            cnt += 2;
+        }
+    }
+
+    if(num % limit == 0)
+    {
+        if(limit * limit == num)
+        {
+            cnt++;
+        }
+        else
+        {
+            cnt += 2;
+        }
+    }
+    return cnt;
+}
+
+int main()
+{
+    cout << "Enter the number: ";
+    int num;
+    cin >> num;
+    cout<<"The count of the divisors is: "<<count_of_divisors(num)<<endl;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def count_of_divisors(n):
+    i = 1
+    cnt = 0
+    while True:
+        if i > math.sqrt(n):
+            break
+        if n % i == 0 and i == math.sqrt(n):
+            cnt += 1
+        elif n % i == 0:
+            cnt += 2
+        i += 1
+    return cnt
+
+
+n = int(input('Enter the number: '))
+
+print 'The count of the divisors is: {} '.format(count_of_divisors(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+### Input :
+
+```
+Enter the number: 36
+```
+### Output :
+```
+The count of the divisors is: 9
+```
+
+## Complexity Analysis
+
+`n` is the given number.
+
+- Time Complexity:
+
+  - **Best Case**: O (sqrt(n))
+  - **Average Case**: O (sqrt(n))
+  - **Worst Case**: O (sqrt(n))
+
+- Space Complexity: O (1)
+
+## Credits
+* [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_divisors.cpp)

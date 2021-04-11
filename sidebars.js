@@ -74,7 +74,8 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/neon-number",
                 "mathematics/extended-euclidean-Algorithm",   
-                "mathematics/anagram-number"
+                "mathematics/anagram-number",
+                "mathematics/count-of-divisors",
             ],
         },
         {
