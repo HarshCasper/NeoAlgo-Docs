@@ -1,0 +1,589 @@
+---
+title: Singly Linked list
+slug: /data-structures/Singly-Linked-list
+---
+
+## Introduction
+Singly Linked list is a type of linear Linked list having collection of variable number of data items called nodes. Each node has two fields - one is the **information field** containing the data value of that node, and the other is the **link field** which contains the memory address of the next node. Since here we have only one link field in each node, it is termed as Singly Linked list.
+
+![Capture](https://user-images.githubusercontent.com/70858557/114307192-2bab1300-9afc-11eb-98cd-cd13459394fd.PNG)
+
+## Why Singly Linked list ?
+
+Arrays can be easily used to store linear data of similar types but the main drawback with array is that the array must be declared to have some fixed size. And due to this predetermined array size at times there is a lot of memory loss. If the array size cannot be determined in advance, the other alternative i.e. Linked list, is used.
+
+**Creating a Linked list:**
+
+The nodes of a Singly Linked list can be created by the below structure. Here `info` is the information field and `*link` is the link field containing pointer variable which refers the same node structure. Such reference is called **self adressing pointer.**
+
+```c
+// A Singly Linked list node
+struct Node{
+    int info;
+    struct Node *link;
+}*node1, node2;
+```
+
+## Algorithm
+
+### Operations performed on Singly Linked list
+
+**Traversing a Linked list:** 
+
+- While the pointer containing address of the next node is not NULL
+- Fetch the data part of the node
+- Advance the pointer to the next node
+
+**INSERTING node at the beginning of the Linked list:**
+
+- Create a node
+- Fill data in information field and set the pointer field of the new node as NULL
+- Attach this node to START and mark it as the START node
+
+**INSERTING node at the end of the Linked list:**
+
+- Identify the last node of the Singly Linked list
+- Create a node
+- Fill data in information field and set the pointer field of the new node as NULL
+- Attach this node to END and mark it as the END node
+
+**INSERTING node at a given position of the Linked list:**
+
+- Count the number of data items in the Singly Linked list
+- If the inserting position is 1, insert at the beginning
+- if the inserting position is at the end, insert at the end
+- if it is in the middle, link the newly created node with its left and right node.
+
+**DELETING node from the beginning of the Linked list:**
+
+- A Pointer (Ptr) stores the first nodes address
+- Address of the second node is assigned to start pointer, so now second node becomes the Head node
+- Free the memory occupied by Ptr
+
+**DELETING node from the end of the Linked list:**
+
+- we move to last node by setting present node as ptr and previous one as preptr
+- when we reach the last node i.e. when last node is ptr and second last preptr
+- Make the preptr as the last node and free ptr
+
+**DELETING node from a given position of the Linked list:**
+
+- First we find the previous node of the node that is to be deleted
+- Change the address part of the previous node 
+- Free the memory occupied by the node 
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+struct node
+{                 
+    //declaration of node               
+    int data;
+    struct node*next;
+//pointer to node
+}*ptr,*head,*tail,*temp;         
+
+void Insert_At_Front();
+void Insert_At_End();
+//function declaration
+void Insert_At_Pos();            
+void Delete_At_Front();
+void Delete_At_End();
+void Delete_At_Pos();
+void Display();
+void Length();
+//ele is the input data from the user
+int ele;			
+
+
+int main()            
+{
+int ch;
+//Displaying the Features in a tabular manner 
+cout<< "\n\n\t All Basic Features of Singly Linked List"<<endl;                 
+cout<<"\t **************************************************"<<endl;
+
+do
+{
+cout<<"\t 1) Insert at Front\t \t 2) Insert at End "<<endl; 
+cout<<"\t 3) Insert at position\t \t 4) Delete at Front"<<endl;
+cout<<"\t 5) Delete at End\t \t 6) Delete at Position"<<endl;
+cout<<"\t 7) Length\t \t\t 8) Display"<<endl;
+cout<<"\t 9) Exit"<<endl;
+cout<<"\t ***************************************************\n ENTER YOUR CHOICE: "<<endl;
+cin >>ch;
+  switch(ch)
+  {
+    case 1:
+    Insert_At_Front();
+    break;
+
+    case 2:
+    Insert_At_End();
+    break;
+
+    case 3:
+    Insert_At_Pos();
+    break;
+
+    case 4:
+    Delete_At_Front();
+    break;
+
+    case 5:
+    Delete_At_End();
+    break;
+
+    case 6:
+    Delete_At_Pos();
+    break;
+
+    case 7:
+    Length();
+    break;
+
+    case 8:
+    Display();
+    break;
+    
+    case 9:
+    exit(0);
+    break;
+    
+    default:
+    cout<<"Invalid Input. Please enter the Number between 1 to 9 "<<endl;
+    
+  }
+}while(ch!=0);
+    return 0;
+}
+//-------------------------------------------------------------
+void Insert_At_End()
+{
+    ptr=(struct node*)malloc(sizeof(struct node));
+    cout<<"ENTER THE ELEMENT"<<endl;
+    cin>>ele;
+    ptr->data=ele;
+    ptr->next=NULL;
+if(head==NULL)
+ {
+    head=ptr;
+    tail=ptr;
+         cout<<"Inserted Successfully."<<endl;
+         cout<<"\t **************************************************"<<endl;
+ }
+ else
+ {
+    tail->next=ptr;
+    tail=ptr;
+          cout<<"Inserted Successfully."<<endl;
+          cout<<"\t **************************************************"<<endl; 
+ }
+}
+//--------------------------------------------------------------
+void Insert_At_Front()
+{
+    ptr=(struct node*)malloc(sizeof(struct node));
+    cout<<"ENTER THE ELEMENT"<<endl;
+    cin>>ele;
+    ptr->data=ele;
+if(head==NULL)
+ {
+    head=ptr;
+    tail=ptr;
+    ptr->next=NULL;
+     cout<<"Inserted Successfully."<<endl;
+     cout<<"\t **************************************************"<<endl;
+ }
+else
+ {
+    ptr->next=head;
+    head=ptr;
+      cout<<"Inserted Successfully."<<endl;
+      cout<<"\t **************************************************"<<endl;
+
+ }
+}
+
+//-------------------------------------------------------------
+void Insert_At_Pos()
+{
+
+    int loc;
+    struct node*prev;
+    ptr=(struct node*)malloc(sizeof(struct node));
+    cout<<"ENTER THE ELEMENT"<<endl;
+    cin>>ele;
+    ptr->data=ele;
+    cout<<"ENTER THE LOCATION"<<endl;
+    cin>>loc;
+  if(loc==0)
+  {
+       //Indexing is from 1
+        cout<<"0th Position doesn't Exist."<<endl;     
+  }
+  else if(loc==1)
+  {
+      Insert_At_Front();
+  }
+  else 
+  {
+        temp=head;
+        for(int i=1;i<=loc-1;i++)
+        {
+             prev=temp;
+             temp=temp->next;
+        }
+        ptr->next=temp;
+        prev->next=ptr;
+        cout<<"Inserted Successfully."<<endl;
+        cout<<"\t *************************************************"<<endl;
+  }
+    
+}
+
+//-------------------------------------------------------------
+void Delete_At_Front()
+{
+    if(head==NULL)
+    {
+    cout<<"List is Empty"<<endl;
+        cout<<"\t **************************************************"<<endl;
+    }
+    else
+    {
+        ptr=head;
+        head=ptr->next;
+	   cout<<"Deleted Successfully"<<endl;
+	   cout<<"\t **************************************************"<<endl;
+       //Memory is relesed
+        free(ptr);               
+    }
+}
+
+//-------------------------------------------------------------
+void Delete_At_End()
+{
+    if(head==NULL)
+    {
+    cout<<"List is Empty"<<endl;
+        cout<<"\t **************************************************"<<endl;
+    }
+    else
+    {
+        temp=head;
+        while(temp->next==NULL)
+        {
+            ptr=temp;
+            temp=ptr->next;
+        }
+    ptr->next=NULL;
+    cout<<"Deleted Successfully"<<endl;
+    cout<<"\t **************************************************"<<endl;
+    //Memory is relesed
+    free(temp);                  
+    }
+}
+//----------------------------------------------------------------------------------
+
+void Delete_At_Pos()
+{
+    
+    int loc;
+    cout<<"ENTER THE LOCATION"<<endl;
+    cin>>loc;
+    //Here Indexing starts from 1
+    if(loc==0)                      
+    {
+        cout<<"0th position doesn't exist."<<endl;
+            cout<<"\t **************************************************"<<endl;
+
+    }
+    else
+    {
+        // if LinkedList is empty
+        if(head==NULL)              
+        {
+        cout<<"List is Empty"<<endl;
+            cout<<"\t **************************************************"<<endl;
+        }
+        else if(loc==1)
+        {
+            Delete_At_Front();
+        }
+        else
+        {
+            temp=head;
+            struct node*prev;
+            for(int i=1;i<=loc-1;i++)
+            {
+                prev=temp;
+                temp=temp->next;
+            }
+            prev->next=temp->next;
+            cout<<"Deleted Successfully"<<endl;
+            cout<<"\t **************************************************"<<endl;
+            //Memory is relesed
+            free(temp);       
+        }
+    }    
+}
+
+
+//Traversing throughout the Linked LIst
+void Display()                         
+{
+    int i=1;
+    temp=head;
+    cout<<"S.No\t Data\t Pointer"<<endl;
+    while(temp!=NULL)
+    {
+        cout<<i<<"\t"<<temp->data<<"\t"<<temp->next<<endl;
+        temp=temp->next;
+        i++;
+    }
+    cout<<"\t ***********************************************"<<endl;
+}
+
+void Length()
+{
+
+    int i,Count=0;
+    temp=head;
+    while(temp!=NULL)
+    {
+        Count+=1;
+        temp=temp->next;
+        i++;
+    }
+    cout<<"Total no. of Nodes : "<<Count<<endl;
+    cout<<"\t ***********************************************"<<endl;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class Node:
+    # Constructor to initialize the node object
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    # Constructor to initialize head 
+    def __init__(self):
+        self.head = None
+
+    def insertNodeAtFront(self, ndata):
+        nnode = Node(ndata)
+        nnode.next = self.head
+        self.head = nnode
+
+    def insertNodeAtEnd(self, ndata):
+        nnode = Node(ndata)
+        if self.head == None:
+            self.head = nnode
+        else:
+            last = self.head
+            while last.next != None:
+                last = last.next
+            last.next = nnode
+    
+    def insertNodeAtPosition(self, index, ndata):
+        if index == 1:
+            insertNodeAtFront(self, ndata)
+        else:
+            cur = 1
+            pos = self.head
+            while cur < index-1 and pos != None:
+                pos = pos.next
+                cur += 1
+            if pos == None:
+                insertNodeAtEnd(self, ndata)
+            else:
+                nnode = Node(ndata)
+                nnode.next = pos.next
+                pos.next = nnode
+
+    def deleteNodeAtFront(self):
+        if self.head == None:
+            print("Empty list, nothing to delete!")
+        else:
+            self.head = self.head.next
+
+    def deleteNodeAtEnd(self):
+        if self.head == None:
+            print("Empty list, nothing to delete!")
+        elif self.head.next == None:
+            self.head=None
+        else:
+            pos = self.head
+            while pos.next.next != None:
+                pos = pos.next
+            pos.next = None
+
+    def deleteNodeAtPosition(self, index):
+        if self.head == None:
+            print("Empty list, nothing to delete!")
+            return
+        pos = self.head
+        if index == 1:
+            self.head = pos.next
+            temp = None
+            return
+        for ind in range(1,index-1):
+            pos = pos.next
+            if pos == None:
+                break
+        if pos == None or pos.next == None:
+            print("Index more than number of nodes!")
+        else:
+            next = pos.next.next
+            pos.next = None
+            pos.next = next
+
+    def traverseList(self):
+        if self.head == None:
+            print("Empty list, nothing to print!")
+        else:
+            n = self.head
+            while n != None:
+                print(n.data)
+                n = n.next
+
+    def countNodes(self):
+        cnt = 0
+        ind = self.head
+        while ind != None:
+            cnt += 1
+            ind = ind.next
+        print(cnt)
+
+if __name__=='__main__':
+    newLinkedList = LinkedList()
+    print("SINGLY LINKED LIST")
+    print("1. Insert Node at Front")
+    print("2. Insert Node at End")
+    print("3. Insert Node at Position")
+    print("4. Delete Node at Front")
+    print("5. Delete Node at End")
+    print("6. Delete Node at Position")
+    print("7. Print the List")
+    print("8. Count nodes in the List")
+    print("9. Exit")
+    print("--Use 1-based indexing--")
+    while(True):
+        ch = int(input("Enter your choice: "))
+        if ch == 1:
+            ndata = int(input("Enter the element to insert: "))
+            newLinkedList.insertNodeAtFront(ndata)
+        elif ch == 2:
+            ndata = int(input("Enter the element to insert: "))
+            newLinkedList.insertNodeAtEnd(ndata)
+        elif ch == 3:
+            ndata = int(input("Enter the element to insert: "))
+            ind = int(input("Enter index to insert this element: "))
+            newLinkedList.insertNodeAtPosition(ind,ndata)
+        elif ch == 4:
+            newLinkedList.deleteNodeAtFront()
+        elif ch == 5:
+            newLinkedList.deleteNodeAtEnd()
+        elif ch == 6:
+            ind = int(input("Enter index to delete element: "))
+            newLinkedList.deleteNodeAtPosition(ind)
+        elif ch == 7:
+            newLinkedList.traverseList()
+        elif ch == 8:
+            newLinkedList.countNodes()
+        elif ch == 9:
+            break
+        else:
+            print("Enter a valid choice (1-9)")
+
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+### Sample Input
+```
+SINGLY LINKED LIST
+1. Insert Node at Front
+2. Insert Node at End
+3. Insert Node at Position
+4. Delete Node at Front
+5. Delete Node at End
+6. Delete Node at Position
+7. Print the List
+8. Count nodes in the List
+9. Exit
+Enter your choice: 1
+Enter the element to insert: 20
+Enter your choice: 2
+Enter the element to insert: 67
+Enter your choice: 1
+Enter the element to insert: 66
+Enter your choice: 2
+Enter the element to insert: 89
+Enter your choice: 1
+Enter the element to insert: 56
+Enter your choice: 5
+Enter your choice: 6
+Enter index to delete element: 2
+Enter your choice: 1
+Enter the element to insert: 45
+Enter your choice: 8
+4
+Enter your choice: 1
+Enter the element to insert: 43
+Enter your choice: 7
+```
+
+### Sample Output
+```
+43
+45
+56
+20
+67
+```
+## Complexity Analysis
+- Access
+    - **Average Case**: O (n)
+    - **Worst Case**: O (n)
+- Search 
+    - **Average Case**: O (n)
+    - **Worst Case**: O (n)
+- Insertion
+    - **Average Case**: O (1)
+    - **Worst Case**: O (1)
+- Deletion
+    - **Average Case**: O (1)
+    - **Worst Case**: O (1)
+
+- Space Complexity: O (n)
+
+## Credits
+
+- [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/SinglyLinkedList.py)
+- [Vatsal kesarwani](https://github.com/plazzy99) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Interpolation_Search.cpp)
