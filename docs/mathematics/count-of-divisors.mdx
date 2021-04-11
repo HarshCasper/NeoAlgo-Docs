@@ -9,7 +9,7 @@ Count of divisors refers to the count of numbers in the range `1 to n` which per
 
 ## Explanation 
 
-We will make a count variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and not equal to `sqrt(n)` we will increment the count by `2` as `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and is equal to `sqrt(n)` we will increment the count by `1` only as both `i` and `n/i` will be same. 
+We will make a count variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and `i` is not equal to `sqrt(n)` then we will increment the count by `2` as `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and `i` is equal to `sqrt(n)` then we will increment the count by `1` only as both `i` and `n/i` will be same. 
 
 Let's have one example: 
 ```
