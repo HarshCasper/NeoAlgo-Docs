@@ -73,7 +73,7 @@ module.exports = {
                 "mathematics/krishnamurthy-number",
                 "mathematics/palindrome-number",
                 "mathematics/neon-number",
-                "mathematics/prime-number"
+                "mathematics/prime-number",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/anagram-number"
             ],
