@@ -47,6 +47,7 @@ Kruskal's algorithm originally places all the vertices of the graph isolated fro
 - The **`minimum spanning tree`** is as follows.
 
     [![graph-10.png](https://i.postimg.cc/wjwGrGJB/graph-10.png)](https://postimg.cc/CRf7BJcy)
+    
 ## Algorithm
 - Input the number of `vertices` and `edges`.
 - Create a graph with the specified number of `vertices` and `edges`.
@@ -112,9 +113,10 @@ int Graph::find_set(int i) {
   if (i == parent[i])
     return i;
   else
-    // Else if i is not the parent of itself
-    // Then i is not the representative of his set,
-    // so we recursively call Find on its parent
+    /* Else if i is not the parent of itself
+       Then i is not the representative of his set,
+       so we recursively call Find on its parent
+    */
     return find_set(parent[i]);
 }
 
@@ -375,6 +377,7 @@ Edge : Weight
 
 0 - 1 : 4
 ```
+
 ## Complexity Analysis
 - Let E denote the number of Edges and V denote the number of Vertices.
 - Time Complexity: `O(E log V)`
