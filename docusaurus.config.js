@@ -12,6 +12,9 @@ module.exports = {
   onBrokenLinks: 'ignore',
   // themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig: {
+    prism: {
+      additionalLanguages: ['java'],
+    },
     googleAnalytics: {
       trackingID: "UA-194155806-1",
       anonymizeIP: true,
@@ -106,6 +109,8 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Tesseract Coding; Built with Docusaurus.`,
     },
+    image: 'https://i.imgur.com/mIcfHih.png',
+    metadatas: [{name: 'twitter:card', content: 'summary_large_image'}, {name: 'twitter:image', content: 'https://i.imgur.com/mIcfHih.png'}, {name: 'twitter:title', content: 'NeoAlgo'}, {name: 'twitter:description', content: 'Bringing all Data Structures and Algorithms under one Roof ⚡'}],
   },
   presets: [
     [
