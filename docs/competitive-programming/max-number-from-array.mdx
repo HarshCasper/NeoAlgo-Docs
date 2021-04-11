@@ -5,33 +5,33 @@ slug: /competitive-programming/max-number-from-array
 
 ## Introduction
 
-To form the maximum number possible from an array of single-digit numbers, we have to sort the array in descending order. The numbers appended in the descending order give the maximum number. However, the same algorithm cannot be used for array containing both two-digit and single-digit numbers.For example, if the array contains two elements, `2` and `21`, then according to the algorithm used for the single digits, if we sort the array in descending order and append them, then the maximum number will be `212`.But this is wrong. The maximum number that can be formed from this array is `221`.Therefore, we need to use a separate algorithm.
+To form the maximum number possible from an array of single-digit numbers, we have to sort the array in descending order. The numbers appended in the descending order give the maximum number. However, the same algorithm cannot be used for array containing both two-digit and single-digit numbers. For example, if the array contains two elements, `2` and `21`, then according to the algorithm used for the single digits, if we sort the array in descending order and append them, then the maximum number will be `212`. But this is wrong. The maximum number that can be formed from this array is `221`. Therefore, we need to use a separate algorithm.
 
 ## Algorithm
 
-- Input the numbers as string
-- Sort the array of strings based on the following comparison criteria
-    * While sorting the array using comparison, create two separate strings XY and YX, if X and Y are the two strings being compared
-    * XY is the string created by appending X and Y in order
+- Input the numbers as string.
+- Sort the array of strings based on the following comparison criteria.
+    * While sorting the array using comparison, create two separate strings XY and YX, if X and Y are the two strings being compared.
+    * XY is the string created by appending X and Y in order.
     * YX is the string created by appending Y and X in order.
-    * Compare XY and YX and whichever is greater, should be placed before the other in the array
+    * Compare XY and YX and whichever is greater, should be placed before the other in the array.
 
 ## Examples
 
 #### Example 1
 
 ```
-Let the array be {21,2}
+Let the array be {21,2}.
 While sorting, two strings are created : XY = 212 and YZ = 221
-As XY<YZ, therefore, the array is sorted as {2,21}
-Therefore, the maximum number is 221
+As XY<YZ, therefore, the array is sorted as {2,21}.
+Therefore, the maximum number is 221.
 ```
 
 #### Example 2
 
 ```
-Let the array be {34,17}
-While sorting, two strings are created: XY = 3417 and YX = 1734
+Let the array be {34,17}.
+While sorting, two strings are created: XY = 3417 and YX = 1734.
 As XY>YX, the sorted array is {34,17} and the maximum number formed is 3417.
 ```
 
@@ -68,11 +68,11 @@ int printLargest(vector<string> str)
 int main()
 {
     vector<string> str;
-    cout << "Enter the number of elements in array\n";
+    cout << "Enter the number of elements in array:\n";
     long long int n;
     cin >> n;
     string s;
-    cout<< "\nEnter the elements\n";
+    cout<< "\nEnter the elements:\n";
     for (int i = 0; i < n; i++)
     {
         cin >> s;
@@ -90,9 +90,9 @@ int main()
 
 #### Input:
 ```
-Enter the number of elements in array
+Enter the number of elements in array:
 3
-Enter the elements
+Enter the elements:
 10 21 34
 
 #### Output:
@@ -101,9 +101,9 @@ The maximum number : 342110
 
 ```
 #### Input:
-Enter the number of elements in array
+Enter the number of elements in array:
 4
-Enter the elements
+Enter the elements:
 12 21 33 26
 
 #### Output:
