@@ -5,13 +5,13 @@ slug: /searching-algorithms
 
 ## Introduction
 
-Searching is a method of finding whether an element or a value exists in the given list of elements or values. If the element exists, then it returns its position. In the real world, there are many useful applications based on searching, be that seeking a whole database to find a certain file or it might be a simple connection from your contact list. If you wanna find something from a collection of items, you gotta need this algorithmic process.
+Searching is a method of finding whether an element or a value exists in the given list of elements or values. If the element exists, then it returns its position. In the real world, there are many useful applications based on searching, be that seeking a whole database to find a certain file or it might be a simple connection from your contact list. If you want to find something from a collection of items, you got to need this algorithmic process.
 
 Few Notable examples :
 * Finding a particular user from a social media network.
 * Looking for the desired word from a dictionary.
 * Querying the availability of products from an eCommerce website.
-* Using it to solve other problems including, knapsack, sudoku, etc.
+* Using it to solve other problems including, `Knapsack` and `Sudoku`.
 * Helping search engines to display the right results.
 
 ## Searching Algorithm
@@ -38,10 +38,10 @@ Let's go one by one & find out which is good over the other.
 ### Linear Search
 
 As the name hints, it works linearly. Meaning, it starts from the very first element till it finds the required/asked element in the collection. Clearly, 
-1. Best Case - The element to be searched, is the first element.
-2. Worst Case - The element to be searched, is the endmost element.
+* Best Case - The element to be searched, is the first element.
+* Worst Case - The element to be searched, is the endmost element.
 
-The practical uses of linear search are a very rare cause of the way its search. It's quite costly (w.r.t time) to go for, e.x., it will be really hard for AWS developers to go through the complete database from the starting point to get what they want. 
+The practical uses of linear search are a very rare cause of the way its search. It's quite costly (with respect to time) to go for, example, it will be really hard for AWS developers to go through the complete database from the starting point to get what they want. 
 
 ### Binary Search
 
@@ -59,7 +59,7 @@ With the mind flow as of binary search, jump search adds its jump step to do sea
 
 > Take a fixed number of jumps to skip few elements.
 
-If the collection contains, some, 36 elements then the jump search will take a jump of 6 from the starting i.e Jump from index 0 to 6, then check if the given element is smaller than the 6th element of the collection, if it is, then loops through these 0 to 6 elements to get that element i.e performing a linear search.
+If the collection contains, some, 36 elements then the jump search will take a jump of 6 from the starting i.e Jump from index 0 to 6, then check if the given element is smaller than the 6th element of the collection, if it is, then loops through these 0 to 6 elements to get that element, that is, performing a linear search.
 
  As you can note, it works on a sorted collection of elements only.
 
@@ -77,7 +77,7 @@ pos =  startIndex +
 
 ```
 
-If the calculated pos ( probe position ) matches the element to be searched, then it returns the position of the element. Else it will check whether the element is larger than the element present at the probe position ( pos ), and if so, then it will search the element in the right sub-array.
+If the calculated pos ( probe position ) matches the element to be searched, then it returns the position of the element. Else it will check whether the element is larger than the element present at the probe position ( `pos` ), and if so, then it will search the element in the right sub-array.
 
 
 ### Exponential Search
