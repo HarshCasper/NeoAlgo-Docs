@@ -9,18 +9,18 @@ Linear search is the simplest of the search algorithms. The motive of any search
 
 # Algorithm
 
-In linear search, we follow the following algorithm:
+In the linear search, we follow the following algorithm:
 
-* Starting from the left-most element of the array, compare each element with the key element
+* Starting from the left-most element of the array, compare each element with the key element.
 
-* If the element compared is same as the key element, then return the index of the element which matched the key
+* If the element compared is same as the key element, then return the index of the element which matched the key.
 
-* If the key does not match any element scanned in the array, then return `-1`
+* If the key does not match any element scanned in the array, then return `-1`.
 
 
-## Explanation for Linear Search
+## Explanation
 
-### Example 1
+#### Example 1
 
 ```
  Given the below array arr[2]:        
@@ -34,7 +34,7 @@ In linear search, we follow the following algorithm:
  Key matches arr[2] and index 1 is returned
 
 ```
-### Example 2
+#### Example 2
 
 ```
  Given the below array arr[2]:        
@@ -144,43 +144,40 @@ if __name__=="__main__":
 </TabItem>
 </Tabs>
 
-## Sample Input and Output
+## Sample Input and Output 
 
-
-## Sample 1 
-
-### Input :
+#### Input :
 
 ```
 Enter number of elements:5
 Enter the elements 1 2 4 3 5
 Enter element to be searched 3
 ```
-### Output :
+#### Output :
 ```
 Found at 3
-
 ```
 
-## Sample 2
+#### Input: 
+
 ```
-Enter number of elements:5
-Enter the elements 1 2 4
-Enter element to be searched 3
+Enter number of elements: 5 
+Enter the elements: 1 2 4 5 6
+Enter element to be searched: 3
 ```
-### Output :
+#### Output :
 ```
 Not Found
 ```
 
 ## Complexity Analysis
 
-Linear search gives linear access to the elements. In the best case, when the element to be searched is present in the first position, then only one iteration will be required. In the worst case when the element to be searched is present in the last position, linear search will have to go through all the elements. Therefore its time complexity is O(n).
+Linear search gives linear access to the elements. In the best case, when the element to be searched is present in the first position, then only one iteration will be required. In the worst case when the element to be searched is present in the last position, linear search will have to go through all the elements. Therefore its time complexity is `O(n)`.
 
-In linear search, no extra space is used to store anything. So the space complexity is O(1).
+In linear search, no extra space is used to store anything. So the space complexity is `O(1)`.
 
-* Time Complexity: O(n)
-* Space Complexity: O(1)
+* Time Complexity: `O(n)`
+* Space Complexity: `O(1)`
 
 
 
