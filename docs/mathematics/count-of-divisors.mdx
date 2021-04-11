@@ -9,7 +9,7 @@ Count of divisors refers to the count of numbers in the range `1 to n` which per
 
 ## Explanation 
 
-We will make a count variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and `i` is not equal to `sqrt(n)` then we will increment the count by `2` as `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and `i` is equal to `sqrt(n)` then we will increment the count by `1` only as both `i` and `n/i` will be same. 
+We will make a count variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and `i` is not equal to `sqrt(n)` then we will increment the count by `2` as `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and `i` is equal to `sqrt(n)` then we will increment the count by `1` only as both `i` and `n/i` will be the same. 
 
 Let's have one example: 
 ```
@@ -35,13 +35,13 @@ Here we will increase the cnt by 1 as i is equal to sqrt(num)
 
 ## Algorithm
 
-* We will make a count variable and initialize it to `0`.
+* We will make a `count` variable and initialize it to `0`.
 
 * We will make a variable `i` iterate it on the range `[1, sqrt(n)]`. 
 
-* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will increment the count variable by `2` as `n` will also be divisible `n/i` as `n*(n/i) = n`.
+* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will increment the `count` variable by `2`.
 
-* If `n` is divisible by `i` and is equal to `sqrt(n)` we will increment the count variable by `1` as both `n` and `n/i` are the same.
+* If `n` is divisible by `i` and is equal to `sqrt(n)` we will increment the `count` variable by `1`.
 
 ## Code
 
@@ -61,12 +61,14 @@ import TabItem from '@theme/TabItem';
 #include <bits/stdc++.h>
 using namespace std;
 
+//Function to count no of divisors
 int count_of_divisors(int num)
 {
     int cnt = 0;
     int limit = (int) sqrt(num);
     for(int i = 1; i < limit; i++)
     {
+        //Increasing the cnt by 2 for i and num/i
         if(num % i == 0)
         {
             cnt += 2;
@@ -89,9 +91,12 @@ int count_of_divisors(int num)
 
 int main()
 {
+    //Taking input
     cout << "Enter the number: ";
     int num;
     cin >> num;
+
+    //Printing the output
     cout<<"The count of the divisors is: "<<count_of_divisors(num)<<endl;
 }
 ```
@@ -100,23 +105,29 @@ int main()
 <TabItem value="py">
 
 ```python   
+import math
+
+#Function to calculate count of divisors
 def count_of_divisors(n):
     i = 1
+    #Initializing cnt by 0
     cnt = 0
     while True:
         if i > math.sqrt(n):
             break
+        #Increasing the cnt by 1
         if n % i == 0 and i == math.sqrt(n):
             cnt += 1
+        #Increasing the cnt by 2
         elif n % i == 0:
             cnt += 2
         i += 1
     return cnt
 
-
+#Taking input from the user
 n = int(input('Enter the number: '))
 
-print 'The count of the divisors is: {} '.format(count_of_divisors(n))
+print("The count of the divisors is: {} ".format(count_of_divisors(n)))
 ```
 </TabItem>
 
@@ -140,11 +151,11 @@ The count of the divisors is: 9
 
 - Time Complexity:
 
-  - **Best Case**: O (sqrt(n))
-  - **Average Case**: O (sqrt(n))
-  - **Worst Case**: O (sqrt(n))
+  - **Best Case**: `O(sqrt(n))`
+  - **Average Case**: `O(sqrt(n))`
+  - **Worst Case**: `O(sqrt(n))`
 
-- Space Complexity: O (1)
+- Space Complexity: `O(1)`
 
 ## Credits
 * [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_divisors.cpp)
