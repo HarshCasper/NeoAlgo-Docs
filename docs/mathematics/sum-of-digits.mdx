@@ -1,0 +1,127 @@
+---
+title: Sum of Digits
+slug: /mathematics/sum-of-digits
+---
+
+## Introduction
+
+In the Sum of Digits problem, we have to find the sum of the digits of the given number.
+
+## Explanation
+
+Consider a number `n` = `pqr` (where `p`, `q`, and `r` are its individual digits). Then the sum of its digits say `Sum` would be
+
+```
+Sum = p + q + r
+```
+
+For Example, consider `n` = 4382
+
+```
+Sum = 4 + 3 + 8 + 2 = 17
+```
+
+Hence 17 is the sum of digits of the given number 4382.
+
+## Algorithm
+
+Let us assume that the given number be `num`,
+
+-   Declare a variable `sum` and set its value to 0.
+-   Begin a While loop till `num != 0`
+    -   Set `rem = num % 10`
+    -   Set `sum = sum + rem`
+    -   Set `num = num / 10`.
+-   Return the sum value.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// C++ PROGRAM TO COMPUTE THE SUM OF DIGITS OF A NUMBER
+#include <iostream>
+using namespace std;
+// Function to calculate the sum of digits
+int sum_of_digits(int N)
+{
+    int sum = 0;
+    while(N != 0)
+    {
+        // Adding the last digit of the number to the sum
+        int rem = N % 10;
+        sum += rem;
+        // Removing the last digit
+        N = N / 10;
+    }
+    return sum;
+}
+int main()
+{
+    int N;
+    cout << "Enter the number: ";
+    cin >> N;
+    cout << "The sum of digits of the given number is " << sum_of_digits(N) << endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# Python program to Find the Sum of Digits of a Number
+def sum_of_digits(num):
+    # Extracting Each digits
+    # and compute thier sum in 's'
+    s = 0
+    while num != 0:
+        s = s + (num % 10)
+        num = num // 10
+    return s
+if __name__ == '__main__':
+    # Input the number And
+    # Call the function
+    print("Enter the number: ", end="")
+    n = int(input())
+    S = sum_of_digits(abs(n))
+    print("The sum of digits of the given number is {}".format(S))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number: 1234
+```
+
+#### Output
+
+```
+The sum of digits of the given number is 10
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(log(n))`, where `n` is the given number
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Drishika Chauhan](https://github.com/drishika2002) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Sum_of_digits.cpp)
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/sum_of_digits.py)
