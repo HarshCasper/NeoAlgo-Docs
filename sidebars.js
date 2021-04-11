@@ -77,6 +77,7 @@ module.exports = {
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/mystery-number",
 
             ],
         },
@@ -94,6 +95,7 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/kruskals-algorithm",
             ],
         },
         {
