@@ -1,0 +1,161 @@
+---
+title: Sum of Divisors
+slug: /mathematics/sum-of-divisors
+---
+
+## Introduction
+
+Sum of divisors refers to the sum of numbers in the range `1 to n` which perfectly divides `n`.
+
+## Explanation 
+
+We will make a sum variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and not equal to `sqrt(n)` we will add `i` and `n/i` to sum as both `i` and `n/i` will be the divisor of `n` because `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and is equal to `sqrt(n)` we will only add `i` to sum as both `i` and `n/i` will be the same. 
+
+Let's have one example: 
+```
+num = 9
+range = [1,3]
+sum = 0
+
+num = 9
+i=1
+divisors = 1 , 9/1=9
+sum = sum + 1 + 9 = 10
+
+num = 9
+i=2
+9 is not divisible by i
+
+num = 9
+i=3
+divisors = 3 , 9/3=3
+sum = sum + 3 = 13
+Here we will increase the sum by i only as i is equal to sqrt(num) 
+```
+
+## Algorithm
+
+* We will make a sum variable and initialize it to `0`.
+
+* We will make a variable `i` iterate it on the range `[1, sqrt(n)]`. 
+
+* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will add both `i` and `n/i` to sum as both `i` and `n/i` will be the divisor of `n` as `n*(n/i) = n`.
+
+* If `n` is divisible by `i` and is equal to `sqrt(n)` we will add only `i` to sum as both `n` and `n/i` will be the same.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int sum_of_divisors(int Number)
+{
+    /*Sum of Divisors may not fit in int range
+    so better take long long int */
+    long long int sum_of_divisors = 0;
+    int limit = (int) sqrt(Number);
+    for (int i = 1; i < limit; i++)
+    {
+        if (Number % i == 0)
+        {
+            /*Here i is a divisor of that number
+            (Number / i) is also a divisor
+            */
+            sum_of_divisors += i;
+            sum_of_divisors += (Number / i);
+        }
+    }
+
+    if (Number % limit == 0)
+    {
+        if (limit *limit == Number)
+        {
+            //means perfect square number
+            sum_of_divisors += limit;
+        }
+        else
+        {
+            sum_of_divisors += limit;
+            sum_of_divisors += (Number / limit);
+        }
+    }
+
+    return sum_of_divisors;
+}
+
+int main()
+{
+    cout << "Enter the number: ";
+    int num;
+    cin >> num;
+    cout << "The sum of the divisors is: " << sum_of_divisors(num) << endl;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+
+def sum_of_divisors(n):
+    i = 1
+    sum = 0
+    while True:
+        if i > math.sqrt(n):
+            break
+        if n % i == 0 and i == math.sqrt(n):
+            sum += i
+        elif n % i == 0:
+            sum += i
+            sum += n // i
+        i += 1
+    return sum
+
+n = int(input("Enter the number :"))
+
+print("The sum of the divisors is: {} ".format(sum_of_divisors(n)))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+### Input :
+
+```
+Enter the number: 36
+```
+### Output :
+```
+The sum of the divisors is: 91
+```
+
+## Complexity Analysis
+
+`n` is the given number.
+
+- Time Complexity:
+
+  - **Best Case**: O (sqrt(n))
+  - **Average Case**: O (sqrt(n))
+  - **Worst Case**: O (sqrt(n))
+
+- Space Complexity: O (1)
+
+## Credits
+* [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/sum_of_divisors.cpp)
