@@ -1,4 +1,5 @@
 module.exports = {	
+  
     docs: [
         {
             type: "category",
@@ -34,6 +35,7 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
+                'sorting-algorithms/insertion-sort',
             ],
         },
         {
@@ -70,10 +72,13 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-                "mathematics/palindrome-number",
                 "mathematics/neon-number",
+                "mathematics/anagram-number",
+                "mathematics/sum-of-digits",
+                "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",   
-                "mathematics/anagram-number"
+                "mathematics/mystery-number",
+
             ],
         },
         {
@@ -149,4 +154,3 @@ module.exports = {
         },
     ],
 };
-
