@@ -19,7 +19,34 @@ Kruskal's algorithm originally places all the vertices of the graph isolated fro
 - Initially, the weights are arranged in **`ascending order`** and picked out one by one, through the method of **`unification`**. If the vertices on either side of the edge belong to different subtrees, the subtrees are merged and the edge is added to the answer.
 
 - After iterating through all the edges in sorted order, all the vertices will belong to the same subtree, which will be the minimum spanning tree.
+#### Quick Example : 
 
+- Consider the below graph which has `6 vertices` and `6 edges`. Each vertex is considered to be a tree and is initialized with a different colour. 
+[![graph-main.png](https://i.postimg.cc/Wz2cf8Sh/graph-main.png)](https://postimg.cc/Q9nzFp23)
+- The edges are traversed in the **`ascending order`** of their weights. The `chosen` edge is represented in `red`. If this edge connects two vertices which are a part of different subtrees, they are merged to form a single tree of the same colour.
+
+    [![graph-1.png](https://i.postimg.cc/0yyt7031/graph-1.png)](https://postimg.cc/yk2XHcsL)
+
+    [![graph-2.png](https://i.postimg.cc/CLNPZQc4/graph-2.png)](https://postimg.cc/6y8LgYJ7)
+
+    [![graph-3.png](https://i.postimg.cc/J7jd8nJv/graph-3.png)](https://postimg.cc/s1DJ93T4)
+
+    [![graph-4.png](https://i.postimg.cc/2ydH7crr/graph-4.png)](https://postimg.cc/m1DNbSP5)
+
+    [![graph-5.png](https://i.postimg.cc/jdK3Sb45/graph-5.png)](https://postimg.cc/23c70gJR)
+
+    [![graph-6.png](https://i.postimg.cc/tJGSPQ0B/graph-6.png)](https://postimg.cc/phkJbSLj)
+
+    [![graph-7.png](https://i.postimg.cc/MTQ3vZLc/graph-7.png)](https://postimg.cc/MMzmLwqx)
+
+    [![graph-8.png](https://i.postimg.cc/7LcQHJK8/graph-8.png)](https://postimg.cc/B8TCNbWM)
+
+    [![graph-9.png](https://i.postimg.cc/R0qDxLQL/graph-9.png)](https://postimg.cc/gwFDvR7x)
+
+- This process continues, until all the vertices of the original graph are included. 
+- The **`minimum spanning tree`** is as follows.
+
+    [![graph-10.png](https://i.postimg.cc/wjwGrGJB/graph-10.png)](https://postimg.cc/CRf7BJcy)
 ## Algorithm
 - Input the number of `vertices` and `edges`.
 - Create a graph with the specified number of `vertices` and `edges`.
