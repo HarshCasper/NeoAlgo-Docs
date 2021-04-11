@@ -3,13 +3,13 @@ title: Palindromic Linked List
 slug: /data-structures/palindromic-linked-list
 ---
 
-# Introduction
+## Introduction
 
 A palindrome is a word or combination of characters that read the same forward and backward.
 Whether a linked list is palindromic or not can be found out using stacks - a data structure. Stacks follow the rule of 'Last In First Out',
 popularly known as 'LIFO'.
 
-# Algorithm
+## Algorithm
 
 1. Create a linked list
 2. Initialize a stack
@@ -23,26 +23,29 @@ popularly known as 'LIFO'.
    Repeat step 6 till the end of the stack or linked list is reached or the two values being compared are not the same.
 8. If the end of the linked list is reached, then it means that the linked list is palindromic. Otherwise it is not palindromic.
 
-# Examples
+## Examples
 
-## Example 1
+### Example 1
 
+```
 Let the linked list be 1->2->3
 All the data is pushed into the stack in the order: 3 2 1 with 1 at the bottom and 3 at top
 The pointer points towards the head of the linked list that is 1
 It is now compared with the top of the stack which is 3, so they are not equal and hence linked list is not palindrome.
+```
 
-## Example 2
+### Example 2
 
+```
 Let the linked list be 1->2->1
 All the data is pushed into the stack 
 Compare the top of the stack(=1) with the data at head of the linked list.
 As they are equal, pop the current top of the stack and pointer points towards the next node(=2)
 Again both are equal. Repeat the above step again. 
 You have reached the end of the linked list. Therefore, it is palindromic.
+```
 
-
-# Code
+## Code
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -123,36 +126,34 @@ int main()
 </TabItem>
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
-## Sample 1
 
-### Input:
+#### Input:
 Enter the length of the list: 3
 Enter the data:
 1
 2
 1
 
-### Output:
+#### Output:
 Yes, linked list is palindrome
 
-##Sample 2
 
-### Input:
+#### Input:
 Enter the length of the list: 3
 Enter the data:
 1
 2
 9
 
-### Output:
+#### Output:
 No, linked list is not palindrome
 
-# Complexity Analysis
+## Complexity Analysis
 
-* Time Complexity : O(n)
-* Space complexity : O(n)
+* Time Complexity : `O(n)`
+* Space complexity : `O(n)`
 
-# Credits
+## Credits
 [Sayani Mallick](https://github.com/SAY-droid427) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/stack/palindromic_list.cpp)
