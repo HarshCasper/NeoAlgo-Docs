@@ -71,6 +71,7 @@ module.exports = {
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
                 "mathematics/happy-number",
+                "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
                 "mathematics/anagram-number",
