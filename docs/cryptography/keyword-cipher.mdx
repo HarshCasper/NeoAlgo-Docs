@@ -1,0 +1,271 @@
+---
+title: Keyword Cipher
+slug: /cryptography/keyword-cipher
+---
+
+## Introduction
+
+A keyword cipher is a form of monoalphabetic substitution. Here we use a keyword to determine the letter matchings of the cipher alphabet to the plain alphabet. Repetition of letters in the word is avoided and the cipher alphabet is generated with the keyword matching to remaining alphabets. 
+
+## Explanation
+
+We map each alphabet in the keyword to a corresponding alphabet from the alphabetical order set (`A`,`B`,`C`, etc ) avoiding any repetition. Now we map the remaining elements from the alphabetical set with the remaining alphabets.
+
+Let's see one example: 
+
+If we have to encript a plaintext with `keword = cipher`
+
+`Plaintext : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z`
+
+`Encryption: C I P H E R A B D F G J K L M N O Q S T U V W X Y Z`
+
+So, if we want to write `HI` we encrypt it as `BD`.
+
+## Algorithm
+
+- We take the keyword and plaintext from the user.
+- Now we pad the keyword into a 26 characters array/list/string to pick the corresponding alphabet.
+- We iterate through each alphabet in the plaintext and replace it with the corresponding letter from the keyword padding. 
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// This function generates the pad using the keyword
+string generate_pad(string key) {
+
+	int i = 0;
+	string pad = "00000000000000000000000000";
+	int count = 0;
+	
+	// Ignoring the spaces in the given keyword
+	while(i < key.length()) {	
+		if(key.at(i) == ' ') {
+			i = i + 1;
+			continue;
+		}
+
+		// Checking keyword alphabet-wise
+		int missing = 0;
+		for(int j = 0; j < key.length(); j++) {
+			if(key.at(i) != pad.at(j)) {
+				missing += 1;
+			}
+		}
+
+		// Adding the unique words of key to pad
+		if(missing == key.length()) {
+			pad.at(count) = key.at(i);
+			count += 1;
+		}
+		i = i + 1;
+	}
+	// Till here we get the first half of the pad
+
+	string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+	i = 0;
+	// This while loop forms the remaining pad
+	while(i < 26) {
+		int not_present = 0;
+		for(int j = 0; j < 26; j++) {
+			if(alphabet.at(i) != pad.at(j)) {
+				not_present += 1;
+			}
+		}
+		
+		/* Whatever alphabets from [a-z] are not present
+		in the pad till now, add them to the pad.*/
+		if(not_present == 26) {
+			pad.at(count) = alphabet.at(i);
+			count++;
+		}
+		i++;
+	}
+	// Return the length 26 pad
+	return pad;
+}
+
+// This is the encryption function
+string encrypt(string plaintext, string key) {
+	
+	// Generate the pad using the above function
+	string pad = generate_pad(key);
+	string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+	// Replace all sapces in plaintext with underscores
+	for(int i = 0; i < plaintext.length(); i++) {
+		if(plaintext.at(i) == ' ') {
+			plaintext.at(i) = '_';
+		}
+	}
+
+	// Declare and initialize the encrypted string
+	string encrypted;
+	for(int i = 0; i < plaintext.length(); i++) {
+		encrypted += "0";
+	}
+	
+	for(int i = 0; i < plaintext.length(); i++) {
+		
+		/*If the message has space, add space to the
+		encrypted message at the same index.*/
+		if(plaintext.at(i) == '_') {
+			encrypted.at(i) = ' ';
+		}
+		
+		/*else replace it with the corresponding
+		position in the pad*/
+		else {
+			int index = 0;
+			for(int j = 0; j < alphabet.length(); j++) {
+				if(plaintext.at(i) == alphabet.at(j)) {
+					index = j;
+				}
+			}
+			encrypted.at(i) = pad.at(index);
+		}
+	}
+	// Return the encrypted message
+	return encrypted;
+}
+
+int main() {
+
+	// Take plaintext as input from the user
+	string plaintext;
+	cout << "Enter a plaintext to encrypt: ";
+	getline(cin, plaintext);
+	// Converting the plaintext to all lowercase
+	transform(plaintext.begin(), plaintext.end(), plaintext.begin(), ::tolower);
+
+	// Taking keyword as input from the user
+	string key;
+	cout << "Enter a key to encrypt      : ";
+	getline(cin, key);
+	// Converting the keyword to all lowercase
+	transform(key.begin(), key.end(), key.begin(), ::tolower);
+
+	// Calling the encrypt function and printing the ciphertext
+	cout << "The encrypted plaintext is  : " << encrypt(plaintext, key) << endl;
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+import string
+
+''' This function maintains a list of characters occuring in the key.
+    It counts each character once. It returns the list.'''
+def find_unique_char(key):
+
+ 
+    unique = []
+    for i in key:
+        if((i not in unique) and i != " "):
+            unique.append(i)
+    return unique
+
+''' This function forms the padding. It takes output of the above
+    function and then appends remaining of [a-z] in the list
+    and returns the list.'''
+def find_pad(pad_key):
+
+
+    # Calls the above function
+    key = find_unique_char(pad_key)
+
+    # This contains all character from a to z
+    ALPHABET = string.ascii_lowercase
+
+    for i in ALPHABET:
+        if i not in key:
+            key.append(i)
+    return key
+
+''' This function takes plaintext and key as input.
+    It pads the plaintext using the keyword formed
+    by calling above function.'''
+def encrypt_plaintext(message, key):
+
+    
+    ALPHABET = string.ascii_lowercase
+    enc = ""
+    pad = find_pad(key)
+
+    ''' This loop iterates through the whole message.
+         Find index of each character in normal [a-z].
+         Replaces it by the character present at the
+         same index of pad.'''
+    for i, j in enumerate(message):
+        if j != " ":
+            if j.islower():
+                index = ALPHABET.index(j)
+                enc += pad[index]
+            else:
+                index = ALPHABET.index(j.lower())
+                enc += pad[index].upper()
+        else:
+            enc += " "
+    return enc
+
+
+# Calling the driver function
+if __name__ == '__main__':
+
+    # Taking plaintext as input from the user
+    plaintext = input("Enter a plaintext to encrypt: ")
+
+    # Taking keyword as input from the user
+    keyword = input("Enter a key to encrypt      : ")
+
+    # Calling the function and printing the encrypted message
+    encrypt = encrypt_plaintext(plaintext, keyword.lower())
+    print("The encrypted plaintext is  : ", encrypt)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter a plaintext to encrypt: this is a secret
+Enter a key to encrypt      : mercury
+```
+
+### Output:
+
+```
+The encrypted plaintext is  : qbdp dp m purouq
+```
+
+## Complexity Analysis
+
+```
+Time  complexity - O(n+m)
+Space complexity - O(n)
+```
+
+## Credits
+
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/KeywordCipher.cpp) and the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Keyword_Cipher.py)
