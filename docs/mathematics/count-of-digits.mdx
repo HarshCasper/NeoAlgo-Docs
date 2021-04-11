@@ -9,7 +9,7 @@ Count of digits refers to the sum of the frequency of all distinct digits in a n
 
 ## Explanation 
 
-We will make a cnt variable and initilize it to `0`. We will keep on dividing the number by `10` and keep on increasing the cnt variable until the number becomes `0`.
+We can remove the least significant digit of a number by dividing it by `10`. We have to continuously reduce the digits of a number and increase the count till the number becomes `0`.
 
 Let's have one example: 
 ```
@@ -31,9 +31,9 @@ cnt = 4
 
 ## Algorithm
 
-* We will make a cnt variable and initilize it to `0`.
+* We will make a `cnt` variable and initialize it to `0`.
 
-* We will keep on dividing the number by `10` and increase the cnt variable until the number becomes `0`.
+* We will keep on dividing the number by `10` and increase the `cnt` variable until the number becomes `0`.
 
 ## Code
 
@@ -55,6 +55,7 @@ using namespace std;
 
 int count_of_digits(int num)
 {
+    if(num==0)return 1;  
     int cnt = 0;
     while (num != 0)
     {
@@ -90,11 +91,16 @@ int main()
 
 ```python   
 def count_of_number(n):
+    if(n==0):
+      return 1
+    #Initializing cnt variable to zero
     cnt = 0
     while True: 
         if(n==0):
           break 
+        #Increasing the cnt
         cnt+=1 
+        #Removing the least significant digit
         n = n//10
     return cnt
          
@@ -124,11 +130,11 @@ The count of digits in the given number is: 4
 
 - Time Complexity:
 
-  - **Best Case**: O (n)
-  - **Average Case**: O (n)
-  - **Worst Case**: O (n)
+  - **Best Case**: `O(n)`
+  - **Average Case**: `O(n)`
+  - **Worst Case**: `O(n)`
 
-- Space Complexity: O (1)
+- Space Complexity: `O(1)`
 
 ## Credits
 * [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_digits.cpp)
