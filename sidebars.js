@@ -1,4 +1,4 @@
-module.exports = {	
+module.exports = {
     docs: [
         {
             type: "category",
@@ -35,6 +35,7 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/merge-sort"
             ],
         },
         {
@@ -71,11 +72,17 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-                "mathematics/palindrome-number",
                 "mathematics/neon-number",
+<<<<<<< HEAD
                 "mathematics/prime-number",
+=======
+                "mathematics/anagram-number",
+                "mathematics/sum-of-digits",
+                "mathematics/palindrome-number",
+>>>>>>> d5bc59f86c46a11b0f45f1522404679b00342e1f
                 "mathematics/extended-euclidean-Algorithm",   
-                "mathematics/anagram-number"
+                "mathematics/mystery-number",
+
             ],
         },
         {
@@ -92,7 +99,11 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+<<<<<<< HEAD
                 "graph-algorithms/prim-algorithm",
+=======
+                "graph-algorithms/kruskals-algorithm",
+>>>>>>> d5bc59f86c46a11b0f45f1522404679b00342e1f
             ],
         },
         {
@@ -114,7 +125,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher"],
         },
         {
             type: "category",
