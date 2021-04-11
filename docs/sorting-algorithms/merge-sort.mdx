@@ -1,0 +1,335 @@
+---
+title: Merge Sort
+slug: /sorting-algorithms/merge-sort
+---
+
+## Introduction
+
+Merge Sort is a sorting method that uses the _divide-and-conquer_ paradigm. It splits a data list to be sorted into two halves and then sorts the two half data sets recursively. Finally, these are merged to obtain a complete sorted list.
+
+## Explanation
+
+The merge sort breaks an array down into smaller arrays until the size of the array is reduced to 1. Since a single element is always considered to be sorted, two contiguous elements can be merged. The merge sort algorithm, therefore, breaks the array down into smaller sub-arrays on the way down the recursion tree. On the way back up, it merges these smaller sub-arrays into a single array.
+
+To understand better, let us take an example of an unsorted array
+
+| 12  | 33  | 28  | 10  | 35  | 19  | 42  | 44  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+#### Stage 1: Divide
+
+In this stage, the whole array is divided iteratively into equal halves till atomic values are achieved. While doing so, the algorithm does not change the sequence of the array.
+
+
+<table>
+<tr><td>
+
+| 12 | 33 | 28 | 10 |
+| -- | -- | -- | -- |
+
+</td><td>
+
+| 35 | 19 | 42 | 44 |
+| -- | -- | -- | -- |
+
+</td></tr> 
+</table>
+
+Since we haven't achieved atomic values, the list will further be divided into two halves.
+<table>
+<tr><td>
+
+| 12 | 33 |
+| -- | -- |
+
+</td><td>
+
+| 28 | 10 |
+| -- | -- |
+
+</td><td>
+
+| 35 | 19 | 
+| -- | -- | 
+
+</td><td>
+
+| 42 | 44 |
+| -- | -- | 
+</td></tr> 
+</table>
+
+And once again, 
+<table>
+<tr><td>
+
+| 12 | 
+| -- | 
+
+</td><td>
+
+| 33 |
+| -- |
+
+</td><td>
+
+| 28 |
+| -- | 
+
+</td><td>
+
+| 10 |
+| -- | 
+
+</td><td>
+
+| 35 | 
+| -- | 
+
+</td><td>
+
+| 19 |
+| -- | 
+
+</td><td>
+
+| 42 | 
+| -- | 
+
+</td><td>
+
+| 44 |
+| -- | 
+</td></tr> 
+</table>
+
+As we have finally achieved atomic values, this cannot be further divided.
+
+#### Stage 2: Compare and Combine
+
+In this stage, we compare the elements from each list and then combine them into another list in a sorted manner.
+
+We notice that ``12`` and ``33`` are already sorted, we directly combine the list. Next we move to ``28`` and ``10``. Since ``28`` is greater than  ``10`` we put ``10`` first, followed by ``28``. Similarly, we need to change the order of ``35`` and ``19`` where as ``42`` and ``44`` are combined without any changes.
+
+<table>
+<tr><td>
+
+| 12 | 33 |
+| -- | -- |
+
+</td><td>
+
+| 10 | 28 |
+| -- | -- |
+
+</td><td>
+
+| 19 | 35 | 
+| -- | -- | 
+
+</td><td>
+
+| 42 | 44 |
+| -- | -- | 
+</td></tr> 
+</table>
+
+In the next iteration, we compare the 2 lists together, and merge them into a list placing them all in a sorted order.
+
+<table>
+<tr><td>
+
+| 10 | 12 | 28 | 33 |
+| -- | -- | -- | -- |
+
+</td><td>
+
+| 19 | 35 | 42 | 44 |
+| -- | -- | -- | -- |
+
+</td></tr> 
+</table>
+
+And after the final merging, we get the following
+
+| 10  | 12  | 19  | 28  | 33  | 35  | 42  | 44  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+## Alogrithm
+Assume an array `n`
+- Divide this array into 2 parts of length `n/2` and `n - n/2`. Let us call these arrays left half and right half respectively.
+- Recursively sort the left and right half arrays.
+- Merge the left and right array to get a fully sorted array.
+
+## Code
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="js"
+  values={[
+    { label: 'Javascript', value: 'js' },
+    { label: 'Go', value: 'go', },
+  ]
+}>
+
+<TabItem value="js">	
+
+```js
+// Merge Sort
+
+function merge(left, right) {
+  let arr = [];
+  // Break out of loop if any one of the array gets empty
+  while (left.length && right.length) {
+    // Pick the smaller among the smallest element of left and right sub arrays
+    if (left[0] < right[0]) {
+      arr.push(left.shift());
+    } else {
+      arr.push(right.shift());
+    }
+  }
+  // Concatenating the leftover elements
+  // (in case we didn't go through the entire left or right array)
+  return [...arr, ...left, ...right];
+}
+
+function mergeSort(array) {
+  const half = array.length / 2;
+  // Base case or terminating case
+  if (array.length < 2) {
+    return array;
+  }
+  const left = array.splice(0, half);
+  return merge(mergeSort(left), mergeSort(array));
+}
+
+
+var array = prompt("Enter an array with spaces").split(" ");
+console.log(mergeSort(array).join(" "));
+
+```
+</TabItem>
+
+
+<TabItem value="go">
+
+```go
+// Merge Sort
+
+package main
+import (
+	"bufio"
+	"errors"
+	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	var strArray []string
+	var intArray []int
+
+	fmt.Println("Enter an array with spaces")
+	reader := bufio.NewReader(os.Stdin)
+	arr, err := reader.ReadString('\n')
+	if err != nil {
+		inputErr := errors.New("something is wrong with your array input")
+		log.Fatal(inputErr)
+	}
+	arr = strings.TrimSpace(arr)
+	strArray = strings.Split(arr, " ")
+
+	for _, val := range strArray {
+		ele, err := strconv.Atoi(val)
+		if err != nil {
+			panic(err)
+		}
+		intArray = append(intArray, ele)
+	}
+	fmt.Println(MergeSort(intArray))
+}
+
+func merge(arr1 []int, arr2 []int) []int {
+	i, j := 0, 0
+
+	arr := make([]int, len(arr1)+len(arr2))
+
+	for i < len(arr1) && j < len(arr2) {
+		if arr1[i] < arr2[j] {
+			arr[i+j] = arr1[i]
+			i++
+		} else {
+			arr[i+j] = arr2[j]
+			j++
+		}
+	}
+
+	for i < len(arr1) {
+		arr[i+j] = arr1[i]
+		i++
+	}
+	for j < len(arr2) {
+		arr[i+j] = arr2[j]
+		j++
+	}
+
+	return arr
+}
+
+func MergeSort(arr []int) []int {
+	if len(arr) == 0 {
+		return nil
+	}
+
+	if len(arr) < 2 {
+		return arr
+	}
+	mid := len(arr) / 2
+	left := MergeSort(arr[:mid])
+	right := MergeSort(arr[mid:])
+
+	return merge(left, right)
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+#### Input
+```
+Enter an array with spaces
+5 3 2 4 5 84 6 1 54
+```
+
+#### Output
+```
+1 2 3 4 5 5 6 54 84
+```
+
+#### Input
+```
+Enter an array with spaces
+4 8 7 2 11 1 3
+```
+
+#### Output
+```
+1 2 3 4 7 8 11
+```
+
+## Complexity Analysis
+
+`n:` is the number of elements in the array.
+
+- **Time Complexity:** `O (n log n)`
+
+- **Space Complexity:** `O (n)`
+
+## Credits
+- [Siddhant-K-code](https://github.com/Siddhant-K-code) for the [JavaScript implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/JavaScript/sort/MergeSort.js)
+
+- [PaulSayantan](https://github.com/PaulSayantan) for the [Go implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Go/sort/merge_sort/mergeSort.go)
