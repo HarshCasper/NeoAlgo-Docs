@@ -1,9 +1,10 @@
 ---
 title: Singly Linked list
-slug: /data-structures/Singly-Linked-list
+slug: /data-structures/singly-linked-list
 ---
 
 ## Introduction
+
 Singly Linked list is a type of linear Linked list having collection of variable number of data items called nodes. Each node has two fields - one is the **information field** containing the data value of that node, and the other is the **link field** which contains the memory address of the next node. Since here we have only one link field in each node, it is termed as Singly Linked list.
 
 ![Capture](https://user-images.githubusercontent.com/70858557/114307192-2bab1300-9afc-11eb-98cd-cd13459394fd.PNG)
@@ -12,7 +13,7 @@ Singly Linked list is a type of linear Linked list having collection of variable
 
 Arrays can be easily used to store linear data of similar types but the main drawback with array is that the array must be declared to have some fixed size. And due to this predetermined array size at times there is a lot of memory loss. If the array size cannot be determined in advance, the other alternative i.e. Linked list, is used.
 
-**Creating a Linked list:**
+### Creating a Linked list:
 
 The nodes of a Singly Linked list can be created by the below structure. Here `info` is the information field and `*link` is the link field containing pointer variable which refers the same node structure. Such reference is called **self adressing pointer.**
 
@@ -28,45 +29,45 @@ struct Node{
 
 ### Operations performed on Singly Linked list
 
-**Traversing a Linked list:** 
+#### Traversing a Linked list: 
 
 - While the pointer containing address of the next node is not NULL
 - Fetch the data part of the node
 - Advance the pointer to the next node
 
-**INSERTING node at the beginning of the Linked list:**
+#### INSERTING node at the beginning of the Linked list:
 
 - Create a node
 - Fill data in information field and set the pointer field of the new node as NULL
 - Attach this node to START and mark it as the START node
 
-**INSERTING node at the end of the Linked list:**
+#### INSERTING node at the end of the Linked list:
 
 - Identify the last node of the Singly Linked list
 - Create a node
 - Fill data in information field and set the pointer field of the new node as NULL
 - Attach this node to END and mark it as the END node
 
-**INSERTING node at a given position of the Linked list:**
+#### INSERTING node at a given position of the Linked list:
 
 - Count the number of data items in the Singly Linked list
 - If the inserting position is 1, insert at the beginning
 - if the inserting position is at the end, insert at the end
 - if it is in the middle, link the newly created node with its left and right node.
 
-**DELETING node from the beginning of the Linked list:**
+#### DELETING node from the beginning of the Linked list:
 
 - A Pointer (Ptr) stores the first nodes address
 - Address of the second node is assigned to start pointer, so now second node becomes the Head node
 - Free the memory occupied by Ptr
 
-**DELETING node from the end of the Linked list:**
+#### DELETING node from the end of the Linked list:
 
 - we move to last node by setting present node as ptr and previous one as preptr
 - when we reach the last node i.e. when last node is ptr and second last preptr
 - Make the preptr as the last node and free ptr
 
-**DELETING node from a given position of the Linked list:**
+#### DELETING node from a given position of the Linked list:
 
 - First we find the previous node of the node that is to be deleted
 - Change the address part of the previous node 
@@ -117,7 +118,6 @@ int main()
 int ch;
 //Displaying the Features in a tabular manner 
 cout<< "\n\n\t All Basic Features of Singly Linked List"<<endl;                 
-cout<<"\t **************************************************"<<endl;
 
 do
 {
@@ -126,7 +126,6 @@ cout<<"\t 3) Insert at position\t \t 4) Delete at Front"<<endl;
 cout<<"\t 5) Delete at End\t \t 6) Delete at Position"<<endl;
 cout<<"\t 7) Length\t \t\t 8) Display"<<endl;
 cout<<"\t 9) Exit"<<endl;
-cout<<"\t ***************************************************\n ENTER YOUR CHOICE: "<<endl;
 cin >>ch;
   switch(ch)
   {
@@ -173,7 +172,6 @@ cin >>ch;
 }while(ch!=0);
     return 0;
 }
-//-------------------------------------------------------------
 void Insert_At_End()
 {
     ptr=(struct node*)malloc(sizeof(struct node));
@@ -186,17 +184,14 @@ if(head==NULL)
     head=ptr;
     tail=ptr;
          cout<<"Inserted Successfully."<<endl;
-         cout<<"\t **************************************************"<<endl;
  }
  else
  {
     tail->next=ptr;
     tail=ptr;
           cout<<"Inserted Successfully."<<endl;
-          cout<<"\t **************************************************"<<endl; 
  }
 }
-//--------------------------------------------------------------
 void Insert_At_Front()
 {
     ptr=(struct node*)malloc(sizeof(struct node));
@@ -209,19 +204,16 @@ if(head==NULL)
     tail=ptr;
     ptr->next=NULL;
      cout<<"Inserted Successfully."<<endl;
-     cout<<"\t **************************************************"<<endl;
  }
 else
  {
     ptr->next=head;
     head=ptr;
       cout<<"Inserted Successfully."<<endl;
-      cout<<"\t **************************************************"<<endl;
 
  }
 }
 
-//-------------------------------------------------------------
 void Insert_At_Pos()
 {
 
@@ -253,37 +245,30 @@ void Insert_At_Pos()
         ptr->next=temp;
         prev->next=ptr;
         cout<<"Inserted Successfully."<<endl;
-        cout<<"\t *************************************************"<<endl;
   }
     
 }
-
-//-------------------------------------------------------------
 void Delete_At_Front()
 {
     if(head==NULL)
     {
     cout<<"List is Empty"<<endl;
-        cout<<"\t **************************************************"<<endl;
     }
     else
     {
         ptr=head;
         head=ptr->next;
 	   cout<<"Deleted Successfully"<<endl;
-	   cout<<"\t **************************************************"<<endl;
        //Memory is relesed
         free(ptr);               
     }
 }
 
-//-------------------------------------------------------------
 void Delete_At_End()
 {
     if(head==NULL)
     {
     cout<<"List is Empty"<<endl;
-        cout<<"\t **************************************************"<<endl;
     }
     else
     {
@@ -295,12 +280,10 @@ void Delete_At_End()
         }
     ptr->next=NULL;
     cout<<"Deleted Successfully"<<endl;
-    cout<<"\t **************************************************"<<endl;
     //Memory is relesed
     free(temp);                  
     }
 }
-//----------------------------------------------------------------------------------
 
 void Delete_At_Pos()
 {
@@ -312,7 +295,6 @@ void Delete_At_Pos()
     if(loc==0)                      
     {
         cout<<"0th position doesn't exist."<<endl;
-            cout<<"\t **************************************************"<<endl;
 
     }
     else
@@ -321,7 +303,6 @@ void Delete_At_Pos()
         if(head==NULL)              
         {
         cout<<"List is Empty"<<endl;
-            cout<<"\t **************************************************"<<endl;
         }
         else if(loc==1)
         {
@@ -338,7 +319,6 @@ void Delete_At_Pos()
             }
             prev->next=temp->next;
             cout<<"Deleted Successfully"<<endl;
-            cout<<"\t **************************************************"<<endl;
             //Memory is relesed
             free(temp);       
         }
@@ -358,7 +338,6 @@ void Display()
         temp=temp->next;
         i++;
     }
-    cout<<"\t ***********************************************"<<endl;
 }
 
 void Length()
@@ -373,7 +352,6 @@ void Length()
         i++;
     }
     cout<<"Total no. of Nodes : "<<Count<<endl;
-    cout<<"\t ***********************************************"<<endl;
 }
 ```
 
@@ -568,6 +546,7 @@ Enter your choice: 7
 67
 ```
 ## Complexity Analysis
+
 - Access
     - **Average Case**: O (n)
     - **Worst Case**: O (n)
@@ -586,4 +565,4 @@ Enter your choice: 7
 ## Credits
 
 - [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/SinglyLinkedList.py)
-- [Vatsal kesarwani](https://github.com/plazzy99) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Interpolation_Search.cpp)
+- [Vatsal kesarwani](https://github.com/plazzy99) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/singly_linked_list.cpp)
