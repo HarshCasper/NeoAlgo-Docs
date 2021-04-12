@@ -13,13 +13,13 @@ The binary search tree is a **binary tree** in which for every node, all the ele
   <img width="500" height="300" src="https://i.imgur.com/aYWkuCT.png" />
 </p>
 
-As you can see in the above diagram, The `root` node is `30`. The `left sub-tree` of the root node consists of nodes `10`, `15` and `20`. All these nodes have `lesser values` than the root node. The `right sub-tree` of the root node consists of nodes `40`, `50` and `60`. All these nodes have `greater values` than the root node. Each of the sub-trees recursively obeys the binary search tree constraint. For example, in the left sub-tree of the root node, `15` is the root and the element in its left sub-tree `(10)` is smaller than 15, while the node present in the right sub-tree `(20)` is greater than the root node's value.
+As you can see in the above diagram, The `root` node is `30`. The left sub-tree of the root node consists of nodes `10`, `15` and `20`. All these nodes have **lesser values** than the root node. The right sub-tree of the root node consists of nodes `40`, `50` and `60`. All these nodes have **greater values** than the root node. Each of the sub-trees recursively obeys the binary search tree constraint. For example, in the left sub-tree of the root node, `15` is the root and the element in its left sub-tree `(10)` is smaller than 15, while the node present in the right sub-tree `(20)` is greater than the root node's value.
 
 ## Algorithm
 
 This section will discuss the operations performed on a binary search tree and the algorithmic steps used for the same.
 
-### *Search Operation in BST*
+### Search Operation in BST
 
 In a binary search tree, the search operation is performed as follows:
 
@@ -36,11 +36,11 @@ In a binary search tree, the search operation is performed as follows:
     * If the key value is found, then display "Node Found" and exit the function.
     * Else, display "Node not found".
 
-### *Insertion Operation in BST*
+### Insertion Operation in BST
 
 In a binary search tree, the insertion operation is performed as follows:
 
-**Always perform insertion on the leaf node.**
+Always perform insertion on the leaf node.
 
 * `Search` for the `key value` (***Using Search Operation***) given by the user. 
 * If the key value is `already present` in the `BST`, then display `"Key value already present"` and `terminate` the function.
@@ -53,7 +53,7 @@ In a binary search tree, the insertion operation is performed as follows:
     * If the current node has a `right child`, then move to its right child.
     * Else, add the new node as the current's right child.
 
-### *Deletion Operation in BST*
+### Deletion Operation in BST
 
 In a binary search tree, the deletion operation is performed as follows:
 
@@ -101,15 +101,20 @@ import TabItem from "@theme/TabItem";
 #include <iostream>
 using namespace std;
 
-struct Node{               //Structure is declared which holds Node data and address of left and right child
+//Structure is declared which holds Node data and address of left and right child
+struct Node{               
     struct Node *lchild;
     int data;
     struct Node *rchild;
-}*root=NULL;      // root object is declared globally for struct Node
+}
+// root object is declared globally for struct Node
+*root=NULL;      
 
-void insert(int element)    //Insertion happens here
+//Insertion happens here
+void insert(int element)    
 {
-    struct Node *p=root;   // using 2 pointers for keeping track of Nodes
+    // using 2 pointers for keeping track of Nodes
+    struct Node *p=root;   
     struct Node *q,*tmp;
     tmp= new Node;
     tmp->data=element;
@@ -127,12 +132,14 @@ void insert(int element)    //Insertion happens here
             {
                 return;
             }
-            else if(element < p->data)  //if Inserted data is less than current Node data, move to left child
+            //if Inserted data is less than current Node data, move to left child
+            else if(element < p->data)  
             {
                 p=p->lchild;
             }
+            //if Inserted data is greater than or equal to current Node data, move to right child
             else{
-                p=p->rchild;    //if Inserted data is greater than or equal to current Node data, move to right child
+                p=p->rchild;    
             }
         }
         if(element > q->data) 
@@ -144,7 +151,8 @@ void insert(int element)    //Insertion happens here
     }
 }
 
-void Search(Node *p,int key)  //Searching operation takes key as input and search for key in BST
+//Searching operation takes key as input and search for key in BST
+void Search(Node *p,int key)  
 {
     if(p==NULL)
     {
@@ -171,7 +179,8 @@ void Search(Node *p,int key)  //Searching operation takes key as input and searc
 
 }
 
-void InOrder(Node *p)   //Inorder traversal is used because inorder of BST gives Sorted output
+//Inorder traversal is used because inorder of BST gives Sorted output
+void InOrder(Node *p)   
 {
     if(p)
     {
@@ -182,7 +191,8 @@ void InOrder(Node *p)   //Inorder traversal is used because inorder of BST gives
 
 }
 
-int Height(Node *p)  //To find height of corresponding node
+//To find height of corresponding node
+int Height(Node *p)  
 {
 int x,y;
 if(p==NULL)return 0;
@@ -194,7 +204,8 @@ return x>y?x+1:y+1;
 /*For deleting any Node on BST, Deleted Node has to be replaced with Appropiate Node without affecting the property of BST
 If we are deleting any node, corresponding node should be replaced by either InOrder predecessor or Inorder Successor based on height condition*/
 
-struct Node * InOrderpredecssor(Node *p)  //If height of left child is greater than right child,it will enter this loop
+//If height of left child is greater than right child,it will enter this loop
+struct Node * InOrderpredecssor(Node *p)  
 {
     while(p && p->rchild!=NULL)
     {
@@ -203,7 +214,8 @@ struct Node * InOrderpredecssor(Node *p)  //If height of left child is greater t
     return p;
 }
 
-struct Node * InOrderSuccessor(Node *p)  //If height of left child is less than right child,it will enter this loop
+//If height of left child is less than right child,it will enter this loop
+struct Node * InOrderSuccessor(Node *p)  
 {
     while(p && p->lchild!=NULL)
     {
@@ -441,8 +453,7 @@ if __name__ == '__main__':
 
 ## Sample I/O
 
-
-### Sample input
+#### Sample input
 ```
 1: Insert
 2: Search
@@ -461,17 +472,19 @@ Enter option: 2
 Enter element to search for: 10
 ```
 
-### Sample Output
+#### Sample Output
 ```
 The element is present!
 ```
-## Time Complexity
+## Complexity Analysis
+
+Time Complexity :
 - Insert : O(n)
 - Search : O(n)
 - Delete : O(n)
 - Print (Inorder): O(n)
 
-## Space Complexity
+Space Complexity :
 - Insert: O(n)
 - Search: O(n)
 - Delete: O(n)
