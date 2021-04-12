@@ -1,0 +1,194 @@
+---
+title: Jump Search
+slug: /searching-algorithms/jump-search
+---
+
+## Introduction
+
+Jump search, also known as block search is a searching algorithm for sorted lists. It locates an item by jumping ahead a fixed number of elements instead of traversing through each element.
+
+## Explanation
+
+Jump Search creates a `block` and attempts to find the element in that block. If the element is found, a linear search is done on the elements of the block. Else, the block `jumps` ahead. The block size is dependent on the list size. If the size of the list is `n`, the block size is `√n` floored to the value.
+
+Let's have one example: 
+
+[![list-1.png](https://i.postimg.cc/jSXyNH1B/list-1.png)](https://postimg.cc/xXXkVznP)
+
+``` Consider the above-sorted list. Let n denote the size of the list. Here, n = 9. Therefore, √n (block size) is 3. Let 5 be the element to be found.```
+
+[![list-2.png](https://i.postimg.cc/BZYy5FrL/list-2.png)](https://postimg.cc/23W2r18r)
+
+```Since the block size is 3, jump three elements ahead. That is, from A[0] to A[2]. Since A[2] is not greater than 5, the block jumps ahead.```
+
+[![list-3.png](https://i.postimg.cc/MKgFNSKz/list-3.png)](https://postimg.cc/HV4z8FyN)
+
+```The block had jumped from A[2] to A[5]. Since A[5] is greater than 5, we perform a linear search on that block, but traversing backward.```
+
+[		![list-4.png](https://i.postimg.cc/QCw02QDf/list-4.png)](https://postimg.cc/RJ17fnNt)
+
+```The search element, 5, is now found successfully.```
+
+## Algorithm
+
+- Input the sorted list `A` and the search element `search`.
+- Calculate the length of `A`, as `size`
+- Calculate the block size, `step`, as the root of `size`.
+- Compare `A[i+(step-1)] and search`.
+	- If `search == A[i+(step-1)]`, return index `i+(step-1)`.
+	- If `search < A[i+(step-1)]`, perform linear search on the sub-array `A[0] to A[i+(step-1)]`by traversing backwards and return the matching index. 
+	- Else, jump to the next block and repeat the iteration.
+- The above steps are repeated for `i` ranging from: `0` to `size`.
+- If no matches, return `-1`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+/*
+Author: iamvs-2002
+*/
+
+/*
+Jump Search Algorithm works for sorted array, of size n.
+It creates a block of size m = (n)^1/2 and tries to find the element in that block. 
+If the item is not in the block, it shifts the entire block.
+After finding a correct block it finds the item using a linear search algorithm.
+Time Complexity = O((n)^1/2)
+Space Complexity = O(1)
+*/
+
+public class JumpSearchAlgorithm{
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int n = sc.nextInt();
+
+        int array[] = new int[n];
+        System.out.println("Enter the array in sorted order: ");
+        for(int i=0;i<n;i++){
+            array[i]=sc.nextInt();
+        }
+        
+        System.out.print("Enter the element to search for: ");
+        int key = sc.nextInt();
+
+        JumpSearchAlgorithm jump = new JumpSearchAlgorithm();
+        int index = jump.JumpSearch(array,key);
+
+        if(index == -1){
+            System.out.println("The element "+key+" was not found!");
+        }
+        else{
+            System.out.println("The element "+key+" was found at index "+index);
+        }
+
+    }
+
+    public int JumpSearch(int[] array, int key){
+        int sizeofarray = array.length;
+
+        //block size = m
+        int m = (int) Math.floor(Math.sqrt(sizeofarray)); 
+
+        //Initialize rear pointer at index m-1, i.e., pointing to the last element in the block
+        int rear = m-1;
+        //Initialize front pointer at index 0, i.e., pointing to the first element in the block
+        int front = 0;
+
+        //Shift the block untill the rear pointer points to a valid index
+        //and the key element is greater than the element at the current rear index
+        while(rear<sizeofarray && key>array[rear]){
+            rear = rear+m;
+            front = front+m;
+        }
+
+        //If the correct block is found perform the linear search in the block
+        for(int i=front; i<=rear && i<sizeofarray; i++){
+            if(key==array[i]){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+import math
+
+
+def jump_search_2(arr,search):
+    interval = int(math.sqrt(len(arr)))
+
+    ''' find last lowest element '''
+    for i in range(0,len(arr),interval):
+        if arr[i] < search:
+            low = i
+        elif arr[i] == search:
+            return i
+        else:
+            break
+    ''' apply linear search '''
+    l_index = [e for e,i in enumerate(arr[low:low+interval]) if i == search]
+    if l_index:
+        return low+l_index[0]
+    print("The element",search,"was not found!")
+    
+if __name__ == "__main__":
+    size = int(input("Enter the size of the array: "))
+    ary = list(map(int, input("Enter the array elements in sorted order: ").split()))
+    val = int(input("Enter the element to search for: "))
+    ans = jump_search_2(ary, val)
+    if(ans is not None):
+        print("The element",val,"was found at index",ans)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the size of the array: 6
+Enter the array elements in sorted order: 1 2 3 4 5 6
+Enter the element to search for: 4
+```
+
+#### Output:
+
+```
+The element 4 was found at index 3
+```
+
+## Complexity Analysis
+
+- Time  complexity - `O(√n)`
+- Space complexity - `O(1)`
+
+## Credits
+
+- [Vaibhav Singhal](https://github.com/iamvs-2002) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/search/JumpSearchAlgorithm.java)
+- [Himanshu](https://github.com/himanshu007-creator) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/jump_search.py)
