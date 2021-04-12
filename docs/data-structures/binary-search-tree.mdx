@@ -1,0 +1,496 @@
+---
+title: Binary Search Tree
+slug: /data-structures/binary-search-tree
+---
+
+## Introduction
+
+The binary search tree is a **binary tree** in which for every node, all the elements in its left sub-tree are smaller than that node, and all the elements in its right sub-tree are greater than that node. A binary search tree is useful for searching an element in less number of comparisons. Binary search trees are considered to be efficient data structures because they speed up the process of **insertion** and **deletion**.
+
+## Explanation
+
+<p align="center">
+  <img width="500" height="300" src="https://i.imgur.com/aYWkuCT.png" />
+</p>
+
+As you can see in the above diagram, The `root` node is `30`. The left sub-tree of the root node consists of nodes `10`, `15` and `20`. All these nodes have **lesser values** than the root node. The right sub-tree of the root node consists of nodes `40`, `50` and `60`. All these nodes have **greater values** than the root node. Each of the sub-trees recursively obeys the binary search tree constraint. For example, in the left sub-tree of the root node, `15` is the root and the element in its left sub-tree `(10)` is smaller than 15, while the node present in the right sub-tree `(20)` is greater than the root node's value.
+
+## Algorithm
+
+This section will discuss the operations performed on a binary search tree and the algorithmic steps used for the same.
+
+### Search Operation in BST
+
+In a binary search tree, the search operation is performed as follows:
+
+* Start at the `root node` as the `current node`.
+* Compare the search `key value` with the current node's value.
+* If both are `equal`, then display `"Node Found"` and `terminate` the function.
+* If both are `not equal`, check whether the key is `greater` or `smaller` than the current node's value.
+* If the key value is greater than the current node:
+    * If the current node has a `right child`, then continue the search process in `right subtree`.
+    * If the key value is found, then display "Node Found" and exit the function.
+    * Else, display `"Node not found"`.
+* If the key value is smaller than the current node:
+    * If the current node has a `left child`, then continue the search process in `left subtree`.
+    * If the key value is found, then display "Node Found" and exit the function.
+    * Else, display "Node not found".
+
+### Insertion Operation in BST
+
+In a binary search tree, the insertion operation is performed as follows:
+
+Always perform insertion on the leaf node.
+
+* `Search` for the `key value` (***Using Search Operation***) given by the user. 
+* If the key value is `already present` in the `BST`, then display `"Key value already present"` and `terminate` the function.
+* Else, `create` a `new node` with the given key value.
+* Start at the `root node` as the `current node`.
+* If the new node's key value is `smaller` than the current node's key value:
+    * If the current node has a `left child`, then move to its left child.
+    * Else, `add` the new node as the current's left child.
+* If the new node's key value is `greater` than the current node's key value:
+    * If the current node has a `right child`, then move to its right child.
+    * Else, add the new node as the current's right child.
+
+### Deletion Operation in BST
+
+In a binary search tree, the deletion operation is performed as follows:
+
+#### For leaf node or node with 1 child :
+
+* `Traverse` to the `leaf node/node with single child` to be deleted.
+* Check if the node has `left child`:
+    * If it does not, link the `right child` with `parent node`.
+    * If it does have a left child, then check if it has a right child.
+    * If it does not, link the left child with the parent node.
+
+#### For Node with 2 children :
+
+* `Traverse` to the node with `2 children` to be deleted.
+* Find the `smallest node` in the `right sub-tree` or find the `largest node` in the `left sub-tree`.
+* `Replace` this node with the node to be deleted.
+* Now `delete` the smallest or the largest node using the delete process again.
+
+### *Traversal Operation in BST*
+
+In a binary search tree, inorder traversal is used because inorder of BST gives sorted output :
+
+#### Inorder Traversal in BST 
+
+* Traverse the left subtree.
+* Traverse the root.
+* Traverse the right subtree.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+//Structure is declared which holds Node data and address of left and right child
+struct Node{               
+    struct Node *lchild;
+    int data;
+    struct Node *rchild;
+}
+// root object is declared globally for struct Node
+*root=NULL;      
+
+//Insertion happens here
+void insert(int element)    
+{
+    // using 2 pointers for keeping track of Nodes
+    struct Node *p=root;   
+    struct Node *q,*tmp;
+    tmp= new Node;
+    tmp->data=element;
+    tmp->lchild=tmp->rchild=NULL;
+    if(root==NULL)
+    {
+        root=tmp;
+    }
+    else
+    {
+        while(p!=NULL)
+        {
+            q=p;
+            if(p->data==element)
+            {
+                return;
+            }
+            //if Inserted data is less than current Node data, move to left child
+            else if(element < p->data)  
+            {
+                p=p->lchild;
+            }
+            //if Inserted data is greater than or equal to current Node data, move to right child
+            else{
+                p=p->rchild;    
+            }
+        }
+        if(element > q->data) 
+        {
+            q->rchild=tmp;
+        }
+        else
+            q->lchild=tmp;
+    }
+}
+
+//Searching operation takes key as input and search for key in BST
+void Search(Node *p,int key)  
+{
+    if(p==NULL)
+    {
+        cout << " BST is empty" << endl;
+    }
+    else{
+        while(p!=NULL)
+        {
+            if(p->data==key)
+            {
+                cout << "Element is found" << endl;
+                return;
+            }
+            else if(key < p->data)
+            {
+                p=p->lchild;
+            }
+            else{
+                p=p->rchild;
+            }
+        }
+    }
+    cout << "Element not found "<<endl;
+
+}
+
+//Inorder traversal is used because inorder of BST gives Sorted output
+void InOrder(Node *p)   
+{
+    if(p)
+    {
+        InOrder(p->lchild);
+        cout << p->data << " ";
+        InOrder(p->rchild);
+    }
+
+}
+
+//To find height of corresponding node
+int Height(Node *p)  
+{
+int x,y;
+if(p==NULL)return 0;
+x=Height(p->lchild);
+y=Height(p->rchild);
+return x>y?x+1:y+1;
+}
+
+/*For deleting any Node on BST, Deleted Node has to be replaced with Appropiate Node without affecting the property of BST
+If we are deleting any node, corresponding node should be replaced by either InOrder predecessor or Inorder Successor based on height condition*/
+
+//If height of left child is greater than right child,it will enter this loop
+struct Node * InOrderpredecssor(Node *p)  
+{
+    while(p && p->rchild!=NULL)
+    {
+        p=p->rchild;
+    }
+    return p;
+}
+
+//If height of left child is less than right child,it will enter this loop
+struct Node * InOrderSuccessor(Node *p)  
+{
+    while(p && p->lchild!=NULL)
+    {
+        p=p->lchild;
+    }
+    return p;
+}
+
+struct Node * Delete(Node *p,int key)
+{
+    struct Node *q;
+    if(p==NULL)
+    {
+        return NULL;
+    }
+    if(p->lchild==NULL && p->rchild==NULL)
+    {
+        delete p;
+        return NULL;
+    }
+    if(key < p->data)
+    {
+        p->lchild=Delete(p->lchild,key);
+    }
+    else if(key > p->data)
+    {
+        p->rchild=Delete(p->rchild,key);
+    }
+    else
+    {
+        if(Height(p->lchild) > Height(p->rchild))
+        {
+            q=InOrderpredecssor(p->lchild);
+            p->data=q->data;
+            p->lchild=Delete(p->lchild,q->data);
+        }
+        else
+        {
+            q=InOrderSuccessor(p->rchild);
+            p->data=q->data;
+            p->rchild=Delete(p->rchild,q->data);
+
+        }
+    }
+return p;
+}
+
+int main()
+{
+    int Num,data,searchdata;
+    cout << "Enter Number of data to be instered in BST: "<<endl;
+    cin >> Num;
+    cout <<"Enter the node values: " << endl;  //Enter the Node values to be inserted into BST
+    for(int i=0;i<Num;i++)
+    {
+        cin >> data;
+        insert(data);
+    }
+    cout <<"Elements in BST are: "<< endl;
+    InOrder(root);
+    cout << endl;
+    cout << "Enter any node value to search in BST:" << endl;
+    cin >> searchdata;
+    Search(root,searchdata);
+    cout <<"Enter the value to be deleted in BST: " << endl;
+    cin >> data;
+    Delete(root,data);
+    cout << "After deleting Node: " << endl;
+    InOrder(root);
+    cout << endl;
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class BSTNode:
+    # A Node of the Binary Search Tree
+    def __init__(self, val=None, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def insertNode(root, val):
+    # Function to insert a node to a BST
+
+    # if the given BST is empty
+    if root is None:
+        return BSTNode(val)
+
+    # if the value to insert already exists in the tree
+    if root.val == val:
+        return root
+
+    # if the value to insert should be inserted to the left subtree
+    if val < root.val:
+        root.left = insertNode(root.left, val)
+
+    # if the value to insert should be inserted to the right subtree
+    else:
+        root.right = insertNode(root.right, val)
+
+    return root
+
+
+def searchNode(root, val):
+    # Function to search a node in a BST
+
+    # if the BST is empty or if the node doesn't exist
+    if root is None:
+        return False
+
+    # if the value exists in the BST
+    if root.val == val:
+        return True
+
+    # if the value might exist in the right subtree
+    if val > root.val:
+        return searchNode(root.right, val)
+
+    # if the value might exist in the left subtree
+    return searchNode(root.left, val)
+
+
+def inorderSuccessor(node):
+    # Function to find the inorder successor of a given node
+
+    curr = node
+    # Loop through the BST until a left most node is reached
+    while curr.left is not None:
+        curr = curr.left
+    return curr
+
+
+def deleteNode(root, val):
+    # Function to delete a node in a BST
+
+    # if the BST is empty
+    if root is None:
+        return root
+
+    # if the node to delete might exist in the left subtree
+    if root.val > val:
+        root.left = deleteNode(root.left, val)
+
+    # if the node to delete might exist in the right subtree
+    elif root.val < val:
+        root.right = deleteNode(root.right, val)
+
+    # if the node is found
+    else:
+
+        # if the node has one child or no children
+        if root.right is None:
+            tempNode = root.left
+            root = None
+            return tempNode
+
+        if root.left is None:
+            tempNode = root.right
+            root = None
+            return tempNode
+
+        # if the node has two children
+        tempNode = inorderSuccessor(root.right)
+        root.val = tempNode.val
+        root.right = deleteNode(root.right, tempNode.val)
+
+    return root
+
+
+def inorder(root):
+    # Function to print the nodes in the BST inorder
+
+    # if the BST is not empty
+    if root:
+        # visit the left subtree (or leaf)
+        inorder(root.left)
+        # visit the parent
+        print(root.val, end=' ')
+        # visit the right subtree (or leaf)
+        inorder(root.right)
+
+
+# A menu based implementation
+if __name__ == '__main__':
+    bst = None
+    op = 1
+    while op != 5:
+        print()
+        print("1: Insert")
+        print("2: Search")
+        print("3: Delete")
+        print("4: Print (Inorder)")
+        print("5: Exit")
+        print("Enter option: ", end="")
+
+        op = int(input())
+
+        if op == 1:
+            print("Enter value to insert: ", end="")
+            x = int(input())
+            bst = insertNode(bst, x)
+            print()
+
+        elif op == 2:
+            print("Enter element to search for: ", end="")
+            x = int(input())
+            if searchNode(bst, x):
+                print("The element is present!")
+            else:
+                print("The element is not present")
+            print()
+
+        elif op == 3:
+            print("Enter the value to delete: ", end="")
+            x = int(input())
+            bst = deleteNode(bst, x)
+            print()
+
+        elif op == 4:
+            if bst:
+                inorder(bst)
+            else:
+                print("Empty BST!")
+            print()
+
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Sample input
+```
+1: Insert
+2: Search
+3: Delete
+4: Print (Inorder)
+5: Exit
+Enter option: 1
+Enter value to insert: 10
+
+1: Insert
+2: Search
+3: Delete
+4: Print (Inorder)
+5: Exit
+Enter option: 2
+Enter element to search for: 10
+```
+
+#### Sample Output
+```
+The element is present!
+```
+## Complexity Analysis
+
+Time Complexity :
+- Insert : O(n)
+- Search : O(n)
+- Delete : O(n)
+- Print (Inorder): O(n)
+
+Space Complexity :
+- Insert: O(n)
+- Search: O(n)
+- Delete: O(n)
+- Print (Inorder): O(n)
+
+## Credits
+
+   - [Arun Kumar G](https://github.com/GudlaArunKumar) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/BinarySearchTree.cpp)
+   - [Abshar Mohammed Aslam](https://github.com/abxhr) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/BinarySearchTree.py)
