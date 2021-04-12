@@ -4,12 +4,12 @@ slug: /graph-algorithms/breadth-first-search
 ---
 ## Introduction
 
-Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures.It is similar to level-order traversal in trees. It starts at the root node and explores all of the neighbor nodes at the present node before moving on to the nodes at the next depth level.BFS uses queue data structure for traversing the nodes.
+Breadth-first search (BFS) is an algorithm to traverse/search the data structure tree or a graph. It is similar to level-order traversal in trees. It starts at the root node and explores all of the neighbor nodes at the present node before moving on to the nodes at the next depth level. BFS uses a **'queue'** data structure for traversing the nodes.
 
 
 ## Explanation
 
-The BFS traversal of Graphs also traverses the graph in levels. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the initially given vertex and `pushes them all to a queue` in order of visiting and `pops an element from the front of the queue`, visits all of its neighbours and pushes the neighbours which are not already visited into the queue and repeats the process until the queue is empty or all of the vertices are visited.
+The BFS traversal of the graph is similar to the level-order traversal in trees. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the given vertex and `pushes them all to a queue` in order of visiting and `pops it from the front of the queue`, visits all adjacent nodes and pushes them into the queue. This process is repeated until the queue is empty or all of the vertices are visited.
 
 ### Let's have one example: 
 Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. the BFS traversal will start from the vertex 0.
@@ -28,12 +28,11 @@ Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. 
 ## Algorithm
 
 - Create a `boolean array` say `visited[]`.
-- Create a `queue`, mark the source vertex visited as `visited[s] = true` and push it into the queue.
+- Create a `queue`, mark the source vertex visited as `visited[s] = true`, and push it into the queue.
 - Loop until the `queue is not empty`, repeat the below steps:
    * Pop an element from the queue and print the popped element.
-   * Traverse all of the vertices adjacent to the vertex poped from the queue.
-   * If any of the adjacent vertex is not already visited, mark it visited and push it to the queue.
-
+   * Traverse all of the vertices adjacent to the vertex popped from the queue.
+   * If any of the adjacent vertexes are not already visited, mark it visited and push it to the queue.
 ## Code
 
 import Tabs from '@theme/Tabs';
