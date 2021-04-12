@@ -9,7 +9,7 @@ In this problem, we are provided an N x N chessboard, and we have to find if the
 
 ## Explaination
 
-This problem can be solved using **backtracking**. Each row and column will contain only one queen. We will move row-wise, and for each row, see if there exists a column where the queen can be placed safely; that is, no two queens are at an attacking position. If yes, then we will include that cell in the solution and will proceed further. If we didn't find any such cell, then we will return false, backtrack to the previous cell, change the queen's position.
+This problem can be solved using **backtracking**. Each row and column will contain only one queen. We will move row-wise, and for each row, see if there exists a column where the queen can be placed safely, that is, no two queens are at an attacking position. If yes, then we will include that cell in the solution and will proceed further. If we didn't find any such cell, then we will return false, backtrack to the previous cell, change the queen's position.
 
 Let's take an example, `N=4`, `X` represents chess queen.
 
