@@ -3,12 +3,12 @@ title: Counting Sort
 slug: /sorting-algorithms/Counting-sort
 ---
 
-# Introduction
+## Introduction
 
-Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements.In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of previous counts.And this modified count array shows that how many elements are smaller than that element. Then make the final array that contains sorted elements.Make sure that elements are in small range.
+Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements. In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of previous counts. And this modified count array shows that how many elements are smaller than that element. Then make the final array that contains sorted elements.Make sure that elements are in small range.
 
-# Explanation for Counting Sort
-First store the occurence of each elements in count array . Then modify the count array by storing the sum of counts of previous index and this modified array tell us how many elements are smaller than that elements. Make an output array which contained sorted elements. Output array is build with the help of given(input) array and modified count array by traversing the input array from right to left(last to first).
+## Explanation
+First store the occurence of each elements in count array. Then modify the count array by storing the sum of counts of previous index and this modified array tell us how many elements are smaller than that elements. Make an output array which contained sorted elements. Output array is build with the help of given(input) array and modified count array by traversing the input array from right to left(last to first).
 
 ### Example 1
 
@@ -169,19 +169,17 @@ if __name__ == "__main__":
 </TabItem>
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
 
-## Sample 1 
-
-### Input :
+#### Input :
 
 ```
 Enter the size of array: 8
 
 Enter the elements of the array: 5 1 4 1 3 2 1 5
 ```
-### Output :
+#### Output :
 
 ```
 The sorted array is: 1 1 1 2 3 4 5 5
@@ -189,15 +187,15 @@ The sorted array is: 1 1 1 2 3 4 5 5
 
 # Time & Space Complexity
  
-Worst Case Complexity: O(n+k)
+- **Worst Case Complexity:** `O(n+k)`
 
-Best Case Complexity: O(n+k)
+- **Best Case Complexity:** `O(n+k)`
 
-Average Case Complexity: O(n+k)
+- **Average Case Complexity:** `O(n+k)`
 
 where n is size of an array , and k is element range of the array.
 
 ### Credits
-1. [Sarthak Saxena](https://github.com/Sarthak-9) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/counting_sort)
+* [Sarthak Saxena](https://github.com/Sarthak-9) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/counting_sort)
 
-2. [Ananya9878](https://github.com/Ananya9878) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Counting_Sort.py)
+* [Ananya9878](https://github.com/Ananya9878) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Counting_Sort.py)
