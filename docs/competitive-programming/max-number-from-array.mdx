@@ -1,11 +1,15 @@
 ---
-title: Maximum number formed from numbers in array
+title: Maximum number formed from numbers in an array
 slug: /competitive-programming/max-number-from-array
 ---
 
 ## Introduction
 
-To form the maximum number possible from an array of single-digit numbers, we have to sort the array in descending order. The numbers appended in the descending order give the maximum number. However, the same algorithm cannot be used for array containing both two-digit and single-digit numbers. For example, if the array contains two elements, `2` and `21`, then according to the algorithm used for the single digits, if we sort the array in descending order and append them, then the maximum number will be `212`. But this is wrong. The maximum number that can be formed from this array is `221`. Therefore, we need to use a separate algorithm.
+Given an array of a combination of two-digit and single-digit numbers, we have to form the maximum possible number from the given numbers.To form the maximum number possible from an array of single-digit numbers, we have to sort the array in descending order. The numbers appended in the descending order give the maximum number. However, the same algorithm cannot be used for array containing both two-digit and single-digit numbers. 
+
+## Explanation
+
+If the array contains two elements, `2` and `21`, then according to the algorithm used for the single digits, if we sort the array in descending order and append them, then the maximum number will be `212`. But this is wrong. The maximum number that can be formed from this array is `221`. Therefore, we need to use a separate algorithm.
 
 ## Algorithm
 
@@ -88,25 +92,33 @@ int main()
 
 ## Sample Input and Output
 
-#### Input:
+#### Input :
+
 ```
 Enter the number of elements in array:
 3
 Enter the elements:
 10 21 34
+```
 
-#### Output:
+#### Output :
+
+```
 The maximum number : 342110
 ```
 
+#### Input :
+
 ```
-#### Input:
 Enter the number of elements in array:
 4
 Enter the elements:
 12 21 33 26
+```
 
-#### Output:
+#### Output :
+
+```
 The maximum number : 33262112
 ```
 
