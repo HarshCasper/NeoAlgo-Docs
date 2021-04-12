@@ -44,6 +44,7 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
+                "data-structures/stack-data-structure",
             ],
         },
         {
@@ -76,7 +77,7 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
-                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
 
             ],
