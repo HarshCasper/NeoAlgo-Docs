@@ -27,7 +27,7 @@ struct Node{
 
 ## Algorithm
 
-### Operations performed on Singly Linked list
+Here are the operations performed on a Singly Linked List:
 
 #### Traversing a Linked list: 
 
@@ -35,39 +35,39 @@ struct Node{
 - Fetch the data part of the node
 - Advance the pointer to the next node
 
-#### INSERTING node at the beginning of the Linked list:
+#### Inserting node at the beginning of the Linked list:
 
 - Create a node
 - Fill data in information field and set the pointer field of the new node as NULL
 - Attach this node to START and mark it as the START node
 
-#### INSERTING node at the end of the Linked list:
+#### Inserting node at the end of the Linked list:
 
 - Identify the last node of the Singly Linked list
 - Create a node
 - Fill data in information field and set the pointer field of the new node as NULL
 - Attach this node to END and mark it as the END node
 
-#### INSERTING node at a given position of the Linked list:
+#### Inserting node at a given position of the Linked list:
 
 - Count the number of data items in the Singly Linked list
 - If the inserting position is 1, insert at the beginning
 - if the inserting position is at the end, insert at the end
 - if it is in the middle, link the newly created node with its left and right node.
 
-#### DELETING node from the beginning of the Linked list:
+#### Deleting node from the beginning of the Linked list:
 
 - A Pointer (Ptr) stores the first nodes address
 - Address of the second node is assigned to start pointer, so now second node becomes the Head node
 - Free the memory occupied by Ptr
 
-#### DELETING node from the end of the Linked list:
+#### Deleting node from the end of the Linked list:
 
 - we move to last node by setting present node as ptr and previous one as preptr
 - when we reach the last node i.e. when last node is ptr and second last preptr
 - Make the preptr as the last node and free ptr
 
-#### DELETING node from a given position of the Linked list:
+#### Deleting node from a given position of the Linked list:
 
 - First we find the previous node of the node that is to be deleted
 - Change the address part of the previous node 
@@ -501,9 +501,10 @@ if __name__=='__main__':
 </TabItem>
 </Tabs>
 
-## Sample I/O
+## Sample Input & Output
 
-### Sample Input
+#### Sample Input
+
 ```
 SINGLY LINKED LIST
 1. Insert Node at Front
@@ -537,7 +538,8 @@ Enter the element to insert: 43
 Enter your choice: 7
 ```
 
-### Sample Output
+#### Sample Output
+
 ```
 43
 45
@@ -565,4 +567,4 @@ Enter your choice: 7
 ## Credits
 
 - [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/SinglyLinkedList.py)
-- [Vatsal kesarwani](https://github.com/plazzy99) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/singly_linked_list.cpp)
+- [RISHIKESH RAJ](https://github.com/Rishikeshrajrxl) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/singly_linked_list.cpp)
