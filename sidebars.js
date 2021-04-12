@@ -1,5 +1,4 @@
 module.exports = {
-	
     docs: [
         {
             type: "category",
@@ -35,6 +34,8 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
+                'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/merge-sort"
             ],
         },
         {
@@ -71,10 +72,12 @@ module.exports = {
                 "mathematics/magic-number",
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
-                "mathematics/palindrome-number",
                 "mathematics/neon-number",
-                "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/anagram-number",
+                "mathematics/sum-of-digits",
+                "mathematics/palindrome-number",
+                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/mystery-number",
                 "mathematics/reverse-a-number",
             ],
         },
@@ -92,6 +95,7 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/kruskals-algorithm",
             ],
         },
         {
@@ -113,7 +117,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher"],
         },
         {
             type: "category",
