@@ -1,0 +1,204 @@
+---
+title: Insertion Sort
+slug: /sorting-algorithm/insertion-sort
+---
+
+## Introduction
+
+A simple sorting algorithm which works on the idea of picking elements from the unsorted part one by one and inserting them into their right positions in the sorted part. The array is virtually divided into 2 parts, a sorted one and an unsorted one. Just like we arrange a group of shuffled pages according to their page numbers, values from unsorted parts are picked and placed at the right positions in the sorted portion.
+
+![Imgur](https://i.imgur.com/Ora9Q1J.png)
+
+- As we can see above, we start from the first 2 elements on the left. Comparing them we know that 3 < 4 so we need to position 3 before 4, so we swap their positions. 
+- Next, 2 becomes the key element which we compare with all elements before it until we find something smaller than 2. Since 2 is smaller than both 3 and 4, we place it at the beginning of the array which is its correct position.
+- Since 12 is already larger than any element before it, its position is correct (for the current iteration).
+- Finally, comparing 9 with its predecessors, we see it's only smaller than 12 so we swap the positions of 9 and 12 to get the fully sorted array.
+
+## Algorithm
+
+For sorting an array of size n in ascending order:
+- Start your loop from `arr[1]` till `arr[n]`.
+- Compare the selected element of the current iteration (key) to the element before it.
+- If this key is smaller than its predecessor, compare it to the elements before the predecessor.
+- Shift all the greater elements up by one position to make space for the smaller element.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// EXECUTION OF INSERTION SORT IN C++
+
+/*First we  will  compare first element in the list with its adjacent element.
+And at every comparison if the element can be inserted at a particular position, 
+then it is inserted by shifting the other elements one position to the right.
+The above steps are repeated until all the elements in the list are in their 
+appropriate position.i.e. list is in sorted order.*/
+
+#include <iostream>
+using namespace std;
+
+// Function to print array.
+void display(int arr[], int size) { 
+    int i;
+    for (i=0; i < size; i++)
+    cout<< arr[i]<<"\t";
+    cout<<"\n";
+}
+
+// swapping elements in the array
+void swap(int arr[], int i , int j) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+// Main function to run the program
+int main()
+{
+    int size;
+    cout << "Enter size of array:" << endl;
+    cin >> size;
+    int array[size];
+    cout << "Enter array elements:" << endl;
+    for (int i = 0; i < size; i++) {
+        cin >> array[i];
+    }
+
+    int i, j, k;
+    for (i = 1; i < size; i++) 
+    {  
+        // target = array[i];  
+        // j = i - 1;  
+        j = i-1;
+        k = i;
+        /* Here the elements in b/w arrary[0 to i-1]
+        which are greater than target are moved
+        ahead by 1 position each*/
+        while (j >= 0 && array[k] < array[j]) 
+        {  
+            swap(array, k, j);
+            j--;
+            k--;
+        }
+    }
+    cout<<"After Insertion sort: \n";
+    display(array, size);
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+"""
+This is a pure Python implementation of the insertion sort algorithm
+"""
+
+""" Implementation of the insertion sort algorithm in Python
+    :parameter array: A mutable ordered collection with comparable items inside
+    
+    :return : the same collection ordered by ascending
+"""
+def insertion_sort(array):
+    # Loop from the second element of the array until
+    # the last element
+    for i in range(1, len(array)):
+        # This is the element we want to position in its
+        # correct place
+        key_item = array[i]
+
+        # Initialize the variable that will be used to
+        # find the correct position of the element referenced
+        # by `key_item`
+        j = i - 1
+
+        # Run through the list of items (the left
+        # portion of the array) and find the correct position
+        # of the element referenced by `key_item`. Do this only
+        # if `key_item` is smaller than its adjacent values.
+        while j >= 0 and array[j] > key_item:
+            # Shift the value one position to the left
+            # and reposition j to point to the next element
+            # (from right to left)
+            array[j + 1] = array[j]
+            j -= 1
+
+        # When you finish shifting the elements, you can position
+        # `key_item` in its correct location
+        array[j + 1] = key_item
+
+    return array
+
+
+
+if __name__ == "__main__":
+
+
+    user_input = []
+    n = int(input("Enter size of array: "))
+    print("Enter array elements:\n")
+    for i in range(0, n):
+      user_input.append(int(input()))
+    
+    # calling the insertion_sort function
+    sorted_collection = insertion_sort(user_input)
+    print("After insertion sort")
+    print(*sorted_collection, sep=" ")
+```
+
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+### Sample Input
+
+```bash
+Enter the size of list:
+6
+Enter the numbers:
+5
+0
+2
+1
+4
+3
+```
+
+### Sample Output
+
+```bash
+After Insertion sort: 
+0   1   2   3   4   5
+```
+
+## Complexity Analysis
+
+- `n` is the number of elements in the array.
+
+- Time Complexity:
+
+  - **Best Case**: O (n)
+  - **Average Case**: O (n<sup>2</sup>)
+  - **Worst Case**: O (n<sup>2</sup>)
+
+- Space Complexity: O (1)
+
+## Credits
+
+- [Ritvij Kumar Sharma](https://github.com/ritvij14) for the C++ implementation.
+- [Keshav Jha](https://github.com/keshav304) for the python implementation.
