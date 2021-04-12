@@ -1,0 +1,207 @@
+---
+title: Unbounded knapsack
+slug: /dynamic-programming/unbounded-knapsack
+---
+
+## Introduction
+
+Given a knapsack of weight W and n number of items, we need to calculate the maximum value of the items that can be packed into the knapsack such that we can choose any item any number of times. Here we assume that each item has an infinite supply.
+
+## Explanation
+
+ We use dynamic programming to solve this problem. We start from the nth item. There are two possibilities at each step: the weight of the item is less than the knapsack W or greater than the weight of the knapsack W. If the weight of the item is greater than the weight of the knapsack W, then we cannot include the item in it. But if the weight is less than the weight of the knapsack, then we again have two choices to maximize the value of the knapsack: we either choose it or not. If we donot choose it, then the next time we select from n-1 items available to us. If we choose the nth item, then next time we can choose from n items again. So there is a problem of smaller sub problems and so dynamic programming can be used to solve the problem.
+
+## Examples
+
+#### Example 1
+
+```
+Let capacity W be `50` and  number of items be `2`.
+The weights are `5, 10`.
+The values are  `50, 100`.
+We start from the nth item whose weight is 10 which is less than W. So we can either choose it or not depending on what will maximise the value of the knapsack.
+We get greater value when including the nth item than when we get by excluding it.
+The maximum value comes out to be `5*100=500`.
+```
+#### Example 2
+
+```
+Let capacity W be `5` and number of items be `2`.
+The weights are `3,5`.
+The values of items are `10,15`.
+We start from the nth item whose weight is equal to the knapsack W, so we may either include it or exclude it. If we include it the value of the knapsack will be `15`, but if we exclude it the value of the knapsack will be `10`. 
+So the maximum value of the knapsack will be `15`.
+```
+
+## Algorithm
+
+- Create a table (let it be called dp here). In this table `dp[i][j]` will represent the value of the knapsack if there are `i` items and the weight of the knapsack is `j`.
+- Identify the base conditions: if the weight of the knapsack is zero, but the number of items is not zero, then the value of knapsack will be zero and if the weight of the knapsack is not zero but the number of items is zero then value will be zero.
+- Through looping assign the values to each position in the table.
+- If the weight of the item is less than the weight of the knapsack then compare the value of the knapsack when the item is included with the value when the item is excluded.
+  If the item is included, then we again choose from the n items.
+- If the weight of item is greater than the weight of the knapsack then we have to exclude the item and choose from other n-1 items.
+- Return the value of the last position in the table as it is the maximum value of the knapsack.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', }
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int unboundedKnap(int w[], int v[], int W, int n)
+{
+    //table
+    int t[n + 1][W + 1];
+
+    /*Base conditions
+    If the number of items in the knapsack is zero, then the value of the items taht can be packed is zero
+    If the weight of the knapsack is zero, then the value of the items taht can be packed into the knapsack will be zero too*/
+    for (int i = 0; i < n + 1; i++)
+    {
+        for (int j = 0; j < W + 1; j++)
+        {
+            if (i == 0 || j == 0)
+                t[i][j] = 0;
+        }
+    }
+
+    /*-->If the weight of the ith item is less than the weight of the knapsack, then we can either include the item or exclude it depending upon which will maximise the value
+      -->If included then we can include it again
+      -->If not included once then it is not included again
+      -->If the weight is greater than the weight of the knapsack then we cannot include it into the knapsack at any time
+    */
+
+    for (int i = 1; i < n + 1; i++)
+    {
+        for (int j = 1; j < W + 1; j++)
+        {
+            if (w[i - 1] <= j)
+                t[i][j] = max(v[i - 1] + t[i][j - w[i - 1]], t[i - 1][j]);
+            if (w[i - 1] > j)
+                t[i][j] = t[i - 1][j];
+        }
+    }
+    return t[n][W];
+}
+
+//Driver code
+int main()
+{
+    cout<<"Enter capacity:";
+    int W;
+    cin >> W;
+    cout<<"Enter number of items:";
+    int n;
+    cin >> n;
+    int v[n], w[n];
+    cout<<"Enter weights:";
+    for (int i = 0; i < n; i++)
+        cin >> w[i];
+    cout<<"Enter values";
+    for( int i = 0; i < n; i++)
+        cin>>v[i];
+    cout << "Value : " << unboundedKnap(w, v, W, n) << "\n";
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def unbounded_knapsack(capacity, weights, values):
+
+    # 'items' variable represents number of weight elements
+    items = len(values)
+
+    # Initializing 1-d array knapsack values as 0
+    knapsack = [0 for x in range(capacity + 1)]
+
+    # Iterating to given capacity from 0
+    for current_capacity in range(capacity + 1):
+
+        # Iterating through all the items
+        for i in range(items):
+
+            # If the weight of item is less then current_capacity, it can be used in knapsack
+            if (weights[i] <= current_capacity):
+
+                knapsack[current_capacity] = max(
+                    # Current item is not utilised
+                    knapsack[current_capacity],
+                    knapsack[current_capacity - weights[i]] + values[i])
+                # Current item is utilised, so knapsack value for current_capacity changes to
+                # value of current item + knapsack value when capacity is current_capacity-weight of utilised item
+
+    return knapsack[capacity]
+
+
+if __name__ == '__main__':
+
+    print("Enter capacity: ")
+    capacity = int(input())
+    print("Enter number of items: ")
+    n = int(input())
+    print("Enter weights: ")
+    weights = list(map(int, input().split()))
+    print("Enter values: ")
+    values = list(map(int, input().split()))
+    print("Value : ")
+    print(unbounded_knapsack(capacity, weights, values))
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter capacity: 50
+Enter number of items: 3
+Enter weights: 1 5 10
+Enter values: 10 50 100
+```
+#### Output
+
+```
+Value : 500
+```
+
+#### Input
+
+```
+Enter capacity: 10
+Enter number of items: 3
+Enter weights: 1 5 10
+Enter values: 2 5 1
+```
+
+#### Output
+
+```
+Value : 20
+```
+
+## Complexity analysis
+
+Time Complexity : `O(n*W)`
+Space Complexity : `O(n*W)`
+
+## Credits
+* [Sayani Mallick](https://github.com/SAY-droid427) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/unbounded_knapsack.cpp)
+* [Kartik P. Patel](https://github.com/kartikp36)for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/Knapsack_Unbounded.py)

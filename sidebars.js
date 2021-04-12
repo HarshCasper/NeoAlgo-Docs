@@ -48,7 +48,8 @@ module.exports = {
       label: 'Dynamic Programming',
       items: [
         'dynamic-programming/dynamic-programming',
-        'dynamic-programming/egg-dropping-problem'
+        'dynamic-programming/egg-dropping-problem',
+        'dynamic-programming/unbounded-kmnapsack'
       ],
     },
     {
