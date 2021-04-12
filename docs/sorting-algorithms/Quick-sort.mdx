@@ -3,12 +3,12 @@ title: Quick Sort
 slug: /sorting-algorithms/Quick-sort
 ---
 
-# Introduction
+## Introduction
 
-Quick Sort is a sorting algorithm which follows Divide and Conquer. In this algorithm it picks an element as a pivot and arrange the array according to this pivot element.The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot.Quick sort is not a in-place algorithm but to make it in-place it requires additional amounts of array.
+Quick Sort is a sorting algorithm which follows Divide and Conquer. In this algorithm it picks an element as a pivot and arrange the array according to this pivot element. The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot. Quick sort is not a in-place algorithm but to make it in-place it requires additional amounts of array.
 
-# Explanation for Quick Sort
-In this algorithm firstly it picks an pivot element and arrange the array according to this pivot element.The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot. After that follow same approach on left part of pivot and right part of pivot respectively until we left with single element and finally we got our array sorteed.
+## Explanation 
+In this algorithm firstly it picks an pivot element and arrange the array according to this pivot element. The condition to arrange the array according to pivot element is that all the elements which are smaller than or equal to pivot must lies on the left side of pivot. And all the elements which are greater than pivot must lie on the right side of the pivot. After that follow same approach on left part of pivot and right part of pivot respectively until we left with single element and finally we got our array sorteed.
 ### Example 1
 
 <img src="https://i.imgur.com/BEbTHiO.png" width="500" height="350"/>
@@ -215,14 +215,14 @@ if __name__ == "__main__":
 # Sample Input and Output
 
 
-### Input :
+#### Input :
 
 ```
 Enter the number of elements: 5
 
 Enter the elements of the array: 22 11 44 55 33
 ```
-### Output :
+#### Output :
 
 ```
 The sorted array is: 11 22 33 44 55
@@ -230,18 +230,18 @@ The sorted array is: 11 22 33 44 55
 
 # Time & Space Complexity
  
-Quick sort algorithm partition the array about pivot . So the worst case is if we pick the pivot element greatest or smallest .
+Quick sort algorithm partition the array about pivot. So the worst case is if we pick the pivot element greatest or smallest.
 Because then we have to call partititon function n times on n elements so time complexity becomes: O(n^2).
-And the best case is when we pick the pivot  as middle element.So we have to call partititon function logn times
+And the best case is when we pick the pivot as middle element.So we have to call partititon function logn times
 on n elements. So time complexity becomes: O(nlogn). And in average case also time complexity:O(nlogn).
 
-Best or average case Time Complexity: O(nlogn)
+- **Best or average case Time Complexity:** `O(nlogn)`
 
-Worst case Time Complexity: O(n^2)
+- **Worst case Time Complexity:** `O(n^2)`
 
-Space Complexity: O(logn)
+- **Space Complexity:** `O(logn)`
 
 ### Credits
-1. [Aditya Saxena](https://github.com/asaxena012) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Quick_Sort.cpp)
+* [Aditya Saxena](https://github.com/asaxena012) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Quick_Sort.cpp)
 
-2. [Ricardo Prins](https://github.com/ricardoprins) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/QuickSort.py)
+* [Ricardo Prins](https://github.com/ricardoprins) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/QuickSort.py)
