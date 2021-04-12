@@ -45,6 +45,7 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
+                "data-structures/binary-search-tree"
             ],
         },
         {
@@ -82,6 +83,7 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
+                "mathematics/reverse-a-number",
                 "mathematics/matrix-multiplication"
             ],
         },
