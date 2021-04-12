@@ -5,11 +5,11 @@ slug: /mathematics/sum-of-divisors
 
 ## Introduction
 
-Sum of divisors refers to the sum of numbers in the range `1 to n` which perfectly divides `n`.
+Divisor of a number `n` refers to a number less than or equal to `n` which perfectly divides `n`. The Divisor is also called a Factor. `1` is the divisor of every number. Prime Numbers only have two divisors one and the number itself. The Sum of divisors refers to the sum of numbers in the range `[1 to n]` which perfectly divides `n`. It can be obtained by slightly modifying the code of count of divisors.
 
 ## Explanation 
 
-We will make a sum variable and initialize it `0`. Then we will make a variable `i` and iterate it on the range `[1, sqrt(n)]` and will check whether `n` is divisible by `i` or not. If `n` is divisible by `i` and not equal to `sqrt(n)` we will add `i` and `n/i` to sum as both `i` and `n/i` will be the divisor of `n` because `i*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right. If `n` is divisible by `i` and is equal to `sqrt(n)` we will only add `i` to sum as both `i` and `n/i` will be the same. 
+We will make a `sum` variable and initialize it to zero. Then we will iterate from one to the square root of `n`. Whenever we find that the `n` is divisible by the current number on which we are iterating we will add the current number and will also add quotient obtained by dividing the given number `n` by the current number to `sum` only if it is not similar to the current number. 
 
 Let's have one example: 
 ```
@@ -17,16 +17,16 @@ num = 9
 range = [1,3]
 sum = 0
 
-num = 9
+Iteration 1:
 i=1
 divisors = 1 , 9/1=9
 sum = sum + 1 + 9 = 10
 
-num = 9
+Iteration 2:
 i=2
 9 is not divisible by i
 
-num = 9
+Iteration 3:
 i=3
 divisors = 3 , 9/3=3
 sum = sum + 3 = 13
@@ -39,9 +39,10 @@ Here we will increase the sum by i only as i is equal to sqrt(num)
 
 * We will make a variable `i` iterate it on the range `[1, sqrt(n)]`. 
 
-* If `n` is divisible by `i` and is not equal to `sqrt(n)`, add both `i` and `n/i` to `sum` .
+* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will add both `i` and `n/i` to `sum` as both `i` and `n/i` will be the divisor of `n` as `n*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right.
 
-* If `n` is divisible by `i` and is equal to `sqrt(n)`, add only `i` to `sum`. 
+* If `n` is divisible by `i` and is equal to `sqrt(n)` we will add only `i` to `sum` as both `n` and `n/i` will be the same.
+
 
 ## Code
 
@@ -61,11 +62,13 @@ import TabItem from '@theme/TabItem';
 #include <bits/stdc++.h>
 using namespace std;
 
-long long int sum_of_divisors(int Number)
+//Function to return the sum of divisors
+
+int sum_of_divisors(int Number)
 {
-    /*Sum of Divisors may not fit in int range
-    so better take long long int */
-    long long int sum_of_divisors = 0;
+    //Initializing sum as 0
+
+    int sum = 0;
     int limit = (int) sqrt(Number);
     for (int i = 1; i < limit; i++)
     {
@@ -74,8 +77,9 @@ long long int sum_of_divisors(int Number)
             /*Here i is a divisor of that number
             (Number / i) is also a divisor
             */
-            sum_of_divisors += i;
-            sum_of_divisors += (Number / i);
+
+            sum += i;
+            sum += (Number / i);
         }
     }
 
@@ -83,24 +87,32 @@ long long int sum_of_divisors(int Number)
     {
         if (limit *limit == Number)
         {
-            //means perfect square number
-            sum_of_divisors += limit;
+            //Number is a perfect square
+
+            sum += limit;
         }
         else
         {
-            sum_of_divisors += limit;
-            sum_of_divisors += (Number / limit);
+            //Number is not a perfect square
+
+            sum += limit;
+            sum += (Number / limit);
         }
     }
 
-    return sum_of_divisors;
+    return sum;
 }
 
 int main()
 {
+    //Taking Input
+
     cout << "Enter the number: ";
     int num;
     cin >> num;
+    
+    //Printing Output
+
     cout << "The sum of the divisors is: " << sum_of_divisors(num) << endl;
 }
 ```
@@ -111,17 +123,25 @@ int main()
 ```python   
 import math
 
+#Function to get the sum of divisors
+
 def sum_of_divisors(n):
+
+    #Initializing i as 1 and sum as 0
+
     i = 1
-    #Initilizing sum as 0
     sum = 0
     while True:
         if i > math.sqrt(n):
             break
-        #Adding factor i to sum 
+
+        #Adding i to sum if it is a factor 
+
         if n % i == 0 and i == math.sqrt(n):
             sum += i
-        #Adding factors i and n/i to sum     
+
+        #Adding i and n/i to sum if i is a factor     
+        
         elif n % i == 0:
             sum += i
             sum += n // i
@@ -129,9 +149,11 @@ def sum_of_divisors(n):
     return sum
 
 #Taking Input
+
 n = int(input("Enter the number :"))
 
 #Printing Output
+
 print("The sum of the divisors is: {} ".format(sum_of_divisors(n)))
 ```
 </TabItem>
@@ -140,12 +162,12 @@ print("The sum of the divisors is: {} ".format(sum_of_divisors(n)))
 
 ## Sample Input and Output
 
-### Input :
+#### Input :
 
 ```
 Enter the number: 36
 ```
-### Output :
+#### Output :
 ```
 The sum of the divisors is: 91
 ```
