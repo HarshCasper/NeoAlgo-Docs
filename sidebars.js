@@ -79,6 +79,7 @@ module.exports = {
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
                 "mathematics/reverse-a-number",
             ],
         },
@@ -105,6 +106,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/max-number-from-array",
             ],
         },
         {
