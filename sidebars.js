@@ -82,6 +82,7 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
+                "mathematics/reverse-a-number",
             ],
         },
         {
