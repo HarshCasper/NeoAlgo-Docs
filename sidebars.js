@@ -1,5 +1,4 @@
-module.exports = {	
-  
+module.exports = {
     docs: [
         {
             type: "category",
@@ -36,6 +35,7 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/merge-sort"
             ],
         },
         {
@@ -78,7 +78,9 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/mystery-number",
-
+                "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",
             ],
         },
         {
@@ -104,6 +106,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/max-number-from-array",
             ],
         },
         {
@@ -117,7 +120,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher"],
         },
         {
             type: "category",
