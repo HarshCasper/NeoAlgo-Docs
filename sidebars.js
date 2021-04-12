@@ -80,7 +80,8 @@ module.exports = {
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/anagram-number",
                 "mathematics/mystery-number",
-                "mathematics/matrix-transpose"
+                "mathematics/matrix-transpose",
+                "mathematics/sum-of-divisors"
             ],
         },
         {
@@ -106,6 +107,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/max-number-from-array",
             ],
         },
         {
@@ -119,7 +121,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher"],
         },
         {
             type: "category",
