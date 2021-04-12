@@ -5,23 +5,62 @@ slug: /backtracking/n-queens
 
 ## Introduction
 
-The N Queen problem is placing N chess queens on an N x N chessboard such that no two queens can attack each other.
-The chess queens can attack in any of the following directions: horizontal, vertical, and diagonal.
-Output is the N x N binary matrices showing possible positions for queens such that they cannot attack each other, where 1 represents the correct place for the queen. If no such valid solution exists, then output is `false`.
+In this problem, we are provided an N x N chessboard, and we have to find if there exists any way to place N chess queens such that no two queens can attack each other. The possible directions where the queen can move and attack are horizontal, vertical, and diagonal. If there exists any way then the output is going to be the corresponding positions of N queens else `false` will be returned.
 
 ## Explaination
 
-The backtracking approach is used to solve this problem. Queens are placed one by one in different columns, starting from the leftmost column. While placing a queen in a column, we see if that position is safe or not. If it's safe, mark this row and column as part of the solution else, backtrack and return false.
+This problem can be solved using `backtracking`. Each row and column will contain only one queen. We will start from the first cell of the chessboard. We will move row-wise, and for each row, we will see if there exists a column where the queen can be placed safely, i.e., no two queens are at an attacking position, we will include that cell in solution and will proceed further, and if we didn't find any such cell, then we will return false and backtrack to previous cell, change the queen's position.
+
+Let's take an example, N=4, `X` represents chess queen.
+
+```
+*---*---*---*---*
+| X |   |   |   |
+*---*---*---*---*
+|   |   | X |   |
+*---*---*---*---*
+|   |   |   |   |
+*---*---*---*---*
+|   |   |   |   |
+*---*---*---*---*
+```
+
+Now the 3rd queen cannot be placed in the 3rd row as there exists no safe cell such that no two queens can attack each other. So we will return false and backtrack to the previous row and change the queen's position.
+
+```
+*---*---*---*---*
+| X |   |   |   |
+*---*---*---*---*
+|   |   |   | X |
+*---*---*---*---*
+|   | X |   |   |
+*---*---*---*---*
+|   |   |   |   |
+*---*---*---*---*
+```
+
+Now the 4th queen cannot be placed in the 4th row as there exists no safe cell such that no two queens can attack each other. So we will return false and backtrack to the previous row and change the queen's position. We will repeat the same procedure untill we find the positions for the queens.
+Therefore, the answer for N=4 is:
+
+```
+*---*---*---*---*
+|   | X |   |   |
+*---*---*---*---*
+|   |   |   | X |
+*---*---*---*---*
+| X |   |   |   |
+*---*---*---*---*
+|   |   | X |   |
+*---*---*---*---*
+```
 
 ## Algorithm
 
-- Step 1: Start from the leftmost position.
-- Step 2: If all queens are placed, then return true.
-- Step 3: Try all rows in the column. For each row, do the following:
-  - a) If this position is safe for the queen to be placed, then mark this [row, column] as part of the solution and see if this position leads to a solution or not using recursion.
-  - b) If that position leads to a solution, then return true else unmark [row, column] this position
-    i.e., backtrack and go to a) and repeat the same procedure for other rows.
-- Step 4: If we don't get any solution after trying all rows, then return false.
+1. Place the first queen at the first cell of the chessboard.
+2. Proceed to the next row. Move from the first column to the Nth column and see if that cell is safe or not so that no two queens are in an attacking position. If we find such a cell, then place the queen there and repeat step 2.
+3. If we cannot find any safe cell for that row, then go to the previous row, change the queen's position, and return false and repeat step 2.
+4. If we have successfully placed all N queens, then print the queens' corresponding positions and return true.
+5. If all the rows are tried and no way exists, then return false.
 
 ## Code
 
@@ -212,8 +251,8 @@ Position : (0, 1) (1, 3) (2, 0) (3, 2)
 ## Complexity Analysis
 
 - `N` is the size of the Chessboard.
-- Space Complexity : O(n^2)
-- Time Complexity : upperbounded by O(n^n)
+- Space Complexity : O(N^2)
+- Time Complexity : upperbounded by O(N^N)
 
 ## Credits
 
