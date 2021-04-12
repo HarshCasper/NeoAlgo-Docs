@@ -79,6 +79,7 @@ module.exports = {
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
             ],
         },
         {
