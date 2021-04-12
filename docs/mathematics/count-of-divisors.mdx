@@ -1,0 +1,181 @@
+---
+title: Count of Divisors
+slug: /mathematics/count-of-divisors
+---
+
+## Introduction
+
+Divisor of a number `n` refers to a number less than or equal to `n` which perfectly divides `n`. The Divisor is also called a Factor. `1` is the divisor of every number. Prime Numbers only have two divisors one and the number itself. Count of divisors refers to the count of numbers in the range `[1 to n]` which perfectly divides `n`.
+
+## Explanation 
+
+We will make a `cnt` variable and initialize it to zero. Then we will iterate from one to the square root of `n`. Whenever we find that the given number `n` is divisible by the current number on which we are iterating we will increase the `cnt` by `1` and will also check whether the quotient obtained by dividing the given number `n` by the current number is similar to the current number or not. If it is not similar we will again increase `cnt` by `1`.  
+
+Let's have one example: 
+```
+num = 9
+range = [1,3]
+cnt = 0
+
+Iteration 1:
+i=1
+divisors = 1 , 9/1=9
+cnt = cnt + 2 =2
+
+Iteration 2:
+i=2
+9 is not divisible by i
+
+Iteration 3:
+i=3
+divisors = 3 , 9/3=3
+cnt = cnt + 1 = 3
+Here we will increase the cnt by 1 as i is equal to sqrt(num) 
+```
+
+## Algorithm
+
+* We will make a `count` variable and initialize it to `0`.
+
+* We will make a variable `i` and iterate it on the range `[1, sqrt(n)]`. 
+
+* If `n` is divisible by `i` and `i` is not equal to `sqrt(n)` we will increment the `count` by `2` as `n` will also be divisible `n/i` as `n*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right.
+
+* If `n` is divisible by `i` and `i` is equal to `sqrt(n)` we will increment the `count` by `1` as both `n` and `n/i` are the same.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+//Function to the count no of divisors
+
+int count_of_divisors(int num)
+{
+    //Initializing cnt as 0
+
+    int cnt = 0;
+    int limit = (int) sqrt(num);
+    for(int i = 1; i < limit; i++)
+    {
+        //Increasing cnt by 2 for i and num/i
+
+        if(num % i == 0)
+        {
+            cnt += 2;
+        }
+    }
+
+    if(num % limit == 0)
+    {
+        if(limit * limit == num)
+        {
+            //Increasing cnt by 1 for limit 
+
+            cnt++;
+        }
+        else
+        {
+            //Increasing cnt by 2 for limit and num/limit 
+
+            cnt += 2;
+        }
+    }
+    return cnt;
+}
+
+int main()
+{
+    //Taking Input
+
+    cout << "Enter the number: ";
+    int num;
+    cin >> num;
+
+    //Printing Output
+
+    cout<<"The count of the divisors is: "<<count_of_divisors(num)<<endl;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+
+#Function to calculate the count of divisors
+
+def count_of_divisors(n):
+    i = 1
+
+    #Initializing cnt by 0
+
+    cnt = 0
+    while True:
+        if i > math.sqrt(n):
+            break
+
+        #Increasing cnt by 1 for i
+
+        if n % i == 0 and i == math.sqrt(n):
+            cnt += 1
+
+        #Increasing cnt by 2 for i and n/i
+
+        elif n % i == 0:
+            cnt += 2
+        i += 1
+    return cnt
+
+#Taking Input 
+
+n = int(input('Enter the number: '))
+
+#Printing Output
+
+print("The count of the divisors is: {} ".format(count_of_divisors(n)))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number: 36
+```
+#### Output :
+```
+The count of the divisors is: 9
+```
+
+## Complexity Analysis
+
+`n` is the given number.
+
+- Time Complexity:
+
+  - **Best Case**: `O(sqrt(n))`
+  - **Average Case**: `O(sqrt(n))`
+  - **Worst Case**: `O(sqrt(n))`
+
+- Space Complexity: `O(1)`
+
+## Credits
+* [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_divisors.cpp)

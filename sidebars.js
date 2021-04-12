@@ -45,6 +45,7 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
+                "data-structures/binary-search-tree"
             ],
         },
         {
@@ -80,9 +81,12 @@ module.exports = {
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/anagram-number",
                 "mathematics/mystery-number",
-                "mathematics/matrix-transpose",
-                "mathematics/sum-of-divisors"
-            ],
+                "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",
+                "mathematics/reverse-a-number",
+                "mathematics/matrix-transpose"
+             ],
         },
         {
             type: "category",
