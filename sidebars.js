@@ -78,7 +78,7 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/mystery-number",
-
+                "mathematics/sum-of-divisors",
             ],
         },
         {
