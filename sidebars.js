@@ -80,6 +80,7 @@ module.exports = {
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",
             ],
         },
         {
