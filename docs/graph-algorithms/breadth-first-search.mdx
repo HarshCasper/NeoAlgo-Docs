@@ -1,0 +1,341 @@
+---
+title: Breadth First Search
+slug: /graph-algorithms/breadth-first-search
+---
+## Introduction
+
+Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures.It is similar to level-order traversal in trees. It starts at the root node and explores all of the neighbor nodes at the present node before moving on to the nodes at the next depth level.BFS uses queue data structure for traversing the nodes.
+
+
+## Explanation
+
+The BFS traversal of Graphs also traverses the graph in levels. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the initially given vertex and `pushes them all to a queue` in order of visiting and `pops an element from the front of the queue`, visits all of its neighbours and pushes the neighbours which are not already visited into the queue and repeats the process until the queue is empty or all of the vertices are visited.
+
+### Let's have one example: 
+Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. the BFS traversal will start from the vertex 0.
+
+**Step 1]**![graph-1.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs9.jpg )
+
+**Step 2]**![graph-2.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs10.jpg )
+
+**Step 3]**![graph-3.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs11.jpg )
+
+**Step 4]**![graph-4.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs12.jpg )
+
+**Step 5]**![graph-5.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs13.jpg)
+
+
+## Algorithm
+
+- Create a `boolean array` say `visited[]`.
+- Create a `queue`, mark the source vertex visited as `visited[s] = true` and push it into the queue.
+- Loop until the `queue is not empty`, repeat the below steps:
+   * Pop an element from the queue and print the popped element.
+   * Traverse all of the vertices adjacent to the vertex poped from the queue.
+   * If any of the adjacent vertex is not already visited, mark it visited and push it to the queue.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', }
+    ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+  
+#include <list>
+
+using namespace std;
+
+class Graph {
+    int V;
+
+    list<int>* adj;
+
+public:
+    Graph(int V);
+
+    void addEdge(int v, int w);
+
+    void BFS(int s);
+};
+
+Graph::Graph(int V)
+{
+    this->V = V;
+    adj = new list<int>[V];
+}
+
+void Graph::addEdge(int v, int w)
+{
+    adj[v].push_back(w);
+}
+
+void Graph::BFS(int s)
+{
+    bool* visited = new bool[V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
+
+    list<int> queue;
+
+    visited[s] = true;
+    queue.push_back(s);
+
+    list<int>::iterator i;
+
+    while (!queue.empty()) {
+        s = queue.front();
+        cout << s << " ";
+        queue.pop_front();
+
+        for (i = adj[s].begin();
+             i != adj[s].end(); ++i) {
+            if (!visited[*i]) {
+                visited[*i] = true;
+                queue.push_back(*i);
+            }
+        }
+    }
+}
+ 
+int main()
+{
+    // Create a graph given in the above diagram
+    int V, E, i, S, A, B;
+
+    cout << "Enter the No of Vertex \n";
+    cin >> V;
+    Graph g(V);
+
+    cout << "Enter the No of Edges \n";
+    cin >> E;
+
+    for (i = 0; i < E; i++) {
+        cin >> A >> B;
+        g.addEdge(A, B);
+    }
+
+    cout << "Enter the Vertex to traverse Graph\n";
+    cin >> S;
+
+    cout << "The BFS Traversal of given Graph is : "
+         << "(starting from vertex )" << S << " \n";
+
+    g.BFS(S);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+public class BFS {
+
+	public static void breadthFirst(int edges[][],int V) {
+//		A visited array to mark if the node is visited then not to go there again
+		boolean visited[]=new boolean[V];
+		
+		for(int i=0;i<V;i++) {
+			if(!visited[i]) {
+				breadthFirstHelper(edges,visited,i);
+			}
+		}
+	}
+	
+	public static void breadthFirstHelper(int edges[][],boolean visited[],int sv) {
+		
+		int V=edges.length;
+		
+		visited[sv]=true;
+		
+		Queue<Integer> queue=new LinkedList<Integer>();
+		queue.add(sv);
+		
+		while(!queue.isEmpty()) {
+			
+			int size=queue.size();
+			
+			for(int i=0;i<size;i++) {
+				int frontNode=queue.poll();
+				for(int j=0;j<V;j++) {
+					if(edges[frontNode][j]==1&&!visited[j]) {
+						queue.add(j);
+						visited[j]=true;
+					}
+				}
+				System.out.print(frontNode+" ");
+			}
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+	
+		System.out.println("Enter the number of vertices in Graph : ");
+		int V=sc.nextInt();
+		
+		System.out.println("Enter the number of edges in the Graph : ");
+		int E=sc.nextInt();
+		
+        // Adjaceny Matrix :
+		int edges[][]=new int[V][V];
+		
+       // Taking edges as input :
+		System.out.println("Enter the edges :");
+		for(int i=0;i<E;i++) {
+			int sv=sc.nextInt();
+			int ev=sc.nextInt();
+			edges[sv][ev]=1;
+			edges[ev][sv]=1;
+		}
+		
+		System.out.println("BFS Traversal : ");
+		breadthFirst(edges,V);
+
+	}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+import queue
+
+
+class Graph:
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.adjMatrix\
+            = [[0 for j in range(self.vertices)]for i in range(self.vertices)]
+
+    def addEdge(self, v1, v2):
+        self.adjMatrix[v1][v2] = 1
+        self.adjMatrix[v2][v1] = 1
+
+    def removeEdge(self, v1, v2):
+        if self.containsEdge(v1, v2):
+            self.adjMatrix[v1][v2] = 0
+            self.adjMatrix[v2][v1] = 0
+
+    def containsEdge(self, v1, v2):
+        '''
+        Summary line-
+        Helps us to check whether a particular
+        edge is present in a graph or not.
+        '''
+        if self.adjMatrix[v1][v2] != 0:
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return str(self.adjMatrix)
+
+    def bfsHelper(self, sv, ev, visited, path):
+        '''
+        Summary line-
+        Helps us to perform breadth first search in the graph using a queue.
+        Working-
+        We use the visited list to mark `True` for every element we visit.
+        We get the elements from the queue,
+        mark it visited and push its neighboring vertices.
+        Variable names-
+        sv- Starting vertex
+        ev- Ending vertex
+        '''
+        q = queue.Queue()
+        q.put(sv)
+        visited[sv] = True
+        while not q.empty():
+            cur = q.get()
+            for i in range(self.vertices):
+                if self.adjMatrix[cur][i] > 0 and visited[i] is False:
+                    path[i] = cur
+                    if i == ev:
+                        print(ev, end=" ")
+                        return True
+                    q.put(i)
+                    visited[i] = True
+
+    def bfs(self, sv, ev):
+        visited = [False for j in range(self.vertices)]
+        path = dict()
+        if self.bfsHelper(sv, ev, visited, path) is True:
+            return path
+        return dict()
+
+if __name__ == "__main__":
+    print("Enter no of vertices and edges-")
+    v, e = map(int, input().split())
+    if v > 0 and e > 0:
+        g = Graph(v)
+        for i in range(e):
+            print("Enter vertices having edge between them-")
+            v1, v2 = map(int, input().split())
+            g.addEdge(v1, v2)
+        print("Enter starting and ending vertex")
+        sv, ev = map(int, input().split())
+        path = g.bfs(sv, ev)
+        x = path.get(ev, -1)
+        while x != -1:
+            print(x, end=" ")
+            x = path.get(x, -1)
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter the number of vertices in Graph : 
+4
+Enter the number of edges in the Graph : 
+4
+Enter the edges :
+0 1
+1 2
+0 2
+2 3
+```
+
+### Output:
+
+```
+BFS Traversal : 
+0 1 2 3 
+```
+
+## Complexity Analysis
+- Let E denote the number of Edges and V denote the number of Vertices.
+- Time  complexity - `O(|V|+|E|)`
+- Space complexity - `O(|V|)`
+
+## Credits
+
+- [Rajiv Singh](https://github.com/iamrajiv) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/BFS1.cpp)
+- [Ricardo Prins](https://github.com/ricardoprins) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/BFS.java)
+- [Ricardo Prins](https://github.com/ricardoprins) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/graphs/BFS.py)
+
