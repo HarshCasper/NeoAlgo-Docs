@@ -9,9 +9,9 @@ In this problem, we are provided an N x N chessboard, and we have to find if the
 
 ## Explaination
 
-This problem can be solved using `backtracking`. Each row and column will contain only one queen. We will start from the first cell of the chessboard. We will move row-wise, and for each row, we will see if there exists a column where the queen can be placed safely, i.e., no two queens are at an attacking position, we will include that cell in solution and will proceed further, and if we didn't find any such cell, then we will return false and backtrack to previous cell, change the queen's position.
+This problem can be solved using **backtracking**. Each row and column will contain only one queen. We will move row-wise, and for each row, see if there exists a column where the queen can be placed safely; that is, no two queens are at an attacking position. If yes, then we will include that cell in the solution and will proceed further. If we didn't find any such cell, then we will return false, backtrack to the previous cell, change the queen's position.
 
-Let's take an example, N=4, `X` represents chess queen.
+Let's take an example, `N=4`, `X` represents chess queen.
 
 ```
 *---*---*---*---*
@@ -40,7 +40,8 @@ Now the 3rd queen cannot be placed in the 3rd row as there exists no safe cell s
 ```
 
 Now the 4th queen cannot be placed in the 4th row as there exists no safe cell such that no two queens can attack each other. So we will return false and backtrack to the previous row and change the queen's position. We will repeat the same procedure untill we find the positions for the queens.
-Therefore, the answer for N=4 is:
+
+Therefore, the answer for `N=4` is:
 
 ```
 *---*---*---*---*
@@ -58,7 +59,7 @@ Therefore, the answer for N=4 is:
 
 1. Place the first queen at the first cell of the chessboard.
 2. Proceed to the next row. Move from the first column to the Nth column and see if that cell is safe or not so that no two queens are in an attacking position. If we find such a cell, then place the queen there and repeat step 2.
-3. If we cannot find any safe cell for that row, then go to the previous row, change the queen's position, and return false and repeat step 2.
+3. If we cannot find any safe cell for that row, then return false and go to the previous row, change the queen's position, and repeat step 2.
 4. If we have successfully placed all N queens, then print the queens' corresponding positions and return true.
 5. If all the rows are tried and no way exists, then return false.
 
@@ -82,11 +83,15 @@ import TabItem from "@theme/TabItem";
 using namespace std;
 
 #define N 20
+bool flag= false;
 
 void solve(bool board[N][N], bool cols[N], bool ndiag[2*N-1], bool rdiag[2*N-1], int row, string asf, int n) {
 
     if(row == n) {
-        cout << asf << '.' << '\n';
+        flag=1;
+        cout<<"Queens are Placed in the chessboard"<<endl;
+        cout<<"Position :";
+        cout << asf << '\n';
         return;
     }
 
@@ -98,7 +103,8 @@ void solve(bool board[N][N], bool cols[N], bool ndiag[2*N-1], bool rdiag[2*N-1],
                 ndiag[row+col] = true;
                 rdiag[row-col+n-1] = true;
                 board[row][col] = true;
-                solve(board, cols, ndiag, rdiag, row+1, asf+to_string(row)+"-"+to_string(col)+", ", n);
+                solve(board, cols, ndiag, rdiag, row+1, asf+"("+to_string(row)+", "+to_string(col)+") ", n);
+                if(flag)return;
                 // backtrack
                 cols[col] = false;
                 ndiag[row+col] = false;
@@ -109,28 +115,30 @@ void solve(bool board[N][N], bool cols[N], bool ndiag[2*N-1], bool rdiag[2*N-1],
 }
 
 int main() {
-	int n;
-	cin >> n;
+    cout<<"Enter the Board Size: ";
+    int n;
+    cin >> n;
 
-	bool board[N][N];
+    bool board[N][N];
     bool cols[N];
     bool ndiag[2*N-1], rdiag[2*N-1];
 
-	// initialize
-	for(int i = 0; i < n; i++)
-		for(int j = 0; j < n; j++)
-			board[i][j] = false;
+    // initialize
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            board[i][j] = false;
 
     // initialize that no column has a queen
-	for(int i = 0; i < n; i++)
-		cols[i] = false;
+    for(int i = 0; i < n; i++)
+        cols[i] = false;
 
-	for(int i = 0; i < 2*n-1; i++) {
-		ndiag[i] = false;
-		rdiag[i] = false;
-	}
+    for(int i = 0; i < 2*n-1; i++) {
+        ndiag[i] = false;
+        rdiag[i] = false;
+    }
 
-	solve(board, cols, ndiag, rdiag, 0, "", n);
+    solve(board, cols, ndiag, rdiag, 0, "", n);
+    if(flag==0)cout<<"Queens cannot be placed in the given Chessboard"<<endl;
 }
 ```
 
@@ -227,32 +235,13 @@ Enter the Board Size: 4
 ```
 Queens are Placed in the chessboard
 Position : (0, 1) (1, 3) (2, 0) (3, 2)
-    0       1       2       3
-  |-------|-------|-------|-------|
-  |       |       |       |       |
-0 |       |   X   |       |       |
-  |       |       |       |       |
-  |-------|-------|-------|-------|
-  |       |       |       |       |
-1 |       |       |       |   X   |
-  |       |       |       |       |
-  |-------+-------+-------+-------+
-  |       |       |       |       |
-2 |   X   |       |       |       |
-  |       |       |       |       |
-  |-------|-------|-------|-------|
-  |       |       |       |       |
-3 |       |       |   X   |       |
-  |       |       |       |       |
-  |-------|-------|-------|-------|
-
 ```
 
 ## Complexity Analysis
 
 - `N` is the size of the Chessboard.
-- Space Complexity : O(N^2)
-- Time Complexity : upperbounded by O(N^N)
+- Space Complexity : `O(N^2)`
+- Time Complexity : upperbounded by `O(N^N)`
 
 ## Credits
 
