@@ -5,23 +5,25 @@ slug: /data-structures/palindromic-linked-list
 
 ## Introduction
 
-A palindrome is a word or combination of characters that read the same forward and backward.
-Whether a linked list is palindromic or not can be found out using stacks - a data structure. Stacks follow the rule of 'Last In First Out',
-popularly known as 'LIFO'.
+A palindrome is a word or combination of characters that read the same forward and backward. Whether a linked list is palindromic or not can be found out using stacks - a data structure. Stacks follow the rule of `Last In First Out`, popularly known as `LIFO`.
 
 ## Algorithm
 
-1. Create a linked list
-2. Initialize a stack
-3. Push the data of each node in the linked list into the stack till the end
-4. Initialize a pointer to the head of the linked list
-5. Initialize a temporary variable and store the data present at the top of the stack.
-   Remember that this data is actually the data of the last node of the linked list.
-6. Compare the value in the temporary variable with that of the node pointed to by the pointer in the linked list
-   Remember that the pointer points to the head , that is, the first node of the linked list.
-7. If the two values are the same, then move onto the next node in the linked list and pop the current top element in the stack.
-   Repeat step 6 till the end of the stack or linked list is reached or the two values being compared are not the same.
-8. If the end of the linked list is reached, then it means that the linked list is palindromic. Otherwise it is not palindromic.
+- Create a linked list and initialize a stack.
+
+- Push the data of each node in the linked list into the stack till the end.
+
+- Initialize a pointer to the head of the linked list.
+
+- Initialize a temporary variable and store the data present at the top of the stack. Remember that this data is actually the data of the last node of the linked list.
+
+- Compare the value in the temporary variable with that of the node pointed to by the pointer in the linked list. Remember that the pointer points to the head , that is, the first node of the linked list.
+
+- If the two values are the same, then move onto the next node in the linked list and pop the current top element in the stack.
+
+- Repeat step 6 till the end of the stack or linked list is reached or the two values being compared are not the same.
+
+- If the end of the linked list is reached, then it means that the linked list is palindromic. Otherwise it is not palindromic.
 
 ## Examples
 
