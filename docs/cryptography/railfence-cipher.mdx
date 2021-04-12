@@ -5,13 +5,14 @@ slug: /cryptography/railfence-cipher
 
 ## Introduction
 
-Rail fence cipher is also known as the zig-zag cipher. The name clearly suggests we compute in a zig-zag manner. We take the given plaintext and the key and store them in a `2D` array stepwise. The depth of steps is dependent on the key. Then we have the encrypted text by concatenating the characters of each row.
+Rail fence cipher is also known as the zig-zag cipher. The name clearly suggests that we compute in a zig-zag manner. We take the given plain-text and the key and store them in a two-dimensional array stepwise. The depth of the steps is dependent on the key. Then we have the encrypted text by concatenating the characters of each row.
 
 ## Explanation
 
 We write the plain text given to us downwards and then upwards diagonally on successive rails of an imaginary fence mimicking a zig-zag pattern. The depth of this step is dependent on the key.
 
-Let's have one example: 
+Let's have an example: 
+
 ```
 Input : 
 
@@ -27,10 +28,10 @@ ciphertext : HloWrdel ol
 
 ## Algorithm
 
-- We take the plaintext and the key from the user.
-- we create an array where we compute and store the plaintext in a zig-zag form corresponding to the given key.
-- Then we concatenate each character row-wise.
-- we arrive at our encrypted text.  
+- Take the plaintext and the key from the user.
+- Create an array where we compute and store the plaintext in a zig-zag form corresponding to the given key.
+- Concatenate each character row-wise.
+- Arrive at the encrypted text.  
 
 ## Code
 
@@ -210,8 +211,8 @@ Encrypted plaintext is              : Ts  rhi lFeCei Riecihsanp
 
 ## Complexity Analysis
 
-- Time  complexity - O(mn)
-- Space complexity - O(mn)
+- Time  complexity: `O(mn)`
+- Space complexity: `O(mn)`
 
 ## Credits
 
