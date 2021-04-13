@@ -24,6 +24,8 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/jump-search",
+                "searching-algorithms/exponential-search",
             ],
         },
         {
@@ -44,7 +46,8 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
-                "data-structures/binary-search-tree"
+                "data-structures/Singly-Linked-list",
+                 "data-structures/binary-search-tree"
             ],
         },
         {
@@ -123,7 +126,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher","cryptography/homophonic-cipher"],
         },
         {
             type: "category",
