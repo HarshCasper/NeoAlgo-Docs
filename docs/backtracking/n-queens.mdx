@@ -9,7 +9,7 @@ In this problem, we are provided an N x N chessboard, and we have to find if the
 
 ## Explaination
 
-This problem can be solved using **backtracking**. Each row and column will contain only one queen. We will move row-wise, and for each row, see if there exists a column where the queen can be placed safely, that is, no two queens are at an attacking position. If yes, then we will include that cell in the solution and will proceed further. If we didn't find any such cell, then we will return false, backtrack to the previous cell, change the queen's position.
+This problem can be solved using **backtracking**. Each row and column will contain only one queen. We will move row-wise, and for each row, see if there exists a column where the queen can be placed safely, that is, no two queens are at an attacking position. If yes, then we will include that cell in the solution and will proceed further. If we didn't find any such cell, then we will return `false`, backtrack to the previous cell, change the queen's position.
 
 Let's take an example, `N=4`, `X` represents chess queen.
 
@@ -25,7 +25,7 @@ Let's take an example, `N=4`, `X` represents chess queen.
 *---*---*---*---*
 ```
 
-Now the 3rd queen cannot be placed in the 3rd row as there exists no safe cell such that no two queens can attack each other. So we will return false and backtrack to the previous row and change the queen's position.
+Now the 3rd queen cannot be placed in the 3rd row as there exists no safe cell such that no two queens can attack each other. So we will return `false` and backtrack to the previous row and change the queen's position.
 
 ```
 *---*---*---*---*
@@ -39,7 +39,7 @@ Now the 3rd queen cannot be placed in the 3rd row as there exists no safe cell s
 *---*---*---*---*
 ```
 
-Now the 4th queen cannot be placed in the 4th row as there exists no safe cell such that no two queens can attack each other. So we will return false and backtrack to the previous row and change the queen's position. We will repeat the same procedure untill we find the positions for the queens.
+Now the 4th queen cannot be placed in the 4th row as there exists no safe cell such that no two queens can attack each other. So we will return `false` and backtrack to the previous row and change the queen's position. We will repeat the same procedure untill we find the positions for the queens.
 
 Therefore, the answer for `N=4` is:
 
@@ -59,9 +59,9 @@ Therefore, the answer for `N=4` is:
 
 1. Place the first queen at the first cell of the chessboard.
 2. Proceed to the next row. Move from the first column to the Nth column and see if that cell is safe or not so that no two queens are in an attacking position. If we find such a cell, then place the queen there and repeat step 2.
-3. If we cannot find any safe cell for that row, then return false and go to the previous row, change the queen's position, and repeat step 2.
+3. If we cannot find any safe cell for that row, then return `false` and go to the previous row, change the queen's position, and repeat step 2.
 4. If we have successfully placed all N queens, then print the queens' corresponding positions and return true.
-5. If all the rows are tried and no way exists, then return false.
+5. If all the rows are tried and no way exists, then return `false`.
 
 ## Code
 
@@ -85,7 +85,8 @@ using namespace std;
 #define N 20
 bool flag= false;
 
-void solve(bool board[N][N], bool cols[N], bool ndiag[2*N-1], bool rdiag[2*N-1], int row, string asf, int n) {
+void solve(bool board[N][N], bool cols[N], bool ndiag[2*N-1], 
+           bool rdiag[2*N-1], int row, string asf, int n) {
 
     if(row == n) {
         flag=1;
@@ -192,8 +193,6 @@ def place_queen(row, a, n, diagonal1, diagonal2, Col):
 
     return False
 
-# -------------------------------Driver Code-------------------------------
-
 if __name__ == "__main__":
     n = int(input("Enter the Board Size: "))
     answer = n_queens(n)
@@ -210,27 +209,27 @@ if __name__ == "__main__":
 
 </Tabs>
 
-## Sample Input/Output
+## Sample Input and Output
 
-**Input:**
+#### Input
 
 ```
 Enter the Board Size: 3
 ```
 
-**Output:**
+#### Output
 
 ```
 Queens cannot be placed in the given Chessboard
 ```
 
-**Input:**
+#### Input
 
 ```
 Enter the Board Size: 4
 ```
 
-**Output:**
+#### Output
 
 ```
 Queens are Placed in the chessboard
