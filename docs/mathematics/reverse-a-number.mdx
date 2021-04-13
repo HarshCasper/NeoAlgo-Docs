@@ -1,0 +1,160 @@
+---
+title: Reverse a Number
+slug: /mathematics/reverse-a-number
+---
+
+## Introduction
+
+The reverse of a number is a number that is obtained when a number is traversed from right to left. The reverse of a number can be greater, smaller, or equal to the number. A number that is equal to its reverse is called a Palindrome. The algorithm for finding reverse can be extended to check whether the given number is palindrome or not.
+
+## Explanation 
+
+We will make a `reverse` variable. Then we will keep on extracting the least significant digit from the number and push it to the reverse variable till the number becomes `0`. The reverse of the number `pqr` will be `rqp`. The reverse of single digit number `p` will be equal same number `p`. Single-digit numbers are always palindromes.
+
+Let's have one example:
+```
+num=4568          
+rev=0
+
+Iteration 1:
+rev = rev*10 + num%10 = 8
+num = num/10 = 456 
+
+Iteration 2:
+rev = rev*10 + num%10 = 86
+num = num/10 = 45
+
+Iteration 3:
+rev = rev*10 + num%10 = 865
+num = num/10 = 4 
+
+Iteration 4:
+rev = rev*10 + num%10 = 8654
+num = num/10 = 0
+```
+
+## Algorithm
+
+* Make a `rev` variable and initialize it to `0`.
+
+* Divide the number by `10` and store it into `temp`.
+
+* Multiply the `rev` variable by `10` and add `temp` to it.
+
+* Apply the previous two steps until the number becomes `0`. 
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+//Function to do reverse
+
+int reverse(int num) {
+
+  //Initializing rev as 0
+
+  int rev = 0;
+  do {
+
+    //Adding the last digit
+
+    rev = rev * 10 + num % 10;
+
+    //Removing the last digit
+
+    num = num / 10;
+  } while (num > 0);
+
+  return rev;
+}
+
+int main() {
+  int num;
+
+  //Taking Input 
+
+  cout << "Enter the number: ";
+  cin >> num;
+
+  //Printing Output
+
+  cout << "The reverse of the given number is: " << reverse(num);
+  return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python 
+#Function to do reverse 
+
+def reverse(n):
+
+    #Initializing rev as 0
+
+    rev = 0
+    while True:
+        if n == 0:
+            break
+
+        #Adding the last digit
+
+        rev = rev * 10 + n % 10
+
+        #Removing the last digit
+
+        n = n // 10
+    return rev
+
+#Taking input from user
+
+n = int(input('Enter the number :'))
+
+#Printing the output
+
+print ("The reverse of the given number is: {} ".format(reverse(n)))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number: 1234
+```
+#### Output :
+```
+The reverse of the given number is: 4321
+```
+
+## Complexity Analysis
+
+`n` is the number of digits in the number.
+
+- Time Complexity:
+
+  - **Best Case**: `O(n)`
+  - **Average Case**: `O(n)`
+  - **Worst Case**: `O(n)`
+
+- Space Complexity: `O(1)`
+
+## Credits
