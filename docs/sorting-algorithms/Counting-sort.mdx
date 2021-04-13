@@ -7,8 +7,9 @@ slug: /sorting-algorithms/Counting-sort
 
 Counting Sort is a sorting algorithm that sorts the element of array by counting the number of occurence of each distinct elements. In this we have store the occurence of element in count array and then modify the count array such that every index store the sum of previous counts. And this modified count array shows that how many elements are smaller than that element. Then make the final array that contains sorted elements.Make sure that elements are in small range.
 
+
 ## Explanation
-First store the occurence of each elements in count array. Then modify the count array by storing the sum of counts of previous index and this modified array tell us how many elements are smaller than that elements. Make an output array which contained sorted elements. Output array is build with the help of given(input) array and modified count array by traversing the input array from right to left(last to first).
+First store the occurence of each elements in count array. Then modify the count array by storing the sum of counts of previous index and this modified array tell us how many elements are smaller than that elements. Make an output array which contained sorted elements. Output array is build with the help of given (input) array and modified count array by traversing the input array from right to left (last to first).
 
 ### Example 1
 
@@ -27,7 +28,7 @@ then make an output array from given array and modified count array
   Sorted!! 
 
 ```
-# Algorithm
+## Algorithm
 
 In Counting Sort, we follow the following algorithm:
 
@@ -35,13 +36,13 @@ In Counting Sort, we follow the following algorithm:
 
 * Modify the count array such that every index store the sum of previous count.
 
-* Travesre the given array from end(so that stability maintains) and put the elements by checking our modified count array and given(input) array.
+* Travesre the given array from end (so that stability maintains) and put the elements by checking our modified count array and given(input) array.
 
-* And take an final array(output) and store the elements.
+* And take an final array (output) and store the elements.
 
 * We get our sorted elements in output array.
 
-# Code
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -170,8 +171,6 @@ if __name__ == "__main__":
 </Tabs>
 
 ## Sample Input and Output
-
-
 #### Input :
 
 ```
@@ -187,11 +186,11 @@ The sorted array is: 1 1 1 2 3 4 5 5
 
 # Time & Space Complexity
  
-- **Worst Case Complexity:** `O(n+k)`
+- Worst Case Complexity: `O(n+k)`
 
-- **Best Case Complexity:** `O(n+k)`
+- Best Case Complexity: `O(n+k)`
 
-- **Average Case Complexity:** `O(n+k)`
+- Average Case Complexity: `O(n+k)`
 
 where n is size of an array , and k is element range of the array.
 
