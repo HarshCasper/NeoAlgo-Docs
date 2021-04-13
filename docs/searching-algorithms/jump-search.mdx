@@ -15,15 +15,15 @@ Let's have one example:
 
 [![list-1.png](https://i.postimg.cc/jSXyNH1B/list-1.png)](https://postimg.cc/xXXkVznP)
 
-Consider the above-sorted list. Let `n` denote the size of the list. Here, `n = 9`. Therefore, `√n (block size) is 3`. Let `5` be the element to be found.
+Consider the above-sorted list. Let `n` denote the size of the list. Here, `n = 9`. Therefore, `√n (block size)` is `3`. Let `5` be the element to be found.
 
 [![list-2.png](https://i.postimg.cc/BZYy5FrL/list-2.png)](https://postimg.cc/23W2r18r)
 
-Since the block size is `3`, jump `three` elements ahead. That is, from `A[0] to A[2]`. Since `A[2]` is not greater than `5`, the block jumps ahead.
+Since the block size is `3`, jump three elements ahead. That is, from `A[0] to A[2]`. Since `A[2]` is not greater than `5`, the block jumps ahead.
 
 [![list-3.png](https://i.postimg.cc/MKgFNSKz/list-3.png)](https://postimg.cc/HV4z8FyN)
 
-The block had jumped from `A[2] to A[5]`. Since `A[5]` is greater than `5`, we perform a `linear search` on that block, but traversing backward.
+The block had jumped from `A[2] to A[5]`. Since `A[5]` is greater than `5`, we perform a **linear search** on that block, but traversing backward.
 
 [		![list-4.png](https://i.postimg.cc/QCw02QDf/list-4.png)](https://postimg.cc/RJ17fnNt)
 
@@ -172,8 +172,8 @@ The element 4 was found at index 3
 
 ## Complexity Analysis
 
-- Time  complexity - `O(√n)`
-- Space complexity - `O(1)`
+- Time  complexity : `O(√n)`
+- Space complexity : `O(1)`
 
 ## Credits
 
