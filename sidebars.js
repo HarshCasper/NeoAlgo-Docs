@@ -136,6 +136,7 @@ module.exports = {
             items: [
                 "operating-systems/operating-systems",
                 "operating-systems/banker-algorithm",
+                "operating-systems/round-robin-algorithm",
             ],
         },
         {
