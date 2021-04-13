@@ -1,0 +1,125 @@
+---
+title: Sort an array of 0s, 1s and 2s 
+slug: /data-structures/Sorting_0s_1s_2s
+---
+
+## Introduction
+
+Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+## Explanation
+
+Explanation:
+0s 1s and 2s are segregated into ascending order.In the method first me 
+
+Let's have one example: 
+```
+Input: 
+Enter the Number:
+0 2 1 2 0
+
+Output:
+0 0 1 2 2
+
+```
+
+## Algorithm
+
+### Single Pass Approach
+
+1. Given any list as an input, Count the number of elements using the len() methods 
+
+2. Then assign empty list of 0s, 1s and 2s. 
+
+3. Apply for loop up-to length of the list.
+
+4. Then check if-else condition  if arr of i elements is match to 0 then append value 0 
+  in listofZero similarly to other 1s to listofOne and 2s to listofTwo.  
+
+5. In finally add the three list listofZero + listofOne +listofTwo  in Total
+
+6. Print the output array
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="py"
+  values={[
+    { label: 'Python', value: 'py', }
+  ]
+}>
+
+
+<TabItem value="py">
+
+```py
+def sort012(arr,n):
+    listofZero = []
+    listofOne = []
+    listofTwo = []
+
+    for i in range(0,n):
+        if arr[i] == 0:
+            listofZero.append(0)
+        elif arr[i] == 1:
+            listofOne.append(1)
+        else:
+            listofTwo.append(2)
+
+    Total = listofZero+listofOne+listofTwo
+    #result 
+    return Total 
+
+
+arr = list(map(int,input("Enter the Number:\n").split()))
+n = len(arr)
+print(sort012(arr,n))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter the Number:
+0 2 1 2 0
+
+```
+
+### Output:
+
+```
+0 0 1 2 2
+
+```
+
+### Input:
+
+```
+Enter the Number:
+0 1 2 0 1 2
+
+```
+
+### Output:
+
+```
+0 0 1 1 2 2
+
+```
+
+## Complexity Analysis
+
+- Time  complexity - O(n)
+- Space complexity - O(1)
+
+## Credits
+
+- [Soumik Kumar Baithalu](https://github.com/soumik2012) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cp/Sort_An_Arrayof0s1sand2s.py)

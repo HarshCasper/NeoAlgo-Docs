@@ -35,6 +35,14 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Data Structures',
+      items: [
+        'data-structures/data-structures',
+        'data-structures/Sorting_0s_1s_2s'
+      ],
+    },
+    {
+      type: 'category',
       label: 'Dynamic Programming',
       items: [
         'dynamic-programming/dynamic-programming',
