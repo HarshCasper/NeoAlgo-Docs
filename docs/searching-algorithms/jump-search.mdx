@@ -5,7 +5,7 @@ slug: /searching-algorithms/jump-search
 
 ## Introduction
 
-Jump search, also known as block search is a searching algorithm for sorted lists. It locates an item by jumping ahead a fixed number of elements instead of traversing through each element.
+Jump search, also known as block search is a searching algorithm for sorted lists. It locates an item by jumping ahead a fixed number of elements instead of traversing through each element. If a larger value than the search value is found, it backtracks and performs a linear search over the last block of elements. The fundamental advantage of this search, over the linear search, is that jump search doesn't traverse through every single element. Instead, it jumps ahead with a fixed number of elements and thus achieves a time complexity less than that of a linear search. Although the binary search has a better complexity, jump search overcomes this disadvantage by needing to backtrack only once, when compared to binary search which may need to backtrack up to `O(Log n)` times.
 
 ## Explanation
 
@@ -15,19 +15,19 @@ Let's have one example:
 
 [![list-1.png](https://i.postimg.cc/jSXyNH1B/list-1.png)](https://postimg.cc/xXXkVznP)
 
-``` Consider the above-sorted list. Let n denote the size of the list. Here, n = 9. Therefore, √n (block size) is 3. Let 5 be the element to be found.```
+Consider the above-sorted list. Let `n` denote the size of the list. Here, `n = 9`. Therefore, `√n (block size) is 3`. Let `5` be the element to be found.
 
 [![list-2.png](https://i.postimg.cc/BZYy5FrL/list-2.png)](https://postimg.cc/23W2r18r)
 
-```Since the block size is 3, jump three elements ahead. That is, from A[0] to A[2]. Since A[2] is not greater than 5, the block jumps ahead.```
+Since the block size is `3`, jump `three` elements ahead. That is, from `A[0] to A[2]`. Since `A[2]` is not greater than `5`, the block jumps ahead.
 
 [![list-3.png](https://i.postimg.cc/MKgFNSKz/list-3.png)](https://postimg.cc/HV4z8FyN)
 
-```The block had jumped from A[2] to A[5]. Since A[5] is greater than 5, we perform a linear search on that block, but traversing backward.```
+The block had jumped from `A[2] to A[5]`. Since `A[5]` is greater than `5`, we perform a `linear search` on that block, but traversing backward.
 
 [		![list-4.png](https://i.postimg.cc/QCw02QDf/list-4.png)](https://postimg.cc/RJ17fnNt)
 
-```The search element, 5, is now found successfully.```
+The search element, `5`, is now found successfully.
 
 ## Algorithm
 
@@ -57,19 +57,6 @@ import TabItem from '@theme/TabItem';
 
 ```java
 import java.util.Scanner;
-
-/*
-Author: iamvs-2002
-*/
-
-/*
-Jump Search Algorithm works for sorted array, of size n.
-It creates a block of size m = (n)^1/2 and tries to find the element in that block. 
-If the item is not in the block, it shifts the entire block.
-After finding a correct block it finds the item using a linear search algorithm.
-Time Complexity = O((n)^1/2)
-Space Complexity = O(1)
-*/
 
 public class JumpSearchAlgorithm{
 
@@ -111,7 +98,7 @@ public class JumpSearchAlgorithm{
         //Initialize front pointer at index 0, i.e., pointing to the first element in the block
         int front = 0;
 
-        //Shift the block untill the rear pointer points to a valid index
+        //Shift the block until the rear pointer points to a valid index
         //and the key element is greater than the element at the current rear index
         while(rear<sizeofarray && key>array[rear]){
             rear = rear+m;
