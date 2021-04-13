@@ -1,0 +1,240 @@
+---
+title: Happy Number
+slug: /mathematics/happy-number
+---
+
+## Introduction
+
+A number is called a happy number if it converges to 1 after a sequential operation wherein each step we replace the original number by the sum of the squares of its individual digits. When a digit is inputted, we calculate the sum of squares of its individual digits. We find that in some cases, we arrive at the same number that we earlier came across during our calculation. In such cases, we can clearly see that it would never terminate so such numbers are not considered as happy numbers.
+
+## Explanation
+
+If the number we are processing by calculating their sum of squares appears again in the loop, we will not see the loop terminating. Such a number cannot be considered as a happy number.
+
+Let's have an example for each case: 
+```
+Input number : 13
+Output       : Is Happy Number
+
+Sequential steps :
+1^2 + 3^2 = 10
+1^2 + 0^2 = 01
+
+Input number : 4
+Output       : Not a Happy number
+
+Sequential Steps :
+0^2 + 4^2  = 16 
+1^2 + 6^2  = 37
+3^2 + 7^2  = 58
+5^2 + 8^2  = 89
+8^2 + 9^2  = 145
+1^2 + 4^2 + 5^2 = 42
+4^2 + 2^2  = 20
+2^2 + 0^2  = 4
+```
+
+## Algorithm
+- Implement a function that computes the sum of squares of the individual digits and returns the sum.
+- We assign 2 variables that keep track of the sum of squares in a single iteration and two iterations using the above function implemented repeatedly.
+- We check if these two variables return us the same value.
+- If they do so then we say it is a happy number else not.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+class HappyNumber{
+   
+   /*This function takes a number as input and returns
+     sum of its digits.*/
+   static int sumOfSquares(int n){
+      
+       int sum = 0;
+       while(n != 0){
+           /*Taking mod of number with 10 each time
+            gives its units place digit. We add its
+            square to the sum.*/
+           int d = n%10;
+           sum += d*d;
+           //Replace the number with number / 10.
+           n = Math.floorDiv(n,10);
+       }
+
+       return sum;
+   }   
+       
+   /*This function takes a number as input and checksif the number is a 
+     happy number.*/
+   static boolean happyNumber(int n){
+       
+       int first = n;
+       int second = n;
+
+       while(true){
+
+          //The first variable calling sum of digits function once 
+          first = sumOfSquares(first);
+
+          //The second variable calling sum of digits function twice
+          second = sumOfSquares(second);
+          second = sumOfSquares(second);
+
+          /*If the first one equals the second, we break out of the loop. Otherwise,
+            it will run into an infinite loop.*/
+          if(first == second)
+             break;
+          else
+             continue;    
+       }   
+
+       /*The number is happy if at the end of iterations the number
+          becomes 1. If it is one, then we return True*/ 
+       if(first == 1)
+          return true;
+       else
+          return false; 
+
+   }
+
+   public static void main(String[] args){
+     
+       Scanner scan = new Scanner(System.in);
+       System.out.print("Enter a number to check if it's a happy number or not: ");
+       //Taking input from the user 
+       int n = scan.nextInt();
+       scan.close();       
+       
+       //checker
+       boolean check = happyNumber(n);      
+        
+       //If the above function returns True, it means number is a happy number
+       if(check == true){
+          System.out.println("The given number "+n+" is a happy number!");
+       }
+       else
+          System.out.println("The given number "+n+" is not a happy number!");   
+   }
+
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def sum_square_digits(number):
+
+    sum_squares = 0
+    
+    while(number):
+        ''' Taking mod of number with 10 each time
+            gives its units place digit. We add its
+            square to the sum.'''
+        sum_squares += (number % 10) ** 2;
+        # Replace the number with number / 10.
+        number = number // 10;
+    
+    return sum_squares
+
+''' This function takes a number as input and checks
+    if the number is a happy number or not.'''
+def is_happy_number(number):
+
+    first = number
+    second = number
+
+    while(True):
+
+        # The first variable calling sum of digits function once 
+        first = sum_square_digits(first)
+
+        # The second variable calling sum of digits function twice
+        second = sum_square_digits(second)
+        second = sum_square_digits(second)
+
+        ''' If the first one equals the second, we break out of the
+            loop. Otherwise, it will run into an infinite loop.'''
+        if(first == second):
+            break
+        else:
+            continue
+    ''' The number is happy if at the end of iterations the number
+        becomes 1. If it is one, then we return True.'''
+    if(first == 1):
+        return True
+    else:
+        return False
+
+# Driver function
+if __name__=='__main__':
+
+    # Taking input from the user
+    number = int(input("Enter a number to check if it's a happy number or not: "))
+
+    # Callinf the function to check if number is happy number
+    check = is_happy_number(number)
+
+    # If the function returns True, it means number is a happy number
+    if(check == True):
+        print("The given number", number, "is a happy number!")
+    else:
+        print("The given number", number, "is not a happy number!")
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input:
+
+
+```
+Enter a number to check if it's a happy number or not: 13
+```
+
+#### Output:
+
+```
+The given number 13 is a happy number!
+```
+#### Input:
+ 
+ 
+```
+Enter a number to check if it's a happy number or not: 4
+```
+ 
+#### Output:
+ 
+```
+The given number 4 is not a happy number!
+```
+
+
+## Complexity Analysis
+
+```
+Time  complexity - O(logn)
+Space complexity - O(1)
+```
+
+## Credits
+
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/HappyNumber.java)
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Happy_Number.py)
