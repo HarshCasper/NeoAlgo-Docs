@@ -7,6 +7,8 @@ slug: /searching-algorithms/exponential-search
 
 A simple searching algorithm which also is based on usage of Binary Search technique. Just like binary search, this needs a sorted array to work. The key to this algorithm is finding the range in which the element should exist and then applying Binary Search on that range. We keep on doubling the index until we find the range in which the item exists.
 
+## Explanation
+
 For example:
 
 Let's assume we have to search for 11 in this array -
@@ -45,7 +47,7 @@ These are the main steps for this algorithm:
 - If not, start with the 2nd element (index = 1) and if the item is larger, double the index.
 - Keep doubling till the item to be searched is lower than or equal to the element at the index, that is, till `item <= arr[index]`.
 - Now the range from that `index / 2` to `index` is where the item exists if its present in the array. we start with half of `index` as we have already compared and found that the item is greater than half of `index`.
-- Apply binary search on the above range to get the result
+- Apply binary search on the above range to get the result.
 
 ## Code
 
@@ -68,8 +70,6 @@ import TabItem from "@theme/TabItem";
    Exponential Search Algorithm is an optimized Binary Search to search an element in sorted array.
    It is specifically used when the size of array is infinite.
    Let n be the number of elements input in array and key be the element to be searched.
-   Time Complexity : O(log n)
-   Space Complexity : O(1)
   */
   
   
@@ -211,9 +211,9 @@ import TabItem from "@theme/TabItem";
 </Tabs>
 
 
-## Sample I/O
+## Sample Input and Output
 
-### Sample Input
+#### Sample Input
 
 ```bash
 Enter the size of array
@@ -224,7 +224,7 @@ Enter the element to search
 52
 ```
 
-### Sample Output
+#### Sample Output
 
 ```bash
 Element is present at position 4
