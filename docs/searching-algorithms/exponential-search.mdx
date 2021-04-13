@@ -19,23 +19,22 @@ Let's assume we have to search for 11 in this array -
 - We start from first element at index 0, since its not the item we are searching for we move on to index = 1.
 - From index = 1 we start a loop, where we compare `arr[index]` with 11 and keep doubling if the `arr[index] <= 11`.
 - So this is how the range shortens-
-    - index = 1, 3 <= 11 is true
+    - When `index = 1`, `3 <= 11` is `true`:
 
     | 3 | 5 | 7 | 11 | 13 | 15 | 17 | 19 |
     |---|---|---|----|----|----|----|----|
 
-    - index = 2*1 = 2, 5 <= 11 is true
+    - When `index = 2*1 = 2`, `5 <= 11` is `true`:
 
     | 5 | 7 | 11 | 13 | 15 | 17 | 19 |
     |---|---|----|----|----|----|----|
 
-    - index = 2*2 = 4, 11 <= 11 is true
+    - When `index = 2*2 = 4`, `11 <= 11` is `true`:
 
     | 11 | 13 | 15 | 17 | 19 |
     |----|----|----|----|----|
 
-    - index = 2*4 = 8, 19 <= 11 is false
-    So we have found our range that is from 8/2 = 4 to 8
+    - When `index = 2*4 = 8`, `19 <= 11` is `false`. So we have found our range that is from `8/2 = 4 to 8`:
 
     | 11 | 13 | 15 | 17 | 19 |
     |----|----|----|----|----|
