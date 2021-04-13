@@ -1,0 +1,183 @@
+---
+title: Catalan number
+slug: /mathematics/catalan-number
+---
+
+## Introduction
+
+Catalan numbers are a sequence of natural numbers that occur in various counting problems. The solution to many counting problems in combinatorial mathematics is given by Catalan numbers.
+
+## Explanation
+
+Catalan numbers are often denoted by C<sub>n</sub> where `n` represents the n<sup>th</sup> Catalan number. n<sup>th</sup> Catalan number is given by,
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=C_n&space;=&space;\frac{1}{n&space;&plus;&space;1}&space;\binom{2n}{n},&space;n&space;\ge&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_n&space;=&space;\frac{1}{n&space;&plus;&space;1}&space;\binom{2n}{n},&space;n&space;\ge&space;0" title="C_n = \frac{1}{n + 1} \binom{2n}{n}, n \ge 0" /></a>
+
+The recursion based formula for Catalan numbers is given by,
+
+Base Case:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=C_0&space;=&space;1" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_0&space;=&space;1" title="C_0 = 1" /></a>
+
+n<sup>th</sup> Catalan number for `n >= 0`:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" title="C_{n+1} = \sum_{i=0}^n{C_iC_{n-i}}" /></a>
+
+## Algorithm
+
+#### Recursive
+
+```
+Base case: If n = 0 or n = 1, return 1.
+for num = 0 to n
+   catalan += catalan(num) + catalan(n - num - 1)
+return catalan
+```
+
+This takes `exponential` running time.
+
+#### Dynamic Programming
+
+```
+Make an array to store values in bottom-up manner.
+Base case: Initialize array[0] = array[1] = 1.
+for i = 2 to n
+   for j = 0 to i
+       array[i] += array[j] + array[i - j - 1]
+```
+
+Its running time is `O(n^2)`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// This code is implemented using dynamic programming algorithm
+#include <iostream>
+using namespace std;
+
+// This function returns nth catalan number
+long long int n_catalan(long int number) {
+
+	// Makes an array to store the catalan numbers
+	long long int array[number + 1];
+
+	// Base cases
+	array[0] = 1;
+	array[1] = 1;
+
+	// Initializing the array to all zeroes.
+	for(int i = 2; i < number + 1; i++) {
+		array[i] = 0;
+	}
+
+	// Using DP recursive solution to get nth catalan number
+	for(int i = 2; i < number + 1; i++) {
+		for(int j = 0; j < i; j++) {
+			array[i] += array[j] * array[i - j - 1];
+		}
+	}
+
+	// Return the nth catalan number
+	return array[number];
+}
+
+int main() {
+
+	// Take number as input from the user
+	long int number;
+	cout << "Enter a number: ";
+	cin >> number;
+
+	if(number < 0) {
+		cout << "\nPlease enter a non-negative number." << endl;
+		exit(0);
+	}
+
+	// Print the nth catalan number
+	cout << "\nCatalan number at index " << number << " is " << n_catalan(number) << endl;
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# This code is implemented using dynamic programming algorithm
+# This function returns nth catalan number
+def n_catalan(number):
+
+    # Makes an array to store the catalan numbers
+    array = [0] * (number + 1)
+
+    # Base cases
+    array[0] = 1
+    if(number == 0):
+        return array[0]
+    array[1] = 1
+
+    # Using DP recursive solution to get nth catalan number
+    for i in range(2, number + 1):
+        for j in range(0, i):
+            array[i] += array[j] * array[i - j - 1]
+
+    # Return the nth catalan number
+    return array[number]
+
+
+## Drivers code
+if __name__=="__main__":
+
+    ##Take number as input from the user
+    number = int(input("Enter a number: "))
+
+    ## Check if the number is non-negative.
+    if(number < 0):
+        print("\nPlease enter a non-negative number.")
+        exit()
+
+    ## Call the function
+    catalan = n_catalan(number)
+    ## Print the nth catalan number
+    print("\nCatalan number at index " + str(number) + " is " + str(catalan))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter a number: 10
+```
+
+#### Output
+
+```
+Catalan number at index 10 is 16796
+```
+
+## Comlpexity Analysis
+
+  - Time complexity : `O(n^2)`
+  - Space complexity: `O(n)`
+
+## Credits
+
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/Catalan_DP.cpp)
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/Catalan_DP.py)
