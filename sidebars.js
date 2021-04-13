@@ -44,6 +44,8 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
+                "data-structures/Singly-Linked-list",
+                "data-structures/binary-search-tree",
                 "data-structures/stack-data-structure",
             ],
         },
@@ -79,7 +81,10 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-
+                "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",
+                "mathematics/reverse-a-number",
             ],
         },
         {
@@ -105,6 +110,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/max-number-from-array",
             ],
         },
         {
@@ -118,7 +124,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher","cryptography/homophonic-cipher"],
         },
         {
             type: "category",
