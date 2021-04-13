@@ -19,6 +19,13 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Algorithms",
+            items: [
+                "Algorithms/Two_Pointer",
+            ],
+        },
+        {
+            type: "category",
             label: "Searching Algorithms",
             items: [
                 "searching-algorithms/searching-algorithms",
@@ -78,7 +85,7 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
-                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
