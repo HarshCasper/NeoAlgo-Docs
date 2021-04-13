@@ -143,16 +143,15 @@ import java.util.Scanner;
   to Monoalphabetic cipher, the key difference between Homophonic cipher and Monoalphabetic cipher is that, in
   Monoalphabetic cipher there is a constant replacement of character to another character whereas in Homophonic cipher
   we have a set of characters which we can substitute*/
+  
 public class HomophonicCipher
 {
     // Character Mapping table for Homophonic Cipher
     private static HashMap<Character, List<Character>> homophonicSequence;
     
-    /**
-     * <p>
-     * This is a public method which is used to initialize homophonicSequence with character mapping.
-     * </p>
-     */
+    /*
+     This is a public method which is used to initialize homophonicSequence with character mapping.
+    */
     public void initializeHomophonicSequence()
     {
         // Initializing homophonicSequence
@@ -329,29 +328,20 @@ public class HomophonicCipher
         
     }
     
-    // driver code
+
     public static void main(String[] args)
     {
-        // Create an object of String class for storing plain text to be entered by the user
         String plainText;                                 
-        // Created an object of Scanner class for asking for user input.
         Scanner scan = new Scanner(System.in); 
-        // Created an object of HomophonicCipher for accessing it's method for encryption
         HomophonicCipher homophonicCipher = new HomophonicCipher(); 
         
-        // Initializing homophonicCipher
         homophonicCipher.initializeHomophonicSequence();
-        
-        // Asking user to enter plain text
         System.out.print("Please Enter Plain Text:");
         plainText = scan.nextLine();
         
-        // Accessing method 'encrypt' of HomophonicCipher class to encrypt plainText
         String cipherText = homophonicCipher.encrypt(plainText.toUpperCase());
-        // Printing cipher text
         System.out.print("Cipher Text: " + cipherText);
         
-        // Closing the Scanner object scan
         scan.close();
     }
 }
@@ -377,8 +367,8 @@ Cipher Text: 60LL5KQEZE2R87U
 ## Complexity Analysis
 
 
-- Time  complexity - O(n)
-- Space complexity - O(n)
+- Time  complexity: `O(n)`
+- Space complexity: `O(n)`
 
 ## Credits
 
