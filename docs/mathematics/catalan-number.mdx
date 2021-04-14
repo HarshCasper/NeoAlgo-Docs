@@ -9,23 +9,23 @@ Catalan numbers are a sequence of natural numbers that occur in various counting
 
 ## Explanation
 
-Catalan numbers are often denoted by C<sub>n</sub> where `n` represents the n<sup>th</sup> Catalan number. n<sup>th</sup> Catalan number is given by,
+Catalan numbers are often denoted by C<sub>n</sub> where `n` represents the n<sup>th</sup> Catalan number. n<sup>th</sup> Catalan number is given by:
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=C_n&space;=&space;\frac{1}{n&space;&plus;&space;1}&space;\binom{2n}{n},&space;n&space;\ge&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_n&space;=&space;\frac{1}{n&space;&plus;&space;1}&space;\binom{2n}{n},&space;n&space;\ge&space;0" title="C_n = \frac{1}{n + 1} \binom{2n}{n}, n \ge 0" /></a>
 
 The recursion based formula for Catalan numbers is given by,
 
-Base Case:
+- Base Case:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=C_0&space;=&space;1" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_0&space;=&space;1" title="C_0 = 1" /></a>
+    <a href="https://www.codecogs.com/eqnedit.php?latex=C_0&space;=&space;1" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_0&space;=&space;1" title="C_0 = 1" /></a>
 
-n<sup>th</sup> Catalan number for `n >= 0`:
+- n<sup>th</sup> Catalan number for `n >= 0`:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" title="C_{n+1} = \sum_{i=0}^n{C_iC_{n-i}}" /></a>
+    <a href="https://www.codecogs.com/eqnedit.php?latex=C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C_{n&plus;1}&space;=&space;\sum_{i=0}^n{C_iC_{n-i}}" title="C_{n+1} = \sum_{i=0}^n{C_iC_{n-i}}" /></a>
 
 ## Algorithm
 
-#### Recursive
+#### Recursive approach
 
 - Given `n` as the number.
 
@@ -40,6 +40,8 @@ n<sup>th</sup> Catalan number for `n >= 0`:
 - This approach is not preferred for large numbers as it does a lot of repeated work which exponentially increases the running time.
 
 ```
+Pseudo-Code: 
+
 Base case: If n = 0 or n = 1, return 1.
 for num = 0 to n
    catalan += catalan(num) + catalan(n - num - 1)
@@ -48,7 +50,7 @@ return catalan
 
 This takes `exponential` running time.
 
-#### Dynamic Programming
+#### Dynamic Programming approach
 
 - Given `n` as the number.
 
@@ -61,6 +63,8 @@ This takes `exponential` running time.
 - Finally return `array[n]`.
 
 ```
+Pseudo-Code: 
+
 Make an array to store values in bottom-up manner.
 Base case: Initialize array[0] = array[1] = 1.
 for i = 2 to n
