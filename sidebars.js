@@ -39,7 +39,7 @@ module.exports = {
       items: [
         'data-structures/data-structures',
         'data-structures/binary-tree',
-        'data-structures/preordertraversal'
+        'data-structures/preorder_traversal'
       ],
     },
     {
