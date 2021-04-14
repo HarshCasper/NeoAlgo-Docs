@@ -1,0 +1,222 @@
+---
+title: Kadane's Algorithm
+slug: /dp/kadane-algorithm
+---
+
+## Introduction
+
+Kadane's Algorithm gives us the maximum sum out of all possible contiguous subarray in a one-dimensional array. It is a Dynamic Programming based algorithm because it uses the previously computed data for further computations. It is the most optimal solution for finding the maximum sum contiguous subarray. It has many applications like genomic sequence analysis and computer vision.
+
+## Explanation 
+
+Contiguous subarray refers to the continuous part of an array. Contiguous subarrays of `{p,q,r}` are `{p}`, `{q}`, `{r}`, `{p,q}`, `{q,r}`, `{p,q,r}`. This algorithm iterates over all positive-sum contiguous subarrays and keep a track of the maximum sum contiguous subarray. If the sum of the current subarray on which we are iterating is greater than the maximum sum, then we will replace the maximum sum with the current sum.
+
+Let's have one example: 
+<img src="https://i.imgur.com/DKoovMD.png" width="365" height="63" align="center"/><br/><br/>
+
+```
+arr = -4 -1 2 3 5 6 1 -4 -6 
+sum_till_now = arr[0] = -4        
+max_sum = arr[0] = -4
+ 
+Iteration 1:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[1] = -1
+max_sum = max(max_sum, sum_till_now) = -1
+ 
+Iteration 2:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[2] = 2
+max_sum = max(max_sum, sum_till_now) = 2
+ 
+Iteration 3:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[3] = 5
+max_sum = max(max_sum, sum_till_now) = 5
+ 
+Iteration 4:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[4] = 10
+max_sum = max(max_sum, sum_till_now) = 10
+
+Iteration 5:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[5] = 16
+max_sum = max(max_sum, sum_till_now) = 16
+ 
+Iteration 6:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[6] = 17
+max_sum = max(max_sum, sum_till_now) = 17
+ 
+Iteration 7:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[7] = 13
+max_sum = max(max_sum, sum_till_now) = 17
+ 
+Iteration 8:
+if (sum_till_now < 0) sum_till_now = 0
+sum_till_now = sum_till_now + arr[8] = 7
+max_sum = max(max_sum, sum_till_now) = 17
+```
+
+## Algorithm
+
+- Initialize `max_sum` and `sum_till_now` to `arr[0]`.
+
+- Initialize `i to 1` begin a While loop till `i != n`
+  - If `(sum_till_now < 0)` set it to `0`
+  - `sum_till_now += arr[i]`
+  - `max_sum` = `maximum(max_sum, sum_till_now)`
+  - `i += 1`.
+- Return `max_sum`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+// Function to calculate maximum sum contiguous sub subarray
+
+int kadane(int arr[], int n) 
+{
+    // Initializing max_sum and sum_till_now as first element
+    
+    int max_sum = arr[0];
+    int sum_till_now = arr[0];
+
+    int i = 1;
+    while (i < n) 
+    {
+        // Equating sum_till_now to 0
+        // if it holds a negative value
+
+        if (sum_till_now < 0) sum_till_now = 0;
+        // Adding current element to sum_till_now
+
+        sum_till_now += arr[i];
+        // Equating max_sum to sum_till_now
+        // if sum_till_now holds a greater value
+        // than max_sum
+
+        if (sum_till_now > max_sum) 
+        {
+            max_sum = sum_till_now;
+        }
+        i++;
+    }
+    return max_sum;
+}
+
+int main() 
+{
+    // Taking Input
+
+    int n;
+    cout << "Enter the size of array: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements of array: " << endl;
+    for (int i = 0; i < n; i++) 
+    {
+        cin >> arr[i];
+    }
+    // Printing Output
+
+    cout << "Maximum sum of contiguous subarray: "<<kadane(arr, n) << endl;
+    return 0;
+} 
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to calculate maximum sum contiguous sub subarray
+
+def kadane(arr):
+    # Initializing max_sum and sum_till_now as first element
+
+    max_sum = arr[0]
+    sum_till_now = arr[0]
+    i=1
+    while (i<n):
+        # Equating sum_till_now to 0
+        # if it holds a negative value
+        
+        if (sum_till_now < 0):
+            sum_till_now = 0
+        # Adding current element to sum_till_now
+
+        sum_till_now += arr[i]
+        # Equating max_sum to sum_till_now
+        # if sum_till_now holds a greater value
+        # than max_sum
+
+        if sum_till_now > max_sum:
+            max_sum = sum_till_now
+        i += 1    
+    return max_sum
+
+if __name__ == "__main__":
+    # Taking Input
+
+    data = []
+    n = int(input("Enter the size of array: "))
+    print("Enter the elements of array: ");
+    for i in range(n):
+        data.append(int(input()))
+    # Printing Output
+    
+    print("Maximum sum of contiguous subarray: {} ".format(kadane(data)))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the size of array: 5
+Enter the elements of array: 
+1 
+-2 
+3 
+4 
+-5
+```
+#### Output :
+```
+Maximum sum of contiguous subarray: 7
+```
+
+## Complexity Analysis
+
+`n` is the size of array.
+
+- Time Complexity:
+
+  - **Best Case**: `O(n)`
+  - **Average Case**: `O(n)`
+  - **Worst Case**: `O(n)`
+
+- Space Complexity: `O(1)`
+
+## Credits
+* [Janhavi Soni](https://github.com/JanhaviSoni) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/Kadane_Algorithm.cpp)
+
+* [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/other/Kadanes_Algorithm.py)
