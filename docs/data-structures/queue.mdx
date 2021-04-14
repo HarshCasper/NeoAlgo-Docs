@@ -1,0 +1,530 @@
+---
+title: Queue
+slug: /data-structures/queue
+---
+
+## Introduction
+
+A ***queue*** is a logical data structure that works on the discipline ***FIFO(First-In-First-Out)***. It is an **ADT (Abstract Data Type)** where the insertion of elements occurs at one end, called **Rear**, and deletion occurs at another end, called **Front**. For example, people standing in a queue to avail some services or cars lined up in a queue are real-world examples of queue data structure.
+
+<p align="center">
+  <img width="540" height="400" src="https://user-images.githubusercontent.com/61618767/114686707-ac525500-9d30-11eb-882f-150835a03a58.gif" />
+</p>
+
+## Basic Operations
+
+* `Enqueue` : Inserts an element from the **rear** end in a queue 
+* `Dequeue` : Deletes an element from the **front** of the queue
+* `Front` : Returns the front element of the queue
+* `isEmpty` : Checks if a queue is empty or not
+* `Display` : Prints all the queue elements
+
+## Algorithm
+
+This section will discuss the algorithmic steps performed on the [basic operations](#basic-operations) of a queue.
+
+### Enqueue 
+
+* Check whether the queue is `full`.
+* If the queue is full, then display `"Queue is Full"` or `"OVERFLOW"` and terminate the function.
+* If the queue is not full, increment the `rear` pointer and `insert` the element.
+
+### Dequeue
+
+* Check whether the queue is `empty`.
+* If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
+* If the queue is not empty, increment the `front` pointer and `delete` the element.
+
+### Front
+
+* Check whether the queue is empty.
+* If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
+* If the queue is not empty, increment the `front` pointer and return the value of the element present.
+
+### isEmpty 
+
+* Check whether `front = -1 or front > rear`
+* If so, then return true.
+* Else, return false.
+
+### Display
+
+* Check whether the queue is empty.
+* If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
+* If the queue is not empty, start a `loop` from `front` pointer till `rear` pointer and print all the elements in the queue.
+
+## Code
+
+This section will mainly focus on implementation of queue using 
+* Arrays
+* Linked Lists
+
+Note that, in Python, we use **list** instead of an array for implementing queues.
+
+### Queue using Arrays
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C', value: 'c', },
+    { label: 'C++', value: 'cpp', },
+  ]
+}>
+
+<TabItem value="c">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 50
+void insert();
+void delete();
+void display();
+int queue_array[MAX];
+int rear = -1;
+int front = -1;
+int main()
+{
+	int choice;
+	while (1)
+	{
+		printf("1.Insert element to queue \n");
+		printf("2.Delete element from queue \n");
+		printf("3.Display all elements of queue \n");
+		printf("4.Quit \n");
+		printf("Enter your choice : ");
+		scanf("%d", &choice);
+		switch (choice)
+		{
+			case 1:
+				insert();
+				break;
+			case 2:
+				delete();
+				break;
+			case 3:
+				display();
+				break;
+			case 4:
+				exit(1);
+			default:
+				printf("Wrong choice \n");
+		}
+	}
+}
+// Inserting an element
+void insert()
+{
+	int item;
+	if (rear == MAX - 1)
+		printf("Queue Overflow \n");
+	else
+	{
+		if (front == -1)
+			front = 0;
+		printf("Inset the element in queue : ");
+		scanf("%d", &item);
+		rear = rear + 1;
+		queue_array[rear] = item;
+	}
+}
+// Deleting an element
+void delete()
+{
+	if (front == -1 || front > rear)
+	{
+		printf("Queue Underflow \n");
+		return;
+	}
+	else
+	{
+		printf("Element deleted from queue is : %d\n", queue_array[front]);
+		front = front + 1;
+	}
+}
+// Displaying the elements in the queue
+void display()
+{
+	int i;
+	if (front == -1)
+		printf("Queue is empty \n");
+	else
+	{
+		printf("Queue is : \n");
+		for (i = front; i <= rear; i++)
+			printf("%d ", queue_array[i]);
+		printf("\n");
+	}
+}
+```
+
+</TabItem>
+
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+class QueueUsingArray
+{
+    int *data;
+    int nextindex;    //Index where the element should be inserted
+    int firstindex;    //Index where top value is stored
+    int size;    //The no. of elements present in queue
+    int capacity;   //The total size of queue
+public:
+    QueueUsingArray(int num)
+    {
+        data = new int[num];
+        nextindex = 0;      //indexing start from 0
+        firstindex = -1;    //firstindex is initialised by -1 because till now we don't have any element as top .
+        size = 0;
+        capacity = num;
+    }
+    //Return the number of elements present in queue
+    int getSize()     
+    {
+        return size;
+    }
+    //Indicate whether the queue is empty or not
+    bool isEmpty()     
+    {
+        return size == 0;
+    }
+    //function to insert an element at the rear of the queue
+    void enqueue()     
+    {
+        int element;
+        cout<<"Enter the Element to be inserted in queue  ";
+        cin>>element;
+        if(size == capacity)
+        {
+            cout<<"Queue is Full !"<<endl;
+            return;
+        }
+        data[nextindex]=element;
+        nextindex = (nextindex+1)% capacity;
+        if(firstindex == -1)
+        {
+            firstindex = 0;
+        }
+        size++;    //increament the size when a new  element is inserted
+    }
+    //Return the top value of queue
+    int front()     
+    {
+        if(isEmpty())
+        {
+            cout<<"Queue is Empty!"<<endl;
+            return 0;
+        }
+        return data[firstindex];
+
+    }
+    //function to delete an element from the front of the queue
+    int dequeue()     
+    {
+        if(isEmpty())
+        {
+            cout<<"Queue is Empty!"<<endl;
+            return 0;
+        }
+        int ans = data[firstindex];
+        firstindex = (firstindex+1)% capacity;    //modify the firstindex value to top value index
+        size--;
+        cout<<"Deletion is successfull !"<<endl;
+        return ans;
+    }
+};
+int main()
+{
+    int num;
+    cout<<"Enter the no. of element to be inserted in queue :";
+    cin>>num;
+    QueueUsingArray q(num);    // Create a queue of capacity num
+
+    int choice;
+    do
+    {
+        cout<<"\n0.Exit\n1.Insertion of Element\n2.Deletion of Element\n3.Display top value of queue\n4.Size of queue\n5.Is Empty"<<endl;
+        cin>>choice;
+        switch(choice)
+        {
+         case 0:
+            choice = 0;
+            cout<<"Exit Function is Successfull !"<<endl;
+            break;        
+        case 1:
+            q.enqueue();
+            cout<<"Insertion is successfull !"<<endl;
+            break;
+        case 2:
+            cout << "Pop  value from the queue : "<<q.dequeue() << endl;
+            break;
+        case 3:
+            cout << "Top value of queue : "<<q.front() << endl;
+            cout<<"Displaying top value function of queue is Successfull !"<<endl;
+            break;
+        case 4:
+            cout << "Total element in the queue : "<<q.getSize() << endl;
+            cout<<"Size function is Successfull !"<<endl;
+            break;
+        case 5:
+            cout << "Isempty "<<q.isEmpty() << endl;
+            cout<<"IsEmpty function is Successfull !"<<endl;
+            break;
+        default:
+            cout<<"\nEnter a valid choice!!";
+        }
+    }
+    while(choice != 0);
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Sample Input
+```
+1.Insert element to queue 
+2.Delete element from queue 
+3.Display all elements of queue 
+4.Quit 
+Enter your choice : 1
+Insert the element in queue : 10
+
+1.Insert element to queue 
+2.Delete element from queue 
+3.Display all elements of queue 
+4.Quit 
+Enter your choice : 1
+Insert the element in queue : 5
+
+1.Insert element to queue 
+2.Delete element from queue 
+3.Display all elements of queue 
+4.Quit 
+Enter your choice : 3
+```
+
+### Sample Output
+```
+Queue is : 
+10 5 
+```
+### Queue using Linked Lists
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+struct Node 
+{
+ public:
+    int info; 
+    Node *next;
+} * ptr, *save, *rear, *front, *NEW;
+Node *CN(int y) // For creating node
+{
+    ptr = new Node;
+    ptr->info = y;
+    ptr->next = NULL;
+    return ptr;
+}
+// For inserting node
+void insert(Node *NEWPTR)
+{
+    if (front == NULL)
+    {
+      front = rear = NEWPTR;                
+
+    }
+    else
+    {
+        rear->next = NEWPTR;  
+        rear = NEWPTR;
+    }
+}
+//for deleting a node
+void Delete() 
+{
+
+    if (front == NULL)
+        cout << "\nUnderflow!!";
+
+    else
+    {
+        ptr = front;
+        front = front->next;
+        delete ptr;
+        cout << "\nValue got deleted";
+    }
+}
+
+//for displaying the queue
+void Display(Node *D) 
+{
+    if (D != NULL)
+    {
+        while (D != NULL)
+        {
+            cout << D->info << "-->";
+            D = D->next;
+        }
+    }
+    else
+        cout << "Empty!:(";
+}
+
+int main()
+{
+    int a, x;
+    char ch = 'y';
+    do 
+    {
+        cout << "\nWhat do u want to do with Queue\n1. Insert a node \n2. Delete a node \n3. Display\n Enter your choice:";
+        cin >> a;
+        switch (a)
+        {
+
+        case 1:
+        {
+            cout << "\nEnter the data of new node :";
+            cin >> x;
+            NEW = CN(x);
+            insert(NEW);
+            cout << "\nNew node with value " << x << " is inserted in Queue.";
+        }
+        break;
+        case 2:
+        {
+            Delete();
+            cout << "\nFront node is Deleted Successfully!!";
+        }
+        break;
+        case 3:
+        {
+            cout << "\nYour queue is:";
+            Display(front);
+        }
+        break;
+
+        default:
+            cout << "\nWANT TO DO NOTHING! IT's OK!";
+        }
+        cout << "\nWant to insert or delete an another node?(Y/N):";
+        cin >> ch;
+    } while (ch == 'y' || ch == 'Y');
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class Queue:
+    
+    def __init__(self):
+        self._items = []
+
+    def __str__(self):
+        return f"front --> {self._items} <-- rear"
+
+    def __len__(self):
+        return len(self._items)
+
+    def get_front(self):
+        return self._items[0]
+
+    def get_rear(self):
+        return self._items[-1]
+
+    def is_empty(self):
+        return len(self._items) == 0
+
+    def enqueue(self, item):
+        """
+        Add an element to the rear of the queue.
+        """
+        self._items.append(item)
+
+    def dequeue(self):
+        """
+        Remove the element at the end of the front of the queue and return it.
+
+        Raises:
+            IndexError: If queue is empty.
+        """
+        return self._items.pop(0)
+
+
+if __name__ == "__main__":
+    q = Queue()
+
+    print(f"Initialized : {q}")
+
+    for elm in range(5):
+        q.enqueue(elm)
+        print(f"Enqueued '{elm}': {q}")
+
+    for _ in range(3):
+        q.dequeue()
+        print(f"Dequeued    : {q}")
+```
+
+</TabItem>
+</Tabs>
+
+### Sample Input
+```
+What do u want to do with Queue
+1. Insert a node
+2. Delete a node
+3. Display
+ Enter your choice: 1
+Enter the data of new node : 30
+```
+
+### Sample Output
+```
+New node with value 30 is inserted in queue.
+```
+
+## Complexity Analysis
+
+#### Time Complexity:
+
+* Enqueue: `O(1)` 
+* Dequeue: `O(1)` 
+* Display: `O(N)`
+
+#### Space Complexity:
+
+* Enqueue: `O(N)`
+* Dequeue: `O(1)` 
+* Display: `O(N)`
+
+## Credits
+
+* Queue using Arrays
+    * [Jivthesh M R](https://github.com/jivthesh) for the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/ds/Queueimplementation.c)
+    * [Pragya Jaiswal](https://github.com/pragyajaiswa05l) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/queue.cpp)
+
+* Queue using Linked List
+    * [Coder_Subhangini](https://github.com/Subhangini) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Queue_all_operations_using_linkedlist.cpp)
+    * [Gokul Soumya](https://github.com/gokulsoumya) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Queue.py)
