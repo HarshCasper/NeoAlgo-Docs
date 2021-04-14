@@ -5,11 +5,11 @@ slug: /data-structures/inordertraversal
 
 ## Introduction
 
-Binary Tree is a type of tree which have atmost two children or we can say atmost degree 2. So to traverse the binary tree according to Depth first search. We have a traversal algorithm called Inorder traversal.
+A binary tree is a type of tree which have at most two children or we can say at most degree 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Inorder traversal.
 
 ## Explanation 
-In this type of traversal(Inorder traversal). First we have to traverse the left part then its root then right part respectively. In left part we have to traverse whole left subtree after that root of thet subtree and then whole right subtree. Inorder: (left->root->right). 
-### Example 1
+In this type of traversal(Inorder traversal), first, we have to traverse the left part then its root then the right part respectively. In the left part, we have to traverse the whole left subtree after that root of that subtree and then the whole right subtree. Inorder: (left->root->right).
+#### Example 1
 
 <img src="https://i.imgur.com/f0nHPpz.jpg?1" width="600" height="350"/>
 
@@ -34,19 +34,20 @@ In this type of traversal(Inorder traversal). First we have to traverse the left
  Now our Inorder traversal: 11,22,33,44,55,66,77 !!
 
 ```
-# Algorithm
+## Algorithm
 
 For Inorder traversal, we follow the following algorithm:
 
-* First we have to traverse the Binary tree in this order(left->root->right).
+* First, we have to traverse the Binary tree in this order(left->root->right).
 
-* Left means traverse the whole left subtree until we get left child as null. 
+* Left means traversing the whole left subtree until we get the left child as null.
 
-* Root means parent if that particular subtree.
+* Root means the parent of that particular subtree.
 
 * Right means traverse the whole right subtree in this (left->root->right) order until we get null.
 
-# Code
+
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -106,19 +107,17 @@ void Inorder(Node *root) {
 int main() {
     Node* root = NULL;
     //input values
-     char ch;
-    do{
-        int n;
-        cout<<"Enter the data"<<endl;
-        cin>>n;
-        root = Insert(root, n);
-       
-        cout<<"Do u want add more element y(for yes) or n(for no)"<<endl;
-        cin>>ch;
-    }while(ch=='y');
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
     
     //Print Nodes in Preorder.
-    cout << "OUTPUT\n";
     cout << "In-order traversal : ";
     Inorder(root);
     cout << "\n";
@@ -132,33 +131,33 @@ int main() {
 
 ```python   
 class Node:
-	def __init__(self,key):
-		self.left = None
-		self.right = None
-		self.value = key
+    def __init__(self,key):
+        self.left = None
+        self.right = None
+        self.value = key
  
 # A function to insert a new node with the given key value
 def insert(root,node):
-	if root is None:
-		root=node
-	else:
-		if root.value<node.value:
-			if root.right is None:
-				root.right=node
-			else:
-				insert(root.right,node)
-		else:
-			if root.left is None:
-				root.left = node
-			else:
-				insert(root.left,node)
+    if root is None:
+        root=node
+    else:
+        if root.value<node.value:
+            if root.right is None:
+                root.right=node
+            else:
+                insert(root.right,node)
+        else:
+            if root.left is None:
+                root.left = node
+            else:
+                insert(root.left,node)
  
 # A function for inorder tree traversal
 def inorder(root):
-	if root:
-		inorder(root.left)
-		print(root.value)
-		inorder(root.right)
+    if root:
+        inorder(root.left)
+        print(root.value)
+        inorder(root.right)
   
 n = int(input("Enter the size of tree: "))
 
@@ -175,16 +174,17 @@ print('In-order traversal : ')
 # In-Order Traversal :- left -> root -> right
 inorder(tree)
     
+    
 ```
 </TabItem>
 </Tabs>
 
-# Sample Input and Output
-
+## Sample Input and Output
 
 #### Input :
 
 ```
+Enter the size of tree: 7
 Enter the data: 44 22 66 11 33 55 77 
 
 ```
@@ -194,13 +194,13 @@ Enter the data: 44 22 66 11 33 55 77
 In-order traversal : 11 22 33 44 55 66 77
 ```
 
-# Time & Space Complexity
+## Time & Space Complexity
  
 - **Time Complexity:** `O(n)`
 
 - **Space Complexity:** `O(h)`
 
-where h is the height of binary tree and n is the number of elements.
+where `h` is the height of binary tree and `n` is the number of elements.
 
 ### Credits
 * [Yashaswi Biyahut](https://github.com/yashaswibiyahut) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Inorder.cpp)
