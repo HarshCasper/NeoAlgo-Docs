@@ -1,0 +1,162 @@
+---
+title: Ugly Numbers
+slug: /mathematics/ugly-numbers
+---
+
+## Introduction
+
+Ugly Numbers are numbers whose only prime factors are `2`, `3` and `5`. Prime factors are the prime numbers which perfectly divides the given number. Prime Number refers to the number which is divisible by `1` and the number itself.  
+
+## Explanation 
+
+Ugly numnbers 
+
+Let's have one example: 
+
+```
+num = 45
+
+It is not divisible by 2, so we will not divide it by 2
+
+It is divisible by 3, so we will divide it by 3 till it becomes not divisible
+num = 45/3 = 15
+num = 15/3 = 5
+
+It is divisible by 5, so we will divide it by 5 till it becomes not divisible
+num = 5/5 = 1
+
+If the number reduces to 1, then it is Ugly Number
+else it is not a Ugly Number
+```
+
+## Algorithm
+
+- Initialize `max_sum` and `sum_till_now` to `arr[0]`.
+
+- Initialize `i to 1` begin a While loop till `i != n`
+  - If `(sum_till_now < 0)` set it to `0`
+  - `sum_till_now += arr[i]`
+  - `max_sum` = `maximum(max_sum, sum_till_now)`
+  - `i += 1`.
+- Return `max_sum`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    //code
+    int t;
+    cin>>t;
+    
+    long long arr[10000];
+    int c2 = 0, c3 = 0, c5 = 0;
+    arr[0] = 1;
+    
+    for(int i=1; i<10000; i++)
+    {
+        arr[i] = min(arr[c2]*2, min(arr[c3]*3, arr[c5]*5));
+        
+        if(arr[i] % 2 == 0)
+            c2++;
+        if(arr[i] % 3 == 0)
+            c3++;
+        if(arr[i] % 5 == 0)
+            c5++;
+    }
+    
+    while(t>0)
+    {
+        int n;
+        cin>>n;
+        cout<<arr[n-1]<<endl;
+        t--;
+    }
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+//
+def Divide(a, b):
+    while a % b == 0:
+        a = a / b
+    return a
+
+
+def isUgly(num):
+    num = Divide(num, 2)
+    num = Divide(num, 3)
+    num = Divide(num, 5)
+    return 1 if num == 1 else 0
+
+
+def getUglyNo(num):
+    i = 1
+    count = 1
+    while num > count:
+        i += 1
+        if isUgly(i):
+            count += 1
+    return i
+
+num = int(input("Enter Number: "))
+ugly = getUglyNo(num)
+print(num,"th Ugly number is ", ugly)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the size of array: 5
+Enter the elements of array: 
+1 
+-2 
+3 
+4 
+-5
+```
+#### Output :
+```
+Maximum sum of contiguous subarray: 7
+```
+
+## Complexity Analysis
+
+`n` is the size of array.
+
+- Time Complexity:
+
+  - **Best Case**: `O(n)`
+  - **Average Case**: `O(n)`
+  - **Worst Case**: `O(n)`
+
+- Space Complexity: `O(1)`
+
+## Credits
+* [Janhavi Soni](https://github.com/JanhaviSoni) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/ugly_numbers.cpp)
+
+* [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/other/Kadanes_Algorithm.py)
