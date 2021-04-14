@@ -1,0 +1,249 @@
+---
+title: Exponential Search
+slug: /searching-algorithms/exponential-search
+---
+
+## Introduction
+
+A simple searching algorithm which also is based on usage of Binary Search technique. Just like binary search, this needs a sorted array to work. The key to this algorithm is finding the range in which the element should exist and then applying Binary Search on that range. We keep on doubling the index until we find the range in which the item exists.
+
+## Explanation
+
+For example:
+
+Let's assume we have to search for 11 in this array -
+
+| 1 | 3 | 5 | 7 | 11 | 13 | 15 | 17 | 19 |
+|---|---|---|---|----|----|----|----|----|
+
+- We start from first element at index 0, since its not the item we are searching for we move on to index = 1.
+- From index = 1 we start a loop, where we compare `arr[index]` with 11 and keep doubling if the `arr[index] <= 11`.
+- So this is how the range shortens-
+    - When `index = 1`, `3 <= 11` is `true`:
+
+    | 3 | 5 | 7 | 11 | 13 | 15 | 17 | 19 |
+    |---|---|---|----|----|----|----|----|
+
+    - When `index = 2*1 = 2`, `5 <= 11` is `true`:
+
+    | 5 | 7 | 11 | 13 | 15 | 17 | 19 |
+    |---|---|----|----|----|----|----|
+
+    - When `index = 2*2 = 4`, `11 <= 11` is `true`:
+
+    | 11 | 13 | 15 | 17 | 19 |
+    |----|----|----|----|----|
+
+    - When `index = 2*4 = 8`, `19 <= 11` is `false`. So we have found our range that is from `8/2 = 4 to 8`:
+
+    | 11 | 13 | 15 | 17 | 19 |
+    |----|----|----|----|----|
+
+## Algorithm
+
+These are the main steps for this algorithm:
+- Start with first element and check if its the one that needs to be searched.
+- If not, start with the 2nd element (index = 1) and if the item is larger, double the index.
+- Keep doubling till the item to be searched is lower than or equal to the element at the index, that is, till `item <= arr[index]`.
+- Now the range from that `index / 2` to `index` is where the item exists if its present in the array. we start with half of `index` as we have already compared and found that the item is greater than half of `index`.
+- Apply binary search on the above range to get the result.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+  ```cpp
+  /*
+   Created by Sarthak-9
+   Exponential Search Algorithm is an optimized Binary Search to search an element in sorted array.
+   It is specifically used when the size of array is infinite.
+   Let n be the number of elements input in array and key be the element to be searched.
+  */
+  
+  
+  #include <iostream>
+  
+  using namespace std;
+  
+  int BinarySearch(int arr[], int left, int right, int key)
+  {
+          if (right >= left)
+          {
+                  int mid = left + (right - left) / 2;
+  
+                  if (arr[mid] == key) {
+                          return mid;
+                  }
+  
+                  // if element is present on left side i.e. smaller than mid
+                  if (arr[mid] > key) {
+                          return BinarySearch(arr, left, mid - 1, key);
+                  }
+  
+                  // else element is definitely on the right side
+                  return BinarySearch(arr, mid+1, right, key);
+          }
+  
+          return -1;
+  }
+  
+  int ExponentialSearch(int *arr, int n, int key)
+  {
+  
+          if (arr[0] == key) {
+                  return 0;
+          }
+  
+          // repeated doubling method to find range for binary search
+          int i = 1;
+          while (i < n && arr[i] <= key) {
+                  i = i * 2;
+          }
+  
+          int mini = i < (n-1) ? i : (n-1);
+  
+          // BinarySearch called
+          return BinarySearch(arr, i / 2, mini, key);
+  }
+  
+  int main()
+  {
+          int n;
+          cout<<"Enter the size of array"<<endl;
+          cin>>n;
+          int arr[n];
+          cout<<"Enter the sorted array"<<endl;
+  
+          // inputs the array
+          for(int i = 0; i < n; i++){
+                  cin>>arr[i];
+          }
+  
+          int key;
+          cout<<"Enter the element to search"<<endl;
+          cin >> key;
+  
+          int search_result = ExponentialSearch(arr, n, key);
+  
+          if (search_result != -1) {
+                  cout << "Element is present at position " << search_result << endl;
+          } else {
+                  cout << "Element is not present in the array" << endl;
+          }
+  
+          return 0;
+  
+  }
+  
+  /*
+   Input:
+   Enter the size of array
+   8
+   Enter the sorted array
+   5 12 25 38 52 76 110 155
+   Enter the element to search
+   52
+   Output:
+   Element is present at position 4
+  */
+  ```
+</TabItem>
+
+<TabItem value="python">
+
+  ```python
+  # =============================================================================
+  # Complexity of this algortihm is O(log i)
+  # where, i is the position where the element lies or is supposed to lie.
+  # This is better than O(log n)
+  # where, n is the number of elements in the array.
+  # Hence, this is better than Binary Search.
+  # =============================================================================
+
+  def exponential_search(search_list, left, right, target):
+      # just checking for the 0th index individually
+      if search_list[0] == target: 
+          return "Element is present at position 0"
+
+      # initializing the index to start searching for elements
+      i = 1 
+
+      # we only check until the index is greater than equal to the element to be found or until it goes beyond the length of the list
+      while i < len(search_list) and search_list[i] <= target:
+          i *= 2 # index is doubled in each iteration
+      index = binary_search(search_list, i//2, min(i, len(search_list)-1), target) 
+      return index
+
+  # applying binary search within the range where the element could be
+  def binary_search(search_list, left, right, target):
+      if left > right:
+          return "Element is not present in the array"
+      middle = (left + right) // 2
+      if search_list[middle] == target:
+          return "Element is present at position " + str(middle)
+      elif search_list[middle] > target:
+          return binary_search(search_list, left, middle - 1, target)
+      else:
+          return binary_search(search_list, middle + 1, right, target)
+
+
+  def main():
+      n = int(input("Enter size of array: "))
+      search_list = list(map(int, input("Enter the sorted array:\n").split()))
+      search_value = int(input("Enter element to search\n"))
+
+      print(exponential_search(sorted(search_list), 0, len(search_list)-1, search_value))
+  main()
+  ```
+</TabItem>
+</Tabs>
+
+
+## Sample Input and Output
+
+#### Sample Input
+
+```bash
+Enter the size of array
+8
+Enter the sorted array
+5 12 25 38 52 76 110 155
+Enter the element to search
+52
+```
+
+#### Sample Output
+
+```bash
+Element is present at position 4
+```
+
+## Complexity Analysis
+
+- `n` is the size of the array.
+
+- `i` is the index where the search key should be in the list.
+
+- Time Complexity:
+
+  - **Best Case**: O (1)
+  - **Average Case**: O (log i)
+  - **Worst Case**: O (log i)
+
+- Space complexity: O(1)
+
+## Credits
+
+- [Sarthak Saxena](https://github.com/Sarthak-9) for C++ implementation.
+- [Rayvant Sahni](https://github.com/rayvantsahni) for Python implementation.
