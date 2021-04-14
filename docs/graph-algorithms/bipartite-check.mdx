@@ -1,0 +1,228 @@
+---
+title: Bipartite Check
+slug: /graphs-algorithms/bipartite-check
+---
+
+## Introduction
+
+A bipartite graph is a graph whose vertices can be divided into two disjoint sets so that every edge connects two vertices from different sets (i.e. there are no edges which connect vertices from the same set). These sets are usually called sides.
+
+A graph is bipartite if and only if it is two-colorable. Equivalently, a bipartite graph is a graph that does not contain any **odd-length cycles**.
+
+In the Bipartite check problem, we are given an undirected graph. We need to determine whether the given graph is a Bipartite.
+
+[![Screenshot-82.png](https://i.postimg.cc/W4LJJ80T/Screenshot-82.png)](https://postimg.cc/QFmM2p6y)
+
+You can see in the above image, the graph to the right is not a bipartite graph because there exists an edge with same colors at its ends. 
+
+
+
+## Algorithm
+
+We can use a series of BFS to determine if the given graph is Bipartite
+- Initialize an empty array with `-1` indicating that all the vertices are uncolored.
+- From every uncolored vertex 
+    - Perform Breadth First Search. Assign the vertex the color `1`.
+    - Color its neighbors with color `color ^ 1`.
+    - If there is any neighbor which has been already colored and it has the same color as our current vertex, then we can conclude that the graph is NOT Bipartite. 
+- Continue the above step until all the vertices are colored.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+public class BipartiteCheck {
+    public static void main(String[] args) {
+        //driver code;
+        Scanner Scanner = new Scanner(System.in);
+
+        //take the necessary input: vertices, edges
+        System.out.println("Enter number of vertices and edges: ");
+        int vertices = scanner.nextInt();
+        int edges = scanner.nextInt();
+
+        List<Integer>[] graph = new ArrayList[vertices];
+        for(int i = 0; i < vertices; i++) {
+            graph[i] = new ArrayList();
+        }
+
+        //build the graph from the edges.
+        System.out.println("Enter the source and destination of the edges: ");
+        while(edges-- > 0) {
+            int from = scanner.nextInt();
+            int to = scanner.nextInt();
+
+            --from; --to;   //this is to make sure the vertices of the edges are by 0-index based
+            graph[from].add(to);
+            graph[to].add(from);
+        }
+
+        scanner.close();
+
+        System.out.println("Is the graph Bipartite? " + isGraphBipartite(graph, vertices));
+
+    }
+
+    private static boolean isGraphBipartite(List<Integer>[] graph, int vertices) {
+        int[] color = new int[vertices];
+        for(int i = 0; i < vertices; i++) {
+            color[i] = -1;
+        }
+
+        //A queue to perform Breadth First Search
+        Queue<Integer> queue = new LinkedList();
+
+        //boolean value storing the result
+        boolean isBipartite = true;
+        for(int i = 0; i < vertices; i++) {
+            //if the vertex is not yet colored, perform Breadth First Search
+            if(color[i] == -1) {
+                queue.add(i);
+
+                while(!queue.isEmpty()) {
+                    int at = queue.poll();
+
+                    //add all uncolored neighboring vertices to the queue
+                    for(int to : graph[at]) {
+                        if(color[to] == -1) {
+                            color[to] = color[at] ^ 1;
+                            queue.add(to);
+                        }
+                        else {
+                            //if the neighbor is already colored, the colors of those vertices shouldn't match
+                            isBipartite = isBipartite & (color[at] != color[to]);
+                        }
+                    }
+                }
+            }
+        }
+
+        //return the result
+        return isBipartite;
+    }
+}
+
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+from collections import defaultdict, deque
+
+
+def BFS(graph, node, color):
+
+    # Initilize the color of the source node to be 1
+    color[node] = 1
+
+    # Initilise the queue with the source node
+    queue = deque([node])
+
+    while queue:
+        v = queue.popleft()
+
+        # Base Case: Self looped Graph is not Bipartite
+        if v in graph[v]:
+            return False
+
+        # Check for each adjacent node
+        for each in graph[v]:
+
+            # If not colored, Mark its color to be XOR of its preceding node
+            if color[each] == -1:
+                color[each] = color[v] ^ 1
+                queue.append(each)
+
+            # If already colored, Check whether its color is same as preceding node
+            # If yes then return False
+            if color[each] == color[v]:
+                return False
+
+    # If all the nodes in the graph are colored, return True
+    return True
+
+
+def Bipartite_Graph(n, graph):
+
+    # To assign color to each vertex either 0 or 1
+    color = [-1] * (n + 1)
+
+    # A boolean to store answer
+    answer = True
+
+    for i in range(1, n + 1):
+
+        # For each uncolored node, we have to call BFS() function
+        if color[i] == -1:
+
+            # Answer will be the (and) of the previous and the boolean value returned
+            # by the BFS() function
+            answer = answer and BFS(graph, i, color)
+
+    return answer
+
+if __name__ == "__main__":
+    n, m = map(int, input("Enter the number of vertex and edges: ").split())
+    print("Enter the source and destination of the edges: ")
+    graph = defaultdict(list)
+
+    for i in range(m):
+        a, b = map(int, input().split())
+        graph[a] += [b]
+        graph[b] += [a]
+    ans = Bipartite_Graph(n, graph)
+
+    # Print the Answer
+    print("Is the graph Bipartite? ", ans)
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter number of vertices and edges: 4 4
+Enter the source and destination of the edges: 
+1 2
+2 3
+4 3
+1 4
+```
+
+#### Output
+
+```
+Is the graph Bipartite? true.
+```
+
+## Complexity Analysis
+
+- `N` is the number of vertices and `M` is the number of edges.
+
+- Time Complexity: O(N + M)
+- Space Complexity: O(N)
+
+## Credits
+
+- [Jahnavi Majji](https://github.com/Jahnavi-Majji) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/BipartiteCheck.java).
+- [Akash Kumar Bhagat](https://github.com/charlie219) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/graphs/Bipartite_Graph.py)
