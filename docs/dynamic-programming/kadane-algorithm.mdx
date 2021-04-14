@@ -1,6 +1,6 @@
 ---
 title: Kadane's Algorithm
-slug: /dp/kadane-algorithm
+slug: /dynamic-programming/kadane-algorithm
 ---
 
 ## Introduction
@@ -16,9 +16,9 @@ Let's have one example:
 
 ```
 arr = -4 -1 2 3 5 6 1 -4 -6 
-sum_till_now = arr[0] = -4        
-max_sum = arr[0] = -4
- 
+sum_till_now = arr[0] = -4, It contains the maximum sum of subarray till the current element on which we are iterating.         
+max_sum = arr[0] = -4, It contains overall max sum contiguous subarray.         
+
 Iteration 1:
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[1] = -1
@@ -62,13 +62,14 @@ max_sum = max(max_sum, sum_till_now) = 17
 
 ## Algorithm
 
-- Initialize `max_sum` and `sum_till_now` to `arr[0]`.
+- Initialize `max_sum` and `sum_till_now` to the first element of the array.
 
-- Initialize `i to 1` begin a While loop till `i != n`
-  - If `(sum_till_now < 0)` set it to `0`
-  - `sum_till_now += arr[i]`
-  - `max_sum` = `maximum(max_sum, sum_till_now)`
-  - `i += 1`.
+- Iteratate over the array from index `1 to n-1`.
+ 
+  - If `sum_till_now` becomes less than `0` set it to `0`.
+  - Add the element on which we are iterating to `sum_till_now`.
+  - If `sum_till_now` become greater than `max_sum`, replace `max_sum` with `sum_till_now`.
+
 - Return `max_sum`.
 
 ## Code
@@ -100,17 +101,8 @@ int kadane(int arr[], int n)
     int i = 1;
     while (i < n) 
     {
-        // Equating sum_till_now to 0
-        // if it holds a negative value
-
         if (sum_till_now < 0) sum_till_now = 0;
-        // Adding current element to sum_till_now
-
         sum_till_now += arr[i];
-        // Equating max_sum to sum_till_now
-        // if sum_till_now holds a greater value
-        // than max_sum
-
         if (sum_till_now > max_sum) 
         {
             max_sum = sum_till_now;
@@ -153,18 +145,9 @@ def kadane(arr):
     sum_till_now = arr[0]
     i=1
     while (i<n):
-        # Equating sum_till_now to 0
-        # if it holds a negative value
-        
         if (sum_till_now < 0):
             sum_till_now = 0
-        # Adding current element to sum_till_now
-
         sum_till_now += arr[i]
-        # Equating max_sum to sum_till_now
-        # if sum_till_now holds a greater value
-        # than max_sum
-
         if sum_till_now > max_sum:
             max_sum = sum_till_now
         i += 1    
@@ -194,19 +177,19 @@ if __name__ == "__main__":
 Enter the size of array: 5
 Enter the elements of array: 
 1 
--2 
+2 
 3 
 4 
--5
+5
 ```
 #### Output :
 ```
-Maximum sum of contiguous subarray: 7
+Maximum sum of contiguous subarray: 15
 ```
 
 ## Complexity Analysis
 
-`n` is the size of array.
+- `n` is the size of array.
 
 - Time Complexity:
 
