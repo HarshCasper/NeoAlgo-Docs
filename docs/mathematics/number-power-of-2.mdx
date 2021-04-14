@@ -31,7 +31,7 @@ Clearly we see, the number 567 is not power of 2.
  - for example `15` = `01111` in binary representation.
  - this two numbers bitwise AND `&` will be zero 
  - `10000 & (1000 - 1)` -> `0000`
- - if the number is not Power of `2` , then their bitwise AND will not be zero. 
+ - if the number is not Power of `2` , then their bitwise AND will not zero. 
 
 ## Code
 
@@ -54,7 +54,7 @@ using namespace std;
 
 bool number_is_power_of_2(int number)
 {
-    /* if bitwise and of number and number-1 is zero
+  /* if bitwise and of number and number - 1 is zero
     then we can say that number is power of 2
     otherwise it is not.
     */
@@ -106,7 +106,6 @@ public class Powerof2
 		
 		// Calling the number_is_power_of_2 function
 		boolean result = number_is_power_of_2(number);
-		
 		if(result) 
 		{
 			System.out.println("The Number is power of 2\n");
