@@ -13,3 +13,5 @@ $ yarn
 $ yarn start
 ```
 Finally, navigate to http://localhost:3000 and you should see our app is now up and running ⚡
+
+[![Powered by Vercel](./static/img/powered-by-vercel.svg)](https://vercel.com?utm_source=NeoAlgo-Docs&utm_campaign=oss/)
