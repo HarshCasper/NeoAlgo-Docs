@@ -1,0 +1,233 @@
+---
+title: Heap Sort
+slug: /sorting-algorithms/heap-sort
+---
+
+## Introduction
+
+Heap Sort is a sorting algorithm which extracts the maximum or minimum element from the array and swap it with the last element of the array for sorting in ascending or descending order `N` times. It is similar to Selection Sort, with the only difference is that it uses Heap data structure for finding minimum or maximum element. It is a In-Place and Non-Stable Sorting Algorithm.
+
+- **Binary Heap**: It is a complete binary tree represented using array. There are two types of Binary Heap:
+
+    - **MaxHeap**: Both left and right subtree of every node contains smaller elements
+    - **MinHeap**: Both left and right subtree of every node contains greater elements
+
+- **Formulas**:
+
+  - **Left Child**:     `2*i+1`
+  - **Right Child**:    `2*i+2`
+  - **Parent**:         `floor((i-1)/2)`
+
+`i` is the index of array
+
+
+## Explanation 
+
+Let's have one example: 
+```
+Input Array: 4 1 2 7
+
+    4(0)
+   /    \
+ 1(1)   2(2)
+ /
+7(3)I 
+
+The numbers in bracket represent the indices of the array
+
+Converting it to MaxHeap:
+ 
+    4(0)                       4(0)                       7(0) 
+   /    \                     /    \                     /    \
+ 1(1)   2(2)      ->        7(1)   2(2)      ->        4(1)   2(2)
+ /                          /                          /
+7(3)                      1(3)                       1(3)
+             
+          Applying Heapify           Applying Heapify 
+             on index 1                 on index 0
+               
+Swapping root with last element of MaxHeap and reducing the size of MaxHeap
+ 
+    7(0)                       1(0)                       4(0)                      2(0)                      2(0)                      1(0)                     1(0)
+   /    \                     /    \                     /    \                    /    \                    /    \                    /    \                   /    \
+ 4(1)   2(2)      ->        4(1)   2(2)      ->       1(1)   2(2)      ->       1(1)   4(2)      ->       1(1)   4(2)      ->       2(1)   4(2)      ->      2(1)    4(2)
+ /                          /                          /                         /                         /                         /                        /
+1(3)                      7(3)                       7(3)                      1(3)                      7(3)                      7(3)                     7(3)
+                          
+           Swapping index             Applying Heapify          Swapping index           Applying Heapify           Swapping index            Applying Heapify
+              0 and 3                    on index 0                0 and 2                  on index 0                 0 and 1                   on index 0
+```
+
+## Algorithm
+
+Heap Sort for Sorting in Increasing Order:
+
+* First we will convert array into MaxHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
+
+* Swap the root of the MaxHeap with the last element of the MaxHeap 
+
+* Reduce the size of MaxHeap by 1 from the last and call Heapify on the root.
+
+* Perform step 2 and step 3 
+
+Heap Sort for Sorting in Decreasing Order:
+
+* First we will convert array into MinHeap by calling Heapify function on the range `[(n-2)/2, 0]`. `(n-2)/2` is the last internal node
+
+* Swap the root of the MinHeap with the last element of the MinHeap 
+
+* Reduce the size of MinHeap by 1 from the last and call Heapify on the root.
+
+* Perform step 2 and step 3 
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void Heapify(int arr[],int idx,int size){
+    int l=2*idx+1;
+    int r=2*idx+2;
+    int maxx=idx;
+    
+    if(l<size && arr[l]>arr[maxx])maxx=l;
+    if(r<size && arr[r]>arr[maxx])maxx=r;
+
+    swap(arr[maxx],arr[idx]);
+    if(maxx!=idx)
+    {
+        Heapify(arr,maxx,size);
+    }
+}
+
+int main()
+{
+    cout<<"Enter elements to be sorted :";
+    int n;
+    cin>>n;
+
+    int arr[n];
+    for(int i=0;i<n;i++)cin>>arr[i];
+
+    for(int i=(n-2)/2;i>=0;i--)          
+    {
+       Heapify(arr,i,n); 
+    }
+
+    for(int i=n-1;i>=1;i--)
+    {
+        swap(arr[0],arr[i]);
+        Heapify(arr,0,i);
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def heapify(arr, length, index):
+    # base case
+    # we will call this function until the largest number is the index...
+    largest_num_index = index
+    left_index = (index * 2) + 1
+    right_index = (index * 2) + 2
+ 
+    if(left_index < length and arr[index] < arr[left_index]):
+        largest_num_index = left_index
+ 
+    if(right_index < length and arr[largest_num_index] < arr[right_index]):
+        largest_num_index = right_index
+ 
+    # if index is not the largest, make it the largest!
+    # and run it again!
+    if(largest_num_index != index):
+        arr[index], arr[largest_num_index] = arr[largest_num_index], arr[index]
+        heapify(arr, length, largest_num_index)
+ 
+ 
+def heap_sort(arr):
+    # need array length to create indices
+    length = len(arr)
+ 
+    for index in range(length, -1, -1):
+        # ask about functions modifying arrays without return value
+        # build max heap
+        heapify(arr, length, index)
+ 
+    # for each sorted heap, swap the root and the last number
+    for index in range(length - 1, 0, -1):
+        arr[index], arr[0] = arr[0], arr[index]
+        # then call heapify again with the new array
+        heapify(arr, index, 0)
+ 
+ 
+# Taking Elements to be Sorted
+
+data = []
+n = int(input("Enter elements to be sorted :"))
+ 
+for i in range(n):
+    data.append(int(input()))
+    
+# Sending element to get sorted
+heap_sort(data)
+ 
+# Priting Elements after Getting Sorted
+for d in data:
+    print(d, end = " ")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+### Input :
+
+```
+Enter elements to be sorted : 5
+30
+50
+10
+20
+40
+```
+### Output :
+```
+10 20 30 40 50
+```
+
+## Complexity Analysis
+
+`n` is the number of elements in the array.
+
+- Time Complexity:
+
+  - **Best Case**: O (nlogn)
+  - **Average Case**: O (nlogn)
+  - **Worst Case**: O (nlogn)
+
+- Space Complexity: O (1)
+
+## Credits
+* [Avinash Kr. Ranjan](https://github.com/avinashkranjan) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Heap_sort.py)
