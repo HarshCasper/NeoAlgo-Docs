@@ -1,0 +1,230 @@
+---
+title: Vigenere Cipher
+slug: /cryptography/vigenere-cipher
+---
+
+## Introduction
+
+The Vigenere cipher is a way of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a form of polyalphabetic substitution. Vigenere cipher uses a `26*26` table with `A` to `Z` as row and column heading, which is also referred to as _Vigenere Table_.
+
+## Explanation
+
+  - Vigenere table: The first row has `26` English letters. From the second row onwards, the letter is shifted to the left one position in a cyclic manner.
+  - Given a plaintext and a keyword. The keyword is repeated in a circular fashion until it matches the length of the plaintext.
+  - Let us have one example:
+
+```
+Plaintext - NEOALGO
+Keyword   - KEY
+```
+
+  - We can see that the length of the keyword is less than that of the plaintext. So, let us repeat the keyword to match its length with the length of the plaintext.
+
+```
+Plaintext  - N E O A L G O
+Keyword    - K E Y K E Y K
+
+Ciphertext - X I M K P E Y
+```
+
+  - Now, we have successfully generated the keyword. We can now proceed to the encryption process.
+  - Pick a letter in the plaintext and its corresponding letter in the keyword. The keyword letter and the plaintext letter are used as the row index and column index. The entry at the (row, column) pair gives us the respective ciphertext.
+  - Here, the first letter in the plaintext is `N`, and in the keyword is `K`. Now, (`K`, `N`) represents (row, column) index. Using this index we get `X`, which is the first letter of the ciphertext. We repeat till we reach the end of the plaintext.
+  - Also, the encryption process can be done by using the algebraic formula. Convert `A` to `Z` to numbers. `A` is converted to `0`, `B` to `1`, . . . . . , `Z` to `25`. 
+  - So, `ciphertext = (plaintext + keyword) % 26`. Here, `N` becomes `13`. `k` becomes `10`. So, the ciphertext becomes, (13 + 10) % 26 = 23. Converting it back to ASCII, we get ciphertext as `X`.
+  - Similarly, `plaintext = (ciphertext - keyword) % 26`. Provided codes are implemented using this method.
+
+## Algorithm
+
+### Encryption
+
+All characters of the plaintext and keyword are first translated to numbers.
+
+Encryption is done character by character. Encryption function is defined as:
+
+``Enc(m, k) := (m + k) (mod 26)``
+
+Here, `m` is the character being encrypted and `k` is the character of keyword present at same index as `m`.
+
+### Decryption
+
+All characters of the ciphertext and keyword are first translated to numbers.
+
+Decryption is done character by character. Decryption function is defined as:
+
+``Dec(c, k) := (c - k) (mod 26)``
+
+Here, `c` is the character being decrypted and `k` is the character of keyword present at same index as `c`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+string encryption(string message, int x, string key) {
+	string cipher;
+	for (int i = 0; i < message.size(); ++i) {
+		int t=(message[i] + key[i%x])%26;
+		cipher+=('A'+t);
+	}
+	return cipher;
+}
+
+string decryption(string cipher, int x, string key) {
+	string message;
+	for (int i = 0; i < cipher.size(); ++i) {
+		int t=(cipher[i] - key[i%x] +26)%26;
+		message+=('A'+t);
+	}
+	return message;
+}
+
+int main() {
+
+	//use only uppercase character
+	int choice;
+	cout << "Choose 1 if you want to ENCRYPT or 2 if you want to DECRYPT: ";
+	cin >> choice;
+
+	if(choice == 1) {
+		string message;
+		cout << "Enter a plaintext message: ";
+		cin >> message;
+
+		string key;
+		cout << "Enter a keyword: ";
+		cin >> key;
+
+		cout << "\nEncrypted message: " << encryption(message, key.size(), key);
+		cout << endl;
+	}
+
+	else if(choice == 2) {
+		string ciphertext;
+		cout << "Enter a ciphertext: ";
+		cin >> ciphertext;
+
+		string key;
+		cout << "Enter a keyword: ";
+		cin >> key;
+
+		cout << "\nDecrypted message: " << decryption(ciphertext, key.size(), key);
+		cout << endl;
+	}
+
+	else {
+		cout << "\nInvalid choice." << endl;
+	}
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def encrypt(msg, key):
+    cipher = ""
+    n = len(key)
+    i = 0
+    for l in msg:
+        # finding the index of the character
+        p = int(ord(l) + ord(key[i % n])) % 26
+        # to perform the shift with the key
+        cipher += chr(p + ord('A'))
+        i += 1
+    return cipher
+
+
+def decrypt(cipher, key):
+    msg = ""
+    n = len(key)
+    j = 0
+    for l in cipher:
+        p = int(ord(l) - ord(key[j % n]) + 26) % 26
+        msg += chr(p + ord('A'))
+        j += 1
+    return msg
+
+if __name__=='__main__':
+    
+    # Use uppercase only
+    choice = int(input("Choose 1 if you want to ENCRYPT or 2 if you want to DECRYPT: "))
+
+    if(choice == 1):
+        msg = input("Enter a plaintext message: ")
+        key = input("Enter a keyword: ")
+
+        # encrypting the message
+        cipher = encrypt(msg, key)
+        print("\nEncrypted message: ", cipher)
+
+    elif(choice == 2):
+        cipher = input("Enter a ciphertext: ")
+        key = input("Enter a keyword: ")
+
+        # decrypting the ciphar text
+        original = decrypt(cipher, key)
+        print("\nDecrypted message: ", original)
+
+    else:
+        print("\nInvalid choice.")
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Choose 1 if you want to ENCRYPT or 2 if you want to DECRYPT: 1
+Enter a plaintext message: NEOALGO
+Enter a keyword: MARS
+```
+
+#### Output
+
+```
+Encrypted message:  ZEFSXGF
+```
+
+#### Input
+
+```
+Choose 1 if you want to ENCRYPT or 2 if you want to DECRYPT: 2
+Enter a ciphertext: ZEFSXGF
+Enter a keyword: MARS
+```
+
+#### Output
+
+```
+Decrypted message: NEOALGO
+```
+
+## Complexity Analysis
+
+  - Time Complexity  - `O(n)`
+  - Space Complexity - `O(1)`
+
+
+## Credits
+
+   - [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/Vigenere_Cipher.cpp)
+   - [Rutuja Dhanawade](https://github.com/rutujadhanawade) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/vigenere_cipher.py)

@@ -1,0 +1,188 @@
+---
+title: Sum of Divisors
+slug: /mathematics/sum-of-divisors
+---
+
+## Introduction
+
+Divisor of a number `n` refers to a number less than or equal to `n` which perfectly divides `n`. The Divisor is also called a Factor. `1` is the divisor of every number. Prime Numbers only have two divisors one and the number itself. The Sum of divisors refers to the sum of numbers in the range `[1 to n]` which perfectly divides `n`. It can be obtained by slightly modifying the code of count of divisors.
+
+## Explanation 
+
+We will make a `sum` variable and initialize it to zero. Then we will iterate from one to the square root of `n`. Whenever we find that the `n` is divisible by the current number on which we are iterating we will add the current number and will also add quotient obtained by dividing the given number `n` by the current number to `sum` only if it is not similar to the current number. 
+
+Let's have one example: 
+```
+num = 9
+range = [1,3]
+sum = 0
+
+Iteration 1:
+i=1
+divisors = 1 , 9/1=9
+sum = sum + 1 + 9 = 10
+
+Iteration 2:
+i=2
+9 is not divisible by i
+
+Iteration 3:
+i=3
+divisors = 3 , 9/3=3
+sum = sum + 3 = 13
+Here we will increase the sum by i only as i is equal to sqrt(num) 
+```
+
+## Algorithm
+
+* We will make a `sum` variable and initialize it to `0`.
+
+* We will make a variable `i` iterate it on the range `[1, sqrt(n)]`. 
+
+* If `n` is divisible by `i` and is not equal to `sqrt(n)` we will add both `i` and `n/i` to `sum` as both `i` and `n/i` will be the divisor of `n` as `n*(n/i) = n` and `i` lies on the left side of `sqrt(n)` and `n/i` on the right.
+
+* If `n` is divisible by `i` and is equal to `sqrt(n)` we will add only `i` to `sum` as both `n` and `n/i` will be the same.
+
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+//Function to return the sum of divisors
+
+int sum_of_divisors(int Number)
+{
+    //Initializing sum as 0
+
+    int sum = 0;
+    int limit = (int) sqrt(Number);
+    for (int i = 1; i < limit; i++)
+    {
+        if (Number % i == 0)
+        {
+            /*Here i is a divisor of that number
+            (Number / i) is also a divisor
+            */
+
+            sum += i;
+            sum += (Number / i);
+        }
+    }
+
+    if (Number % limit == 0)
+    {
+        if (limit *limit == Number)
+        {
+            //Number is a perfect square
+
+            sum += limit;
+        }
+        else
+        {
+            //Number is not a perfect square
+
+            sum += limit;
+            sum += (Number / limit);
+        }
+    }
+
+    return sum;
+}
+
+int main()
+{
+    //Taking Input
+
+    cout << "Enter the number: ";
+    int num;
+    cin >> num;
+    
+    //Printing Output
+
+    cout << "The sum of the divisors is: " << sum_of_divisors(num) << endl;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+
+#Function to get the sum of divisors
+
+def sum_of_divisors(n):
+
+    #Initializing i as 1 and sum as 0
+
+    i = 1
+    sum = 0
+    while True:
+        if i > math.sqrt(n):
+            break
+
+        #Adding i to sum if it is a factor 
+
+        if n % i == 0 and i == math.sqrt(n):
+            sum += i
+
+        #Adding i and n/i to sum if i is a factor     
+        
+        elif n % i == 0:
+            sum += i
+            sum += n // i
+        i += 1
+    return sum
+
+#Taking Input
+
+n = int(input("Enter the number :"))
+
+#Printing Output
+
+print("The sum of the divisors is: {} ".format(sum_of_divisors(n)))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number: 36
+```
+#### Output :
+```
+The sum of the divisors is: 91
+```
+
+## Complexity Analysis
+
+`n` is the given number.
+
+- Time Complexity:
+
+  - **Best Case**: `O(sqrt(n))`
+  - **Average Case**: `O(sqrt(n))`
+  - **Worst Case**: `O(sqrt(n))`
+
+- Space Complexity: `O(1)`
+
+## Credits
+* [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/sum_of_divisors.cpp)
