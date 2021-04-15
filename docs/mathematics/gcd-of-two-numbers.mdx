@@ -5,24 +5,21 @@ slug: /mathematics/gcd-of-two-numbers
 
 ## Introduction
 
-Greatest Common Divisor(GCD) is highest number which is factor of both the numbers. It is also called as Highest Common Factor(HCF). Two numbers are coprime if there GCD is 1. GCD of two even numbers is even and odd numbers is odd.
+Greatest Common Divisor(GCD) is the highest number which is the factor of both the numbers. It is also called as Highest Common Factor(HCF). Two numbers are coprime if their GCD is `1`. GCD of two even numbers is always even and odd numbers is always odd.
 
 ## Explanation 
 
-For a non-negative integer say `n`, Double factorial of `n` is defined as follows:
+GCD of two numbers `a` and `b` is denoted by `gcd(a,b)`. GCD of any number with `1` is `1`. GCD of any number with `0` is the same number.
 
-If `n` is even:
+GCD has following properties:
 ```
-DoubleFactorial(n) = n * (n - 2) * . . . . . 4  * 2
-```
+gcd(m⋅a, m⋅b) = m⋅gcd(a, b)
+gcd(a + m⋅b, b) = gcd(a, b)
 
-If `n` is odd:
-```
-DoubleFactorial(n) = n * (n - 2) * . . . . . 3  * 1
+where m is a non-negative integer
 ```
 
-Let's have few examples: 
-
+Let's have one example: 
 ```
 num1 = 6
 num2 = 9
@@ -52,7 +49,7 @@ Both the numbers are divisible by mini, so return mini
 
 - Declare a variable `mini` and initialize it to minimum of two numbers.
 
-- Decrease `mini` until both the numbers become divisible by it.
+- Decrease `mini` by `1` until both the numbers become divisible by it.
 
 - Return `mini`.
 
