@@ -5,11 +5,11 @@ slug: /data-structures/postordertraversal
 
 ## Introduction
 
-Binary Tree is a type of tree which have atmost two children or we can say atmost degree 2. So to traverse the binary tree according to Depth first search. We have a traversal algorithm called Postorder traversal.
+Binary Tree is a type of tree which have at most two children or we can say at most degree 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Postorder traversal.
 
 ## Explanation 
-In this type of traversal(Postorder traversal). First we have to visit left part then right part then its root respectively. In this first visit left part that means we have to traverse whole left subtree in this order (left->right->root) after that whole right subtree in this order (left->right->root) and then visit root of thst subtree. Postorder: (left->right->root). 
-### Example 1
+In this type of traversal(Postorder traversal). first, we have to visit left part then right part then its root respectively. In this first visit left part that means we have to traverse the whole left subtree in this order (left->right->root) after that whole right subtree in this order (left->right->root) and then visit root of that subtree. Postorder: (left->right->root). 
+#### Example 1
 
 <img src="https://i.imgur.com/f0nHPpz.jpg?1" width="600" height="350"/>
 
@@ -34,19 +34,19 @@ In this type of traversal(Postorder traversal). First we have to visit left part
  Now our Postorder traversal: 11 33 22 55 77 66 44 !!
 
 ```
-# Algorithm
+## Algorithm
 
 For Postorder traversal, we follow the following algorithm:
 
-* First we have to traverse the Binary tree in this order(left->right->root).
+* First, we have to traverse the Binary tree in this order(left->right->root).
 
-* Left means traverse the whole left subtree in this order(left->right->root) until we get left child as null. 
+* Left means traversing the whole left subtree in this order(left->right->root) until we get left child as null. 
 
 * Root means parent of that particular subtree.
 
 * Right means traverse the whole right subtree in this (left->right->root) order until we get null.
 
-# Code
+## Code
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -106,19 +106,16 @@ void Postorder(Node *root) {
 int main() {
     Node* root = NULL;
     //input values
-     char ch;
-    do{
-        int n;
-        cout<<"Enter the data"<<endl;
-        cin>>n;
-        root = Insert(root, n);
-       
-        cout<<"Do u want add more element y(for yes) or n(for no)"<<endl;
-        cin>>ch;
-    }while(ch=='y');
-    
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
     //Print Nodes in Postorder.
-    cout << "OUTPUT\n";
     cout << "Postorder traversal : ";
     Postorder(root);
     cout << "\n";
@@ -187,7 +184,7 @@ Postorder(tree)
 </TabItem>
 </Tabs>
 
-# Sample Input and Output
+## Sample Input and Output
 
 
 #### Input :
@@ -202,13 +199,13 @@ Enter the data: 44 22 66 11 33 55 77
 Postorder traversal : 11 33 22 55 77 66 44
 ```
 
-# Time & Space Complexity
+## Complexity Analysis
  
 - **Time Complexity:** `O(n)`
 
 - **Space Complexity:** `O(h)`
 
-where h is the height of binary tree and n is the number of elements.
+where `h` is the height of binary tree and `n` is the number of elements.
 
-### Credits
+#### Credits
 * [Yashaswi Biyahut](https://github.com/yashaswibiyahut) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Inorder.cpp)
