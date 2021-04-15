@@ -17,9 +17,9 @@ For Example
 ## Algorithm
 
 - input the matrix
-- loop from `i` = 0 to number of rows of the matrix 
-- loop from `j` = 0 to number of columns of the matrix 
-- `transpose[i][j]` = `matrix[j][i]`
+- loop from `i = 0` to number of rows of the matrix 
+- loop from `j = 0` to number of columns of the matrix 
+- `transpose[i][j] = matrix[j][i]`
 - print `transpose`
 
 
@@ -56,8 +56,7 @@ void transpose(int frows, int fcolumns, int **finput_matrix, int **ftranspose_ma
     }
 }
 
-int main(void)
-{
+void matrix_transpose(){
     int **input_matrix = NULL, **transpose_matrix = NULL ;
     int rows = 0, columns = 0, i = 0, j = 0 ;
 
@@ -116,7 +115,12 @@ int main(void)
         delete[] transpose_matrix[i] ;
     }
     delete[] transpose_matrix ;
-    return 0 ;
+}
+//Driver Code
+int main(void)
+{
+    matrix_transpose();
+    return 0;
 }
 
 ```
@@ -126,27 +130,30 @@ int main(void)
 
 ```python
 
+def matrix_transpose():
+    Row = int(input("Enter the number of rows : "))
+    Col = int(input("Enter the number of columns : "))
 
-Row = int(input("Enter the number of rows : "))
-Col = int(input("Enter the number of columns : "))
+    matrix = []
+    print("Enter the entries rowwise:")
+    for i in range(Row):
+        matrix.append([int(x) for x in input().split(" ")])
 
-matrix = []
-print("Enter the entries rowwise:")
-for i in range(Row):
-    matrix.append([int(x) for x in input().split(" ")])
+    result = [[0 for i in range(Col)] for j in range(Row)]
+    # Storing transpose of matrix in result
+    for i in range(Row):
+        for j in range(Col):
+            result[i][j] = matrix[j][i]
 
-result = [[0 for i in range(Col)] for j in range(Row)]
-# Storing transpose of matrix in result
-for i in range(Row):
-    for j in range(Col):
-        result[i][j] = matrix[j][i]
+    print("The Transpose of the matrix is")
+    for i in range(Row):
+        for j in range(Col):
+            print(result[i][j], end=" ")
+        print()
+#Driver Code
+if __name__ == "__main__":
+    matrix_transpose()
 
-print("The Transpose of the matrix is")
-for i in range(Row):
-    for j in range(Col):
-        print(result[i][j], end=" ")
-    print()
-    
 ```
 
 </TabItem>
@@ -181,5 +188,5 @@ The Transpose of the matrix is
 
 ## Credits
 
--   [MayureeS](https://github.com/MayureeS) for [Source Code in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/matrix_transpose.cpp)
--   [Adithya Kurien Peter](https://github.com/aaadddiii) for [Source Code in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Matrix_transpose.py)
+-   [MayureeS](https://github.com/MayureeS) for [For implementation in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/matrix_transpose.cpp)
+-   [Adithya Kurien Peter](https://github.com/aaadddiii) for [For implementation in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Matrix_transpose.py)
