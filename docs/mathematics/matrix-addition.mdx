@@ -20,9 +20,9 @@ For Example
 - Input matrix `A`
 - Input matrix `B` 
 - If the number of rows and number of columns of matrix `A` and matrix `B` is equal
-- loop from `i`=0 to number of rows in A do
-- loop from `j`=0 to number of rows in A do 
-- `Result[i,j]` =  `A[i,j]` + `B[i,j]`
+- loop from `i = 0` to number of rows in `A` do
+- loop from `j = 0` to number of rows in `A` do 
+- `Result[i,j] =  A[i,j] + B[i,j]`
 - Display `Result`
 
 
@@ -46,8 +46,7 @@ import TabItem from "@theme/TabItem";
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
+void matrix_addition(){
     int r1, c1, r2, c2;
     cout << "Enter the number of rows and columns of the first matrix:  ";
     cin >> r1 >> c1;
@@ -58,7 +57,7 @@ int main()
     if ((r1 != r2) || (c1 != c2))
     {
         cout << "Given Matrices cannot be added!!!";
-        return 0;
+        return;
     }
     int A[r1][c1], B[r2][c2], C[r1][c1] = {0};
 
@@ -92,43 +91,55 @@ int main()
             cout << C[i][j] << " ";
         cout << endl;
     }
+}
 
+//Driver Code
+int main()
+{
+    matrix_addition();
     return 0;
 }
+
 ```
 
 </TabItem>
 <TabItem value="py">
 
 ```python
-Row_1 , Col_1 = map(int,input("Enter the number of rows and columns of the first matrix:  ").split(" "))
-Row_2 , Col_2 = map(int,input("Enter the number of rows and columns of the second matrix:  ").split(" "))
 
-if(Row_1 != Row_2 or Col_1 != Col_2):
-    print( "Given Matrices cannot be added!!!")
-    quit()
+def matrix_addition():
+    Row_1 , Col_1 = map(int,input("Enter the number of rows and columns of the first matrix:  ").split(" "))
+    Row_2 , Col_2 = map(int,input("Enter the number of rows and columns of the second matrix:  ").split(" "))
 
-matrix_1 = []
-print("Enter the values of the first matrix")
-for i in range(Row_1):
-    matrix_1.append([int(x) for x in input().split(" ")])
+    if(Row_1 != Row_2 or Col_1 != Col_2):
+        print( "Given Matrices cannot be added!!!")
+        quit()
 
-matrix_2 = []
-print("Enter the values of the second matrix")
-for i in range(Row_2):
-    matrix_2.append([int(x) for x in input().split(" ")])
+    matrix_1 = []
+    print("Enter the values of the first matrix")
+    for i in range(Row_1):
+        matrix_1.append([int(x) for x in input().split(" ")])
 
-result = [[0 for i in range(Col_2)] for j in range(Row_1)]
-# Adding both matrices and storing in result
-for i in range(Row_1):
-    for j in range(Col_2):
-        result[i][j] = matrix_1[i][j] + matrix_2[i][j]
+    matrix_2 = []
+    print("Enter the values of the second matrix")
+    for i in range(Row_2):
+        matrix_2.append([int(x) for x in input().split(" ")])
 
-print("The resultant matrix is:")
-for i in range(Row_1):
-    for j in range(Col_2):
-        print(result[i][j], end=" ")
-    print()
+    result = [[0 for i in range(Col_2)] for j in range(Row_1)]
+    # Adding both matrices and storing in result
+    for i in range(Row_1):
+        for j in range(Col_2):
+            result[i][j] = matrix_1[i][j] + matrix_2[i][j]
+
+    print("The resultant matrix is:")
+    for i in range(Row_1):
+        for j in range(Col_2):
+            print(result[i][j], end=" ")
+        print()
+        
+#Driver Code
+if __name__ == "__main__":
+    matrix_addition()
     
 ```
 
@@ -164,9 +175,9 @@ The resultant matrix is:
 ## Complexity Analysis
 
 - Time complexity - O(`n` * `m`)
-- Space complexity - O(`n`*`m`),, where `n` and `m` are the number of rows and columns respectively
+- Space complexity - O(`n` * `m`),, where `n` and `m` are the number of rows and columns respectively
 
 ## Credits
 
--   [Hari Krishnan U](https://github.com/Harikrishnan6336) for [Source Code in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/matrix_addition.cpp)
--   [Adithya Kurien Peter](https://github.com/aaadddiii) for [Source Code in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Matrix_addition.py)
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for [For implementation in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/matrix_addition.cpp)
+-   [Adithya Kurien Peter](https://github.com/aaadddiii) for [For implementation in Python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Matrix_addition.py)
