@@ -1,0 +1,182 @@
+---
+title: Automorphic Number
+slug: /mathematics/automorphic-number
+---
+
+## Introduction
+
+An automorphic number is a number whose square ends with the given original integer.
+
+## Explanation
+
+First, calculate the square of the given number and check if the last digits of the squared number are the same as the original number.
+
+Let's have one example: 
+```
+Input  : 76
+Output : Yes
+
+(76)^2 = 57`76`
+
+Input  : 3
+Output : No
+
+(3)^2 = 9
+```
+
+## Algorithm
+
+- Compute the square of the given number.
+- Check if the  last digits of the squared number are the same as the original number.
+- if found same then we say it is automorphic number else not.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp, },
+    { label: 'Go', value: 'go', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int Check_Automorphic(int n){
+
+    int square, temp, remainder, no_digits = 0;
+    temp = n;
+    square = n * n;
+    int flag = 10;
+
+    while (n != 0)
+    {
+        n = n / 10;
+        no_digits++;
+    }
+
+    flag = pow(10, no_digits);
+    remainder = square % flag;
+
+    if (remainder == temp)
+        return 1;
+    else
+        return 0;
+}
+
+int main(){
+
+    long long int num;
+    cout << "Enter the number you want to check :";
+    cin >> num;
+
+    int result = Check_Automorphic(num);
+
+    if (result == 1)
+        cout<<"The given number is Automorphic number!"<< endl;
+
+    else
+        cout<<"The given number is not Automorphic number!"<< endl;
+}
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+package main
+
+import (
+
+  "fmt"
+
+)
+
+// This is a global variable
+var n int
+
+// This function tells us if the number is automorphic number or not 
+func automorphicnumber() {
+
+   var number int
+   var b int
+   b = n
+   number = n*n
+   i := 1
+
+   //to construct the last digits
+   for b != 0  {
+     i = i*10
+     b = b/10
+   }
+
+   //checking if the last digits form the orginal number
+   if((number%i) == n) {
+
+      fmt.Print("The given number is Automorphic number!")
+
+   }else{
+
+     fmt.Print("The given number is not Automorphic number!")
+   }
+
+}
+
+// driver function
+func main() {
+
+   fmt.Print("Enter the number you want to check :")
+   fmt.Scan(&n)
+
+   // calling automorphic function 
+   automorphicnumber()
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number you want to check :76
+```
+
+#### Output:
+
+```
+The given number is Automorphic number!
+
+```
+
+#### Input:
+
+```
+Enter the number you want to check :7 
+```
+
+#### Output:
+
+```
+The given number is not Automorphic number!
+
+```
+
+## Complexity Analysis
+
+- Time  complexity: `O(n)`
+- Space complexit : `O(1)`
+
+## Credits
+
+- [Ayush Jha](https://github.com/ayushjha952) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/automorphic_number.cpp)
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Go implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Go/math/Automorphic_Number/automorphicnumber.go)
