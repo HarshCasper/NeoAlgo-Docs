@@ -5,11 +5,11 @@ slug: /mathematics/ugly-numbers
 
 ## Introduction
 
-Ugly Numbers are numbers whose only prime factors are `2`, `3` and `5`. Prime factors are the prime numbers which perfectly divides the given number. Prime Number refers to the number which is divisible by `1` and the number itself.  
+Ugly Numbers are numbers that only have `2`, `3`, and `5` as their prime factors. Prime factors are the prime numbers that perfectly divide the given number. Prime Number refers to the number which is divisible by `1` and the number itself. `2` is the smallest prime number. `1` is neither prime nor composite.  
 
 ## Explanation 
 
-Ugly numnbers 
+To check whether the number is ugly or not we just need to keep on dividing it by `2`, `3`, and `5`. If it reduces to `1`, then the number is ugly else the number is not ugly. Prime factorization of every ugly number looks like `2^p x 3^q x 5^r`, where `p>=0`, `q>=0`, and `r>=0`. `1` is included in the list of ugly numbers by convention. First `10` ugly numbers are `1`, `2`, `3`, `4`, `5`, `6`, `8`, `9`, `10`, `12`.
 
 Let's have one example: 
 
@@ -25,20 +25,18 @@ num = 15/3 = 5
 It is divisible by 5, so we will divide it by 5 till it becomes not divisible
 num = 5/5 = 1
 
-If the number reduces to 1, then it is Ugly Number
-else it is not a Ugly Number
+It reduces to 1, so it is a Ugly Number.
 ```
 
 ## Algorithm
 
-- Initialize `max_sum` and `sum_till_now` to `arr[0]`.
+- Divide the number by `2` until it becomes not divisible by `2`.
 
-- Initialize `i to 1` begin a While loop till `i != n`
-  - If `(sum_till_now < 0)` set it to `0`
-  - `sum_till_now += arr[i]`
-  - `max_sum` = `maximum(max_sum, sum_till_now)`
-  - `i += 1`.
-- Return `max_sum`.
+- Divide the number by `3` until it becomes not divisible by `3`.
+
+- Divide the number by `5` until it becomes not divisible by `5`.
+
+- Return `true` if the reduced number is `1`, else return `false`.
 
 ## Code
 
@@ -57,35 +55,40 @@ import TabItem from '@theme/TabItem';
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
+// Function to determine whether the number is ugly or not
 
-int main()
+int isUgly(int n) 
 {
-    //code
-    int t;
-    cin>>t;
-    
-    long long arr[10000];
-    int c2 = 0, c3 = 0, c5 = 0;
-    arr[0] = 1;
-    
-    for(int i=1; i<10000; i++)
+    while (true) 
     {
-        arr[i] = min(arr[c2]*2, min(arr[c3]*3, arr[c5]*5));
-        
-        if(arr[i] % 2 == 0)
-            c2++;
-        if(arr[i] % 3 == 0)
-            c3++;
-        if(arr[i] % 5 == 0)
-            c5++;
+        if (n % 2 == 0) n = n / 2;
+        if (n % 3 == 0) n = n / 3;
+        if (n % 5 == 0) n = n / 5;
+        if (n % 2 != 0 && n % 3 != 0 && n % 5 != 0) 
+        {
+            break;
+        }
     }
-    
-    while(t>0)
+    if (n == 1) return true;
+    else return false;
+}
+
+int main() 
+{
+    // Taking Input
+
+    cout << "Enter the Number: ";
+    int n;
+    cin >> n;
+    // Printing Output
+
+    if (isUgly(n)) 
     {
-        int n;
-        cin>>n;
-        cout<<arr[n-1]<<endl;
-        t--;
+        cout << "Ugly Number" << endl;
+    } 
+    else 
+    {
+        cout << "Not a Ugly Number" << endl;
     }
     return 0;
 }
@@ -95,32 +98,34 @@ int main()
 <TabItem value="py">
 
 ```python   
-//
-def Divide(a, b):
-    while a % b == 0:
-        a = a / b
-    return a
+# Function to determine whether the number is ugly or not
 
+def isUgly(n):
+  while (True):    
+    if (n % 2 == 0): 
+      n = n // 2
+    if (n % 3 == 0): 
+      n = n // 3
+    if (n % 5 == 0):
+      n = n // 5
+    if (n % 2 and n % 3 != 0 and n % 5 != 0):
+      break
+    
+  if (n == 1): 
+    return True
+  else:
+    return False
 
-def isUgly(num):
-    num = Divide(num, 2)
-    num = Divide(num, 3)
-    num = Divide(num, 5)
-    return 1 if num == 1 else 0
+if __name__ == '__main__':
+  # Taking Input
 
+  n = int(input("Enter the number: "))
+  # Printing Output
 
-def getUglyNo(num):
-    i = 1
-    count = 1
-    while num > count:
-        i += 1
-        if isUgly(i):
-            count += 1
-    return i
-
-num = int(input("Enter Number: "))
-ugly = getUglyNo(num)
-print(num,"th Ugly number is ", ugly)
+  if(isUgly(n)):
+    print("Ugly Number")
+  else:
+    print("Not a Ugly Number")
 ```
 </TabItem>
 
@@ -131,32 +136,17 @@ print(num,"th Ugly number is ", ugly)
 #### Input :
 
 ```
-Enter the size of array: 5
-Enter the elements of array: 
-1 
--2 
-3 
-4 
--5
+Enter the Number: 12
 ```
 #### Output :
 ```
-Maximum sum of contiguous subarray: 7
+Ugly Number
 ```
 
 ## Complexity Analysis
 
-`n` is the size of array.
-
-- Time Complexity:
-
-  - **Best Case**: `O(n)`
-  - **Average Case**: `O(n)`
-  - **Worst Case**: `O(n)`
+- Time Complexity: `O(n)`
 
 - Space Complexity: `O(1)`
 
 ## Credits
-* [Janhavi Soni](https://github.com/JanhaviSoni) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/ugly_numbers.cpp)
-
-* [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/other/Kadanes_Algorithm.py)
