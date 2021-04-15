@@ -1,0 +1,148 @@
+---
+title: Nth term in the Fibonacci sequence
+slug: /mathematics/fibonacci-recursion
+---
+
+## Introduction
+
+Fibonacci numbers form a sequence of numbers known as the Fibonacci sequence, such that each number is the sum of its two preceding numbers in the sequence. The series starts with `0` and `1`.
+
+## Explanation
+
+For a non-negative number `n`, the `nth` fibonacci number is given by,
+
+Base case:
+
+```
+Fibonacci(0) = 0
+Fibonacci(1) = 1
+```
+
+General case:
+
+```
+Fibonacci(n) = Fibonacci(n - 1) + Fibonacci(n - 2), for n > 1
+```
+
+Let us have a look at a few examples:
+
+```
+Fibonacci(5) = 5
+Fibonacci(10) = 55
+```
+
+The first few terms of the fibonacci sequence are: `0, 1, 1, 2, 3, 5, 8, 13, . . . `
+
+## Algorithm
+
+  - Given a number `n`.
+  - Handle the base cases, i.e., for `n = 0` and `n = 1`.
+  - For other cases, call the function recursively for `n - 1` and `n - 2`.
+
+```
+Pseudo-Code:
+
+fibonacci(n)
+    If n = 0
+        return 0
+    If n = 1
+        return 1
+    Else
+        return fibonacci(n-1) + fibonacci(n-2)
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// This function returns the nth terms in fibonacci sequence
+int fibonacci(int number) {
+	// Base case for n = 0 and n = 1
+	if(number == 0) 
+		return 0;
+	else if(number == 1)
+		return 1;
+	// Recursively call the function for n-1 and n-2
+	return fibonacci(number - 1) + fibonacci(number - 2);
+}
+
+int main() {
+
+	// Take number as input from the user
+	int number;
+	cout << "Enter a number: ";
+	cin >> number;
+
+	// If number is less than 0, exit
+	if(number < 0) {
+		cout << "\nPlease enter a non-negative number." << endl;
+		exit(0);
+	}
+
+	// Else call the function and print the nth term
+	cout << "\nThe term at index " << number << " of the fibonacci sequence is ";
+	cout << fibonacci(number) << endl;
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def fibo_rec(x):
+    
+    if x == 0:
+        return 0
+    elif x == 1:
+        return 1
+    else:
+        return fibo_rec(x-1) + fibo_rec(x-2)
+
+if __name__ == "__main__":
+
+    n = int(input("Enter a number: "))
+    print("\nThe term at index " + str(n) + " of the fibonacci sequence is " + str(fibo_rec(n)))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter a number: 7
+```
+
+#### Output
+
+```
+The term at index 7 of the fibonacci sequence is 13
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(2^n)`
+  - Space complexity: `O(n)`
+
+## Credits
+
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [CPP Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/fibonacci.cpp)
+  - [Prakash-poka](https://github.com/Prakash-poka) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Fibonacci.py)

@@ -24,6 +24,8 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/jump-search",
+                "searching-algorithms/exponential-search",
             ],
         },
         {
@@ -46,7 +48,9 @@ module.exports = {
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
                 "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
+
             ],
         },
         {
@@ -84,6 +88,8 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
             ],
         },
@@ -124,7 +130,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher","cryptography/homophonic-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher"],
         },
         {
             type: "category",
