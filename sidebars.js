@@ -47,8 +47,9 @@ module.exports = {
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
-                 "data-structures/binary-search-tree",
-                 "data-structures/inorder_traversal"
+                "data-structures/binary-search-tree"            
+                "data-structures/preorder_traversal"
+                "data-structures/inorder_traversal"
             ],
         },
         {
