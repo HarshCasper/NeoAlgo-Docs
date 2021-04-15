@@ -1,0 +1,366 @@
+---
+title: Columnar Transposition Cipher
+slug: /cryptography/columnar-transposition-cipher
+---
+
+## Introduction
+
+A columnar transposition cipher is a form of transposition cipher. In the transposition cipher, the ciphertext is formed by reordering the plaintext. In columnar transposition cipher, the plaintext is written in rows of fixed length, and read column by column to form the ciphertext. The row's width and the order of reading the columns are defined by a keyword.
+
+## Explanation
+
+- The width of the row is determined by the length of the keyword. Width of the row = Length of the keyword.
+- The permutation of the columns is defined by the alphabetical order of the characters present in the keyword.
+- A 2-D matrix is formed, where the plaintext is written in out row by row. Any whitespace left in the matrix is replaced by underscores.
+- Now, by the order defined by the keyword, the message is read off column by column to form the ciphertext.
+- The underscores in the ciphertext are then removed to form the final ciphertext.
+
+Let's have one example: 
+
+```
+Plaintext: this is a plaintext
+Keyword  : venus
+
+- Width of the row = Length of the keyword = 5
+- Permutation of the columns:
+
+v e n u s
+5 1 2 4 3
+
+- According to the alphabetical ordering of the keyword, the 2nd column is read first, followed by 
+  the 3rd column, followed by the 5th column, followed by the 4th column and finally the first
+  column to form the ciphertext.
+
+- Matrix:
+
+v e n u s
+5 1 2 4 3
+
+t h i s _
+i s _ a _
+p l a i n
+t e x t _
+
+Ciphertext: hslei_ax__n_saittipt
+
+Now, the undersocres are replaced back with whitespaces.
+
+Ciphertext: hslei ax  n saittipt
+```
+
+## Algorithm
+
+#### Encryption
+
+```
+- The plaintext message is written out in rows in a 2-D matrix.
+- The keyword is numbered according to alphabetical order of its characters.
+- The keyword is seen as the column index.
+- The ciphertext is then formed by reading out the message column by column according to the
+  numbering of the keyword.
+```
+
+#### Decryption
+
+```
+- The keyword is numbered according to alphabetical order of its characters.
+- The keyword is seen as the column index.
+- The ciphertext is then written column by column in a 2-D matrix according to the numbering of the
+  keyword.
+- The plaintext is then formed by reading out the matrix row by row.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="c"
+  values={[
+    { label: 'C', value: 'c', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="c">
+
+```c
+// Below code is implementation of encryption algorithm
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#include <ctype.h>
+
+//Defining maximum length of plaintext and key
+#define MAXLENGTH 100
+
+//Sort function, returns sorted integer array
+int* sort(int arr[], int len) {
+
+	//Bubble sort is used here
+	for(int i = 0; i < len - 1; i++) {
+		for(int j = 0; j < len - 1 - i; j++) {
+			if(arr[j] > arr[j + 1]) {
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	return arr;
+}
+
+/*This function returns the corresponding numerical value 
+  of the key in the form of an array
+*/
+int* order(char* key) {
+
+	int length = strlen(key);
+
+	static int order_key[MAXLENGTH];
+	
+	/*We find the numerical value of each alphabet
+	  corresponding to the key*/
+	for(int i = 0; i < length; i++) {
+		order_key[i] = key[i] - 0;
+		order_key[i] -= 65;
+	}
+
+	static int temp[MAXLENGTH];
+
+	//Storing the numerical value temporarily
+	for(int i = 0; i < length; i++) {
+		temp[i] = order_key[i];
+	}
+
+	/*Finding the relative numbering of
+	  each alphaet in the key*/
+	int* sorted;
+	sorted = sort(order_key, length);
+
+	static int index[MAXLENGTH];
+
+	for(int i = 0; i < length; i++) {
+		for(int j = 0; j < length; j++) {
+			if(temp[i] == sorted[j]) {
+				index[i] = j+1;
+			}
+		}
+	}
+	/*Returning the array containing the numerical
+	  value of key in relative order*/
+	return index;
+}
+
+/*This is the encrypt function that takes
+  plaintext and key as input*/
+char* encrypt(char* message, char* key) {
+
+	//varible to store the correspoding cipher text
+	static char decrypted_message[MAXLENGTH];
+
+	int length_key = strlen(key);
+	int length_message = strlen(message) - 1;
+
+	/*Replacing any spaces in the plaintext with
+	  underscores*/
+	for(int i = 0; i < length_message; i++) {
+		if(message[i] == ' ') {
+			message[i] = '_';
+		}
+	}
+	
+	/*If in the matrix any row is left vacant at the
+	  end, we fill the blank spaces with underscores*/
+	if((length_message % length_key) != 0) {
+		int extra = length_key - length_message % length_key;
+		for(int i = 0; i < extra; i++) {
+			message[length_message + i] = '_';
+		}
+		//Update the length of the message accordingly
+		length_message = strlen(message);
+	}
+
+	//Define the matrix to transpose and get the cipher
+	char matrix[(length_message / length_key)][length_key];
+
+	int count = 0;
+	int* columns;
+	columns = order(key);
+
+	//Fill in the values of plaintext in the matrix row by row
+	for(int i = 0; i < (length_message/length_key); i++) {
+		for(int j = 0; j < length_key; j++) {
+			matrix[i][columns[j] - 1] = message[count];
+			count++;
+		}
+	}
+
+	int* sorted;
+	sorted = sort(columns, length_key);
+	int cnt = 0;
+	
+	/* Now create the ciphertext by reading values from the matrix 
+	   in a column by column fashion*/
+	for(int i = 0; i < length_key; i++) {
+		for(int j = 0; j < (length_message / length_key); j++) {
+			//If there is a space, replace it with an underscore
+			if(matrix[j][sorted[i] - 1] == '_') {
+				decrypted_message[cnt] = ' ';
+			}
+			else {
+				decrypted_message[cnt] = matrix[j][sorted[i] - 1];
+			}
+			cnt++;
+		}
+	}
+	//return the encrypted ciphertext
+	return decrypted_message;
+}
+
+int main() {
+
+	//Declaring variables for the message and key
+	char key[MAXLENGTH];
+	char plaintext[MAXLENGTH];
+
+	//Taking message and key as input from the user
+	printf("Enter plaintext       : ");
+	fgets(plaintext, MAXLENGTH, stdin);
+	printf("Enter key             : ");
+	scanf("%s", key);
+
+	for(int i = 0; i < strlen(key); i++) {
+		key[i] = tolower(key[i]);
+	}
+
+	//Print the encrypted message by calling the encrypt function
+	printf("\nThe encrypted text is : %s\n", encrypt(&plaintext[0], &key[0]));
+
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+# Below code is implementation of encryption algorithm
+def key_to_pad(keyword):
+
+    ''' This function takes key as argument. It then sorts the
+    key according to alphabetical order and return the relative
+    position of each keyword.'''
+    
+    sorted_keyword = sorted(keyword)
+    pad = []
+    for i in keyword:
+        pad.append(sorted_keyword.index(i))
+    return pad
+
+def matrix_plaintext(plaintext, keyword):
+    ''' This funcion takes plaintext and keyword as input.
+    It forms a matrix where plaintext characters are stored
+    in row wise fashion.'''
+
+    ''' To form a completely filled matrix, we check if plaintext
+    is a multiple of keyword or not. If it is not, the we add 
+    underscores at the end of the plaintext.'''
+    if len(plaintext) % len(keyword) != 0:
+        empty = len(keyword) - (len(plaintext) % len(keyword))
+        for i in range(empty):
+            plaintext += "_"
+
+    # If plaintext has spaces, replace it with underscores
+    for i in range(len(plaintext)):
+        if(plaintext[i] == " "):
+            plaintext = plaintext[:i] + "_" + plaintext[i + 1:]
+
+    # The rows and columns of the matrix
+    rows = len(plaintext) // len(keyword)
+    columns = len(keyword)
+    
+    matrix = []
+
+    count = 0
+
+    # Adding plaintext to the matrix in row wise fashion
+    for i in range(rows):
+        column_matrix = []
+        for j in range(columns):
+            column_matrix.append(plaintext[count])
+            count = count + 1
+        matrix.append(column_matrix)
+
+    # This function returns the matrix and the final plaintext
+    return plaintext, matrix
+
+
+
+def encryption(plaintext, keyword):
+
+    ''' This is the actual encrption function. It takes plaintext
+    and keyword as input. It then forms ciphertext by reading
+    the matrix in a column wise fashion. It used the relative
+    order of key to decide the order of chosing columns.'''
+
+    order = key_to_pad(keyword)
+
+    plaintext, matrix = matrix_plaintext(plaintext, keyword.lower())
+    enc = []
+    for i in range(len(keyword)):
+        for j in range(len(plaintext) // len(keyword)):
+            enc.append(matrix[j][order.index(i)])
+    # Returning the encrypted plaintext
+    return enc
+
+# Driver function
+if __name__=='__main__':
+
+    # Taking plaintext and keyword as input from the user
+    plaintext = input("Enter plaintext      : ")
+    keyword = input("Enter key            : ")
+
+    # Calling the encryption function
+    enc = encryption(plaintext, keyword.lower())
+
+    ''' Replacing the underscores in the encrypted message
+        with spaces'''
+    for i in range(len(enc)):
+        if enc[i] == "_":
+            enc[i] = " "
+
+    # Printing the final encrypted message
+    print("\nThe encrypted text is:", ''.join(enc))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter plaintext      : this is a plaintext
+Enter key            : venus
+```
+
+#### Output:
+
+```
+The encrypted text is : hslei ax  n saittipt
+```
+
+## Complexity Analysis
+
+  - Time  complexity: `O(k^2 + m)` (Worst Case, can be imporved by improving the sorting algorithm used.)
+  - Space complexity: `O(k + m)`
+
+where `m` is the length of the plaintext and `k` is the length of the key. Usually the key is much smaller than the plaintext, and hence what majorly contrbutes to the time compleixy is `m`.
+
+## Credits
+
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/cryptography/Columnar_Cipher.c)
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Columnar_Cipher.py)
