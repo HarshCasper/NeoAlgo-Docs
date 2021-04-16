@@ -126,7 +126,7 @@ void bubbleSort(int arr[], int n)
         //inner loop for number of comparisions
         for (int j = 0; j < n - 1 - i; j++)
         {
-            //swapping adjacent elements if they are in wrong order
+            //swapping adjacent elements if they are in the wrong order
             if (arr[j] > arr[j + 1])
                 swap(&arr[j], &arr[j + 1]);
         }
@@ -136,14 +136,23 @@ void bubbleSort(int arr[], int n)
 int main()
 {
     int n;
+    cout << "Enter the number of elements :: ";
     cin >> n;
     int arr[n];
 
     for (int i = 0; i < n; i++)
+    {
+        cout << "Enter element : ";
         cin >> arr[i];
+    }
+
+    cout << "\nyou entered   :: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << ' ';
 
     bubbleSort(arr, n);
 
+    cout << "\nAfter sorting :: ";
     for (int i = 0; i < n; i++)
         cout << arr[i] << ' ';
 
@@ -155,7 +164,7 @@ int main()
 <TabItem value="py">
 
 ```py
-# Function for sotring the array
+# Function for storing the array
 def bubbleSort(arr):
 
     # outer loop for number of passes
@@ -171,7 +180,7 @@ def bubbleSort(arr):
 
 
 arr = []
-size = int(input("Enter the size of list :: "))
+size = int(input("Enter the number of elements :: "))
 
 for i in range(0, size):
     element = int(input("Enter element : "))
@@ -194,14 +203,19 @@ print("After sorting :: ", arr)
 #### Input:
 
 ```
-5
-5 4 3 2 1
+Enter the number of elements :: 5
+Enter element : 5
+Enter element : 4
+Enter element : 3
+Enter element : 2
+Enter element : 1
 ```
 
 #### Output:
 
 ```
-1 2 3 4 5
+you entered   :: 5 4 3 2 1
+After sorting :: 1 2 3 4 5
 ```
 
 ## Complexity Analysis
