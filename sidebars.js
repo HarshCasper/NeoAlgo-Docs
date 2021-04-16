@@ -78,13 +78,14 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
+                "mathematics/number-power-of-2",
                 "mathematics/extended-euclidean-Algorithm",   
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
                 "mathematics/reverse-a-number",
-                "mathematics/number-power-of-2",
+                
             ],
         },
         {
