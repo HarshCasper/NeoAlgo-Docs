@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -37,7 +38,8 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
-                "sorting-algorithms/merge-sort"
+                "sorting-algorithms/merge-sort",
+                "sorting-algorithms/quick-sort",
             ],
         },
         {
