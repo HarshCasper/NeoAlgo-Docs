@@ -107,6 +107,11 @@ module.exports = {
           ],
         },
       ],
+      logo: {
+        alt: 'Powered by Vercel',
+        src: 'img/powered-by-vercel.svg',
+        href: 'https://vercel.com?utm_source=NeoAlgo-Docs&utm_campaign=oss/',
+      },
       copyright: `Copyright © ${new Date().getFullYear()} Tesseract Coding; Built with Docusaurus.`,
     },
     image: 'https://i.imgur.com/mIcfHih.png',
