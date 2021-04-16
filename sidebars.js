@@ -91,7 +91,8 @@ module.exports = {
 		            "mathematics/fibonacci-recursion",
 		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
-		"mathematics/automorphic-number"
+		"mathematics/automorphic-number",
+		"mathematics/hamming-distance",
             ],
         },
         {
