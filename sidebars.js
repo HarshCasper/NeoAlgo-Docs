@@ -84,7 +84,7 @@ module.exports = {
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
                 "mathematics/reverse-a-number",
-                "mathematics/number-is-power-of-2",
+                "mathematics/number-power-of-2",
             ],
         },
         {
