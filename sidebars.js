@@ -47,7 +47,8 @@ module.exports = {
       label: 'Dynamic Programming',
       items: [
         'dynamic-programming/dynamic-programming',
-        'dynamic-programming/egg-dropping-problem'
+        'dynamic-programming/egg-dropping-problem',
+        'dynamic-programming/painting-fence'
       ],
     },
     {
@@ -65,7 +66,7 @@ module.exports = {
         'mathematics/mathematics',
         'mathematics/armstrong-number',
         'mathematics/factorial-of-number',
-	'mathematics/happy-number'
+        'mathematics/happy-number'
       ],
     },
     {
@@ -132,7 +133,7 @@ module.exports = {
         'miscellaneous/sudoku-solver'
       ],
     },
-	  {
+    {
       type: 'category',
       label: 'Docusaurus Tutorial',
       items: [
