@@ -107,8 +107,15 @@ module.exports = {
           ],
         },
       ],
+      logo: {
+        alt: 'Powered by Vercel',
+        src: 'img/powered-by-vercel.svg',
+        href: 'https://vercel.com?utm_source=NeoAlgo-Docs&utm_campaign=oss/',
+      },
       copyright: `Copyright © ${new Date().getFullYear()} Tesseract Coding; Built with Docusaurus.`,
     },
+    image: 'https://i.imgur.com/mIcfHih.png',
+    metadatas: [{name: 'twitter:card', content: 'summary_large_image'}, {name: 'twitter:image', content: 'https://i.imgur.com/mIcfHih.png'}, {name: 'twitter:title', content: 'NeoAlgo'}, {name: 'twitter:description', content: 'Bringing all Data Structures and Algorithms under one Roof ⚡'}],
   },
   presets: [
     [
