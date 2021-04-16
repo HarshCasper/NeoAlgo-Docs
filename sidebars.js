@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -37,7 +38,8 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
-                "sorting-algorithms/merge-sort"
+                "sorting-algorithms/merge-sort",
+                "sorting-algorithms/quick-sort",
             ],
         },
         {
@@ -128,7 +130,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/columnar-transposition-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher"],
         },
         {
             type: "category",
