@@ -11,7 +11,7 @@ Bubble sort is a simple sorting algorithm which compares two adjacent elements a
 
 **AIM -** Repeatedly swap two adjacent elements if they are in the wrong order.
 
-**WORKING -** It works by iterating the array from the first element to the last element, comparing each pair of the elements, and swapping them if needed.
+**WORKING -** It works by iterating the array from the first element to the last element, comparing each pair of elements, and swapping them if needed.
 
 First, we will take the size of the array from the user and will make an array of that size to store the elements given by the user. Now compare each pair of array elements unless the whole array is completely sorted in ascending order.
 
@@ -84,12 +84,12 @@ So now our array now looks like::  1 2 3 4 5
 
 ## Algorithm
 
-- read total no. of elements say n.
-- store the elements in an array.
-- initially i = 0.
-- compare adjacent elements.
-- repeat step 4 for all n elements.
-- increment i by 1 and repeat steps 4,5 for i < n.
+- Read total number of elements say `n`.
+- Store the elements in an array say `arr`.
+- Initially `i = 0`.
+- Compare adjacent elements.
+- Repeat step `4` for all `n` elements.
+- Increment `i` by `1` and repeat steps `4,5` for `i < n`.
 
 ## Code
 
@@ -157,6 +157,7 @@ int main()
 ```py
 # Function for sotring the array
 def bubbleSort(arr):
+
     # outer loop for number of passes
     for i in range(len(arr)):
 
@@ -169,13 +170,20 @@ def bubbleSort(arr):
                 arr[j+1] = temp
 
 
-# initially list contains
-arr = [5, 4, 3, 2, 1]
+arr = []
+size = int(input("Enter the size of list :: "))
+
+for i in range(0, size):
+    element = int(input("Enter element : "))
+
+    arr.append(element)
+
+print("\nyou entered   :: ", arr)
 
 # sorting list
 bubbleSort(arr)
 
-print(arr)
+print("After sorting :: ", arr)
 ```
 
 </TabItem>
@@ -183,14 +191,14 @@ print(arr)
 
 ## Sample Input and Output
 
-### Input:
+#### Input:
 
 ```
 5
 5 4 3 2 1
 ```
 
-### Output:
+#### Output:
 
 ```
 1 2 3 4 5
@@ -207,3 +215,6 @@ print(arr)
 - Space Complexity: O (1)
 
 ## Credits
+
+- [Anand Dasani](https://github.com/ananddasani) contributed the C++ implementation
+- [Anand Dasani](https://github.com/ananddasani) contributed the Python implementation
