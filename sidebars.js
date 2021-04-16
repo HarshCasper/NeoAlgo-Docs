@@ -25,6 +25,8 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/jump-search",
+                "searching-algorithms/exponential-search",
             ],
         },
         {
@@ -36,7 +38,8 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
-                "sorting-algorithms/merge-sort"
+                "sorting-algorithms/merge-sort",
+                "sorting-algorithms/quick-sort",
             ],
         },
         {
@@ -45,7 +48,9 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
-                "data-structures/binary-search-tree"
+                "data-structures/Singly-Linked-list",
+                 "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal"
             ],
         },
         {
@@ -84,7 +89,10 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
+		            "mathematics/automorphic-number",
                 "mathematics/matrix-addition"
             ],
         },
@@ -125,7 +133,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform"],
         },
         {
             type: "category",
