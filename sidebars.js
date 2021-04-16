@@ -80,6 +80,7 @@ module.exports = {
                 "mathematics/happy-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
+		"mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
