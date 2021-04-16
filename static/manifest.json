@@ -1,0 +1,10 @@
+{
+    "short_name": "NeoAlgo",
+    "Name": "NeoAlgo:",
+    "description": "Bringing all Data Structures and Algorithms under one Roof ⚡",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#fafbfc",
+    "lang": "en",
+    "start_url": "/"
+}
