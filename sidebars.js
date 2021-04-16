@@ -118,6 +118,8 @@ module.exports = {
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
                 "competitive-programming/max-number-from-array",
+		"competitive-programming/prefix-sum-algorithm",
+		    
             ],
         },
         {
