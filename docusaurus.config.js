@@ -148,7 +148,7 @@ module.exports = {
           {
             tagName: 'link',
             rel: 'icon',
-            href: '/img/logo.png',
+            href: '/img/pwa/chrome/chrome-estension-48-48.png',
           },
           {
             tagName: 'link',
@@ -160,6 +160,37 @@ module.exports = {
             name: 'theme-color',
             content: 'rgb(37, 194, 160)',
           },
+          {
+            tagName: 'meta',
+            name: "apple-mobile-web-app-capable",
+            content: "yes"
+          },
+          {
+            tagName: 'meta',
+            name: "apple-mobile-web-app-status-bar-style",
+            content: "#000"
+          },
+          {
+            tagName: "link",
+            rel: "apple-touch-icon",
+            href: "/img/main-logo.png"
+          },
+          {
+            tagName: "link",
+            rel: "mask-icon",
+            href: "/img/main-logo.png",
+            color: "rgb(37, 194, 160)"
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileImage",
+            content: "/img/main-logo.png"
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileColor",
+            content: "#000"
+          }
         ],
       },
     ],
