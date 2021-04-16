@@ -1,0 +1,247 @@
+---
+title: Shell Sort
+slug: /sorting-algorithms/shell-sort
+---
+
+## Introduction
+
+Shell sort is a highly efficient sorting algorithm and is based on insertion sort algorithm. Shell sort is the generalization of insertion sort which overcomes the drawbacks of insertion sort by comparing elements separated by a gap of several positions.
+
+## Explanation
+
+Shell sort divides the array in the form of ```N/2 , N/4 , …, 1 (where N is the length of array)``` and then sorting is done. This breaking of sequence and sorting takes place until the entire array is sorted.
+
+Let's take an example to understand.
+
+| 12  | 15  | 50  | 10  | 35  | 19  | 11  | 44  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+#### Stage 1: Divide
+
+In this stage the unsorted array is divided in the form of `N/2`. Here `N/2` is ```8/2 = 4```.
+Which means the ```0th and 4th elements```, ```1st and 5th``` and so on are compared and swapped if necessary.
+
+Now after first stage the array is in this form:
+
+| 12  | 15  | 11  | 10  | 35  | 19  | 50  | 44  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+#### Stage 2: Again Divide
+
+In this stage the unsorted array is again divided in the form of `N/4`. Here `N/4` is ```8/4 = 2```.
+Which means the ```0th and 2th elements```, ```1st and 3th``` and so on are compared and swapped if necessary.
+
+Now after second stage the array is in this form:
+
+| 11  | 10  | 12  | 15  | 35  | 19  | 50  | 44  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+#### Stage 3: Again Divide when the interval `1`
+
+In this stage the unsorted array is again divided in the form of `N/8`. Here `N/8` is ```8/8 = 1```.
+Which means the ```0th and 1th elements```, ```1st and 2th``` and so on are compared and swapped if necessary.
+
+Now after final stage the array is in this form:
+
+| 10  | 11  | 12  | 15  | 19  | 35  | 44  | 50  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+After the final process the unsorted array is sorted.
+
+## Alogrithm
+
+- Divide the array in the form of ```N/2 (where N is the length of array)```.
+- Compare the elements and swap like ```0th element with 4th```,```1st and 5th``` and so on.
+- Now again divide the array in the form of ```N/4 (where N is the length of array)```.
+- Compare the elements and swap.
+- Continue the steps of dividing till the elements are compared with interval of `1`.
+
+## Code
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="c"
+  values={[
+    { label: 'C', value: 'c' },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="java">	
+
+```java
+import java.util.Scanner;
+import java.io.*;
+
+/*
+*Shell Sort is a very efficient sorting algorithm based on insertion sort technique.
+*
+*Shell Sort is more effective than insertion sort as
+*sometimes in Insertion Sorting, we shift a large block to insert an item at the right place
+*as per the sorting order,
+*which can be avoided by using the Shell Sort algorithm.
+*
+*In Shell Sort, the sorting is done at certain intervals/gaps and everytime, this gap is reduced.
+*This way, Shell Sort becomes nearly twice as fast as Insertion Sort.
+*/
+
+public class ShellSort {
+	int shellsort(int arr[], int n) {
+		//here n is the size of the array
+		//initially gap = n/2
+		for (int gap = n / 2; gap > 0; gap = gap / 2) {
+			for (int i = gap; i < n; i++) {
+				//decreasing the gap
+				int k = arr[i];
+				int j = i;
+
+				while (j >= gap && arr[j - gap] > k) {
+					arr[j] = arr[j - gap];
+					j = j - gap;
+				}
+				arr[j] = k;
+			}
+		}
+		return 0;
+	}
+
+	private static Scanner sc = new Scanner(System.in);
+
+	public static void main(String args[]) {
+		//we store the number of elements in n
+		System.out.println("Enter number of elements: ");
+		int n = sc.nextInt();
+
+		//declaring an array of n elements
+		int array[] = new int[n];
+
+        System.out.print("Enter the elements: \n");
+		//taking the input from the user
+		for (int i = 0; i < n; i++) {
+			array[i] = sc.nextInt();
+		}
+
+		//creating an object of shellsort class so that the methods inside shellsort class can be used
+		ShellSort object = new ShellSort();
+		object.shellsort(array, n);
+
+		System.out.println("\nSorted Array in ascending order is :");
+		for (int k = 0; k < n; k++)
+			System.out.print(array[k] + " ");
+
+	}
+}
+```
+</TabItem>
+<TabItem value="c">
+
+```c
+//C Program to sort an array using Shell Sort technique
+#include <stdio.h>
+//ShellSort Function
+void ShellSort(int arr[], int num)
+{
+    int gap, i, j, tmp;
+    //this for loop of gap is the heart of Shell sort
+    //In each pass w check the valu of gap
+    //if gap=1 then we stop this loop
+    for (gap = num / 2; gap > 0; gap = gap / 2)
+    {
+        for (i = gap; i < num; i++)
+        {
+        	//loop continue for index lesser then gap
+            for(j = i - gap; j >= 0; j = j - gap)
+            {
+            	//if lesser index value is small
+            	//compared to bigger index
+            	//then continue
+                if (arr[j+gap] >= arr[j])
+                    break;
+                //else    
+                // Swap values of bigger index with smaller one   
+                else
+                {
+                    tmp = arr[j];
+                    arr[j] = arr[j+gap];
+                    arr[j+gap] = tmp;
+                }
+            }
+        }
+    }
+}
+//Display function to print the result
+void display(int arr[],int n)
+{
+	int i;
+printf("\n\nSorted Array in ascending order is : \n");
+for(i=0; i < n; ++i)
+printf("%5d",arr[i]);
+}
+//Main Function
+int main()
+{
+    int i,k, num;
+    //Enter the number of element array have
+    printf("Enter number of elements : ");
+    scanf("%d",&num);
+    //store the element of array
+    int arr[num];
+    //Input values of array
+    printf("Enter the elements : ");
+    for(i = 0; i < num; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    //Call shell sort function
+    ShellSort(arr,num);
+    //call display function
+    display(arr,num);
+    return 0;
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+```
+
+Enter number of elements:
+10
+
+Enter the elements:
+36 432 43 44 57 63  94 3 5 6
+
+```
+
+#### Output :
+```
+
+Sorted Array in ascending order is :
+3 5 6 36 43 44 57 63 94 432
+
+```
+#### Input :
+```
+
+Enter number of elements:
+8
+
+Enter the elements:
+20 16 9 1 50 33 41 2
+
+```
+
+#### Output :
+```
+
+Sorted Array in ascending order is :
+1 2 9 16 20 33 41 50
+
+```
+
+## Credits
+- [Vaibhav Singhal](https://github.com/iamvs-2002) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/ShellSort.java)
+
+- [Yashaswibiyahut](https://github.com/yashaswibiyahut) for the [Go implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/ShellSort.c)
