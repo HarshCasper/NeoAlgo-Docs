@@ -72,7 +72,6 @@ export default function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted,
               )}
-              style={{ color: '#FFF' }}
               to={useBaseUrl('docs/')}>
               Get Started
             </Link>
