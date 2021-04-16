@@ -1,0 +1,145 @@
+---
+title: Golomb Sequence
+slug: /dynamic-programming/golomb-sequence
+---
+
+## Introduction
+
+Golomb sequence is a non-decreasing sequence of integers where the n<sup>th</sup> term of the sequence is equal to the number of times n appears in the sequence.
+
+## Explanation
+
+- The Golomb sequence is given by,
+
+  `Golomb(1) = 1 (Base case)`
+
+  `Golomb(n) = 1 + Golomb(n - Golomb(Golomb(n - 1))) for n > 1`.
+
+- Let us see one example:
+
+```
+- The first few terms of the Golomb sequence are: `1, 2, 2, 3, 3, 4, 4, 4, . . .`
+- Here, the first term of the sequence is `1`, which means that `1` must appear only one time in
+  the sequence.
+- Similarly, the second term is `2`, and we can see that `2` appears twice in the sequence.
+```
+
+## Algorithm
+
+```
+- Given a number n.
+- Make an array to store the values of the Golomb sequence in a bottom-up manner.
+- Initialize array[1] = 1.
+- for i = 2 to n
+-     array[i] = 1 + array[i - array[array[i - 1]]]
+- return array[n]
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int golomb_sequence(int n)
+{
+    // Create a dp array, with value initialized as 0.
+    int dp[n + 1];
+
+    dp[1] = 1;
+
+    // Identify the previous term 'prev' and go prev terms behind and find a number.
+    // Now assign the current element with an incremented value of that element.
+    for (int i = 2; i <= n; i++)
+    {
+        int prev = dp[i - 1];
+        int back_index = i - dp[prev];
+        dp[i] = 1 + dp[back_index];
+    }
+    return dp[n];
+}
+
+int main()
+{
+    int n;
+    cout << "Enter the value of n: ";
+    cin >> n;
+    if (n <= 0)
+    {
+        cout << "\nThe given value of n is invalid." << endl;
+        return 0;
+    }
+    int res = golomb_sequence(n);
+    cout << "\nThe term at index " << n << " of the golomb sequence is " << res << "." << endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def golomb_sequence(n):
+
+    # Create a dp array, with value initialized as 0.
+    dp = [0 for i in range(n+1)]
+
+    dp[1] = 1
+    # Identify the previous term 'prev' and go prev terms behind and find a number.
+    # Now assign the current element with an incremented value of that element.
+    for i in range(2, n + 1):
+        prev = dp[i - 1]
+        back_index = i - dp[prev]
+        dp[i] = 1 + dp[back_index]
+    return dp[n]
+
+if __name__ == '__main__':
+    print("Enter the value of n: ", end="")
+    num = int(input())
+    if num <= 0:
+        print("\nThe given value of n is invalid.")
+        exit()
+    res = golomb_sequence(num)
+    print("\nThe term at index {} of the golomb sequence is {}.".format(num, res))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the value of n: 5
+```
+
+#### Output:
+
+```
+The term at index 5 of the golomb sequence is 3.
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(n)`
+  - Space complexity: `O(n)`
+
+Here `n` is the given number.
+
+## Credits
+
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/golomb_sequence.cpp)
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/golomb_sequence.py)
