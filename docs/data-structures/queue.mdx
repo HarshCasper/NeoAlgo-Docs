@@ -5,7 +5,7 @@ slug: /data-structures/queue
 
 ## Introduction
 
-A ***queue*** is a logical data structure that works on the discipline ***FIFO(First-In-First-Out)***. It is an **ADT (Abstract Data Type)** where the insertion of elements occurs at one end, called **Rear**, and deletion occurs at another end, called **Front**. For example, people standing in a queue to avail some services or cars lined up in a queue are real-world examples of queue data structure.
+A queue is a logical data structure that works on the discipline ***FIFO(First-In-First-Out)***. It is an ADT (Abstract Data Type) where the insertion of elements occurs at one end, called Rear, and deletion occurs at another end, called Front. For example, people standing in a queue to avail some services or cars lined up in a queue are real-world examples of queue data structure.
 
 <p align="center">
   <img width="540" height="400" src="https://user-images.githubusercontent.com/61618767/114686707-ac525500-9d30-11eb-882f-150835a03a58.gif" />
@@ -23,31 +23,31 @@ A ***queue*** is a logical data structure that works on the discipline ***FIFO(F
 
 This section will discuss the algorithmic steps performed on the [basic operations](#basic-operations) of a queue.
 
-### Enqueue 
+#### Enqueue 
 
 * Check whether the queue is `full`.
 * If the queue is full, then display `"Queue is Full"` or `"OVERFLOW"` and terminate the function.
 * If the queue is not full, increment the `rear` pointer and `insert` the element.
 
-### Dequeue
+#### Dequeue
 
 * Check whether the queue is `empty`.
 * If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
 * If the queue is not empty, increment the `front` pointer and `delete` the element.
 
-### Front
+#### Front
 
 * Check whether the queue is empty.
 * If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
 * If the queue is not empty, increment the `front` pointer and return the value of the element present.
 
-### isEmpty 
+#### isEmpty 
 
 * Check whether `front = -1 or front > rear`
 * If so, then return true.
 * Else, return false.
 
-### Display
+#### Display
 
 * Check whether the queue is empty.
 * If the queue is empty, then display `"Queue is Empty"` or `"UNDERFLOW"` and terminate the function.
@@ -67,7 +67,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs
-  defaultValue="cpp"
+  defaultValue="c"
   values={[
     { label: 'C', value: 'c', },
     { label: 'C++', value: 'cpp', },
