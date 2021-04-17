@@ -1,0 +1,134 @@
+---
+title: K-th smallest element in an array
+slug: /mathematics/Kth-smallest
+---
+
+## Introduction
+
+In this article we will be given a array and a number K we have to find the Kth smallest element in an array. 
+
+## Explanation 
+In this first we have to sort the array in ascending order. Then print Kth index(if 1 based indexing that means array index starts from 1) or (K-1)th index(if 0 based indexing that means array index starts from 0).
+#### Example 1
+
+```
+Given arr[8]= | 20 | 62 | 38 | 16 | 94 | 71 | 82 | 53 |
+Given K: 5
+So first we sort the array in ascending order 
+After sorting: | 16 | 20 | 38 | 53 | 62 | 71 | 82 | 94 |
+Then print the value at K-1th index(0 based indexing) that is 4th index
+The value at 4th index: 62 
+
+```
+## Algorithm
+
+For printing Kth smallest element in an array, we follow the following algorithm:
+
+* First, we sort the array in ascending order.
+
+* Consider K index(if 1 based indexing) or K index(if 0 based indexing).
+
+* Print the element at K index(if 1 based indexing) or at K-1 index(if 0 based indexing).
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+// function for finding kth smallest element
+int kthsmallest(int k,int a[], int n)
+{
+  //sort the array
+   sort(a,a+n);
+   
+   //return element at a[k-1] index  
+   return a[k-1];
+}
+//main function
+int main()
+{
+  int n;
+
+  //Taking size as input
+  cout<<"Enter the size of array: ";
+  cin>>n;
+  int a[n];
+  cout<<"Enter the elements of array: ";
+
+  //Taking elements of array
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+  }
+  int x;
+  cout<<"Enter the value of K: ";
+  cin>>x;
+  //Printing occurrence of given number
+  cout<<kthsmallest(x,a,n)<<endl;
+  return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def kthsmallest(arr, n, k):
+    # Sort the array
+    arr.sort()
+    return arr[k-1]
+  
+# Taking size as input 
+n = int(input("Enter the size of array: "))
+data = []
+# Taking array element as input
+print ("Enter the elements of array: ")
+for i in range(n):
+    data.append(int(input()))
+x = int(input("Enter the value of K: "))  
+
+  #Printing the occurrence of given number 
+print(kthsmallest(data,n,x))
+   
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the size of array: 8
+Enter the elements of array: 20 62 38 16 94 71 82 53
+Enter the value of K: 5
+
+```
+#### Output :
+
+```
+62
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(nlogn)`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements.
