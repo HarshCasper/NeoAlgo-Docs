@@ -1,0 +1,215 @@
+---
+title: Preorder traversal of Binary Tree
+slug: /data-structures/preorder_traversal
+---
+
+## Introduction
+
+A binary tree is a type of tree which have at most two children or we can say at most degree 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Preorder traversal.
+
+## Explanation 
+
+In this type of traversal(Preorder traversal). First, we have to visit the root then the left part then the right part respectively. In this first visit root then its left part that means we have to traverse the whole left subtree after that whole right subtree. Preorder: (root->left->right).
+#### Example 1
+
+<img src="https://i.imgur.com/f0nHPpz.jpg?1" width="600" height="350"/>
+
+```
+
+ First traverse the root: Node(44)
+ Then its left part(root): Node(22)
+ Again it has left child
+ Visit its root: Node(11)
+ Preorder traversal: 44 22 11
+ Visit right child of node(22): Node(33)
+ Preorder traversal: 44 22 11 33
+ Visit right part of node(44): Node(66)
+ Preorder traversal: 44 22 11 33 66 
+ Left child of this root: 55
+ Preorder traversal: 44 22 11 33 66 55
+ Right child of this subtree: 77
+ Now our Preorder traversal: 44 22 11 33 66 55 77 
+
+```
+## Algorithm
+
+For Preorder traversal, we follow the following algorithm:
+
+* First, we have to traverse the Binary tree in this order(root->left->right).
+
+* Left means traverse the whole left subtree in this order(root->left->right) until we get the left child as null. 
+
+* Root means the parent of that particular subtree.
+
+* Right means traverse the whole right subtree in this (root->left->right) order until we get null.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+
+//creating structure for node
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+// Insert Function
+Node* Insert(Node *root, int data) {
+    //if root have no value
+    //then create a node and insert values
+    if (root == NULL) {
+        root = new Node();
+        root->data = data;
+        root->left = root->right = NULL;
+    }
+    //check if data is less than root value
+    //then insert into left subtree
+    else if (data <= root->data)
+        root->left = Insert(root->left, data);
+    //check if data is less than root value
+    //then insert into right subtree
+    else
+        root->right = Insert(root->right, data);
+    return root;
+}
+
+//Preorder Function
+void Preorder(Node *root) {
+    // if tree is empty then return
+    if (root == NULL) return;
+    //Print data
+    printf("%d ", root->data);
+    //visit left subtree
+    Preorder(root->left);    
+    //Visit right subtree
+    Preorder(root->right);
+}
+//Main Function began
+int main() {
+    Node* root = NULL;
+    //input values
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
+    
+    //Print Nodes in Preorder.
+    cout << "Preorder traversal : ";
+    Preorder(root);
+    cout << "\n";
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+class Node:
+
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+
+# A function to insert a new node with the given key value
+
+def insert(root, node):
+    if root is None:
+        root = node
+    else:
+        if root.value < node.value:
+            if root.right is None:
+                root.right = node
+            else:
+                insert(root.right, node)
+        else:
+            if root.left is None:
+                root.left = node
+            else:
+                insert(root.left, node)
+
+
+# A function for Preorder tree traversal
+
+def Preorder(root):
+    if root:
+        print (root.value)
+        Preorder(root.left)
+        Preorder(root.right)
+
+n = int(input('Enter the size of tree: '))
+
+m = int(input('Enter the data: '))
+
+tree = Node(m)
+
+i = 1
+while i < n:
+    k = int(input('Enter the data: '))
+    insert(tree, Node(k))
+    i += 1
+print ('Preorder traversal : ')
+
+# Preorder Traversal :- left -> root -> right
+
+Preorder(tree)	
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter the size of tree: 7
+Enter the data: 44
+Enter the data: 22
+Enter the data: 66
+Enter the data: 11
+Enter the data: 33
+Enter the data: 55
+Enter the data: 77
+
+```
+#### Output :
+
+```
+Preorder traversal : 44 22 11 33 66 55 77
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(h)`
+
+where `h` is the height of binary tree and `n` is the number of elements.
+
+### Credits
+* [Yashaswi Biyahut](https://github.com/yashaswibiyahut) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Inorder.cpp)

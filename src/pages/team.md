@@ -14,7 +14,9 @@ The Core Maintainers are responsible for maintaining [NeoAlgo](https://github.co
 
 ### Abhinav Anand 
 
-[<img src="https://i.imgur.com/TAhbF1h.jpg" width="250"/>](https://i.imgur.com/TAhbF1h.jpg )
+[<img src="https://i.imgur.com/TAhbF1h.jpg" width="250"/>](https://i.imgur.com/TAhbF1h.jpg)
+
+Abhinav Anand is an avid learner with a knack for algorithms, machine learning and backend development. He likes building community and has mentored participants in open source programs and hackathons in the past. Currently, he is writing a paper on genetic algorithm. Apart from that his interests lies in world history and geo-politics. Connect with him on [LinkedIn](https://www.linkedin.com/in/atarax/) and [GitHub](https://github.com/atarax665).
 
 ### Anush Krishna V
 
@@ -44,7 +46,13 @@ Bhavishya Pandit is a freelancer, machine learning mentor, Linkedin content crea
 
 [<img src="https://i.imgur.com/usXBZe9.jpg" width="250"/>](https://i.imgur.com/usXBZe9.jpg)
 
-Ganesh Tiwari is a Gold Microsoft Learn Student Ambassador and a User-Interface Engineer at Megdap Innovation Labs. He likes building softwares, relations and respectable communities. Connect with him on [LinkedIn](https://www.linkedin.com/in/gat786) and [GitHub](https://github.com/gat786).
+Ganesh Tiwari is a Gold Microsoft Learn Student Ambassador, and a User-Interface Engineer at Megdap Innovation Labs. He likes building software, relations and respectable communities. Connect with him on [LinkedIn](https://www.linkedin.com/in/gat786) and [GitHub](https://github.com/gat786).
+
+### Harsh Bardhan Mishra
+
+[<img src="https://i.imgur.com/Owk4NoA.jpg" width="250"/>](https://i.imgur.com/Owk4NoA.jpg)
+
+Harsh Bardhan Mishra is an Intern at Red Hat, and he was an Explorer Fellow at Major League Hacking, and a Software Engineer Intern at Qxf2 in the past. He likes System Design, DevOps, Algorithms and in his free time he writes stories and maintain the open-source community at Tesseract Coding. Connect with him on [LinkedIn](https://www.linkedin.com/in/harshcasper) and [GitHub](https://github.com/harshcasper).
 
 ### Rajiv Ranjan Singh 
 
@@ -54,15 +62,28 @@ Rajiv Ranjan Singh is a Polymath and believe in rigorous and intuitive learning.
 
 ### Rohan Rout
 
-[<img src="https://i.imgur.com/9EBI3Qq.jpg" width="250"/>](https://i.imgur.com/9EBI3Qq.jpg)
+[<img src="https://i.imgur.com/lvu8q0L.jpg" width="250"/>](https://i.imgur.com/lvu8q0L.jpg)
 
-Rohan Rout is currently a SDE Intern at Sabre Corporation. He is in his Final Year of studies at Manipal Institute of Technology with an acute expertise in MERN (MongoDB, React, Express, Node) Development and  computer vision. He also has a keen interest in the theory of antimatter and behavioral psychology. Connect with him on [LinkedIn](https://www.linkedin.com/in/routrohan/) and [GitHub](https://github.com/routrohan).
+Rohan Rout is currently a SDE Intern at Sabre Corporation and previously was an Explorer Fellow at Major League Hacking, and a Google Summer of Code Student Developer at Mozilla. He is in his Final Year of studies at Manipal Institute of Technology with an acute expertise in MERN Stack Development and  Computer Vision. He also has a keen interest in the theory of antimatter and behavioral psychology. Connect with him on [LinkedIn](https://www.linkedin.com/in/routrohan/) and [GitHub](https://github.com/routrohan).
 
 ### Siddharth Pandey
 
 [<img src="https://i.imgur.com/sjKa5Eu.jpg" width="250"/>](https://i.imgur.com/sjKa5Eu.jpg)
 
 Siddharth Pandey is a sophomore pursuing a Bachelor of Technology in Computer Science and Engineering from Indian Institute of Information Technology (IIIT) Sri City, India. He is passionate about software development and having a ton of interest in product development and design. Previously he has been a Machine Learning Engineer at Omdena and Data Science Intern at Numyard. Connect with him on [LinkedIn](https://www.linkedin.com/in/siddharth25pandey/) and [GitHub](https://github.com/siddharth25pandey).
+
+### Vijaya Gajanan Buddhavarapu
+
+[<img src="https://i.imgur.com/0xG4r23.jpg" width="250"/>](https://i.imgur.com/0xG4r23.jpg)
+
+Vijaya Gajanan is a first year masters student at UMass Amherst. Her interests include general software development, machine learning, video games, and cats. Connect with her on [LinkedIn](https://www.linkedin.com/in/vijayagb/) and [GitHub](https://github.com/vgb-codes).
+
+### Vybhav Chaturvedi
+
+[<img src="https://i.postimg.cc/bNfg4jNr/IMG-20180728-174633.jpg" width="250"/>](https://i.postimg.cc/bNfg4jNr/IMG-20180728-174633.jpg)
+
+Vybhav Chaturvedi is an open-source enthusiast, part-time writer, and a football buff. He is currently working on his research related to "Emotions, BioSignals and Stress reduction." He has a keen interest in Machine learning, Deep learning, and Big Data.
+Connect with him here on [LinkedIn](https://www.linkedin.com/in/vybhav-chaturvedi-0ba82614a/) and [GitHub](https://github.com/vybhav72954).
 
 ## Past Maintainers 
 
