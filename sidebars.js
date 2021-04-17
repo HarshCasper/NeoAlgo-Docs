@@ -85,9 +85,10 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+		        "mathematics/fibonacci-recursion",
+		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
+                "mathematics/binary-exponentiation",
             ],
         },
         {

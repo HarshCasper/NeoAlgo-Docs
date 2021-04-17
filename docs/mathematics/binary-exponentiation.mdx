@@ -1,0 +1,169 @@
+---
+title: Binary Exponentiation
+slug: /mathematics/binary-exponentiation
+---
+
+## Introduction
+
+Binary Exponentiation is a trick that allows us to calculate `a` raise to the power of `b` in logarithmic time complexity. It is also called exponentiation by squaring. It can also be extended to Modular Exponentiation. Both `C++` and `Python` provide a built-in power function that works in `O(log N)` time complexity.
+
+## Explanation 
+
+The Power of two numbers is calculated by multiplying the base by itself, exponent times. `a` raise to the power `b` is denoted by `pow(a,b)`. The Power of an even number is always even and odd is always odd. Any number raised to power `0` is always `1`.
+
+Formula:
+```
+pow(a,b) = a*a*a*a*a....b times
+```
+
+Properties of Power:
+```
+pow(a,b) = pow(|a|,b), if a is negative and b is even
+pow(a,b) = -pow(|a|,b), if a is negative and b is odd 
+pow(a,0) = 1
+pow(a,b) * pow(a,c) = pow(a,b+c)
+pow(a,b) / pow(a,c) = pow(a,b-c)
+```
+
+Let's have one example: 
+```
+pow(2,5)
+a = 2
+b = 5
+res = 1 
+
+Iteration 1:
+If ( b % 2 != 0) res = res * a = 2
+b = b / 2 = 2 
+a = a * a = 4
+
+Iteration 2:
+If (b % 2 != 0) res = res * a
+b = b / 2 = 1 
+a = a * a = 16
+
+Iteration 3:
+If (b % 2 != 0) res = res * a = 32
+b = b / 2 = 0
+a = a * a = 256
+```
+
+## Algorithm
+
+- Declare a variable `res` and initialize it to `1`.
+
+- If `b` is odd then multiply `res` with `a` and reduce `b` by `1`. 
+
+- If `b` is even then multiply `a` with `a` and reduce `b` to `b/2`.
+
+- Apply the previous two steps until `b` becomes `0`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to get pow(a,b) in logarithmic time
+
+int power(int a, int b) 
+{
+    if (b == 0) return 1;
+    int res = 1;
+    do 
+    {
+        if (b % 2 != 0) 
+        {
+            res = res * a;
+            b = b - 1;
+        }
+        b = b / 2;
+        a = a * a;
+    } while (b > 0);
+
+    return res;
+}
+
+int main() 
+{
+    // Taking Input
+
+    cout << "Enter the Base: ";
+    int a;
+    cin >> a;
+    cout << "Enter the Exponent: ";
+    int b;
+    cin >> b;
+    // Printing Output
+
+    cout << "Power is: " << power(a, b);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to get power(a^b) in logarithmic time
+
+def power(a, b):
+    res = 1
+    # If exponent is 0
+
+    if b == 0:
+        return 1
+    if b == 1:
+        return a
+    while b > 0:
+        if b % 2 != 0:
+            res *= a
+            b -= 1
+        a = a * a
+        b = b // 2
+    return res
+
+if __name__ == "__main__":
+    # Taking Input
+
+    a = int(input("Enter the Base: "))
+    b = int(input("Enter the Exponent: "))
+    # Printing Output
+
+    print("Power is:", power(a, b))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Base: 2
+Enter the Exponent: 3
+```
+#### Output :
+```
+Power is: 8
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(log b)`, where`b` is the exponent
+
+- Space Complexity: `O(1)`
+
+## Credits
