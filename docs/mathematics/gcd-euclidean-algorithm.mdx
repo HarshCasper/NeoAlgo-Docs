@@ -1,0 +1,121 @@
+---
+title: GCD using Euclidean algorithm
+slug: /mathematics/gcd-euclidean-algorithm
+---
+
+## Introduction
+
+The GCD of two number is the largest integer that divides each of the integers such that their remainder is zero . The Euclidean algorithm is an efficient way for finding the GCD of `2` numbers. It is named after the greek mathematician Euclid
+
+## Explanation
+
+Consider two numbers `a = 333` and `b = 84` <br/>
+`333 = 3*84 + 81   0 < 81 < 84`<br/>
+`84 = 1*81 + 3     0 < 3 < 81`<br/>
+`81 = 27*3 + 0`<br/>
+Since 3 is the last nonzero remainder, the euclidean algorithm tells us that GCD(a,b) = 3.
+
+## Algorithm
+
+- input `a` and `b`
+- repeat steps until a mob b is not 0 
+    - `r = a mod b`
+    - `a = b`
+    - `b = r`
+- return `b`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int gcd(int a,int b)
+{ //base case
+  if (a==0)
+     return b;
+  //recursive case
+  else
+     return gcd(b%a,a);
+}
+
+//initializing a and b.
+//Here a is always the smaller number and
+// b is always the bigger number between the two.
+
+int main()
+{
+    cout<<"Enter a and b for finding GCD"<<endl;
+    int a,b;
+    cin>>a>>b;
+    cout<<"GCD( "<<a<<" , "<<b<<" ) = "<< gcd(a,b)<<endl; 
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def gcd_of_nums(x,y):
+    #choose the smaller number
+    if x > y:
+        t=x
+        x=y
+        y=t
+
+    if(x==0):
+        return y
+    else:
+        return gcd_of_nums(x,y%x)
+
+def main():
+    print("Enter a and b for finding GCD")
+    a,b = map(int,input().split(' '))
+    print("GCD( "+str(a)+" , "+str(b)+" ) = "+str(gcd_of_nums(a,b)))
+    
+if __name__ == "__main__":
+    main()    
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter a and b for finding GCD
+333 84
+```
+
+#### Output
+
+```
+GCD( 333 , 84 ) = 3
+```
+
+## Complexity Analysis
+
+- Time complexity - O(`log(min(a,b))`)
+- Space complexity - O(`1`)
+
+
+## Credits
+
+-   [vybhav](https://github.com/vybhav72954) for [implementation in c++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/GCD_In_C.cpp)
+-   [Sakshi Bhandarkar](https://github.com/sakshi300699) for [implementation in python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/GCD_of_two_numbers.py)

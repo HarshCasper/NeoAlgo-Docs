@@ -65,7 +65,8 @@ module.exports = {
         'mathematics/mathematics',
         'mathematics/armstrong-number',
         'mathematics/factorial-of-number',
-	'mathematics/happy-number'
+        'mathematics/happy-number',
+        'mathematics/gcd-euclidean-algorithm'
       ],
     },
     {
@@ -132,7 +133,7 @@ module.exports = {
         'miscellaneous/sudoku-solver'
       ],
     },
-	  {
+    {
       type: 'category',
       label: 'Docusaurus Tutorial',
       items: [
