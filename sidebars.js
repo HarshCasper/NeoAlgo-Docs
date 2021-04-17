@@ -30,15 +30,7 @@ module.exports = {
       label: 'Data Structures',
       items: [
         'data-structures/data-structures',
-        'data-structures/binary-tree'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Data Structures',
-      items: [
-        'data-structures/data-structures',
-        'data-structures/Sorting_0s_1s_2s'
+        'data-structures/Sorting_0s_1s_2s',
       ],
     },
     {
