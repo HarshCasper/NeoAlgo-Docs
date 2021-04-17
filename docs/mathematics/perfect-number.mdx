@@ -1,0 +1,161 @@
+---
+title: Perfect Number
+slug: /mathematics/erfect-number
+---
+
+## Introduction
+
+Perfect Number is a positive number whose sum of the positive divisors, excluding the number itself is equal to the number itself. The sum of divisors of a number, excluding the number itself, is known as its aliquot sum, So a perfect number is a number that is equal to its aliquot sum. Perfect Number can also be defined as a number that is half the sum of all of its positive divisors including itself.
+
+## Explanation
+
+Consider a number 6. The divisors of 6(excluding itself) is 1, 2, 3. Thier sum 1 + 2 + 3 = 6, So 6 is a perfect number.
+
+Consider Another Example, `n` = 28. The divisors of 28(excluding itself) are 1, 2, 4, 7, 14.
+Thier Sum
+
+```
+1 + 2 + 4 + 7 + 14 = 28
+```
+
+Hence 28 is a Perfect number.
+
+## Algorithm
+
+Let us assume that the given number be `num`,
+
+-   Declare a variable `sum` and set its value to 0
+-   Set i = 1
+-   Iterate a While loop till `i < number`
+    -   If `num % i == 0`
+        -   Set `sum = sum + i`
+-   If `sum == num`
+    -   Return True
+-   Else Return False
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+/*
+Perfect number is a positive integer which is equal to the sum of its proper positive divisors.
+For example: 6 is the first perfect number
+Proper divisors of 6 are 1, 2, 3
+Sum of its proper divisors = 1 + 2 + 3 = 6.
+Hence 6 is a perfect number.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int perfectnumber(int n)
+{
+    int sum=0;
+    for (int i = 1; i < n; i++)
+    {
+        if (n % i == 0)
+            sum += i;
+    }
+    return sum;
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter a number to check whether it is a perfect number or not: ";
+    cin >> n;
+    if (perfectnumber(n) == n)
+        cout << n << " is a perfect number." << endl;
+    else
+        cout << n << " is not a perfect number." << endl;
+    return 0;
+}
+
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+''' This program written in Python checks if a number is a perfect
+number. A perfect number is a number which is equal to the sum of
+its divisors (excluding the number itself).'''
+
+# This function checks if a number is a perfect number
+def is_perfect(n):
+
+    # This variable stores the sum of divisors of number
+    sum_of_divisors = 0
+    # Iterate from 1 till the number
+    for i in range(1, n):
+        if(n % i == 0):
+            # Add divisors
+            sum_of_divisors += i
+
+    # If the sum of divisors is equal to the number
+    if(sum_of_divisors == n):
+        return 1
+
+    # Else return -1
+    return -1
+
+if __name__ == '__main__':
+
+    # Take number as input from the user
+    number = int(input("Enter a number to check whether it is a perfect number or not: "))
+
+    # If the number is non-positive, exit
+    if(number <= 0):
+        print("\nPlease enter a positive number.")
+    else:
+        # Call the function
+        result = is_perfect(number)
+
+        # If the result is 1, the number is a perfect number
+        if(result != -1):
+            print(str(number) + " is a perfect number.")
+        else:
+            # Else it is not
+            print(str(number) + " is not a perfect number.")
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter a number to check whether it is a perfect number or not: 28
+```
+
+#### Output
+
+```
+28 is a perfect number.
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(n)`, where `n` is the given number
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Aayushi Mittal](https://github.com/Aayushi-Mittal) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Perfect_Number.cpp)
+-   [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Perfect_Number.py)
