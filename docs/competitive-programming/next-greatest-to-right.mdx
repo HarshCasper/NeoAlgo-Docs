@@ -1,11 +1,15 @@
 ---
 title: Next Greatest Element to the Right
-slug: /data-structures/next-greatest-to-right
+slug: /competitive-programming/next-greatest-to-right
 ---
 
 ## Introduction
 
-Stack as a data structure has many applications, especially because of its 'Last In, First Out' principle. One of them is to find the greatest element to the right of each element in the array. 
+Given an array, find out the next greatest element to its right. If the element does not have an element greater than itself in the array, then `-1` is printed. 
+
+## Explanation
+
+Stack as a data structure has many applications, especially because of its 'Last In, First Out' principle. One of them is to find the greatest element to the right of each element in the array.Another simple method to do the problem would be using two loops. In the first loop we fix an element and then using the second loop, we try to find the next larger element. However this approach is not the most efficient algorithm. Therefore, we use stacks to solve the problem more efficiently.
 
 ## Algorithm
 
@@ -13,10 +17,10 @@ Stack as a data structure has many applications, especially because of its 'Last
 - Start the scanning of the array from the right. 
 - Declare an array and a stack.
 - If the stack is empty, then no element to the right is greater than the present element
-- If the stack is not empty but the element present at the top of the stack is not greater than the current element then-
+- If the stack is not empty but the element present at the top of the stack is not greater than the current element then:
     - Pop the stack till the stack is not empty or the top element of stack is greater than the current element.
-- If the stack is not empty and the element at the top of the stack is greater than the current element then
-    - push the topmost element to the stack.
+- If the stack is not empty and the element at the top of the stack is greater than the current element then:
+    - Push the topmost element to the stack.
 
 ## Examples
 
@@ -125,8 +129,7 @@ The next greatest elements for each:
 
 ## Complexity Analysis
 
-- Time Complexity : `O(n^2)`
-
+- Time Complexity : `O(n)`
 - Space Complexity: `O(n)`
 
 ## Credits

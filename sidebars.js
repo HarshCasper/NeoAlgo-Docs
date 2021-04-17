@@ -50,7 +50,6 @@ module.exports = {
                 "data-structures/Singly-Linked-list",
                  "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-                "data-structures/next-greatest-to-right"
 
             ],
         },
@@ -118,6 +117,8 @@ module.exports = {
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
                 "competitive-programming/max-number-from-array",
+                "competitive-programming/next-greatest-to-right"
+
             ],
         },
         {
