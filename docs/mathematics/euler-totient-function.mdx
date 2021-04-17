@@ -1,0 +1,164 @@
+---
+title: Euler Totient Function
+slug: /mathematics/euler-totient-function
+---
+
+## Introduction
+
+Euler Totient Function gives the count of numbers from `1 to n` which are coprime with `n`. Two numbers are coprime if their highest common factor is `1`. `1` is coprime to every number. It is also called phi-function and represented as `ϕ(n)`.
+
+## Explanation 
+
+We can calculate the value of Euler function by iterating from `1 to n` and checking if the gcd of the current number with `n` is `1` or not.
+
+Here are values of ϕ(n) for first 10 integers:
+```
+ n  |  1  |  2  |  3  |  4  |  5  |  7  |  9  |  10
+ϕ(n)|  1  |  1  |  2  |  2  |  4  |  2  |  6  |  4
+```
+
+Properties:
+```
+ϕ(ab) = ϕ(a)⋅ϕ(b), where a and b are relatively prime
+ϕ(ab) = ϕ(a)⋅ϕ(b)⋅(d/ϕ(d)), where a and b are not coprime and d = gcd(a,b)
+```
+
+Let's have one example: 
+```
+num = 5
+cnt = 0 , to store the count of numbers which are coprime with `n`
+
+Iteration 1:
+i = 1
+if (gcd(1,num) == 1)cnt++
+cnt = 1
+
+Iteration 2:
+i = 2
+if (gcd(2,num) == 1)cnt++
+cnt = 2
+
+Iteration 3:
+i = 3
+if (gcd(3,num) == 1)cnt++
+cnt = 3
+
+Iteration 4:
+i = 4
+if (gcd(4,num) == 1)cnt++
+cnt = 4
+
+Iteration 5:
+i = 5
+if (gcd(5,num) == 1)cnt++
+cnt = 4
+```
+
+## Algorithm
+
+- Declare a variable `cnt` and initialize it to `0`.
+
+- Now iterate from `1 to n` and check if the current number is coprime with `n` or not and if it is coprime then increase the `cnt` by `1` . 
+
+- Return `cnt`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to get count of numbers from 1 to n which are coprime with n
+
+int euler_totient(int n) 
+{
+    if (n == 1) return 1;
+    int tmp = 1;
+    int cnt = 0;
+    do 
+    {
+        if (__gcd(tmp, n) == 1) 
+        {
+            cnt++;
+        }
+        tmp++;
+    } while (tmp < n);
+
+    return cnt;
+}
+
+int main() 
+{
+    // Taking Input
+
+    cout << "Enter the Number: ";
+    int n;
+    cin >> n;
+    // Printing Output
+
+    cout << "Count of Numbers from 1 to n which are coprime to n is: " << euler_totient(n);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+# Function to get count of numbers from 1 to n which are coprime with n
+
+def euler_totient(n):
+    if n == 1:
+        return 1
+    tmp = 1
+    cnt = 0
+    while tmp < n:
+        if math.gcd(tmp, n) == 1:
+            cnt = 1
+        tmp = 1
+        
+    return cnt
+
+if __name__ == "__main__":
+    # Taking Input
+
+    n = int(input("Enter the Number: "))
+    # Printing Output
+
+    print("Count of Numbers from 1 to n which are coprime to n is:", euler_totient(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number: 21
+```
+#### Output :
+```
+Count of Numbers from 1 to n which are coprime to n is: 12
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+
+- Space Complexity: `O(1)`
+
+## Credits
