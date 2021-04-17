@@ -1,0 +1,220 @@
+---
+title: Railfence Cipher
+slug: /cryptography/railfence-cipher
+---
+
+## Introduction
+
+Rail fence cipher is also known as the zig-zag cipher. The name clearly suggests that we compute in a zig-zag manner. We take the given plain-text and the key and store them in a two-dimensional array stepwise. The depth of the steps is dependent on the key. Then we have the encrypted text by concatenating the characters of each row.
+
+## Explanation
+
+We write the plain text given to us downwards and then upwards diagonally on successive rails of an imaginary fence mimicking a zig-zag pattern. The depth of this step is dependent on the key.
+
+Let's have an example: 
+
+```
+Input : 
+
+Plaintext : Hello World
+Key       : 2
+
+Computing step :
+    H   l   o   W   r   d
+      e   l       o   l  
+
+ciphertext : HloWrdel ol
+```
+
+## Algorithm
+
+- Take the plaintext and the key from the user.
+- Create an array where we compute and store the plaintext in a zig-zag form corresponding to the given key.
+- Concatenate each character row-wise.
+- Arrive at the encrypted text.  
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//we use this function to encrypt the plaintext
+void encrypt(string s,int key) {
+    
+    int n = s.length();
+    char array[key][n]; 
+    // To diffrentiate between filled slots and empty slots
+    for(int i=0;i<key;i++){
+        for (int j=0;j<n;j++){
+            array[i][j] = '_';
+        }
+    }   
+    
+    bool flag = false;
+    int a=0;
+    int b=0;
+  
+    /*we check the direction of flow and reverse the direction
+      if we filled the top or bottom rail*/
+    for(int i=0;i<n;i++){
+    
+        if (a==0 || a==key-1){
+            flag = !flag;
+        }
+        array[a][b++] = s[i];
+        if(flag == true)
+           a++;
+        else
+           a--;
+    }   
+  
+    string cipher;
+    //computing the cipher string here
+    for (int i=0;i<key;i++){
+        for (int j=0;j<n;j++){
+            if (array[i][j]!='_'){
+                cipher.push_back(array[i][j]);
+            }
+        }
+    }   
+
+    cout<<"Encrypted plaintext is              : "<<cipher<<endl;
+}
+
+//driver function
+int main() {
+
+        string s;
+        int key;
+        cout<<"Enter a message you want to encrypt : ";
+        getline(cin,s);
+        cout<<"Enter a key to encrypt the message  : ";
+        cin>>key;
+        encrypt(s,key); 
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+import sys
+
+'''This is the encryption function, which takes plaintext
+and key as input. It then returns the ciphertext.'''
+
+def encryption(message, keyword):
+
+    # This is the matrix to store the plaintext
+    matrix = [[] for i in range(keyword)]
+
+    i = 0
+    count = 0
+
+    ''' After going diagonally downwards keyword number of
+        times, we need to go diangonally upwards. This rev
+        list contains those values after which the plaintext
+        is to be stored diagonally upwards.'''
+    rev = []
+    for j in range(len(message)):
+        temp = keyword + j * (( 2 * keyword) - 2)
+        if temp <= len(message):
+            rev.append(temp)
+    
+    value = False
+    
+    while (i < keyword and count < len(message)):
+        matrix[i].append(message[count])
+        count = count + 1
+
+        ''' As we find the reversing point, we set value to
+            be true. So, that we can decrease the value of list
+            index.'''
+        if count in rev:
+            value = True
+            dec = keyword - 1
+        
+        ''' If value is true, we decrement the list index keyword
+            number of times'''
+        if value and dec > 0:
+            i = i - 1
+            dec = dec - 1
+
+        # Else we go on storing the plaintext in downwards direction
+        else:
+            i = i + 1
+
+    # This string stores the final ciphertext
+    enc = ""
+
+    # We read the value of matrix row by row to form the ciphertext
+    for j in range(len(matrix)):
+        enc += ''.join(matrix[j])
+    
+    # We return the ciphertext
+    return enc
+
+# Calling the driver function
+if __name__=='__main__':
+
+    # Taking plaintext and key as input from the user
+    plaintext = input("Enter a message you want to encrypt : ")
+    key       = int(input("Enter a key to encrypt the message  : "))
+
+    if key <= 0:
+        print("Enter a valid key.")
+        sys.exit(0)
+
+    elif key == 1:
+        encrypted_message = plaintext
+        print("Encrypted plaintext is", " "*12, ":", encrypted_message)
+        sys.exit(0)
+
+    ''' Calling the encryption function on the given paintext
+        and key'''
+    encrypted_message = encryption(plaintext, key)
+
+    # Printing the ciphertext we got using the encryption method
+    print("Encrypted plaintext is", " "*12, ":", encrypted_message)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter a message you want to encrypt : This is Rail Fence Cipher
+Enter a key to encrypt the message  : 4
+```
+
+#### Output:
+
+```
+Encrypted plaintext is              : Ts  rhi lFeCei Riecihsanp
+```
+
+## Complexity Analysis
+
+- Time  complexity: `O(mn)`
+- Space complexity: `O(mn)`
+
+## Credits
+
+- [Sejal G](https://github.com/Sejal-G) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/Rail_fence_Cipher.cpp)
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Rail_Fence_Cipher.py)
