@@ -1,0 +1,143 @@
+---
+title: Selection Sort
+slug: /sorting-algorithms/selection-sort
+---
+
+## Introduction
+
+Selection sort is a sorting algorithm that finds out the smallest element in the unsorted part in each iteration and puts it to the last of the sorted part. It does less memory writes as compared to other sorting algorithms. It is not stable and In place sorting algorithm. It takes the same time in every case `(best, average, worst)`.
+
+## Explanation 
+
+First, we will find out the smallest element in the range `[0,n-1]` and swap the smallest element with the element at index `0`. Then we will find the smallest element in the range `[1,n-1]` and swap it will the element at index `1` and we keep on reducing the range and swapping the smallest element with the first element in the range till the array gets sorted.
+
+Let's have an array arr[] where we have the following elements: `5 2 1 4 3`
+
+![image](https://user-images.githubusercontent.com/70858557/114912892-2b817f00-9e3e-11eb-9c58-18d988d27345.PNG)
+
+
+## Algorithm
+
+In Selection Sort, we follow the following algorithm:
+
+- First we will find the smallest element in the range `[0,n-1]` and swap it with the element at `0th` index.
+
+- Then we will find the smallest element int the range `[1,n-1]` and swap it with the element at `1st` index.
+
+- We keep on increasing the left part of the range until it reaches `n-1` and do the above mentioned process.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void selection_sort(vector <int> &arr, int n) 
+{
+   int i=0;
+   while(i<n)
+   {
+      int mini=i;
+      int j=i+1;
+      while(j<n)
+      {
+         if(arr[j]<arr[mini])mini=j;
+         j++;
+      }
+      swap(arr[mini],arr[i]);
+      i++;
+   }   
+}
+
+int main() {
+   int n;
+   cout << "Enter the size of array:";
+   cin >> n;
+   vector <int> arr(n);
+   cout << "Enter the elements of array:";
+   for(auto &e:arr)cin>>e;
+   selection_sort(arr, n);
+   for(auto e:arr)cout<<e<<" ";
+
+   return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def selectionSort(array, n):
+	i = 0
+	while i < n:
+		mini = i
+		j = i + 1
+		while j < n:
+			if array[j] < array[mini]:
+				mini = j
+			j += 1
+		(array[i], array[mini]) = (array[mini], array[i])
+		i += 1       	
+
+
+data = []
+n = int(input("Enter the size of array :"))
+ 
+print('Enter the elements of array:');
+for i in range(n):
+    data.append(int(input()))
+    
+# Sending element to get sorted
+selectionSort(data, n)
+ 
+# Priting Elements after Getting Sorted
+for d in data:
+    print(d, end = " ")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+### Input :
+
+```
+Enter the size of array: 5
+Enter the elements of array:
+5
+4 
+3 
+2 
+1 
+```
+### Output :
+```
+1 2 3 4 5
+```
+
+## Complexity Analysis
+ 
+`n` is the number of elements in the array.
+
+- Time Complexity:
+
+  - **Best Case**: O (n<sup>2</sup>)
+  - **Average Case**: O (n<sup>2</sup>)
+  - **Worst Case**: O (n<sup>2</sup>)
+
+- Space Complexity: O (1)
+
+## Credits

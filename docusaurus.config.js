@@ -107,8 +107,15 @@ module.exports = {
           ],
         },
       ],
+      logo: {
+        alt: 'Powered by Vercel',
+        src: 'img/powered-by-vercel.svg',
+        href: 'https://vercel.com?utm_source=NeoAlgo-Docs&utm_campaign=oss/',
+      },
       copyright: `Copyright © ${new Date().getFullYear()} Tesseract Coding; Built with Docusaurus.`,
     },
+    image: 'https://i.imgur.com/mIcfHih.png',
+    metadatas: [{name: 'twitter:card', content: 'summary_large_image'}, {name: 'twitter:image', content: 'https://i.imgur.com/mIcfHih.png'}, {name: 'twitter:title', content: 'NeoAlgo'}, {name: 'twitter:description', content: 'Bringing all Data Structures and Algorithms under one Roof ⚡'}],
   },
   presets: [
     [
@@ -132,4 +139,65 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-pwa',
+      {
+        debug: true,
+        offlineModeActivationStrategies: [
+          'appInstalled',
+          'standalone',
+          'queryString',
+        ],
+        pwaHead: [
+          {
+            tagName: 'link',
+            rel: 'icon',
+            href: '/img/pwa/chrome/chrome-estension-48-48.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'manifest',
+            href: '/manifest.json', // your PWA manifest
+          },
+          {
+            tagName: 'meta',
+            name: 'theme-color',
+            content: 'rgb(37, 194, 160)',
+          },
+          {
+            tagName: 'meta',
+            name: "apple-mobile-web-app-capable",
+            content: "yes"
+          },
+          {
+            tagName: 'meta',
+            name: "apple-mobile-web-app-status-bar-style",
+            content: "#000"
+          },
+          {
+            tagName: "link",
+            rel: "apple-touch-icon",
+            href: "/img/main-logo.png"
+          },
+          {
+            tagName: "link",
+            rel: "mask-icon",
+            href: "/img/main-logo.png",
+            color: "rgb(37, 194, 160)"
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileImage",
+            content: "/img/main-logo.png"
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileColor",
+            content: "#000"
+          }
+        ],
+      },
+    ],
+  ]
 };
