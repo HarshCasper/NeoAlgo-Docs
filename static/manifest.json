@@ -1,0 +1,56 @@
+{
+    "short_name": "NeoAlgo",
+    "Name": "NeoAlgo:",
+    "description": "Bringing all Data Structures and Algorithms under one Roof ⚡",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#fafbfc",
+    "icons": [
+        {
+            "src": "img/pwa/android/android-launchericon-512-512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "img/pwa/android/android-launchericon-192-192.png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "img/pwa/android/android-launchericon-144-144.png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "img/pwa/android/android-launchericon-48-48.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "img/pwa/chrome/chrome-installicon-128-128.png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "img/pwa/chrome/chrome-estension-48-48.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "img/pwa/chrome/chrome-favicon-16-16.png",
+            "sizes": "16x16"
+        },
+        {
+            "src": "img/pwa/firefox/firefox-marketplace-512-512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "img/pwa/firefox/firefox-general-128-128.png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "img/pwa/firefox/firefox-general-48-48.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "img/pwa/firefox/firefox-general-16-16.png",
+            "sizes": "16x16"
+        }
+    ],
+    "lang": "en",
+    "start_url": "/"
+}
