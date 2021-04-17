@@ -49,6 +49,7 @@ module.exports = {
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
+                "data-structures/Circular-Linked-list",
                  "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal"
             ],
@@ -92,7 +93,9 @@ module.exports = {
 		            "mathematics/fibonacci-recursion",
 		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
-		            "mathematics/automorphic-number",
+		            "mathematics/automorphic-number",                
+                "mathematics/ugly-numbers",
+		            "mathematics/hamming-distance",
                 "mathematics/Kth-smallest",
             ],
         },
