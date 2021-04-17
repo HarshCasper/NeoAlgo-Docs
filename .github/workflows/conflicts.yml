@@ -1,4 +1,4 @@
-name: 'Check for merge conflicts'
+name: 'Merge Conflict Watcher'
 on:
   pull_request:
     branches:
