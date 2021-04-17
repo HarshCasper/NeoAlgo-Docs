@@ -1,0 +1,171 @@
+---
+title: Sieve of Eratosthenes
+slug: /mathematics/sieve-of-eratosthenes
+---
+
+## Introduction
+
+The sieve of Eratosthenes is an algorithm for finding all prime numbers up to any given limit. It is computationally highly efficient algorithm.
+
+## Explanation
+
+Let us take the number `n = 100` , so we create list from `2` to `100` . According to the algorithm , we mark all the numbers which are divisible by `2` which are greater than or equal to the square of it . Then we move to the next number `3` , we mark all the numbers which are divisible by `3`  which are greater than or equal to the square of it. we continue this process until the square of the number is greater than `n`. The numbers which are unmarked in the list are the prime numbers less than `n`.
+
+## Algorithm
+
+- Make a boolean list `l` of length `n+1` and initialise all entries to true
+- loop from `p = 2` until `p*p <= n`
+    - if `p` th entry in the list is true, then
+        - loop from `i = p*p` until `i <= n` increment `i` with `p`
+            - make the `i` th position of `l` as false
+- The prime numbers are the numbers which are marked are true in `l`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>  //Header file
+using namespace std; //For cin and cout
+
+//Implement prime sieve function, it will store 0 in the primes array if that index is composite and 1 if prime
+void prime_sieve(int primes[], int n)
+{
+
+    //Make 2 as prime (only prime even number)
+    primes[2] = 1;
+
+    //Put 1 at all odd positions starting from 3
+    for (int i = 3; i < n; i += 2)
+    {
+        primes[i] = 1;
+    }
+
+    //Make all multiples of odds as composite, i.e, 0
+    for (int i = 3; i < n; i += 2)
+    {
+
+        //Check prime(i.e, 1){
+        if (primes[i] == 1)
+        {
+
+            //Make all multiples of i as composite
+            for (int j = i * i; j < n; j += i)
+            {
+                primes[j] = 0;
+            }
+        }
+    }
+
+    return;
+}
+
+//This function prints out the primes to STDOUT.
+void print(int N, bool *isprime)
+{
+    for (int i = 1; i <= N; i++)
+    {
+        if (!isprime[i])
+        {
+            std::cout << i << ' ';
+        }
+    }
+    std::cout << '\n';
+}
+
+//Driver Function
+int main()
+{
+
+    int n = 10;
+    cout << "Enter the number upto which prime numbers are to be computed: ";
+    cin >> n;
+
+    //Create an array of size n+1 initialized with 0
+    n++;
+    int primes[n] = {0};
+
+    //Call prime sieve function
+    prime_sieve(primes, n);
+
+    //Print all primes upto n
+    cout<<"The prime numbers less than "<< n-1 <<" is "<<endl;
+    for (int i = 0; i < n; i++)
+    {
+        if (primes[i] == 1)
+        {
+            cout << i << " ";
+        }
+    }
+
+    return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def sieve_of_eratosthenes(n):
+    sieve = [True for i in range(n+1)]
+    p = 2
+    while(p**2 <= n):
+        if(sieve[p] == True):
+            i = p*p
+            while(i <= n):
+                sieve[i] = False 
+                i += p
+        p += 1
+    for i in range(2,len(sieve)):
+        if(sieve[i] == True):
+            print(i,end = " ")
+def main():
+    print("Enter the number upto which prime numbers are to be computed: ")
+    n = int(input())
+    print("The number of prime numbers less than "+str(n)+" is :")
+    sieve_of_eratosthenes(n)
+    
+if __name__ == "__main__":
+    main()    
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number upto which prime numbers are to be computed: 25
+```
+
+#### Output
+
+```
+The prime numbers less than 25 is
+2 3 5 7 11 13 17 19 23
+```
+
+## Complexity Analysis
+
+- Time complexity - O(`n*(log(log(n)))`)
+- Space complexity - O(`n`)
+
+
+## Credits
+
+-   [Rajiv Singh](https://github.com/iamrajiv) for [implementation in c++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Sieve_of_Eratosthenes.cpp)
+-   [Adithya kurien peter](https://github.com/aaadddiii) for implementation in python
