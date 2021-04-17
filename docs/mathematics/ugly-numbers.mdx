@@ -5,11 +5,13 @@ slug: /mathematics/ugly-numbers
 
 ## Introduction
 
-Ugly Numbers are numbers that only have `2`, `3`, and `5` as their prime factors. Prime factors are the prime numbers that perfectly divide the given number. Prime Number refers to the number which is divisible by `1` and the number itself. `2` is the smallest prime number. `1` is neither prime nor composite.  
+Ugly Numbers are numbers that have only `2`, `3`, and `5` as their prime factors. Prime factors are the prime numbers that perfectly divide the given number. Prime Number refers to the number which is divisible by `1` and the number itself. `2` is the smallest prime number. `1` is neither prime nor composite.  
 
 ## Explanation 
 
-To check whether the number is ugly or not we just need to keep on dividing it by `2`, `3`, and `5`. If it reduces to `1`, then the number is ugly else the number is not ugly. Prime factorization of every ugly number looks like `2^p x 3^q x 5^r`, where `p>=0`, `q>=0`, and `r>=0`. `1` is included in the list of ugly numbers by convention. First `10` ugly numbers are `1`, `2`, `3`, `4`, `5`, `6`, `8`, `9`, `10`, `12`.
+To check whether the number is ugly or not we just need to keep on dividing it by `2`, `3`, and `5`. If it reduces to `1`, then the number is ugly else the number is not ugly. Prime factorization of every ugly number looks like: 2<sup>p</sup> x 3<sup>q</sup> x 5<sup>r</sup>, where `p >= 0`, `q >= 0`, and `r >= 0`. 
+
+`1` is included in the list of ugly numbers by convention. First `10` ugly numbers are `1`, `2`, `3`, `4`, `5`, `6`, `8`, `9`, `10`, `12`.
 
 Let's have one example: 
 ```
@@ -74,12 +76,9 @@ int isUgly(int n)
 
 int main() 
 {
-    // Taking Input
-
     cout << "Enter the Number: ";
     int n;
     cin >> n;
-    // Printing Output
 
     if (isUgly(n)) 
     {
@@ -116,13 +115,11 @@ def isUgly(n):
     return False
 
 if __name__ == '__main__':
-  # Taking Input
-
   n = int(input("Enter the number: "))
-  # Printing Output
-
+  
   if(isUgly(n)):
     print("Ugly Number")
+    
   else:
     print("Not a Ugly Number")
 ```
@@ -138,6 +135,7 @@ if __name__ == '__main__':
 Enter the Number: 12
 ```
 #### Output :
+
 ```
 Ugly Number
 ```
@@ -147,5 +145,3 @@ Ugly Number
 - Time Complexity: `O(n)`
 
 - Space Complexity: `O(1)`
-
-## Credits
