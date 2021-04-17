@@ -97,6 +97,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/automorphic-number",
 		            "mathematics/hamming-distance",
+                    "mathematics/pascal-triangle",
             ],
         },
         {
