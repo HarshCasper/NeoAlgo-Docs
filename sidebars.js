@@ -49,6 +49,7 @@ module.exports = {
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
+                "data-structures/Circular-Linked-list",
                  "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal"
             ],
@@ -59,6 +60,7 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+		"dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -93,6 +95,8 @@ module.exports = {
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/ugly-numbers",
+		            "mathematics/automorphic-number",
+		            "mathematics/hamming-distance",
             ],
         },
         {
