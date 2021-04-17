@@ -5,7 +5,7 @@ slug: /dynamic-programming/golomb-sequence
 
 ## Introduction
 
-Golomb sequence is a non-decreasing sequence of integers where the n<sup>th</sup> term of the sequence is equal to the number of times n appears in the sequence.
+Golomb sequence is a non-decreasing sequence of integers where the n<sup>th</sup> term of the sequence is equal to the number of times `n` appears in the sequence.
 
 ## Explanation
 
@@ -60,8 +60,11 @@ int golomb_sequence(int n)
 
     dp[1] = 1;
 
-    // Identify the previous term 'prev' and go prev terms behind and find a number.
-    // Now assign the current element with an incremented value of that element.
+    /* 
+     Identify the previous term 'prev' and go prev terms behind and find a number.
+     Now assign the current element with an incremented value of that element.
+    */
+    
     for (int i = 2; i <= n; i++)
     {
         int prev = dp[i - 1];
