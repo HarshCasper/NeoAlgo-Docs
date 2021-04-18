@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -24,6 +25,8 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/jump-search",
+                "searching-algorithms/exponential-search",
             ],
         },
         {
@@ -35,7 +38,8 @@ module.exports = {
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 'sorting-algorithms/insertion-sort',
-                "sorting-algorithms/merge-sort"
+                "sorting-algorithms/merge-sort",
+                "sorting-algorithms/quick-sort",
             ],
         },
         {
@@ -44,6 +48,15 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
+                "data-structures/Singly-Linked-list",
+                "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
+                "data-structures/stack-data-structure",
+                "data-structures/binary-search-tree",
+                "data-structures/queue",
+                "data-structures/Circular-Linked-list",
+                "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal"
             ],
         },
         {
@@ -52,6 +65,10 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+                "dynamic-programming/golomb-sequence",
+                "dynamic-programming/kadane-algorithm",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -76,9 +93,21 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
-                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-
+                "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
+                "mathematics/reverse-a-number",
+                "mathematics/automorphic-number",
+                "mathematics/double-factorial",
+                "mathematics/gcd-of-two-numbers",
+                "mathematics/power-linear",
+                "mathematics/ugly-numbers",
+		            "mathematics/lucky-numbers",
+		            "mathematics/hamming-distance",
             ],
         },
         {
@@ -105,6 +134,7 @@ module.exports = {
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
                 "competitive-programming/factorial-of-large-number",
+                "competitive-programming/max-number-from-array",
             ],
         },
         {
@@ -118,7 +148,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform"],
         },
         {
             type: "category",
