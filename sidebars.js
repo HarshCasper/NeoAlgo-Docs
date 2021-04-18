@@ -99,6 +99,7 @@ module.exports = {
 		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
+                "mathematics/gcd-of-two-numbers",
                 "mathematics/power-linear",
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
