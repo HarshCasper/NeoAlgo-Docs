@@ -1,0 +1,201 @@
+---
+title: Factorial of very large number 
+slug: /competitive-programming/factorial-of-large-number
+---
+
+## Introduction
+
+Factorial of a non-negative number `n` is the product of all integers less than or equal to `n`.
+But when you have a very large `n` say 100, it's factorial has `158` digits, which is not possible to store even if 
+you use long long int. 
+
+
+## Explanation
+
+For a non-negative integer say `n`,the factorial of `n` is defined as follows:
+
+```
+Factorial(n) = n * (n - 1) * (n - 2) * . . . . . 3  * 2 * 1
+```
+
+Or
+
+```
+Factorial(n) = n * Factorial(n - 1)
+```
+
+Examples: 
+
+```
+Factorial(4) = 4 * 3 * 2 * 1 = 24 = 4 * Factorial(3)
+Factorial(7) = 7 * 6 * 5 * 4 * 3 * 2 * 1 = 5040 = 7 * Factorial(6)
+```
+
+## Algorithm
+
+```
+largeFactorial(n):
+	Set rsize to 1
+  	FOR x=2 to n
+		Set rsize to multiply(x, res, rsize)
+	ENDFOR
+	Print factorial of the number
+
+multiply(n,res,rsize):
+	Set carry to 0
+  	FOR i=0 to rsize-1
+		Set product to res[i] * x + carry
+		Set res[i] to product % 10
+		Set carry to product/10
+	ENDFOR
+	WHILE carry exists
+		push carry%10 to res
+		divide carry by 10
+		increment rsize
+	ENDWHILE
+	RETURN rsize
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+/* This function calculates product and carry,
+  `rsize` is size of vector `res`*/
+int multiply(int x, vector<int> &res, int rsize){
+    int carry = 0;
+	for (int i=0; i<rsize; i++)
+	{
+		int product = res[i] * x + carry;
+
+		/* Storing the last digit of `prod` in res */
+		res[i] = product % 10;
+		carry = product/10;
+	}
+
+	/* Put carry in res and increment the result size */
+	while (carry)
+	{
+		res.push_back(carry%10);
+		carry = carry/10;
+		rsize++;
+	}
+	return rsize;
+}
+
+/* Function finds factorial of large numbers
+   and prints them */
+void largeFactorial(int num)
+{
+	vector<int> res; 
+	res.push_back(1);
+	int rsize = 1;
+
+	/* Applying general factorial formula */
+	for (int x=2; x<=num; x++)
+		rsize = multiply(x, res, rsize);
+
+	cout << "Factorial of "<< num << " is : ";
+	for (int i=rsize-1; i>=0; i--)
+		cout << res[i];
+}
+
+/* Driver Function */
+int main()
+{
+	int num;
+	/*Taking input of the number*/
+	cout << "Enter the number : ";
+	cin >> num;
+    largeFactorial(num);
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.*;
+public class Factorial_large_numbers
+{
+    public static int len = 0;
+    public static int[] Factorial(int n, int[] arr, int[] str2){
+        int temp = 0, carry = 0, i=0;
+        for(i=0; i<len; i++){
+            temp = str2[i]*n + carry;
+            carry = temp/10;
+            arr[i] = temp%10;
+        }
+        while(carry!=0){
+            arr[i] = carry%10;
+            carry = carry/10;
+            len+=1;
+            i+=1;
+        }
+        return arr;
+    }
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    System.out.print("Enter number : ");
+	    int num = sc.nextInt();
+	    String str = String.valueOf(num);
+	    len = str.length();
+	    int[] arr = new int[300];
+	    int[] str2 = new int[300];
+	    int i=0, temp=num;
+	    for(i=0; i<len; i++){
+	        str2[i] = temp%10;
+	        temp=temp/10;
+	    }
+	    for(int j=1; j<num; j++){
+    	    str2 = Factorial(j, arr, str2);
+	    }
+	    System.out.print("Factorial of "+num+" = ");
+        for(i=len-1; i>=0; i--){
+            System.out.print(str2[i]);
+        }
+	}
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number : 51
+```
+
+#### Output:
+
+```
+Factorial of 51 is : 1551118753287382280224243016469303211063259720016986112000000000000
+```
+
+## Complexity Analysis
+
+- Time  complexity - O(n^2)
+- Space complexity - O(log(n!))
+
+## Credits
+
+- [Satyam Singh](https://github.com/satcasm) contributed the C++ implementation
+- [Rohan Gawhade](https://github.com/rohangawhade) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/Factorial_large_numbers.java)
