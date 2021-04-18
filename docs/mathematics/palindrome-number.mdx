@@ -1,0 +1,133 @@
+---
+title: Palindrome Number
+slug: /mathematics/palindrome-number
+---
+
+## Introduction
+
+A number whose digits when reversed form the same original number then such a number is said to be a palindromic number. The term palindromic is derived from palindrome, which refers to a word (such as rotor or racecar) whose spelling is unchanged when its letters are reversed.
+
+## Explanation
+
+A number `pqr` is said to be palindrome, if and only if it's reverse is also `pqr`. This means the reverse of `pqr` is `rqp` which must be equal to it's original number `pqr`.
+
+### Quick Example :
+
+* Consider a number `17371`. If this is reversed then again we get `17371` which is same as the original number. Hence `17371` is a palindrome number.
+
+* Consider a number `1243`. If this is reversed then we get `3421` which is not same as the original number. Hence `1243` is not a palindrome number.
+
+**Note:** All **single digit** integers are palindrome numbers.
+
+Some palindrome numbers are: ```0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99, 101, 111, .....```
+
+## Algorithm
+
+ - Input the number `num`.
+ - Store the number in a temporary variable.
+ - Reverse the number `num`.
+ - Check if the reversed number is equal to original number `num`.
+
+## Code 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```c
+// C++ program to check if a number is a palindrome or not
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int num, temp, rev = 0;
+    cout << "Enter the number:  ";
+    cin >> num;
+    temp = num;
+    /*To check if a number is palindrome, we reverse the number
+    and then compare it with the given number */
+    while (temp)
+    {
+        int rem = temp % 10;
+        rev = rev * 10 + rem;
+        temp = temp / 10;
+    }
+    if (rev == num)
+    {
+        cout << num << " is a Palindrome number.";
+    }
+    else
+    {
+        cout << num << " is not a Palindrome number.";
+    }
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// Checking Palindrome number with Recursion
+import java.io.*;
+import java.util.*;
+class PalindromeRecursion {
+    //stored reversed number
+    static long revNum = 0;
+    public static long palindrome(long i) {
+        if (i > 0) //base class
+        {
+            revNum = (revNum * 10) + (i % 10);
+            palindrome(i / 10);
+        } else
+            return revNum;
+        return revNum;
+    }
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        long n = sc.nextLong();
+        if (n == palindrome(n))
+            System.out.println(n + " is a Palindrome number.");
+        else
+            System.out.println(n + " is not a Palindrome number.");
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output 
+#### Input :
+```
+Enter the number: 121
+```
+
+#### Output :
+```
+121 is a Palindrome Number.
+```
+#### Input :
+```
+Enter a number: 14
+```
+#### Output :
+```
+14 is not a Palindrome Number.
+```
+## Complexity Analysis
+- Time Complexity: `O(n)`
+- Space Complexity: `O(1)`
+
+## Credits
+
+   - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/check_palindrome.cpp)
+   - [Rajiv Singh](https://github.com/iamrajiv) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/PalindromeRecursion.java)
