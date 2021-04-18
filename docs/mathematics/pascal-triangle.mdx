@@ -5,48 +5,41 @@ slug: /mathematics/pascal-triangle
 
 ## Introduction
 
-Pascal Triangle refers to the triangle which consists of binomial coefficients. It was named after french mathematician Blaise Pascal. 
+Pascal Triangle refers to the triangle which consists of binomial coefficients. It was named after french mathematician Blaise Pascal. The first line of the pascal triangle has only one element, the second has two elements, and this keeps on increasing by `1` as we proceed to the nth line. We need to take an integer `n` as input and print the first `n` lines of the pascal triangle. 
 
 ## Explanation 
 
-GCD of two numbers `a` and `b` is denoted by `gcd(a,b)`. GCD of any number with `1` is `1`. GCD of any number with `0` is the same number.
+Starting and Ending element of every line of the pascal triangle is `1`. We just need to run two loops and print every element using the formula given below.
 
-GCD has following properties:
+<img src="https://i.imgur.com/ZXtP0KW.jpg" width="201" height="201" /><br/><br/>
+
+The value of `jth` entry in `ith` line is:
 ```
-gcd(m⋅a, m⋅b) = m⋅gcd(a, b)
-gcd(a + m⋅b, b) = gcd(a, b)
-where m is a non-negative integer
+C(i, j) = i! / ( (i-j)! * j! ), ways to select j objects from the set of i objects
 ```
 
 Let's have one example: 
 ```
-num1 = 6
-num2 = 9
-mini = 6, it contains minimum of num1 and num2
-Iteration 1:
-mini = 6
-Both numbers are not divisible by mini, so reduce mini by 1
-mini = mini-1
-Iteration 2:
-mini = 5
-Both numbers are not divisible by mini, so reduce mini by 1
-mini = mini-1
-Iteration 3:
-mini = 4
-Both numbers are not divisible by mini, so reduce mini by 1
-mini = mini-1
-Iteration 4:
-mini = 3
-Both the numbers are divisible by mini, so return mini
+n = 3
+
+1st row
+C(0 ,0) = 1, first element
+
+2nd row
+C(1 ,0) = 1, first element  
+C(1 ,1) = 1, second element
+
+3rd row
+C(2 ,0) = 1, first element
+C(2 ,1) = 2, second element
+C(2 ,2) = 1, third element
 ```
 
 ## Algorithm
 
-- Declare a variable `mini` and initialize it to minimum of two numbers.
+- Iterate `i` from `0 to n-1`.
 
-- Decrease `mini` by `1` until both the numbers become divisible by it.
-
-- Return `mini`.
+- For each iteration of `i`, iterate `j` from `0 to i` and print `C(i,j)`.
 
 ## Code
 
@@ -65,34 +58,52 @@ import TabItem from '@theme/TabItem';
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
-// Function to determine the gcd of two numbers
-int gcd(int a, int b) 
+// Function to print pascal triangle
+
+int pascal(int n) 
 {
-    // Assigning minimum element to mini
-    int mini;
-    if (a <= b) mini = a;
-    else mini = b;
-    while (mini > 1) 
+    int i = 0;
+    while (i < n) 
     {
-        if (a % mini == 0 && b % mini == 0) 
+        int j = 0;
+        while (j <= i) 
         {
-            break;
+            // Calculating C(i,j) = i!/((i-j)!*j!)
+
+            int res = 1;
+            int k = 1;
+            while (k <= i) 
+            {
+                res = res * k;
+                k++;
+            }
+            k = 1;
+            while (k <= (i - j)) 
+            {
+                res = res / k;
+                k++;
+            }
+            k = 1;
+            while (k <= j)
+            {
+                res = res / k;
+                k++;
+            }
+            if (res != 0) cout << res << " ";
+            j++;
         }
-        mini--;
+        cout << endl;
+        i++;
     }
-    return mini;
 }
+
 int main() 
 {
-    // Taking Input
-    cout << "Enter the First Number: ";
-    int a;
-    cin >> a;
-    cout << "Enter the Second Number: ";
-    int b;
-    cin >> b;
-    // Printing Output
-    cout << "GCD of two Numbers is: " << gcd(a, b);
+    int n;
+    cout << "Enter the Number of rows: ";
+    cin >> n;
+
+    pascal(n);
     return 0;
 }
 ```
@@ -101,23 +112,42 @@ int main()
 <TabItem value="py">
 
 ```python   
-# Function to determine the gcd of two numbers
-def gcd(a,b):
-  # Assigning minimum element to mini
-  mini = b;
-  if (a < b): 
-    mini = a
-  while (mini > 1):
-    if (a % mini == 0 and b % mini == 0): 
-      break    
-    mini -= 1
-  return mini;
-if __name__ == '__main__':
-  # Taking Input
-  a = int(input("Enter the First Number: "))
-  b = int(input("Enter the Second Number: "))
-  # Printing Output
-  print("GCD of two Numbers is:",gcd(a,b))
+# Function to print pascal triangle
+
+def pascal(n):
+    i = 0
+    while i < n:
+        j = 0
+        while j <= i:
+            # Calculating C(i,j) = i!/((i-j)!*j!)
+
+            res = 1
+            k = 1
+            while k <= i:
+                res = res * k
+                k += 1
+
+            k = 1
+            while k <= (i - j):
+                res = res // k
+                k += 1
+
+            k = 1
+            while k <= j:
+                res = res // k
+                k += 1
+
+            if res != 0:
+                print(res, end=" ")
+            j += 1
+
+        print("")
+        i += 1
+
+if __name__ == "__main__":
+    n = int(input("Enter the Number of rows: "))
+
+    pascal(n)
 ```
 </TabItem>
 
@@ -128,18 +158,19 @@ if __name__ == '__main__':
 #### Input :
 
 ```
-Enter the First Number: 5
-Enter the Second Number: 15
+Enter the Number of rows: 3
 ```
 
 #### Output :
 
 ```
-GCD of two Numbers is: 5
+1
+1 1
+1 2 1
 ```
 
 ## Complexity Analysis
 
-- Time Complexity: `O(n)`
+- Time Complexity: `O(n^3)`
 
 - Space Complexity: `O(1)`
