@@ -96,6 +96,7 @@ module.exports = {
                 "mathematics/automorphic-number",
                 "mathematics/ugly-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/triangular-numbers",
             ],
         },
         {
