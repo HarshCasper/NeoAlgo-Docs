@@ -50,6 +50,9 @@ module.exports = {
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
                  "data-structures/binary-search-tree",
+                 "data-structures/queue",
+                "data-structures/Circular-Linked-list",
+                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal"
             ],
         },
@@ -59,6 +62,10 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+                "dynamic-programming/golomb-sequence",
+                "dynamic-programming/kadane-algorithm",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -93,6 +100,11 @@ module.exports = {
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
+                "mathematics/gcd-of-two-numbers",
+                "mathematics/power-linear",
+                "mathematics/ugly-numbers",
+		            "mathematics/lucky-numbers",
+		            "mathematics/hamming-distance",
             ],
         },
         {
