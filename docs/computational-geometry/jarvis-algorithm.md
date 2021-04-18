@@ -251,3 +251,22 @@ convexHull(points, len(points))
 </TabItem>
 </Tabs>
 
+## Sample Input and Output
+
+### Input:
+
+The input is set of points in 2D space .
+
+```
+ (1,2), (7,4), (2,6), (5,8), (1,10), (0,0), (-2,2), (-4,-4), (-6,0), (-8,8), (-1,5)
+```
+
+### Output:
+
+The output is points of the convex hull.
+
+```
+Boundary points of convex hull are:
+(-6, 0) (-4, -4) (7, 4) (5, 8) (1, 10) (-8, 8)
+```
+
