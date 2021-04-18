@@ -1,0 +1,463 @@
+---
+title: Circular Linked list
+slug: /data-structures/circular-linked-list
+---
+
+## Introduction
+
+Circular Linked list is a type of Linked list having collection of variable number of data items called nodes. Each node has two fields - one is the **information field** containing the data value of that node, and the other is the **link field** which contains the memory address of the next node. Since here the link field of last node contains the address of the first node, it is termed as Circular Linked list.
+
+![1](https://user-images.githubusercontent.com/70858557/114727219-a6259e00-9d5b-11eb-8c62-79fc6c20ec65.PNG)
+
+## Why Circular Linked list ?
+
+In a Circular Linked list each and every node is accessible from a given node. Also here there is no need of NULL assignment in code, as unless fully deallocated, the Circular list never points to NULL. 
+
+### Creating a Linked list:
+
+The nodes of a Circular Linked list can be created by the below structure. Here `info` is the information field and `*link` is the link field containing pointer variable which refers the same node structure. Such reference is called **self adressing pointer.**
+
+```c
+// A Circular Linked list node
+struct Node{
+    int info;
+    struct Node *link;
+}*node1, node2;
+```
+
+## Algorithm
+
+Here are the operations performed on a Circular Linked List:
+
+#### Traversing a Linked list: 
+
+- While the pointer containing address of the next node is not NULL.
+- Fetch the data part of the node.
+- Advance the pointer to the next node.
+
+#### Inserting node at the beginning of the Linked list:
+
+- Allocate memory for the the new node and initialize its data part.
+- Take a pointer PTR pointing to the start node of the list, and move it so that now it points to the last node.
+- Add the new node between start pointer and PTR, and mark the new node as the start node.
+
+#### Inserting node at the end of the Linked list:
+
+- Allocate memory for the the new node and initialize its data part.
+- Take a pointer PTR pointing to the start node of the list, and move it so that now it points to the last node.
+- Add the new node after the node pointed by PTR.
+
+#### Inserting node at a given position of the Linked list:
+
+- Count the number of data items in the Circular Linked list.
+- If the inserting position is 1, insert at the beginning.
+- if the inserting position is at the end, insert at the end.
+- if it is in the middle, link the newly created node with its left and right node.
+
+#### Deleting node from the beginning of the Linked list:
+
+- Take a pointer PTR pointing to the start node of the list, and move it so that now it points to the last node.
+- The link part of the last node is now made to point to the second node of the list.
+- The memory occupied by the fisrt node is freed.
+
+#### Deleting node from the end of the Linked list:
+
+- we move to last node by setting present node as ptr and previous one as preptr.
+- when we reach the last node i.e. when last node is ptr and second last preptr.
+- Now make the preptr's link part store the address of the first node, and free the space allocated for PTR.
+
+#### Deleting node from a given position of the Linked list:
+
+- First we find the previous node of the node that is to be deleted.
+- Change the address part of the previous node. 
+- Free the memory occupied by the node. 
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node *next;
+    //constructor
+    node(int d)
+    {
+        data = d;
+        next = NULL;
+    }
+};
+
+//Function to insert in circular LinkedList
+//pass by referance
+void insert(node *&head, int data) 
+{
+    node *n = new node(data);
+    //creating a new node
+    n->next = head; 
+    node *temp = head;
+    if (temp != NULL)
+    {
+        while (temp->next != head)
+        {
+            temp = temp->next;
+        }
+        temp->next = n;
+    }
+
+    //self loop for single node
+    else
+    {
+        n->next = n;
+    }
+    head = n;
+}
+
+//Creating a function to get the node to be deleted
+//pass ny value
+node *getnode(node *head, int data) 
+{
+    node *temp = head;
+    while (temp->next != head)
+    {
+        if (temp->data == data)
+        {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    if (temp->data == data)
+    {
+        return temp;
+    }
+    return NULL;
+}
+
+//Creating the delete function
+void del(node *head, int data)
+{
+    node *del = getnode(head, data);
+
+    if (del == NULL)
+    {
+        return;
+    }
+
+    if (head == del)
+    {
+        head = head->next;
+    }
+
+    node *temp = head;
+
+    while (temp->next != del)
+    {
+        temp = temp->next;
+    }
+    temp->next = del->next;
+    delete del;
+}
+
+//function to print circular linkedlist
+void print(node *head)
+{
+    node *temp = head;
+    while (temp->next != head)
+    {
+        cout << temp->data << " ---> ";
+        temp = temp->next;
+    }
+    //for last node
+    cout << temp->data << endl; 
+}
+
+int main()
+{
+    node *head = NULL;
+    int arr[100], arr2[100];
+    int n, n2;
+    cout << "Enter the number of elements" << endl;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter the value you want to PREPEND " << i << "-" << endl;
+        cin >> arr[i];
+        insert(head, arr[i]);
+        cout << "Your Current List: " << endl;
+    	print(head);
+    }
+
+    cout << "Enter the value to be DELETED" << endl;
+    cin >> n2;
+    for (int j = n2 - 1 + 1; j > 0; j--)
+    {
+        cout << "enter position of number " << endl;
+        cin >> arr2[j];
+        del(head, arr[j + 1]);
+        cout << "Your Current List: " << endl;
+    	print(head);
+    }
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class circular_llist:
+
+    # constructor function called during object creation
+    def __init__(self, node):
+        self.head = node
+        self.tail = self.head
+        self.size = 1
+
+    # creates the list by values entered by user at the time of creation
+    def create(self, node):
+
+        self.tail.next = node
+        self.tail = node
+        node.next = self.head
+        self.size = self.size + 1
+
+    # Insert node given as argument to the end of the list
+    def append(self, node):
+        '''Insert node given as argument to the end of the list'''
+        self.tail.next = node
+        self.tail = node
+        node.next = self.head
+        self.size = self.size + 1
+        self.printAll()
+
+    # Insert node given as argument to the start of the list
+    def prepend(self, node):
+        '''insert node given as argument to the start of the list'''
+        node.next = self.head
+        self.head = node
+        self.tail.next = self.head
+        self.size = self.size + 1
+        self.printAll()
+
+    # Prints the no of nodes or size of linked list
+    def getSize(self):
+        '''Prints the no of nodes or size of linked list'''
+        print("Total No of Nodes :", end=" ")
+        print(self.size)
+
+    # Print all the nodes of list
+    def printAll(self):
+        '''Print all the nodes of list'''
+        node = self.head
+
+        print("Your Current List: ")
+
+        while node.next != self.head:
+
+            print(node.value, end='')
+            print("--->", end='')
+            node = node.next
+
+        else:
+            print(node.value)
+
+    # Insert node at position passed in argument
+    def insert(self, n, index):
+        '''Insert node at position passed in argument
+        usage : insert(Node,position)
+        '''
+        i = 0
+        node = self.head
+        while node:
+            if i == index - 1:
+                nextNode = node.next
+                node.next = n
+                n.next = nextNode
+                self.size = self.size + 1
+                break
+            else:
+                i += 1
+                node = node.next
+        else:
+            print("Given index is not in proper range")
+
+        self.printAll()
+
+    # Remove node at position passed in argument
+    def remove(self, data):
+        '''Remove node at position passed in argument
+        usage : remove(value)
+        '''
+        node = self.head
+        while node:
+            if node.next.value == data:
+                nextNode = node.next.next
+                node.next = nextNode
+                self.size = self.size - 1
+                break
+            else:
+                node = node.next
+
+        else:
+            print("Value not Found")
+
+        self.printAll()
+
+
+# Class for creation of nodes in Linked List
+class Node:
+    def __init__(self, data):
+        self.value = data
+        self.next = None
+
+
+if __name__ == '__main__':
+
+    # Taking Input from User
+    user_input = list(map(int, input("Enter initial values to be added in List \n").split()))
+
+    # Setting First Value as HEAD
+    l = circular_llist(Node(user_input[0]))
+
+    # Creation of the list
+    for inputs in range(1, len(user_input)):
+        l.create(Node(user_input[inputs]))
+
+    choice = 1
+    no = int(input("Enter the number of elements"))
+    for i in range(no):
+        user_value = int(input("Enter the value you want to PREPEND\n"))
+        l.prepend(Node(user_value))
+    print('''
+           1    :  APPEND value at the END of list.
+           2    :  PREPEND value at the START of the list.
+           3    :  INSERT value at the desired Index
+           4    :  DELETE value from the list
+           5    :  PRINT ALL the values of your list
+           6    :  GET SIZE of your List
+           7    :  QUIT The program
+    ''')
+    while choice != 7:
+        print("Enter Your Choice")
+        choice = int(input())
+        if choice == 1:
+            user_value = int(input("Enter the value you want to APPEND\n"))
+            l.append(Node(user_value))
+        elif choice == 2:
+            user_value = int(input("Enter the value you want to PREPEND\n"))
+            l.prepend(Node(user_value))
+        elif choice == 3:
+            user_value = int(input("Enter the value you want to INSERT\n"))
+            user_desired_index = int(input(f"Enter the index for {user_value}\n"))
+            l.insert(Node(user_value), user_desired_index)
+        elif choice == 4:
+            user_value = int(input("Enter the value to be DELETED\n"))
+            l.remove(user_value)
+        elif choice == 5:
+            l.printAll()
+        elif choice == 6:
+            l.getSize()
+        elif choice != 7:
+            print("Invalid choice. Try Again!")
+
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input & Output
+
+#### Sample Input
+
+```
+Enter initial values to be added in List 
+8
+Enter the number of elements4
+Enter the value you want to PREPEND
+2
+Your Current List: 
+2--->8
+Enter the value you want to PREPEND
+3
+Your Current List: 
+3--->2--->8
+Enter the value you want to PREPEND
+6
+Your Current List: 
+6--->3--->2--->8
+Enter the value you want to PREPEND
+9
+Your Current List: 
+9--->6--->3--->2--->8
+
+           1    :  APPEND value at the END of list.
+           2    :  PREPEND value at the START of the list.
+           3    :  INSERT value at the desired Index
+           4    :  DELETE value from the list
+           5    :  PRINT ALL the values of your list
+           6    :  GET SIZE of your List
+           7    :  QUIT The program
+    
+Enter Your Choice
+1
+Enter the value you want to APPEND
+5
+Your Current List: 
+9--->6--->3--->2--->8--->5
+Enter Your Choice
+4
+Enter the value to be DELETED
+8
+Your Current List: 
+9--->6--->3--->2--->5
+Enter Your Choice
+5
+```
+
+#### Sample Output
+
+```
+Your Current List: 
+9--->6--->3--->2--->5
+```
+
+## Complexity Analysis
+
+- Access
+    - **Average Case**: `O (n)`
+    - **Worst Case**: `O (n)`
+- Search 
+    - **Average Case**: `O (n)`
+    - **Worst Case**: `O (n)`
+- Insertion
+    - **Average Case**: `O (1)`
+    - **Worst Case**: `O (1)`
+- Deletion
+    - **Average Case**: `O (1)`
+    - **Worst Case**: `O (1)`
+
+- Space Complexity: `O (n)`
+
+## Credits
+
+- [Shishir](https://github.com/Shishir198) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Circular_LinkedList.py)
+- [Reethik Prasad](https://github.com/reethikprasad) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Circular_LinkedList.cpp)
+
