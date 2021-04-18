@@ -62,6 +62,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -95,7 +97,9 @@ module.exports = {
 		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
+                "mathematics/power-linear",
                 "mathematics/ugly-numbers",
+		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
             ],
         },
