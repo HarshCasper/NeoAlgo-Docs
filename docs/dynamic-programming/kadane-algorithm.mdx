@@ -15,46 +15,56 @@ Let's have one example:
 <img src="https://i.imgur.com/DKoovMD.png" width="365" height="63" align="center"/><br/><br/>
 
 ```
-arr = -4 -1 2 3 5 6 1 -4 -6 
-sum_till_now = arr[0] = -4, It contains the maximum sum of subarray till the current element on which we are iterating.         
+Let's have an array arr[] = -4 -1 2 3 5 6 1 -4 -6 
+
+sum_till_now = arr[0] = -4, It contains the maximum sum of subarray till the current element on which we are iterating.  
+
 max_sum = arr[0] = -4, It contains overall max sum contiguous subarray.         
 
 Iteration 1:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[1] = -1
 max_sum = max(max_sum, sum_till_now) = -1
  
 Iteration 2:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[2] = 2
 max_sum = max(max_sum, sum_till_now) = 2
  
 Iteration 3:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[3] = 5
 max_sum = max(max_sum, sum_till_now) = 5
  
 Iteration 4:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[4] = 10
 max_sum = max(max_sum, sum_till_now) = 10
 
 Iteration 5:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[5] = 16
 max_sum = max(max_sum, sum_till_now) = 16
  
 Iteration 6:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[6] = 17
 max_sum = max(max_sum, sum_till_now) = 17
  
 Iteration 7:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[7] = 13
 max_sum = max(max_sum, sum_till_now) = 17
  
 Iteration 8:
+
 if (sum_till_now < 0) sum_till_now = 0
 sum_till_now = sum_till_now + arr[8] = 7
 max_sum = max(max_sum, sum_till_now) = 17
