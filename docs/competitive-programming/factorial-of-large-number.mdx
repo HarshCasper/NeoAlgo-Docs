@@ -151,7 +151,7 @@ public class Factorial_large_numbers
     }
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
-	    System.out.print("Enter number : ");
+	    System.out.print("Enter the number : ");
 	    int num = sc.nextInt();
 	    String str = String.valueOf(num);
 	    len = str.length();
@@ -165,7 +165,7 @@ public class Factorial_large_numbers
 	    for(int j=1; j<num; j++){
     	    str2 = Factorial(j, arr, str2);
 	    }
-	    System.out.print("Factorial of "+num+" = ");
+	    System.out.print("Factorial of "+num+" is : ");
         for(i=len-1; i>=0; i--){
             System.out.print(str2[i]);
         }
@@ -192,8 +192,8 @@ Factorial of 51 is : 15511187532873822802242430164693032110632597200169861120000
 
 ## Complexity Analysis
 
-- Time  complexity - O(n^2)
-- Space complexity - O(log(n!))
+- Time  complexity - `O(n^2)`
+- Space complexity - `O(log(n!))`
 
 ## Credits
 
