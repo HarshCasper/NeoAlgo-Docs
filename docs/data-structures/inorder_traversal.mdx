@@ -8,10 +8,13 @@ slug: /data-structures/inorder_traversal
 A binary tree is a type of tree which have at most two children or we can say at most degree 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Inorder traversal.
 
 ## Explanation 
-In this type of traversal(Inorder traversal), first, we have to traverse the left part then its root then the right part respectively. In the left part, we have to traverse the whole left subtree after that root of that subtree and then the whole right subtree. Inorder: (left->root->right).
+
+In this type of traversal(Inorder traversal). First, we have to traverse the left part then its root then the right part respectively. In the left part, we have to traverse the whole left subtree after that root of that subtree and then the whole right subtree. Inorder: (left->root->right).
+
 #### Example 1
 
 <img src="https://i.imgur.com/f0nHPpz.jpg?1" width="600" height="350"/>
+<img src="https://i.imgur.com/BPvB4gX.png?1" width="600" height="350"/>
 
 ```
 
@@ -74,19 +77,25 @@ struct Node {
 
 // Insert Function
 Node* Insert(Node *root, int data) {
-    //if root have no value
-    //then create a node and insert values
+    /*
+    if root have no value 
+    then create a node and insert values
+    */
     if (root == NULL) {
         root = new Node();
         root->data = data;
         root->left = root->right = NULL;
     }
-    //check if data is less than root value
-    //then insert into left subtree
+    /*
+    check if data is less than root value    
+    then insert into left subtree
+    */
     else if (data <= root->data)
         root->left = Insert(root->left, data);
-    //check if data is less than root value
-    //then insert into right subtree
+    /*    
+    check if data is less than root value
+    then insert into right subtree
+    */
     else
         root->right = Insert(root->right, data);
     return root;
@@ -202,11 +211,11 @@ In-order traversal : 11 22 33 44 55 66 77
 
 ## Complexity Analysis
  
-- **Time Complexity:** `O(n)`
+- Time Complexity: `O(n)`
 
-- **Space Complexity:** `O(h)`
+- Space Complexity: `O(h)`
 
-where `h` is the height of binary tree and `n` is the number of elements.
+* where `h` is the height of binary tree and `n` is the number of elements.
 
 ### Credits
 * [Yashaswi Biyahut](https://github.com/yashaswibiyahut) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Inorder.cpp)
