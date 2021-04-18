@@ -270,3 +270,13 @@ Boundary points of convex hull are:
 (-6, 0) (-4, -4) (7, 4) (5, 8) (1, 10) (-8, 8)
 ```
 
+
+
+## Complexity Analysis
+
+```
+1. Time complexity -  O(nh)
+where n is the number of points and h is the number of points on the convex hull
+
+2. Space complexity - O(n)
+```
