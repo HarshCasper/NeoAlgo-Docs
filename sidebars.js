@@ -95,6 +95,7 @@ module.exports = {
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/ugly-numbers",
+		"mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
             ],
         },
