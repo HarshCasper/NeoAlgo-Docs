@@ -60,6 +60,7 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+		"dynamic-programming/catalan-number",
 		"dynamic-programming/golomb-sequence"
             ],
         },
