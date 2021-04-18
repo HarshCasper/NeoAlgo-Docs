@@ -1,0 +1,214 @@
+---
+title: Invert Binary Tree
+slug: /data-structures/invert-binary-tree
+---
+
+## Introduction
+
+An inversion, or mirror, of a Binary Tree ​ is just a Binary Tree  whose left and right children (of all non-leaf nodes) are swapped.
+
+## Explanation 
+
+The inverse of an empty tree is the empty tree. The inverse of a tree with root R, and subtrees T1 and T2, is a tree with root R, whose right subtree is the inverse of T1, and whose left subtree is the inverse of T2.
+
+
+#### Example 1
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX4AAACECAMAAACgerAFAAABLFBMVEX///+xqdT/r6R0w+GW0c3b4vT/saWY1M/e5fd1xuRCV335+vv19vju8PO0q9c4T3ff4ujq7PDe4edWZ4i6wc7Izdc0THXV2eEnQm/1p57AxtKIk6nHzNaXobVJXYEtR3Khqrt9iqK/yN6wi5UiP21mdZOSnLGwt8ZwfplXbo9woqumoMvR1NyMwsNcg5eVoLSKirWptMzL0+dvuNffnZrLmJoSNmh4hZ9sl6VYdZF+sredmcVVco88W32EibBsc55jqMlimrq0nKi8maHFvsi6rLeqmqirpbOrjZrDlJmVkKPYmJaIiJ+PfpGfhJN/eI9vcYypgYx2aoORdYhWX4FxkqWdoMCKk7Fjb5VdZ5J6fap2gKJ+oryiuMuCoLldi6x0kKxCdZtVgKNamrw1s8qRAAAS8klEQVR4nO1di1/ayBaOojzyIG+CCYRAyUuDitpGsbp03e32cbXd7u3a59a2////cCegMoGEZgKTxvV+7a8VecyZL2e+OXPOZCAIVFBK49czgF9/8xjkN//rwHm/n509ODv7XeayaI5u/HqwsVoEWN04OPudz6LN/IL7/eHGRnHMxsOnCoW9vV9Ba6vXKBY3ziTcLeYY1G8PV2/ZAD+8/AOzHNgvJ+SPGz14SuNtMr/gn61OkbH6wMPZoH0Qbi9ocuMp9iGXTwhn01wANp5j5B/4fkSLG3/gazHHAL4fhTNsM7DyPIJ9gIN7qf8vVqPZwCUG1NPI5oIRl0nMlS9Iszp8LQY2pgajpGeEeyg/zHkcGcUzLME49SKuQVwt5hnqy1gyDn7D0WCc8o8GnIqjxTzjRRwXgI1nOBo0YLEbrfPusfpwz6bIgB9imQr/swE18fz8/CHc4gMMDeYZDUgKii8vzh9A5ODRglcbUAOvLl7rBxD9f2JoMM+QIOcrPju/OIFn4g0cgfirsMC9PIEtuHf0wzPvRrEovsZO/wbUYnH19Wv44X0THykkvcXnsC/ioh+Wt1fww3vo/aEw8IH4vIibfn8S+RQPzJNX5w+gFrHEWjlG4wLyxYsT8fwcmhkPGhhatCbjq7jxAAAab/cu8BReQfQ/D9iA6MeyCFX+gloMh7rFg3u37IK0YDruX73A0SBjbsSmOZ7du5KL8WcsGVi0Z06LxQNMSb4cgxdj8s3AF/FUHCkxLsf67N5l3OY4I7bqh/Qm8ooXH8qYGswzKD0y/17ceIGt9mr9VZxtsnhg4Gov1xD+GyEGxdULjNOg/2a2wZevjftZa/fEi+kBUNy44G1sUaCsk6/C4U9x9YHd7O7gajDfaLfeTNF/8B+e0ElMWuyxNU8V/wScF8fUA/L/KxG02WriaTDfsFpm+83BTcgP/j/4qw2Ux6uxAo7mvBoZTOpq+8HL0S7DjZd/vraCmIcRawaOBvMNqyYyBGedPzwIyFg9eP7GGQf8EkliqLcIIjsOqShO+uPp+cXFC0O5DjgVncWz1Mgx7Jo7IpmX/3jxFJBhqdzNFGjUzOVH4s1H8QGtV3eW3l6+QYt6PMXaHKrSgpp3RYV7t9OHmRdgevcuCfNvBmMnuJwKfjtyAjmBttDLC39osftjbpW6f0+WXyrL/vhFVmtZeUjGb1kJmDVr1pIazDcUkkywsAXR4HL2mlNOS0vyOsat34fEs6LXEkXZcktfRjxCmS0/2St5cWkDLr9QyFbCpI5aWwb/Sr2dNIwCwxLLejsO9IwkTiylMMV+FpvYxZq1ZayG5OQd8bTlVnoMyzLin6XN6SdVhxA04Jw7Tdo28RSdeIQAz7jjYiC7pkwovKIQvECBHwhOVghKYTiaUjyeCm6lBf8Hv1FG49xUCZkVKa/mMpxM8RzDMwLNEbwHOOM5+s6tDSV0MaGWGX76YNLXHUdvKCccQ3qyueNKtO64iuNoGm/ahOU6IseRvhvkADzg8TLp2prrMpJJ77iOYetOWxF91yIM12wvaE2i5c8U0mkgN5pfjG6imCcEbTxRL2URRjmgfdIg9B1Ct1WXdxzJcXjd4PhWW+Vp1+ZbHmHuCDWFY2XQ9A4YMKStu7bL2C5tmQpjkwqvmSAMYQxXSe/9o1vWafMRcizJi6MlGuoizK8zo4w2+sXT6sElUx4ZyO+MMiOg3yZGzusbhOnLsswHYbfXdF0uoF8hfEuogaHRIJgaGAEyyzv2Nf3AEWwdWOQQSos3zPRm8LV2kFevo/eJH4epVhft0rdZhjBaaRKnjFkDM46cwtRZNHXRIECoIWoEp9c4whZ3mjs8KxGcb4Nh4BqU4+zostDlGNBLI7jucounCUMP6Ae0EzZLEQ2y6TjEjpteFRmyTdAum6aqJLM68Hythky/0RJTpa15FgiBt5QlmNdoeESDI8CEC34OfmHbAtUAk61qS0wgCYxkewSt0lSDod2gysc0AMtg3gV/FSAV3Phd4MXCAotQhtQYs56upme3RIrQSDQq26zHplCeERSyy0vZr8AE9HkqKQD9dmo1NeoO7SSiHwRqPD+Klx2W5vi0UYzKqnYLTDk8z3Ecf2dz33RgPhfwxrMapVBESvXSRM4ZFWdoPkDMp1BS/zjA332JJlzWMrR2209RRJQ5Bqh0S7Ktt4ebm5uH7eadTEV7zZH5m281m+brbrPZBkB3Jd4DLk04Lk0o9t9jfu0IPrjm7tbKGNWt3b81sV6vt0gSvWqmPgreqLOHvdI11jadu7YPjlK3N2/ML/W2NYcEdLBkisnQ79ZbLZ10pNPjlRt+j08bU0NAOt6qrtyiunJs8AzD0CkW7oxhtU1SPyqt3QJcAO1OSRC/M1ib2A8uwNsxHSk6oViWb5r6x60VGMeXcCREGcfV0NPgCi2yd6c56K2FUOo5d2gbrvC2VwqbXzo0FvlA9XRlGqcTBaIvt2aeXtm6TBsnU86U9SP+t+9MxsXbnjF/rbS5QFwl7VZn6K3u3gqyFcF+wH/K1vzBrPmA/4xrkTSXMuUpbM9aH/CfOpJWdqPovfX/xrTy3OhPus2i9mEE+8D+Qba1yHZdTBdxmbNjd2T/dsoAjrqMZH9lZeze/Gkk+4D/0zT+w7uR1gP7D7EedDYFRifJVJtd7c0Y+9dSDt9mpLYE8mLPffr6eUTsxJrfWzThiwSDJdPEzYwYYz2Qn1RqIMR599i96cu4p1eql+juz5tx5q+V3mY6+xo1MtGehDCkiHl3Ifexj+PoXQnUvRE9MYyfR5eLOeaXBtnmgSTg/8h7r52ouOHa/u006vMunt5A/Y1Y7UmlPnPMz1h9QLgN9J9tInHGubHWp1MfLlZ7gLr8zRAf59C/gh576uG44egt/PAI3fyF4AX+j7R+9B6XQoQfQd5UGhjoJqjhmD98LY6V8OCo7obWZ9VT5ObY0Hr3SAwlH1KN3kUgAP+voQxhOWRvT9fhQKKUYukVkv7qysfQTADEPUT/Oz18NZDpp0mY/reH22H6F8g8UDzDjDLAnHD7KbJkWzsAluNb1/kYwRQnaBCcSZIoVUYbsrfUezwQQ/SnEE/jGKZTPAkNhmn6j9+5Ifo/orZG1ybiU9p83Dt63FsO/Zzjuq6oB2D164hArbPXmMyx7SDevAZrBtVGkkUIP21YfI7eDsRDeDAvSP/K1u5JaIl7LBPvtkJ8hydqdO2vT8Sy9DYgDBb/BbS/XZvQerOX14B+1zLGv7NvLwnLtixCDV6OEL/JJxNze0euq8NzWc9At9uG3b26NUW/Qjhh+kPev4We9iRDKYfSEexNvQU23UlsbQRS18mbbALtO06w4SeAcfNCT7qFHNzmRpIo2u+FxHOtB2t/aTPFPUPqh3n0c4QBX55TUYQjoRRZHy0cOvTgyKG3SDVW8JQAAhD/yWKQpubWQ+VAgZCCZ14ML9oHIe1MkfXh38N0fzx5B9FdBeKi/ALTDzChv7qLvslNJUORZwmeuQ4zLnqpLGLcA+AcheiHH/QepzHChN0Z0Au5fyAuFPx8FQC6WilylIwYnfAM4GRb8kJWngBqNzrhmTLsB+IfUh+Y3+puEInYv8RlPHfTpFibbIz9pcNscw4NNgX7BK1HpvsDHKWK2xgzdl07umeIdqPz/amcP8j0xtlvZrroYlyg+ylS3FIrOm2S2nvs99H0Vj+MLyenR1+f03Raodaj5eco01svCMKq66nmGkePGr4LVOvaEbXGoJp1E0cZkVm507TbczQ2KuW/nfW2N7qRLr/NiRH8l3pp9/wF02FUrRfay2C8X5ne6bDyIX2YYnU3S+EOlNaO7s6dHpw+zX+pNHAXyJdws/xXj2Fll/XdMPnHHxcpjRitbagDwT4ZPctC46JgTHYztM9ncLRY0Eb7v8DbqMDy69QIvYDT3h3fjABA/vv2YttyPFM/7K0FO9zA394hmbLq/bNAGfrjwdrNJr3BEdteNGqwzd2t65izurL1QZxZPwvNjx+Og5ccf3jvL+6rXpt8fDgY9AaHj7ukcce+3JEiaPvdyfbmYDDY3Ca7ZrD4X/BWSVryfwm2cVaPd9+7RuRn8ZIBkOJ+rggIKsHZhmEZhnzNvXJn9rk1Rmco0J5h7FiGfU1HE3GL/ixoGRBi2I0MFp+MOB0p0Ga6uzWyB0dG3ZQqtO7QmRXWoxm197rpY7csQZutyLDDuDtH1km1iOSmWlvg7rbs4NRi8rxa/Y6Eb7QuRk22dusOnHkixN4UyIvO3ZAf5VH0XTFNfLdfLQ1UvItzGadN/o9/HXK9BKClH8gLn2vzR1Dnmahme+YMIrQf3X3u63mP3ry5d8Ayeo75N7o/Sgx69Yw3SqKCEd25A1SJjoryAJX98bldBmrxOGM0H/0gU622chq/8ayYQFnMVn5Hb0DuD2P7xuyKOBeQ3SRJdkbP8+LFny89I+Q195NsVp17fPDPBp9Xbv8PCM6o3iDkZxJooBy918inj9GJRd0N7jrkkx6JiRcNQLxAIqRjx9l0Ss6P84yhsUkrxLyu8wT3wzA7CzBdI/gCDpTatgTeQijdHB0U4vHBBr3kQQFHirTXzUMGl68ZhIi4Iatdkwm7lp8IlBE14NEo9ZRG3ZITHIyeAVjNRj17ixF1osnmaPnouES7juQOkifnwvsJts0jnxol1+R2gmPkM4PGKiiHF9qk6O+0W7mIIFxRbfoiwjxEG7YnE2Keand2lxcYTjISvlxp+6ao5yN9ZemsaPpa8rmXMckWKaY6VxIX5LrWFmutVvJ30ExOTtmjOAHREpqTDefnHxBFe5Jt2+rohF23Jmq2kiIUZmRZbcgZf9kP1wCWS/Jik6cgN1RZ/knxD92wrH5nb2+vY7UNjqBmT9NPAEb+NNwf4dM/jawiCc7Wmn1g+F5f0+bWhuZ+yOdbyz//hNW7qnXWy+Xy+jr4d71zme5rS6VP+4VrVArDT5ksgmmj2RkbHljev0y1eGI+D/crE8v/yfikNNrqj3swRrnccdBjeP7TbRfG/dj/B7+eetpe2PJ+ilMW1WEhZHhhmOn6nW/vQV0YdWP9EvWuV+VJYQZPcCup1FyftryDvJ378/603cBzshMg3p9mP8Al2uJFiGAf8I/X/9XLWcPLe4i7Nz8PKzN2A/4xmTwLsxPB/vq6g6KA9Jco9guFK5xe5DlRhpc7SNu/pAj2A/6z0h+g+1Hsr6/7CCq6E81+Yd/AZjdYL0WNWsB/H6FRPsZvKsNsQlD+XQz75X5yB5AjXSjoxXd8UYQR5zfly+SaF+c3hUo28q/FdQK4f+IPuYrrRKGA7avfGTHO7nLHSPohwvcYvwHun0UClzfjOgHcP2kQrTyJ60Shgm32tSPm3RskPrnImIl6bpHJ7Cv58Z3YS5qGmtOJwhBTGpryoyOGkeNcJpQ86irWb4DjZKA+DqQ95b29cBidVH3maE+hgMmJuFjtQZi2PHjYVvb3C/DVwOU4MMSJD5Ud3RVDM0FS+r9OujAEn+GGnOgKj+GCDq92O7oounuTcZuwTqpC0l/5BkyHL8f+8r+jfQYw/f3Onn4FdyrpubdfKxP6yeH+fhb0K26YfmA89Dhh7QEO+ivAcPdbtvQzOqSg5b7v7oXoTyihkPc/Id1vwyzot8P0k67Zhx4nXPmG1lyV4Td3mLH3kzD9nb4IhxPlpOmTr5DNw+E3PQv6ZRKWyb1O5xLuSlLv/x7S/idZez9BQmIP3Mc14U4lrX/C2r9f+JIJ/QoLGVoGytM8mdCfRvsLwPTHbsb0mxN3L+ssG5p695KeVehO8vxfSF0PZd9whc9caNz2ayRrQQ+TRj6Qt1fcwHR4Lsgg8rHhMRwOPMudpPusrJBkhqI3bOEbbVqhIBk2vXyZMGFDH4U8JWR65Qsew0NQyNjVSzlx6Qh2oingW/XuzAn8E+8a0eKSVRmteikzdtm7l/i+FcqNX/Zi28DBPYpzHISUZ+Prz835EGo3phfly+TFWimuF5Xv+Aoufpz77yU/LonyY90/m4ILZbqRaXOkqhHlRPeigjPfr7DRSbeyhRCyKCcxfoO9UHoNoRZVNCqvI513JrCFSP6vMBk9QrMVlSwvd5C221mR81Ylu2q7yn6cLlgD3zfRpE/V9yO6cYV1sw+l1Wf5L/cRj/ZuR/BfGRpYLI6EWpsqtpfXOybqNmFJnOa/sn+FeacJpbHN8pTlTR/xktPat5mRmyX7wbeiiNBGn3K5Y5LoNUKF/F6Bw+bK9wxOebbq/mSjT7lc7uspzsmzvg4hyyuV/a/G0g2dC8og3T7oR4C9vtlFqbJDH3L0vTDuB+jCF/QTl9OA81vt0Qa9YHeehXzE+RhC+9twbDn4Z/gVUXeXAcb2Td+y+pbjuu3p7/9N/CHS1VWwVXL4/YtvZLVlWGiazqXV7F+artlMW9jnjKsnw33w54nTzuJ0vAjQguc1PG8x2hjFk2V5wQ9BBa94jYanLDbPcx6w3FMW4f5/6zMli16idikAAAAASUVORK5CYII=" width="400" height="175"/>
+
+```
+
+Given Tree has root : Node(2)
+Hence the root of Inverted Tree is : Node(2)
+Right Subtree of Inverted Tree : 
+- Inverted Tree of Left Subtree of given Tree 
+    - Tree with single Node(1)
+Left Subtree of Inverted Tree  : 
+- Inverted Tree of Right Subtree of given Tree
+    - Tree with Node(4)
+    - Left Subtree with single Node(5)
+    - Right Subtree with single Node(3)
+   
+
+```
+## Algorithm
+
+The Solution is a Recursive Algorithm
+1. Invert Left subtree
+2. Invert Right subtree
+3. Swap Left and Right subtrees
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h> 
+using namespace std;
+
+//Define Node as structure
+struct Node 
+{
+    int key;
+    Node* left;
+    Node* right;
+};
+ 
+//Function to create a node with 'value' as the data stored in it. 
+//Both the children of this new Node are initially null.
+struct Node* newNode(int value)
+{
+    Node* n = new Node;
+    n->key = value;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+//Function to build tree with given input
+struct Node* createTree(vector<int>v)
+{
+    int n=v.size();
+    if(n==0) 
+      return NULL;
+    vector<struct Node* >a(n);
+    //Create a vector of individual nodes with given node values
+    for(int i=0;i<n;i++)  
+    {
+        //If the data is -1 , create a null node
+        if(v[i]==-1)  
+          a[i] = NULL;
+        else 
+          a[i] = newNode(v[i]);
+    }
+    //Interlink all created nodes to create a tree
+    //Use two pointers using int to store indexes
+    //One to keep track of parent node and one for children nodes
+    for(int i=0,j=1;j<n;i++) 
+    {
+        //If the parent node is NULL , advance children pointer twice
+        if(!a[i])
+        {
+          j=j+2;
+          continue;
+        } 
+        //Connect the two children nodes to parent node
+        //First left and then right nodes
+        a[i]->left = a[j++];
+        if(j<n) 
+          a[i]->right = a[j++];
+    }
+    return a[0];
+}
+
+//Function to print Level order traversal of given tree
+void levelOrder(struct Node* root)
+{
+    //If root is NULL , return it
+    if (root == NULL)
+        return;
+    //Create a queue
+    queue<Node*> q;
+    //Push the root to the queue
+    q.push(root);
+    while (!q.empty()) 
+    {
+        //For each node we visit ,
+        //Print its value , push their children if they exist
+        //Pop it . Repeat this process till queue becomes empty
+        cout << q.front()->key << " ";
+        if (q.front()->left != NULL)
+            q.push(q.front()->left);
+        if (q.front()->right != NULL)
+            q.push(q.front()->right);
+        q.pop();
+    }
+} 
+
+//Invert the given tree
+void Invert(struct Node* node) 
+{
+    //If the node is NULL , return it 
+    if (node == NULL) 
+        return; 
+    else
+    {
+        struct Node* temp;
+          
+        // recursively invert the subtrees
+        Invert(node->left);
+        Invert(node->right);
+      
+        // swap the pointers in this node */
+        swap(node->left,node->right);
+    }
+} 
+
+//Driver code
+int main()
+{
+
+    int n;
+    cout<<"Enter total no.of nodes of the input Tree ( including NULL nodes ) : ";
+    cin>>n;
+
+    vector<int>v(n);
+    cout<<"Enter value of each node of the tree in level order ( if a node is NULL , enter -1 ) with spaces"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i]; //store the input values in a vector
+    }
+
+    //create the tree using input node values  
+    struct Node* root=createTree(v); 
+
+    Invert(root); 
+
+    // Print Level order and inorder traversals of inverted tree
+    cout << "Level order traversal of the inverted tree is : ";
+    levelOrder(root);
+      
+    return 0; 
+}
+    
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter total no.of nodes of the input Tree ( including NULL nodes ) : 7
+Enter value of each node of the tree in level order ( if a node is NULL , enter -1 ) with spaces
+2 1 4 -1 -1 3 5
+
+```
+#### Output :
+
+```
+Level order traversal of the inverted tree is : 2 4 1 5 3 
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(h)`
+
+where `h` is the height of binary tree and `n` is the number of nodes.
+
+### Credits
+* [Nikitha Reddy](https://github.com/Nikitha2309) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Invert_Binary_Tree.cpp)
