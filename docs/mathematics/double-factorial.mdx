@@ -1,0 +1,152 @@
+---
+title: Double Factorial
+slug: /mathematics/double-factorial
+---
+
+## Introduction
+
+Double Factorial of a number `n` is defined as the product of all positive integers less than or equal to `n` which are having the same parity as of `n`. Parity can be even or odd. Double Factorial is defined for all non-negative integers. It is also called semifactorial. It is denoted by `!!` symbol. The value of `0!!` is `1`.
+
+## Explanation 
+
+For a non-negative integer say `n`, Double factorial of `n` is defined as follows:
+
+If `n` is even:
+```
+DoubleFactorial(n) = n * (n - 2) * . . . . . 4  * 2
+```
+
+If `n` is odd:
+```
+DoubleFactorial(n) = n * (n - 2) * . . . . . 3  * 1
+```
+
+Let's have few examples: 
+```
+num = 6
+res = 2 * 4 * 6 , as all of them are even
+res = 48
+
+num = 3
+res = 1 * 3 , as all of them are odd
+res = 3
+```
+
+## Algorithm
+
+- Declare a variable `res` and initialize it to `1`.
+
+- Multiply all the numbers in the range `1 to n` having the same parity as of `n` to `res`.
+
+- Return `res`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to determine the double factorial of a number
+
+int Double_factorial(int n) 
+{
+    int ans=1;
+    // If Number is even 
+
+    if(n % 2 == 0)
+    {
+        int temp1 = 2;
+        while (temp1 <= n)
+        {   
+           ans *= temp1;
+           temp1 += 2;
+        }
+    }
+    // If Number is Odd
+    
+    else
+    {
+        int temp2 = 1;
+        while (temp2 <= n)
+        {   
+           ans *= temp2;
+           temp2 += 2;
+        }
+    }
+    return ans;
+} 
+int main() 
+{
+    cout << "Enter the Number: ";
+    int n;
+    cin >> n;
+
+    cout<<"Double Factorial is: "<<Double_factorial(n);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to determine the double factorial of a number
+
+def Double_factorial(n):
+  ans=1
+  # If number is even
+
+  if(n % 2 == 0):
+    temp1 = 2
+    while (temp1 <= n):    
+      ans *= temp1
+      temp1 += 2
+  # If number is odd
+
+  else:
+    temp2 = 1
+    while (temp2 <= n):    
+      ans *= temp2
+      temp2 += 2
+  return ans
+
+if __name__ == '__main__':
+
+  n = int(input("Enter the Number: "))
+
+  print("Double Factorial is: ",Double_factorial(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number: 5
+```
+
+#### Output :
+
+```
+Double Factorial is: 15
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+
+- Space Complexity: `O(1)`
