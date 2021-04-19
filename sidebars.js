@@ -40,6 +40,7 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+		"sorting-algorithms/bucket-sort",
             ],
         },
         {

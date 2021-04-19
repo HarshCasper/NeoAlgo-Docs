@@ -1,0 +1,221 @@
+---
+title: Bucket Sort
+slug: /sorting-algorithms/bucket-sort
+---
+
+## Introduction
+
+Bucket sort is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm or by recursively applying the bucket sorting algorithm. Bucket sort is mainly useful when input is uniformly distributed over a range. Bucket sort can be implemented with comparisons and therefore can also be considered a comparison sort algorithm.
+
+## Explanation
+
+In the bucket sort algorithm, we first divide the total elements give by the user into buckets which is nothing but dividing the given array. We then sort each and every bucket or division individually. We can do this sorting by using some other sorting algorithm or by recursively doing the bucket division. Finally, after the divisions are sorted we then concatenate all the buckets to arrive at our sorted array.  
+
+Let's have one example: 
+```
+Input :
+Number of elements : 4
+Elements of the array : 0.123 0.008 0.7 0.4
+
+Output:
+0.008 0.123 0.4 0.7
+```
+
+## Algorithm
+
+- Take the inputs from the user.
+- Create empty buckets depending on the bucket number choosen.
+- Now, insert the each element into bucket.
+- Sort the individual buckets.
+- Merge all the sorted buckets.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+// Header file to include STL library
+#include<bits/stdc++.h>
+ //For cin and cout
+using namespace std;
+
+//to sort the individual bucket
+void Insertion_Sort(float arr[10][10], int n, int idx) {
+  for (int i = 0; i < n; i++) {
+    int k = i;
+    float temp = arr[idx][i];
+    while (k - 1 >= 0 && arr[idx][k] < arr[idx][k - 1]) {
+      arr[idx][k] = arr[idx][k - 1];
+      k = k - 1;
+    }
+
+    arr[idx][k] = temp;
+  }
+}
+
+void Bucket_Sort(float arr[20], int n) {
+  // Declare a 2D array of float numbers
+  float temp[10][10];
+  //count array stores the length of elements in the respective buckets
+  int count[10] = {
+    0
+  };
+  for (int i = 0; i < n; i++) {
+    int idx = arr[i] * 10;
+    temp[idx][count[idx]] = arr[i];
+    count[idx]++;
+  }
+
+  for (int i = 0; i < 10; i++) {
+    if (count[i] > 0)
+      Insertion_Sort(temp, count[i], i);
+  }
+
+  //to rewrite the values in array in sorted order
+  int i = 0;
+  for (int j = 0; j < 10 && i < n; j++) {
+    if (count[j] > 0) {
+      for (int k = 0; k < count[j]; k++) {
+        arr[i] = temp[j][k];
+        i++;
+      }
+    }
+  }
+}
+
+int main() {
+  // Declare a variable to store no. of elements
+  int n;
+  // Declare an array of float numbers
+  float arr[20];
+  cout << "Enter number of elements : ";
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    cout << "Enter the elements: ";
+    cin >> arr[i];
+  }
+  //loop to print original array
+  for (int i = 0; i < n; i++) {
+    cout << " "<< arr[i];
+  }
+  Bucket_Sort(arr, n);
+
+  cout << "Sorted array is ";
+  //loop to print sorted array
+  for (int i = 0; i < n; i++) {
+    cout << " " << arr[i];
+  }
+  return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+class BucketSort {
+
+    private static void bucketSort(float[] arr, int k) {
+        if (arr.length < 2)
+            return;
+        
+        // getting upper limit for dividing numbers in buckets
+        int length = arr.length;
+        float max_val = arr[0];
+        for (int i = 1; i<length; i++) {
+            max_val = Math.max(max_val, arr[i]);
+        }
+        max_val += 1;
+
+        //making bucket list and adding buckets in it
+        ArrayList<ArrayList<Float>> bucketList = new ArrayList<ArrayList<Float>>();
+        for (int i=0; i<k; i++) {
+            bucketList.add(new ArrayList<Float>());
+        }
+
+        //dividing numbers in different buckets
+        for (int i=0; i<length; i++) {
+            int bucketIndex = (int) ((arr[i] * k) / max_val);
+            bucketList.get(bucketIndex).add(arr[i]);
+        }
+
+        // sorting each bucket one by one
+        for (int i=0; i<k; i++) {
+            Collections.sort(bucketList.get(i));
+        }
+
+        //joining buckets
+        int pos = 0;
+        for (int i=0; i<k; i++) {
+            for (int j=0; j<bucketList.get(i).size(); j++) {
+                arr[pos] = bucketList.get(i).get(j);
+                pos += 1;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        //taking input array
+        System.out.print("Enter the number of elements :");
+        int size = sc.nextInt();
+        float arr[] = new float[size];
+        System.out.print("Enter the elements: ");
+        for (int i=0; i<size; i++) {
+            arr[i] = sc.nextFloat();
+        }
+        
+        int bucketNum = 2;
+
+        bucketSort(arr, bucketNum);
+
+        // after sorting
+        System.out.print("Sorted array is ");
+        for (int i=0; i<arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number of elements : 4
+Enter the elements: 0.123 0.008 0.7 0.4
+```
+
+#### Output:
+
+```
+Sorted array is 0.008 0.123 0.4 0.7
+```
+
+## Complexity Analysis
+
+- Time complexity: `O(n²)`
+- Space complexity : `O(n+k)`
+
+## Credits
+
+- [Monika Jha](https://github.com/m-code12) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/bucket_sort.cpp)
+- [Ritvij Kumar Sharma](https://github.com/ritvij14) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/BucketSort.java)
