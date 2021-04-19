@@ -57,8 +57,8 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
+                "data-structures/palindromic-linked-list",
                 "data-structures/postorder_traversal"
-
             ],
         },
         {
@@ -110,6 +110,8 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/triangular-numbers",
+		            "mathematics/lucas-theorem",
             ],
         },
         {
@@ -149,7 +151,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher"],
         },
         {
             type: "category",
