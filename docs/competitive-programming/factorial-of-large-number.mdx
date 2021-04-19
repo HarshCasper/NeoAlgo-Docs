@@ -1,6 +1,6 @@
 ---
-title: Factorial of very large number 
-slug: /competitive-programming/factorial-of-large-number
+title: Factorial of Large Number 
+slug: /competitive-programming/Factorial-of-Large-Number
 ---
 
 ## Introduction
@@ -18,7 +18,7 @@ For a non-negative integer say `n`,the factorial of `n` is defined as follows:
 Factorial(n) = n * (n - 1) * (n - 2) * . . . . . 3  * 2 * 1
 ```
 
-Or
+Alternatively,
 
 ```
 Factorial(n) = n * Factorial(n - 1)
@@ -35,25 +35,22 @@ Factorial(7) = 7 * 6 * 5 * 4 * 3 * 2 * 1 = 5040 = 7 * Factorial(6)
 
 ```
 largeFactorial(n):
-	Set rsize to 1
-  	FOR x=2 to n
-		Set rsize to multiply(x, res, rsize)
-	ENDFOR
-	Print factorial of the number
+  - creating a vector to store the result
+  - initialize vector and it's size with 1
+  - for all numbers from 2 to n we will update 
+    the vector size and value
+  - finally print the factorial of the number
 
 multiply(n,res,rsize):
-	Set carry to 0
-  	FOR i=0 to rsize-1
-		Set product to res[i] * x + carry
-		Set res[i] to product % 10
-		Set carry to product/10
-	ENDFOR
-	WHILE carry exists
-		push carry%10 to res
-		divide carry by 10
-		increment rsize
-	ENDWHILE
-	RETURN rsize
+  - initialize carry with 0
+  - from i=0 to rsize-1:
+    - find value of res[i]*n + carry
+    - update res[i] by storing last digit of
+      the result obtained from above step
+    - update carry
+  - put all digits of carry in the result vector and
+    increment the size of vector to number of digits
+    in carry
 ```
 
 ## Code
