@@ -28,15 +28,15 @@ The Prim's algorithm is a greedy algorithm. This algorithm is used to find a min
 
 * Now traverse through each edge and pick up the ```least weights``` such that they do not form a `loop`.
 
-![step1](https://user-images.githubusercontent.com/60662775/114315644-75582580-9b1d-11eb-8c5f-a620d6ac2810.png)
+![Screenshot (224)](https://user-images.githubusercontent.com/60662775/115196262-5a814480-a10d-11eb-9e1a-64a280a05b63.png)
 
-![step2](https://user-images.githubusercontent.com/60662775/114315649-79844300-9b1d-11eb-9e0a-f6570fdf72b2.png)
+![Screenshot (226)](https://user-images.githubusercontent.com/60662775/115196293-60772580-a10d-11eb-896c-af817a073fd8.png)
 
-![step3](https://user-images.githubusercontent.com/60662775/114315656-7db06080-9b1d-11eb-94b6-c1055498e383.png)
+![Screenshot (229)](https://user-images.githubusercontent.com/60662775/115196322-67059d00-a10d-11eb-983f-74604ced8d2b.png)
 
-![step4](https://user-images.githubusercontent.com/60662775/114315668-83a64180-9b1d-11eb-9d7b-5e86e1e1dcab.png)
+![Screenshot (233)](https://user-images.githubusercontent.com/60662775/115196350-6f5dd800-a10d-11eb-913a-96607fed7c90.png)
 
-![step5](https://user-images.githubusercontent.com/60662775/114315674-8acd4f80-9b1d-11eb-9f9a-6717bf3ff1ed.png)
+![Screenshot (235)](https://user-images.githubusercontent.com/60662775/115196378-75ec4f80-a10d-11eb-86a1-b8a1d1660808.png)
 
 
 ## Algorithm
@@ -62,59 +62,79 @@ import TabItem from '@theme/TabItem';
 
 ```cpp
 // C++ Program for Prim's Algorithm
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
-/* This includes functions like strlen and strcpy,It's the C++ version of header from C */
+/*This includes functions like strlen and strcpy,It's the C++ version of header from C */
 using namespace std;
 int operation(int array[], int row, int coloumn, int graph[4][4]);
+
 #define number 4
-/* separate function is declared to form process and output
+/*separate function is declared to form process and output
 which takes 2 for loops with min val of vertex displays output 
 in 2 columns where Weight of ele and Edge of graph */
-int operation(int array[], int row, int coloumn, int graph[4][4]) {
-  int least_val = 100;
-  for (int index_x = 0; index_x < number; index_x++) {
-    if (array[index_x]) {
-      for (int index_y = 0; index_y < number; index_y++) {
-        if (!array[index_y] && graph[index_x][index_y]) {
-          if (least_val > graph[index_x][index_y]) {
-            least_val = graph[index_x][index_y];
-            row = index_x, coloumn = index_y;
-          }
-        }
-      }
-    }
-  }
-  cout << graph[row][coloumn] << "  " << row << " - " << coloumn << endl;
-  array[coloumn] = true;
+
+int operation(int array[], int row, int coloumn, int graph[4][4])
+{
+	int least_val = 100;
+	for (int index_x = 0; index_x < number; index_x++)
+	{
+		if (array[index_x])
+		{
+			for (int index_y = 0; index_y < number; index_y++)
+			{
+				if (!array[index_y] && graph[index_x][index_y])
+				{
+					if (least_val > graph[index_x][index_y])
+					{
+						least_val = graph[index_x][index_y];
+						row = index_x, coloumn = index_y;
+					}
+				}
+			}
+		}
+	}
+
+	cout << graph[row][coloumn] << "  " << row << " - " << coloumn << endl;
+	array[coloumn] = true;
 }
-/* in main we give inputs to graph array and calls operation function */
-int main() {
-  int all_edges;
-  int array[number];
-  /*memset Sets the first num bytes of the block of memory 
-  pointed by ptr to the specified value faster than loop*/
-  memset(array, false, sizeof(array));
-  all_edges = 0;
-  array[0] = true;
-  cout << "enter the elements into graph array " << endl;
-  /* taking the inputs for graph in form of loop
-  which is of having number(of rows and coloumns) */
-  int row, coloumn;
-  int graph[number][number];
-  for (int i = 0; i < number; i++) {
-    for (int j = 0; j < number; j++) {
-      cin >> graph[i][j];
-    }
-  }
-  cout << "Weight of ele," << " " << "Edge of graph" << "\n";
-  /* iterate while loop till all edges are lesser than num-1 */
-  while (number - 1 > all_edges) {
-    row = 0, coloumn = 0;
-    operation(array, row, coloumn, graph);
-    all_edges++;
-  }
-  return 0;
+
+/*in main we give inputs to graph array and calls operation function */
+int main()
+{
+	int all_edges;
+	int array[number];
+
+	/*memset Sets the first num bytes of the block of memory 
+	pointed by ptr to the specified value faster than loop*/
+
+	memset(array, false, sizeof(array));
+	all_edges = 0;
+	array[0] = true;
+	cout << "enter the elements into graph array " << endl;
+
+	/*taking the inputs for graph in form of loop
+	which is of having number(of rows and coloumns) */
+
+	int row, coloumn;
+	int graph[number][number];
+	for (int i = 0; i < number; i++)
+	{
+		for (int j = 0; j < number; j++)
+		{
+			cin >> graph[i][j];
+		}
+	}
+
+	cout << "Weight of ele," << " " << "Edge of graph" << "\n";
+	/*iterate while loop till all edges are lesser than num-1 */
+	while (number - 1 > all_edges)
+	{
+		row = 0, coloumn = 0;
+		operation(array, row, coloumn, graph);
+		all_edges++;
+	}
+
+	return 0;
 }
 ```
 
@@ -184,15 +204,21 @@ class PGraph {
   }
 
   public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
     PGraph g = new PGraph();
 
     // number of vertices in grapj
-    int V = 5;
-
+    int V = sc.nextInt();
+     
     // create a 2d array of size 5x5
     // for adjacency matrix to represent graph
-    int[][] G = { { 0, 9, 75, 0, 0 }, { 9, 0, 95, 19, 42 }, { 75, 95, 0, 51, 66 }, { 0, 19, 51, 0, 31 },
-        { 0, 42, 66, 31, 0 } };
+    System.out.println("Enter the elements into graph array:")
+    int[][] G = new int[V][V];
+    for(int i = 0, i < V; i++){
+      for(int j = 0, j < V; j++){
+        G[i][j] = sc.nextInt();
+      }
+    }
 
     g.Prim(G, V);
   }
@@ -205,7 +231,6 @@ class PGraph {
 
 #### Input :
 ```
-
 Enter the elements into graph array:
 
 1 4 78 15                                                                                                                                                                            
@@ -213,20 +238,16 @@ Enter the elements into graph array:
 45 7 8 36                                                                                                                                                                            
 2 4 67 59   
 ```
-
 #### Output :
 ```
-
 Weight of ele, Edge of graph
 
 4  0 - 1                                                                                                                                                                             
 6  1 - 3                                                                                                                                                                             
 48  1 - 2 
 ```
-
 #### Input :
 ```
-
 Enter the elements into graph array :
 
 5  10  2  6
@@ -234,10 +255,8 @@ Enter the elements into graph array :
 1  5   8  20
 15 1  16  7 
 ```
-
 #### Output :
 ```
-
 Weight of ele, Edge of graph
 
 2 0 -2
