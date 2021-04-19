@@ -56,7 +56,8 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
-                "data-structures/preorder_traversal"
+                "data-structures/preorder_traversal",
+		"data-structures/palindromic-linked-list",
             ],
         },
         {
