@@ -57,7 +57,9 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
+                "data-structures/palindromic-linked-list",
                 "data-structures/tower-of-hanoi"
+
             ],
         },
         {
@@ -109,6 +111,8 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/triangular-numbers",
+		            "mathematics/lucas-theorem",
             ],
         },
         {
