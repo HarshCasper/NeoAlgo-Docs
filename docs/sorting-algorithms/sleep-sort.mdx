@@ -1,0 +1,176 @@
+---
+title: Sleep Sort
+slug: /searching-algorithms/sleep-sort
+---
+
+## Introduction
+
+Sleep sort is a sorting algorithm used to sort non-negative integers. Generally, sleep sort works by starting a separate task for each item to be sorted, where each task sleeps for an interval corresponding(as its name suggests) to the item's sort key, then gives the item.
+
+## Explanation
+
+Basically, we create different threads for each of the elements in the input array/list given to us and then each thread sleeps for a particular interval which is proportional to the item's sort key value. So the number with the least sleep time is printed first and so on.
+
+Let's have one example: 
+```
+Input : 8 2 9
+
+3s : sleep 8
+6s : sleep 2
+8s : "2" (print 2)
+9s : sleep 9
+11s: "8" (print 8)
+18s: "9" (print 9)
+```
+
+## Algorithm
+
+- Take the input from the user.
+- Call a function where the multithreading happens.
+- Calling another function that counts the time it sleeps for each element.
+- Print the thread having the least amount of sleeping time.
+- Continue printing all the elements when each wakeup.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+#include<thread>
+#include<chrono>
+#include<vector>
+
+std::vector <int> Sorted;
+
+void CountDown(int Sec)
+{
+	std::this_thread::sleep_for(std::chrono::seconds(Sec));
+	Sorted.push_back(Sec);
+}
+
+void Multithread(int NumList[], int n){
+    std::vector <std::thread> Threads;
+    for (int i = 0; i <= n; i++)
+	{
+		Threads.push_back(std::thread(CountDown, NumList[i]));
+	}
+	for (auto& thread : Threads)
+	{
+		thread.join();
+	}
+}
+
+int main()
+ {
+    	int n,i;
+        std::cout<<"Enter the number of elements in an array: ";
+	std::cin >> n;
+	int NumList[n];
+        std::cout<<"Enter the elements in an array: ";
+	for(i = 0; i < n; i++)
+	{
+           std::cin >> NumList[i];
+	}
+	Multithread(NumList, n);
+        std::cout<<"The sorted array is: "; 
+	for (auto& Num : Sorted)
+	{
+		std::cout << Num<<" ";
+	}
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+import java.util.concurrent.*;
+
+public class SleepSort {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements in an array: ");
+        int number = sc.nextInt();
+
+        System.out.println("Enter the elements in an array: ");
+        int array[] = new int[number];
+
+        for (int i = 0; i < number; i++) {
+            array[i] = sc.nextInt();
+
+        }
+        sleepSort(array);
+    }
+
+    public static void sleepSort(int[] array) {
+        
+        // CountDownLatch in java is used to make sure that a task waits for other threads before it starts.
+        // Here the task is going to wait for threads which is equal to array length before it starts.
+        final CountDownLatch countDone = new CountDownLatch(array.length);
+        System.out.println("The sorted array is: ");
+        
+        for (final int num : array) {
+            // Creates a new thread.
+            new Thread(new Runnable() {
+                public void run() {
+                    // Decrements the count of the countDone
+                    countDone.countDown();
+                    try {
+                        //Causes the current thread to wait until the countDone has counted down to zero
+                        countDone.await();
+                        Thread.sleep(num);
+                        System.out.println(num);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+    }
+
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number of elements in an array: 7
+Enter the elements in an array: 10 5 9 77 30 981 14
+```
+
+#### Output:
+
+```
+The sorted array is: 5 9 14 10 30 77 981
+```
+
+## Complexity Analysis
+
+- Time complexity: `O(NlogN + max(input))` where, N = number of elements in the input array, and array = input array elements
+- Space complexity : `O(N)`
+
+## Credits
+
+- [Achalesh Lakhotiya](https://github.com/achalesh27022003) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/sleep_sort.cpp)
+- [Sakshi Khachane](https://github.com/sakshikhachane) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/SleepSort.java)
