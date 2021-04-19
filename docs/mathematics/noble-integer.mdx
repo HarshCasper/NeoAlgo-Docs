@@ -1,0 +1,175 @@
+---
+title: Noble Integer
+slug: /mathematics/noble-integer
+---
+
+## Introduction
+
+Noble Integer is an integer `ele` in an array if the number of integers greater than `ele` in the array is equal to `ele`. Noble integers are not unique and an array might contain more than one Noble integer.
+
+## Explanation
+
+```
+Consider an array arr = [7, 3, 9, 81]
+
+In the given array 3 is a noble integer, as it exist in the array and
+the number of integers greater than 3 is three.
+```
+
+```
+Consider an array arr = [2, 2, 2]
+
+In the given array there is no noble integer, as there does not exist an integer in the
+array such that the number of integers greater than that integer is the integer itself.
+```
+
+## Algorithm
+
+Let us assume that given array be `arr`
+
+-   Sort the given array `arr` in ascending order.
+-   Set the value of `n` as the size of the array.
+-   Set the value of `x` as 0
+-   Iterate a variable `i` in a for loop from `0` to (`n-2`)
+    -   If the value of `arr[i]` is equal to `arr[i+1]`
+        -   Continue the iteration
+    -   If the value of `arr[i]` is equal to `(n - i - 1)`
+        -   Set the value of `x` as `1`
+        -   Return `(n - i - 1)`
+-   If the value of `x` is same as `0`
+    -   Return `-1`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+/*
+An integer x is said to be Noble given an array
+if the number of integers greater than x are equal to x.
+If noble integer is not found output is -1.
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+// To find the noble integer from the given array
+int nobleint(int arr[], int num)
+{
+    int x = 0, i;
+    sort(arr, arr + num);
+    for (i = 0; i < num - 1; i++)
+    {
+        if (arr[i] == arr[i + 1])
+        {
+            continue;
+        }
+
+        if (arr[i] == num - i - 1)
+        {
+            x = 1;
+            return (num - i - 1);
+            break;
+        }
+    }
+    if (x == 0)
+        return (-1);
+
+    return (-1);
+}
+
+
+int main()
+{
+    int num, x, arr[10000], ans;
+    cout << "Enter the number of elements: ";
+    cin >> num;
+    cout << "Enter the elements: ";
+    for (int i = 0; i < num; i++)
+    {
+        cin >> x;
+        arr[i] = x;
+    }
+    ans = nobleint(arr, num);
+    if (ans == -1)
+    {
+        cout<<"Noble integer is not present in the array";
+    }
+    else
+    {
+        cout<<"Noble integer is present in the array and is "<<ans;
+    }
+    return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+''' An integer x is said to be Noble given an array
+if the number of integers greater than x are equal to x.
+If noble integer is not found output is -1.
+'''
+# To find the noble integer from the given list
+def nobleint(lst, num):
+    x = 0
+    lst.sort()
+    for i in range(0, num - 1):
+        if lst[i] == lst[i + 1]:
+            continue
+        if lst[i] == num - i - 1:
+            x = 1
+            return num - i - 1
+    if x == 0:
+        return -1
+
+if __name__ == '__main__':
+    num = int(input('Enter the number of elements: '))
+    lst = list(map(int, input('Enter the elements: ').split()))
+    ans = nobleint(lst, num)
+    if(ans == -1):
+        print("Noble integer is not present in the array")
+    else:
+        print("Noble integer is present in the array and is " + str(ans))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number of elements: 4
+Enter the elements: 7 3 9 81
+```
+
+#### Output
+
+```
+Noble integer is present in the array and is 3.
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(n * log(n))`, where `n` is the size of the given array
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Rohan Babbar](https://github.com/rohanbabbar04) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Noble_Integer.cpp)
+-   [Rohan Babbar](https://github.com/rohanbabbar04) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Noble_Integer.py)

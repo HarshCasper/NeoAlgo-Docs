@@ -1,5 +1,4 @@
 module.exports = {
-
     docs: [
         {
             type: "category",
@@ -37,7 +36,7 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
-                'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
             ],
@@ -57,7 +56,7 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		"data-structures/palindromic-linked-list",
+                "data-structures/palindromic-linked-list",
             ],
         },
         {
@@ -68,8 +67,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/golomb-sequence",
             ],
         },
         {
@@ -99,18 +98,19 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+                "mathematics/fibonacci-recursion",
+                "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
                 "mathematics/gcd-of-two-numbers",
                 "mathematics/power-linear",
                 "mathematics/ugly-numbers",
-		            "mathematics/lucky-numbers",
-		            "mathematics/hamming-distance",
+                "mathematics/lucky-numbers",
+                "mathematics/hamming-distance",
                 "mathematics/triangular-numbers",
-		            "mathematics/lucas-theorem",
+                "mathematics/lucas-theorem",
+                "mathematics/noble-integer",
             ],
         },
         {
@@ -150,7 +150,19 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher"],
+            items: [
+                "cryptography/cryptography",
+                "cryptography/caesar-cipher",
+                "cryptography/keyword-cipher",
+                "cryptography/playfair-cipher",
+                "cryptography/railfence-cipher",
+                "cryptography/vernam-cipher",
+                "cryptography/homophonic-cipher",
+                "cryptography/hill-cipher",
+                "cryptography/columnar-transposition-cipher",
+                "cryptography/burrows-wheeler-transform",
+                "cryptography/affine-cipher",
+            ],
         },
         {
             type: "category",
