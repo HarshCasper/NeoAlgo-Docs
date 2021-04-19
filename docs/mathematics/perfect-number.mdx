@@ -9,9 +9,9 @@ Perfect Number is a positive number whose sum of the positive divisors, excludin
 
 ## Explanation
 
-Consider a number 6. The divisors of 6(excluding itself) is 1, 2, 3. Thier sum 1 + 2 + 3 = 6, So 6 is a perfect number.
+Consider a number `6`. The divisors of 6(excluding itself) is `1`, `2`, `3`. Thier sum `1` + `2` + `3` = `6`, So `6` is a perfect number.
 
-Consider Another Example, `n` = 28. The divisors of 28(excluding itself) are 1, 2, 4, 7, 14.
+Consider Another Example, `n` = `28`. The divisors of `28`(excluding itself) are `1`, `2`, `4`, `7`, `14`.
 Thier Sum
 
 ```
@@ -26,10 +26,10 @@ Let us assume that the given number be `num`,
 
 -   Declare a variable `sum` and set its value to 0
 -   Set i = 1
--   Iterate a While loop till `i < number`
-    -   If `num % i == 0`
-        -   Set `sum = sum + i`
--   If `sum == num`
+-   Iterate a While loop till `i` is less than the given number `num`
+    -   If `num` is divisible by i, Do
+        -   Set the value of `sum` as `sum + i`
+-   If `sum` is equal to `num`, Do
     -   Return True
 -   Else Return False
 
