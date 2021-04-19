@@ -5,7 +5,7 @@ slug: /cryptography/affine-cipher
 
 ## Introduction
 
-The Affine cipher is a type of monoalphabetic substitution cipher. Here each letter in the message is mapped to a number, then encrypted using a mathematical function, and then the numbers are converted back to letters to form the ciphertext. Here, the size of the alphabet is taken as `m`, and every mathematical operation is performed with respect to modulus `m`. The key consists of two values, `a` and `b`. The value of `a` must be chosen such that `a` and `m` are coprime.
+The Affine cipher is a type of monoalphabetic substitution cipher. Here each of the letter in the message is mapped to a number, then encrypted using a mathematical function. The numbers are then converted back to letters to form the ciphertext. Here, the size of the alphabet is taken as `m`, and every mathematical operation is performed with respect to modulus `m`. The key consists of two values, `a` and `b`. The value of `a` must be chosen such that `a` and `m` are coprime.
 
 ## Explanation
 
@@ -45,7 +45,7 @@ ciphertext = XAOKPIO
 - Given a `message`, keys `a` and `b`.
 - Convert the letters of `message` to their respective numbers.
 - Perform the below operation on the number equivalent of each character of the `message`.
-- `Encryption(x)` = (ax + b) % m
+- `Encryption(x)` = `(ax + b) % m`
   - `x` is a number equivalent of a single character of the message.
 - Convert the numbers back to letters to get the ciphertext.
 
