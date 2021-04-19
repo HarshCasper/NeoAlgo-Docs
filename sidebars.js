@@ -57,7 +57,7 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		"data-structures/palindromic-linked-list",
+		        "data-structures/palindromic-linked-list",
             ],
         },
         {
@@ -127,6 +127,7 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/depth-first-search",
                 "graph-algorithms/kruskals-algorithm",
             ],
         },
