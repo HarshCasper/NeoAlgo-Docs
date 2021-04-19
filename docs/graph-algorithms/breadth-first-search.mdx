@@ -9,30 +9,34 @@ Breadth-first search (BFS) is an algorithm to traverse/search the data structure
 
 ## Explanation
 
-The BFS traversal of the graph is similar to the level-order traversal in trees. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the given vertex and `pushes them all to a queue` in order of visiting and `pops it from the front of the queue`, visits all adjacent nodes and pushes them into the queue. This process is repeated until the queue is empty or all of the vertices are visited.
+- The BFS traversal of the graph is similar to the level-order traversal in trees. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the given vertex and `pushes them all to a queue` in order of visiting and `pops it from the front of the queue`, visits all adjacent nodes and pushes them into the queue. This process is repeated until the queue is empty or all of the vertices are visited.
+#### Quick Example :  
+- Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. the BFS traversal will start from the vertex 0.
 
-### Let's have one example: 
-Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. the BFS traversal will start from the vertex 0.
+**Step 1]**![BFS 1](https://user-images.githubusercontent.com/72685035/115226603-0ede9300-a12d-11eb-81f6-7947fa9a3366.jpg) 
 
-**Step 1]**![graph-1.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs9.jpg )
+**Step 2]**![BFS 2](https://user-images.githubusercontent.com/72685035/115226742-36cdf680-a12d-11eb-83c9-018e1654a0fb.jpg) 
 
-**Step 2]**![graph-2.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs10.jpg )
+**Step 3]**![BFS 3](https://user-images.githubusercontent.com/72685035/115226830-4cdbb700-a12d-11eb-8fe2-37987f6d1ff1.jpg) 
 
-**Step 3]**![graph-3.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs11.jpg )
+**Step 4]**![BFS 4](https://user-images.githubusercontent.com/72685035/115226837-5107d480-a12d-11eb-89ca-8ce70a1c3583.jpg)
 
-**Step 4]**![graph-4.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs12.jpg )
-
-**Step 5]**![graph-5.png]( https://www.guru99.com/images/1/020820_0543_BreadthFirs13.jpg)
+**Step 5]**![BFS 5](https://user-images.githubusercontent.com/72685035/115226850-549b5b80-a12d-11eb-9c48-bccb2a9a831c.jpg)
 
 
 ## Algorithm
 
 - Create a `boolean array` say `visited[]`.
+
 - Create a `queue`, mark the source vertex visited as `visited[s] = true`, and push it into the queue.
+
 - Loop until the `queue is not empty`, repeat the below steps:
    * Pop an element from the queue and print the popped element.
+
    * Traverse all of the vertices adjacent to the vertex popped from the queue.
+
    * If any of the adjacent vertexes are not already visited, mark it visited and push it to the queue.
+
 ## Code
 
 import Tabs from '@theme/Tabs';
@@ -306,7 +310,7 @@ if __name__ == "__main__":
 
 ## Sample Input and Output
 
-### Input:
+#### Input:
 
 ```
 Enter the number of vertices in Graph : 
@@ -320,7 +324,7 @@ Enter the edges :
 2 3
 ```
 
-### Output:
+#### Output:
 
 ```
 BFS Traversal : 
