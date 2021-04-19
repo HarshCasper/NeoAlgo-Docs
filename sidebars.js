@@ -49,8 +49,15 @@ module.exports = {
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
-                 "data-structures/binary-search-tree",
-                "data-structures/preorder_traversal"
+                "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
+                "data-structures/stack-data-structure",
+                "data-structures/binary-search-tree",
+                "data-structures/queue",
+                "data-structures/Circular-Linked-list",
+                "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
+		"data-structures/palindromic-linked-list",
             ],
         },
         {
@@ -59,6 +66,10 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+                "dynamic-programming/golomb-sequence",
+                "dynamic-programming/kadane-algorithm",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -83,7 +94,7 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
-                "mathematics/extended-euclidean-Algorithm",   
+                "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
@@ -91,7 +102,15 @@ module.exports = {
 		            "mathematics/fibonacci-recursion",
 		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
-		            "mathematics/automorphic-number",
+                "mathematics/automorphic-number",
+                "mathematics/double-factorial",
+                "mathematics/gcd-of-two-numbers",
+                "mathematics/power-linear",
+                "mathematics/ugly-numbers",
+		            "mathematics/lucky-numbers",
+		            "mathematics/hamming-distance",
+                "mathematics/triangular-numbers",
+		            "mathematics/lucas-theorem",
                 "mathematics/gcd-euclidean-algorithm"
             ],
         },
@@ -132,7 +151,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher"],
         },
         {
             type: "category",
