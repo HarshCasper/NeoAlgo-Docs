@@ -5,14 +5,18 @@ slug: /mathematics/gcd-euclidean-algorithm
 
 ## Introduction
 
-The GCD of two number is the largest integer that divides each of the integers such that their remainder is zero . The Euclidean algorithm is an efficient way for finding the GCD of `2` numbers. It is named after the greek mathematician Euclid
+The GCD of two numbers is the largest integer that divides each of the integers such that their remainder is zero. The Euclidean algorithm is an efficient way for finding the GCD of `2` numbers. It is named after the Greek mathematician Euclid
 
 ## Explanation
 
-Consider two numbers `a = 333` and `b = 84` <br/>
-`333 = 3*84 + 81   0 < 81 < 84`<br/>
-`84 = 1*81 + 3     0 < 3 < 81`<br/>
-`81 = 27*3 + 0`<br/>
+Consider two numbers `a = 333` and `b = 84`
+
+`333 = 3*84 + 81`   `0 < 81 < 84`
+
+`84 = 1*81 + 3`     `0 < 3 < 81`
+
+`81 = 27*3 + 0`
+
 Since 3 is the last nonzero remainder, the euclidean algorithm tells us that GCD(a,b) = 3.
 
 ## Algorithm
@@ -44,16 +48,16 @@ import TabItem from "@theme/TabItem";
 using namespace std;
 
 int gcd(int a,int b)
-{ //base case
+{ // base case
   if (a==0)
      return b;
-  //recursive case
+  // recursive case
   else
      return gcd(b%a,a);
 }
 
-//initializing a and b.
-//Here a is always the smaller number and
+// initializing a and b.
+// Here a is always the smaller number and
 // b is always the bigger number between the two.
 
 int main()
@@ -71,7 +75,7 @@ int main()
 
 ```python
 def gcd_of_nums(x,y):
-    #choose the smaller number
+    # choose the smaller number
     if x > y:
         t=x
         x=y
