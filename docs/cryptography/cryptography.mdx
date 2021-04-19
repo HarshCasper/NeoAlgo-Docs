@@ -1,0 +1,62 @@
+---
+title: Cryptography
+slug: /cryptography
+---
+
+## Introduction
+
+Cryptography is the study of techniques for `secure communication` in the presence of third parties called `adversaries`. An adversary is a malicious entity that aims to retrieve secret information, thereby undermining information security. Cryptography is the process of transforming ordinary plain text into unintelligible text, such that only those for whom it is intended can read and process it. Earlier cryptography was synonymous with encryption, wherein readable information was converted to some unintelligible text. Modern cryptography is based on mathematical theory and computer science practice.
+
+## Modern Cryptography
+
+The core principles associated with modern-day cryptography are:
+
+  - **Confidentiality**: Certain rules or guidelines ensure that the information is restricted to certain people or places, and can not be understood by anyone.
+  - **Integrity**: Information can not be altered in storage or in transition between the sender and the intended receiver.
+  - **Authentication**: The identity of the sender and receiver is confirmed.
+  - **Non-repudiation**: The sender can not deny his intentions in the transmission of the information at a later stage.
+
+## Types of Cryptography
+
+Three types of cryptographic techniques are used in general.
+  - `Symmetric-Key Cryptography`
+  - `Asymmetric-Key Cryptography`
+  - `Hash Functions`
+
+Let us see each of them in detail.
+
+#### Symmetric-Key Cryptography
+
+Symmetric-Key Cryptography also known as Symmetric Encryption or Private-Key Encryption is an encryption scheme where both the sender and receiver use a single common key(Private Key) to encrypt and decrypt messages. The sender uses the key to encrypt the plaintext and send the ciphertext text to the receiver and the receiver decrypts the ciphertext using the same key to get the underlying plaintext. The crux here is the agreement of the sender and receiver on the same key.
+
+#### Asymmetric-Key Cryptography
+
+Asymmetric-Key Cryptography also known as Asymmetric Encryption or Public-Key Encryption is an encryption scheme where a pair of keys is used to encrypt and decrypt the information. The pair of keys consists of an encryption key(public key) and a decryption key(private key). A message encrypted using a public key can only be decrypted using the corresponding private key. Both the keys are mathematically related, but it is computationally infeasible to derive the private key from the public key.
+
+#### Hash Functions
+
+In this encryption algorithm, there is no use of keys. A fixed-length hash value is computed as per the message that makes it impossible for the contents of the message to be recovered. These algorithms are also used by many operating systems to encrypt passwords.
+
+## Cryptography in everyday life
+
+#### Authentication/Digital Signatures:
+
+Authentication and digital signatures are very important applications of public-key cryptography. Through authentication, one proves and verifies certain information like the origin of a document, the identity of the sender, etc. The digital signature of a document is a piece of information based on both the document and the signer’s private key through which many of these may be verified.
+
+#### Electronic Money:
+
+Encryption is used in electronic money also known as digital cash schemes to protect conventional transaction data like account numbers and transaction amounts. Digital signatures can replace handwritten signatures or credit card authorizations, and public-key encryption can provide confidentiality.
+
+#### Encryption/Decryption in Email:
+
+Email encryption is a method of securing the content of emails from adversaries looking to obtain sender's/receiver's information. An encrypted email is no longer readable by a human. Only with private email key emails can be unlocked and decrypted back into the original message.
+
+#### Storing Data:
+
+With the evolution of the Internet, more and more data is generated, transmitted, and stored every day. These data can contain lots of valuable information and secrets, which the owner of the data might not want others to look at. So, encrypting the data while storing is required and helps to keep the data secure.
+
+#### Secure Communication:
+
+Nobody wants an eavesdropper to get a hold of their conversation. The best example for this is Web Browser and Web Client. The use of HTTPS has increased as it encrypts the data before sending it, unlike HTTP which then sends the data in the clear. Cryptography has helped secure the HTTP protocol, and all web traffic through HTTPS is encrypted. Even if an adversary gets hold of it, he would not be able to decrypt the data.
+
+These are a few of the many applications of cryptography. With the fast-growing Internet, data needs to be protected, the privacy of individuals needs to be maintained, etc, for which cryptography plays a very important role.
