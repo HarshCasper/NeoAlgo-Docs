@@ -1,0 +1,140 @@
+---
+title: Power in Linear Time
+slug: /mathematics/power-linear
+---
+
+## Introduction
+
+Power Function calculates `a` raise to the power of `b`. Here `a` is called a Base and `b` is called an exponent. Both `C++` and `Python` provides built-in power function. In this article, we will see the implementation of power function in linear time complexity.
+
+## Explanation 
+
+Power of two numbers is calculated by multiplying the base by itself, exponent times. `a` raise to the power `b` is denoted by `pow(a,b)`. The Power of an even number is always even and odd is always odd. Any number raised to power `0` is always `1`.
+
+Formula:
+```
+pow(a,b) = a*a*a*a*a....b times
+```
+
+Properties of Power:
+```
+pow(a,b) = pow(|a|,b), if a is negative and b is even
+pow(a,b) = -pow(|a|,b), if a is negative and b is odd 
+pow(a,0) = 1
+pow(a,b) * pow(a,c) = pow(a,b+c)
+pow(a,b) / pow(a,c) = pow(a,b-c)
+```
+
+Let's have few examples: 
+```
+pow(2,3)
+res = 2 * 2 * 2 = 8
+
+pow(3,2)
+res = 3 * 3 = 9
+```
+
+## Algorithm
+
+- Declare a variable `res` and initialize it to `1`.
+
+- Multiply `res` with base, exponent times.
+
+- Return `res`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to get power(a^b) in linear time
+
+int power(int a, int b) 
+{
+    int res = 1;
+    // if exponent is 0
+
+    if (b == 0) return 1;
+    do 
+    {
+        res = res * a;
+        b--;
+    } while (b > 0);
+    return res;
+}
+
+int main() 
+{
+    cout << "Enter the Base: ";
+    int a;
+    cin >> a;
+
+    cout << "Enter the Exponent: ";
+    int b;
+    cin >> b;
+
+    cout << "Power is: " << power(a, b);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to get power(a^b) in linear time
+
+def power(a, b):
+  res = 1
+  # if exponent is 0
+
+  if b == 0:
+    return 1
+  while b > 0:
+    res *= a
+    b -= 1
+  return res
+
+if __name__ == '__main__':
+
+  a = int(input('Enter the Base: '))
+  b = int(input('Enter the Exponent: '))
+
+  print ('Power is:', power(a, b))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Base: 2
+Enter the Exponent: 3
+```
+
+#### Output :
+
+```
+Power is: 8
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(b)`, where`b` is the exponent
+
+- Space Complexity: `O(1)`
