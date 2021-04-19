@@ -1,0 +1,140 @@
+---
+title: Triangular Numbers
+slug: /mathematics/triangular-numbers
+---
+
+## Introduction
+
+A triangular number is a number that can be represented in the form of a triangular grid of points. This triangular grid should be an equilateral triangle. We need to check whether the number given by the user is a triangular number or not.
+
+## Explanation 
+
+Each row in a triangular grid formed by a triangular number contains the same number of points as the row number. The first row will contain `1` points, the second row will contain `2` points, the third row will contain `3` points, and so on. First few triangular numbers `1`, `3`, `6`, `10`. 
+
+<img src="https://i.imgur.com/JE2uMIH.jpg" width="321" height="164" /><br/><br/>
+
+Let's have one example: 
+```
+n = 6
+total_points = 1 , total points in the triangle till now
+row_point = 2 , point in the next row
+
+Iteration 1:
+total_points = total_points + row_point = 3
+row_point = row_point + 1 = 3
+
+Iteration 2:
+total_points = total_points + row_point = 6
+row_point = row_point + 1 = 4
+
+n is a triangular number because total_points became equal to n
+```
+
+## Algorithm
+
+- Initialize `total_points` to `1` and `row_point` to `2`.
+
+- Keep on increasing the `total_points` by `row_point` and `row_point` by `1` until `total_points` becomes equal or greater than given number.
+
+- If `total_points` becomes equal to `n` then it is triangular number.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to check whether a number is triangular or not
+
+int triangular_number(int n) 
+{
+    if(n == 1)return 1;
+    int total_points = 1;
+    int row_point = 2;
+    while (total_points < n) 
+    {
+        total_points += row_point++;
+    }
+
+    if (total_points == n) return 1;
+    else return 0;
+}
+
+int main() 
+{
+    int n;
+    cout << "Enter the Number: ";
+    cin >> n;
+
+    if (triangular_number(n))
+        cout << "Triangular Number" << endl;
+    else
+        cout << "Not a Triangular Number" << endl;
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to check whether a number is triangular or not
+
+def triangular_number(n):
+    if(n == 1):
+      return 1
+      
+    total_points = 1
+    row_point = 2
+    while (total_points < n): 
+        total_points += row_point
+        row_point += 1
+
+    if (total_points == n):
+        return 1
+    else: 
+        return 0
+
+if __name__ == "__main__":
+    n = int(input("Enter the Number: "))
+
+    if (triangular_number(n)):
+        print("Triangular Number")
+    else:
+        print("Not a Triangular Number")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number: 6
+```
+
+#### Output :
+
+```
+Triangular Number
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+
+- Space Complexity: `O(1)`
