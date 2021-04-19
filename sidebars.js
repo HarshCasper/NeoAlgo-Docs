@@ -108,6 +108,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+		"mathematics/lucas-theorem",
             ],
         },
         {
