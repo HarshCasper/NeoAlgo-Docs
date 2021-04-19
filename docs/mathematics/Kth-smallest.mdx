@@ -5,10 +5,12 @@ slug: /mathematics/Kth-smallest
 
 ## Introduction
 
-In this article we will be given a array and a number K we have to find the Kth smallest element in an array. 
+In this article we will be given a array and a number K we have to find the `Kth` smallest element in an array. Kth smallest means when we arrange the data in ascending order then the element which is at the `Kth` index is the kth smallest element.
 
 ## Explanation 
-In this first we have to sort the array in ascending order. Then print Kth index(if 1 based indexing that means array index starts from 1) or (K-1)th index(if 0 based indexing that means array index starts from 0).
+
+In this first we have to sort the array in ascending order. Then print `Kth` index(if `1` based indexing that means array index starts from `1`) or `(K-1)th` index(if `0` based indexing that means array index starts from `0`).
+
 #### Example 1
 
 ```
@@ -20,6 +22,7 @@ Then print the value at K-1th index(0 based indexing) that is 4th index
 The value at 4th index: 62 
 
 ```
+
 ## Algorithm
 
 For printing Kth smallest element in an array, we follow the following algorithm:
@@ -91,18 +94,19 @@ def kthsmallest(arr, n, k):
     # Sort the array
     arr.sort()
     return arr[k-1]
-  
-# Taking size as input 
-n = int(input("Enter the size of array: "))
-data = []
-# Taking array element as input
-print ("Enter the elements of array: ")
-for i in range(n):
-    data.append(int(input()))
-x = int(input("Enter the value of K: "))  
 
-  #Printing the occurrence of given number 
-print(kthsmallest(data,n,x))
+if __name__ == '__main__':
+  # Taking size as input 
+  n = int(input("Enter the size of array: "))
+  data = []
+  # Taking array element as input
+  print ("Enter the elements of array: ")
+  for i in range(n):
+      data.append(int(input()))
+  x = int(input("Enter the value of K: "))  
+
+    #Printing the occurrence of given number 
+  print(kthsmallest(data,n,x))
    
     
 ```
@@ -127,8 +131,8 @@ Enter the value of K: 5
 
 ## Complexity Analysis
  
-- **Time Complexity:** `O(nlogn)`
+- Time Complexity: `O(nlogn)`
 
-- **Space Complexity:** `O(1)`
+- Space Complexity: `O(1)`
 
 where `n` is the number of elements.
