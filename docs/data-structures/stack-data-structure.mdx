@@ -1,0 +1,530 @@
+---
+title: Stack
+slug: /data-structures/stack-data-structure
+---
+
+## Introduction
+
+Stack is an abstract data type (ADT) with a predefined capacity. It is a linear data structure which follows the ```LIFO``` (Last In First Out) or the ```FILO``` (First In Last Out) order in which elements can be inserted or deleted only from one end called the top of the stack.
+A pile of books or deck of cards can be thought of as an example of a stack in the real world.
+
+## Basic Operations
+
+- ```Push``` : Adds an element onto the stack
+- ```Pop``` : Removes an element from the stack
+- ```Peek``` : Returns the top element of the stack
+- ```Empty``` : Checks if a stack is empty or not
+- ```Display``` : Prints all the stack elements
+
+![Imgur](https://i.imgur.com/DfbgV57.png)
+
+## Algorithms for the operations
+
+**Push**
+- Check if the stack is full or not.
+- If the stack is full, then print ```"Overflow"```.
+- If the stack is not full, then increment the stack top by 1, that is: ```top = top + 1``` and set the top element equal to the given data.
+
+**Pop**
+- Check if the stack is empty or not.
+- If the stack is empty, then print ```"Underflow"```.
+- If the stack is not empty, then print the value of the top element of the stack.
+- Decrement top by 1, that is: ```top = top - 1```.
+
+**Peek**
+- Check if the stack is empty or not.
+- If the stack is empty, then print ```"Underflow"```.
+- If the stack is not empty, then print the top element of the stack.
+
+**Empty**
+- If the value of top is less than or equal to -1 that is: `top<=-1`, then print ```"Stack is empty !"```.
+- Else print ```"Stack not empty yet"```.
+
+**Display**
+- Check if the stack is empty or not.
+- If the stack is empty, then print ```"Underflow"```.
+- If the stack is not empty, then display the stack elements from top to bottom.
+
+
+ A stack is said to be in the **overflow** state when it is full and in the **underflow** state when it is empty.
+
+ In this article, we will see the implementation of stack using
+ - Arrays
+ - Linked lists
+
+Note that, in Python, we use **list** instead of an array for implementing stacks.
+
+## Code
+
+## Stack using Arrays
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    {label: 'C++', value: 'cpp', },
+    {label: 'Python', value:'py', },
+   ]
+  }>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+int stack[100];
+int top = -1, n = 3;
+//n-->no. of elements in stack
+
+//inserting on top
+void Push(int val){
+    if(top>=n){
+        cout<<"Overflow"<<endl;
+    }
+    else{
+        top = top+1;
+        stack[top] = val;
+    }
+}
+
+//removing element from top
+void Pop(){
+    if(top<=-1){
+        cout<<"Underflow"<<endl;
+    }
+    else{
+        cout<<"The popped element is "<<stack[top]<<endl;
+        top = top-1;
+    }
+}
+
+//get the topmost element
+void Peek(){
+    if(top==-1){
+        cout<<"Underflow"<<endl;
+    }
+    else{
+            cout<<"The top element is : "<<stack[top]<<endl;
+    }
+}
+
+//check if stack is empty
+void Empty(){
+    if(top==-1){
+        cout<<"Stack is empty !"<<endl;
+    }
+    else{
+        cout<<"Stack not empty yet"<<endl;
+    }
+}
+
+//displays the stack elements from top to bottom
+void Display(){
+    if(top>=0){
+        cout<<"The stack elements are : "<<endl;;
+        for(int i=top; i>=0; i--){
+            cout<<stack[i]<<endl;
+        }
+    }
+    else{
+        cout<<"Underflow"<<endl;
+    }
+}
+
+int main(){
+    int ch, val;
+    cout<<"     MENU       "<<endl;
+    cout<<"1. Push\n2. Pop\n3. Peek\n4. Empty\n5. Display\n6. Exit"<<endl;
+    while(1){
+        cout<<"Enter your choice : ";
+        cin>>ch;
+        switch(ch){
+            case 1:
+                cout<<"Enter a value : ";
+                cin>>val;
+                Push(val);
+                break;
+            case 2:
+                Pop();
+                break;
+            case 3:
+                Peek();
+                break;
+            case 4:
+                Empty();
+                break;
+            case 5:
+                Display();
+                break;
+            case 6:
+                exit(0);
+                break;
+        }
+    }
+    
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+#Implementing stack using array (list)
+class Stack:
+    #constructor
+    def __init__(self):
+        self.stack = []
+        self.top = None
+
+    #inserting on top
+    def push(self, value):
+        self.stack.append(value)
+        self.top = len(self.stack)-1
+
+    #check if stack is empty
+    def is_empty(self):
+        if self.stack==[]:
+            print("Stack is empty !")
+        else:
+            print("Stack not empty yet")
+
+    #removing an element from top
+    def pop(self):
+        if(self.stack==[]):
+            print("Underflow")
+        else:
+            value = self.stack.pop()
+            self.top = len(self.stack)
+            print("The popped element is ", value)
+
+    #get the top element
+    def peek(self):
+        if(self.stack==[]):
+            print("Stack is empty !")
+        else:
+            print("Top element is : " , self.stack[len(self.stack)-1])
+
+    #display stack elements
+    def display(self):
+        if(self.stack==[]):
+            print("Underflow")
+        else:
+            print("Stack elements are :")
+            for i in range (self.top, -1, -1):
+                print(self.stack[i])
+
+#executable code
+if __name__ == '__main__':
+    s = Stack()
+    print("     MENU        ")
+    print("1. Push\n2. Pop\n3. Peek\n4. Empty\n5. Display\n6. Exit")
+    while True:
+        ch = int(input("Enter your choice : "))
+        if(ch==1):
+            val = int(input("Enter a value : "))
+            s.push(val)
+        elif(ch==2):
+            s.pop()
+        elif(ch==3):
+            s.peek()
+        elif(ch==4):
+            s.is_empty()
+        elif(ch==5):
+            s.display()
+        elif(ch==6):
+            break
+        else:
+            print("Wrong choice")
+```
+</TabItem>
+</Tabs>
+
+#### Sample I/O
+
+```
+     MENU
+1. Push
+2. Pop
+3. Peek
+4. Empty
+5. Display
+6. Exit
+Enter your choice : 1
+Enter a value : 10
+Enter your choice : 1
+Enter a value : 20
+Enter your choice : 1
+Enter a value : 30
+Enter your choice : 5
+Stack elements are :
+30
+20
+10
+Enter your choice : 3
+Top element is :  30
+Enter your choice : 2
+The popped element is  30
+Enter your choice : 2
+The popped element is  20
+Enter your choice : 2
+The popped element is  10
+Enter your choice : 4
+Stack is empty !
+Enter your choice : 6
+```
+
+## Stack using Linked Lists
+
+
+ <Tabs
+ defaultValue="cpp"
+ values={[
+   {label: 'C++', value: 'cpp', },
+   {label: 'Python', value:'py', },
+  ]
+ }>
+ <TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+//declaration of node
+struct node
+{
+int data;
+struct node*next;
+}*head=NULL,*temp,*ptr;
+
+//Insertion at the top
+void Push(int ele)
+{
+    ptr=(struct node*)malloc(sizeof(struct node));
+    ptr->data=ele;
+    ptr->next=head;
+    head=ptr;
+}
+
+//deletion from the top
+void Pop()
+{
+    if(head==NULL){
+        cout<<"Underflow"<<endl;
+    }
+    else{
+        temp=head;
+        cout<<"The popped element is "<<temp->data<<endl;
+        head=head->next;
+        free(temp);
+    }
+}
+
+//returns the value of the top
+void Peek()
+{
+    if(head==NULL){
+        cout<<"Underflow"<<endl;
+    }
+    else{
+        cout<<"The top element is : "<< head->data<<endl;
+    }
+}
+
+//returns Yes if Empty, else No
+void Empty()
+{
+   if(head==NULL)
+     cout<<"Stack is empty !"<<endl;
+   else
+     cout<<"Stack not empty yet"<<endl;
+}
+
+//returns all the value inside the Stack
+void Display()
+{
+    if(head==NULL){
+        cout<<"Underflow"<<endl;
+    } else{
+        temp=head;
+        cout<<"The stack elements are : "<<endl;;
+        while(temp!=NULL){
+             cout<<temp->data<<endl;
+             temp=temp->next;
+        }
+    }
+}
+
+int main()
+{
+    int ch, val;
+    cout<<"     MENU       "<<endl;
+    cout<<"1. Push\n2. Pop\n3. Peek\n4. Empty\n5. Display\n6. Exit"<<endl;
+    while(1){
+        cout<<"Enter your choice : ";
+        cin>>ch;
+        switch(ch){
+            case 1:
+                cout<<"Enter a value : ";
+                cin>>val;
+                Push(val);
+                break;
+            case 2:
+                Pop();
+                break;
+            case 3:
+                Peek();
+                break;
+            case 4:
+                Empty();
+                break;
+            case 5:
+                Display();
+                break;
+            case 6:
+                exit(0);
+                break;
+        }
+    }
+
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+# Implementing stacks using linked list
+class Node(object):
+    #constructor
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class Stack(object):
+    #constructor
+    def __init__(self):
+        self.head = None
+        self.num_elements = 0
+
+    #inserting on top
+    def push(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.num_elements += 1
+
+    #check if stack is empty
+    def is_empty(self):
+        if self.num_elements == 0:
+            print("Stack is empty !")
+        else:
+            print("Stack not empty yet")
+
+    #removing an element from the top
+    def pop(self):
+        if self.num_elements == 0:
+            print("Underflow")
+        else:
+            value = self.head.value
+            self.head = self.head.next
+            self.num_elements -= 1
+            print("The popped element is ", value)
+
+    #get the top element
+    def peek(self):
+        if self.num_elements == 0:
+            print("Underflow")
+        else:
+            value = self.head.value
+            print("The top element is ", value)
+
+    #display stack elements
+    def display(self):
+        if self.num_elements == 0:
+            print("Underflow")
+        else:
+            print("Stack elements are :")
+            temp = self.head
+            while(temp!=None):
+                print(temp.value)
+                temp = temp.next
+
+#executable code
+if __name__ == '__main__':
+    s = Stack()
+    print("     MENU        ")
+    print("1. Push\n2. Pop\n3. Peek\n4. Empty\n5. Display\n6. Exit")
+    while True:
+        ch = int(input("Enter your choice : "))
+        if(ch==1):
+            val = int(input("Enter a value : "))
+            s.push(val)
+        elif(ch==2):
+            s.pop()
+        elif(ch==3):
+            s.peek()
+        elif(ch==4):
+            s.is_empty()
+        elif(ch==5):
+            s.display()
+        elif(ch==6):
+            break
+        else:
+            print("Wrong choice")
+```
+</TabItem>
+</Tabs>
+
+#### Sample I/O
+
+```
+     MENU
+1. Push
+2. Pop
+3. Peek
+4. Empty
+5. Display
+6. Exit
+Enter your choice : 1
+Enter a value : 10
+Enter your choice : 1
+Enter a value : 20
+Enter your choice : 1
+Enter a value : 30
+Enter your choice : 5
+Stack elements are :
+30
+20
+10
+Enter your choice : 3
+Top element is :  30
+Enter your choice : 2
+The popped element is  30
+Enter your choice : 2
+The popped element is  20
+Enter your choice : 2
+The popped element is  10
+Enter your choice : 4
+Stack is empty !
+Enter your choice : 6
+```
+
+## Complexity Analysis
+
+- Time Complexity :
+Since we do not run any loop,
+  - Push : ```O(1)```
+  - Pop : ```O(1)```
+  - Peek : ```O(1)```
+  - Empty : ```O(1)```
+
+ - Space Complexity : ```O(n)```
+
+## Credits
+ - Stack using Arrays : [Tanvi Bugdani](https://github.com/tanvi355) for the C++ and [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/stack_using_list.py)
+ - Stack using Linked Lists : [Rishikesh Raj](https://github.com/Rishikeshrajrxl) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Stack_using_LinkedList.cpp) and [Sangeeta Mishra](https://github.com/SangeetaMishra) and [SowmiyaNarayanan G](https://github.com/GSNCodes) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Stacks.py)
