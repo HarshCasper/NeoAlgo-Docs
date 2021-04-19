@@ -1,0 +1,191 @@
+---
+title: Comb Sort
+slug: /searching-algorithm/comb-sort
+---
+
+## Introduction
+
+Comb sort is a relatively simple sorting algorithm. It is an improvement over Bubble sort by using a gap of the size of more than `1`. The gap starts with a large value and starts shrinking by `1.3` in every iteration until it reaches the value `1`.
+
+## Explanation
+
+In bubble sort basically what we do is to compare adjacent values but here in comb sort, we compare the element with the adjacent element using a gap of size more than `1`.  The gap starts with a large value and shrinks by a factor of `1.3` in every iteration until it reaches the value `1`.
+
+Note : The shrink factor has been empirically found to be `1.3`.
+
+Let's have one example: 
+```
+Input  : 1 3 5 2 4
+Output : 1  2  3  4  5
+```
+
+## Algorithm
+
+- Take the input elements of the array to be sorted from the user.
+- Check with the empirically found shrink factor `1.3`.
+- Start comparing the elements with the factor calculated.
+- If found the adjacent space to be with lesser value then swap.
+- Continue these steps until we cover the search of the complete array. 
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Comb sort
+void comb_sort(int arr[], int n)
+{
+    int flag= 1, space = n; 
+    
+    while (space > 1 || flag == 1) 
+    {
+        // Here empirically found shrink factor 1.3 is used.
+        space = (space * 10) / 13;
+        
+        //Assigning space its minimum value of 1
+        if(space < 1)
+            space = 1;
+    
+        flag = 0;
+        
+        // Compare elements with the space value
+        for (int i = 0; i < (n - space); i++) 
+        {
+            if (arr[i] > arr[i + space]) 
+            {
+                swap(arr[i],arr[i+space]);
+                flag= 1;
+            }
+        }
+    }
+}
+
+
+int main()
+{
+    int n;
+    cout<<"\nHow many numbers do you want to sort? ";
+    cin>>n;
+    int arr[n];
+
+    if (n <= 0)
+    {
+        cout<<"The array is Empty!!!";
+        return 0;
+    }
+    // Input the numbers to sort
+    cout<<"Enter the numbers: ";
+    for (int i = 0; i < n; i++)
+        cin>>arr[i];
+  
+    //Call the sort function 
+    comb_sort(arr,n);  
+
+    cout<<"The numbers in sorted order is: ";
+    // Print the sorted array
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+public class CombSort_implementation {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many numbers do you want to sort? ");
+        int n = input.nextInt();
+
+        int arr[] = new int[n];
+        System.out.print("Enter the numbers: ");
+        
+        for(int i =0; i<n; i++){
+            arr[i] = input.nextInt();
+        }
+
+        comb_sort(arr);
+
+        System.out.println("The numbers in sorted order is: ");
+        for(int i = 0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    //Method to swap two elements of an Array
+    public static void swap_elements_in_array(int idx_1, int idx_2, int arr[]){
+        int temp;
+        temp = arr[idx_1];
+        arr[idx_1] = arr[idx_2];
+        arr[idx_2] = temp;
+    }
+
+    public static void comb_sort(int arr[]){
+        int gap = arr.length;
+        //A flag is use to check whether the elements of the array in a gap are sorted or not.
+        boolean flag = true;
+        while(gap != 1 || flag){
+            //Dividing size of gap in every iteration by 1.3
+            gap = (int)Math.floor(gap/1.3);
+            if(gap < 1){
+                gap = 1;
+            }
+            flag = false;
+
+            for(int i = 0; i <= arr.length-gap-1; i++){
+                if(arr[i] > arr[i+gap]){
+                    swap_elements_in_array(i, i+gap, arr);
+                    flag = true;
+                }
+            }
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+How many numbers do you want to sort? 5
+Enter the numbers: 1 3 5 2 4
+```
+
+#### Output:
+
+```
+The numbers in sorted order is:  1  2  3  4  5
+```
+
+## Complexity Analysis
+
+- Time complexity: `O(n^2)`
+- Space complexity : `O(n)`
+
+## Credits
+
+- [Hari Krishnan U](https://github.com/Harikrishnan6336) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/comb_sort.cpp)
+- [Devansu Yadav](https://github.com/Devansu-Yadav) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/CombSort_implementation.java)
