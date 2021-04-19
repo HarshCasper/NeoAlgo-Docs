@@ -1,0 +1,150 @@
+---
+title: Toggle K'th bit
+slug: /bit-manipulation/toggle-kth-bit
+---
+
+## Introduction
+
+Given a number, toggle the `k`'th bit of the given number.
+
+## Explanation
+
+Consider a number `n` = `24`. Assume that we have to toggle the `k` = `3`th bit.
+
+```
+Consider n = 24,  k = 3
+
+Binary equivalent of n = 11000
+
+Binary equivalent of n after toggling its third bit = 11100 (28)
+```
+
+Hence `28` is the number obtained after toggling the k'th bit.
+
+## Algorithm
+
+Let us assume that the given number be `n` and the value of k be `k`
+
+-   Set `temp` the value of 1 with its bits shifted to left by `k-1` places
+-   Set `ans` the value of `n` xor `temp`
+-   Return `ans`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+//CPP Program to find whether a number is a Krishnamurthy number
+
+#include<iostream>
+
+//Function to calculate the factorial of the individual digits
+
+int Factorial ( int n )
+{
+    if ( n == 1 || n == 0 )
+    {
+        return 1;
+    }
+    return n * Factorial( n - 1 );
+}
+
+int Krishnamurthy_No ( int num )
+{
+    int digit, sum = 0 ,copy = num;
+
+    //Running a loop till we have extracted all the digits from the copy of the given number
+
+    while ( copy > 0 )
+    {
+        digit = copy % 10;
+        sum = sum + Factorial ( digit );
+        copy = copy / 10;
+    }
+    return sum;
+}
+
+int main ()
+{
+    int number, digit, sum = 0;
+    std::cout << "Enter the number: ";
+    std::cin >> number;
+    int answer = Krishnamurthy_No ( number );
+
+    //Comparing if calculated sum adds up to the number
+
+    if ( answer == number)
+    {
+        std:: cout <<"The given number "<< number <<" is a Krishnamurthy number.";
+    }
+    else
+    {
+        std:: cout <<"The given number "<< number <<" is not a Krishnamurthy number.";
+    }
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def factorial(n) :
+    p = 1
+    for i in range(1 , n + 1) :
+        p = p * i
+    return p
+
+print("Enter the number: ", end="")
+number = int(input())
+temp = number
+sums = 0
+if number > 0 :
+    while temp > 0 :
+        remainder = temp % 10
+        sums = sums + factorial(remainder)
+        temp = temp // 10
+    if sums == number :
+        print("The given number {} is a Krishnamurthy number.".format(number))
+    else :
+        print("The given number {} is not a Krishnamurthy number.".format(number))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number: 45
+```
+
+#### Output
+
+```
+The given number 145 is a Krishnamurthy number.
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(n * log(n))`, where `n` is the given number
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Faiz Alam](https://github.com/zhcet19) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/togglebit.cpp)
+-   [Shaik Javeed Suhail](https://github.com/javeed3157) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Strong_Number.py)
