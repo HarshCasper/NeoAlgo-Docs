@@ -1,0 +1,142 @@
+---
+title: Number of bits to be flipped to interconvert two numbers
+slug: /bit-manipulation/no-of-bits-to-be-flipped-to-interconvert-two-numbers
+---
+
+## Introduction
+
+Given two numbers we have to find the number of bits to be flipped to convert one number to another.
+
+## Explanation
+
+Consider two numbers `n1` = `12` and `n2` = `17`
+
+```
+Binary equivalent of n1 is 00001100
+Binary equivalent of n2 is 00010001
+
+Here, we need to flip the first, third, forth and fifth bits from the LSB of n1 to convert it to n2.
+Hence, the number of bits to be flipped to interconvert the given numbers is 4.
+```
+
+We need to flip the bits, present in same places in both numbers, that are not the same.
+We can find such bits by taking an **xor** of the given numbers and counting the number of set bits in them.
+
+## Algorithm
+
+Let us assume that the given two numbers be `n1` and `n2`,
+
+-   Set `val` the value of the xor of the numbers `n1` and `n2`
+-   Set `count` a value of `0`
+-   Begin a While loop till `val` greater than `0`
+    -   Increment the value of `count`
+    -   Set `n` the value of `n` bitwise AND `(n - 1)`
+-   Return `count`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// C++ program to find the number of bits to be flipped to convert one number to another
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+Inorder to compare the individual bits of given the numbers, we can compute the number of
+set bits in thier XOR, as we know that XOR operation yields set bits, only when two same
+bits are XORed.
+*/
+int get_num_flips(int n1, int n2) {
+    int count = 0, n = n1 ^ n2;
+
+    // Loop till 'n' becomes zero
+    while (n) {
+        // If the lsb is set, increase the count by 1
+        if (n & 1)
+            count++;
+        // Shift the bits to right by 1.
+        n = n >> 1;
+    }
+
+    return count;
+}
+
+int main() {
+    int n1, n2;
+    cout << "\nEnter the two numbers: ";
+    cin >> n1 >> n2;
+
+    cout << "Number of bits to be flipped to inter-convert the given numbers is ";
+    cout << get_num_flips(n1, n2);
+    return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+"""
+Python program to find the number of bits to be flipped to convert one number to another
+Inorder to compare the individual bits of given the numbers, we can compute
+the number of set bits in thier XOR, as we know that XOR operation yields
+set bits, only when two same bits are XORed.
+"""
+
+def get_num_flips(n1, n2):
+    count = 0
+    n = n1 ^ n2
+    while(n != 0):
+        if(n & 1 == 1):
+            count = count + 1
+        n = n >> 1
+    return count
+
+if __name__ == '__main__':
+    print("Enter the two numbers:", end="")
+    inp = [int(x) for x in input().split(' ')]
+    n1, n2 = inp[0], inp[1]
+    res = get_num_flips(n1, n2)
+    print("Number of flips required to inter-convert the given numbers is: {}".format(res))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the two numbers: 12 24
+```
+
+#### Output
+
+```
+Number of bits to be flipped to inter-convert the given numbers is 2
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(log(n))`, where `n` is the greater of the given numbers
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/no_of_bits_to_be_flipped_to_inter_convert_two_numbers.cpp)
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/Bit--Manipulation/no_of_bits_to_be_flipped_to_inter_convert_two_numbers.py)
