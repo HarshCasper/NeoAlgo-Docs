@@ -111,6 +111,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
 		            "mathematics/lucas-theorem",
                 "mathematics/euler-totient-function",
