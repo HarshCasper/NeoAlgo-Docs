@@ -1,0 +1,161 @@
+---
+title: Reverse of String
+slug: /competitive-programming/Reverse-of-String
+---
+
+## Introduction
+
+Given a string, we need to find the reverse of the string.
+
+## Explanation
+
+Reversing a string implies that the string given by the user in a specific sequence will get entirely reversed,
+when the reverse of a string algorithm is implemented.
+
+Let us have a few examples:
+
+```
+Reverse of "hello" will be "olleh"
+Reverse of "NeoAlgo" will be "oglAoeN"
+```
+
+## Algorithm
+
+### Using Stack
+
+```
+reverse(s):
+  - creating an empty stack.
+  - pushing each character of string in stack.
+  - using for loop, storing the top character in result string 
+    and popping out every single character.
+```
+
+### Iterative
+
+```
+reverse(s):
+  - creating a variable to store result.
+  - using for loop, extracting each element from the end of the string 
+    and storing in the variable.
+  - printing the reversed string.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function to reverse the string
+void reverse(string &s)
+{
+	int i;
+	stack<int> str;
+
+	for(char ch:s){
+        str.push(ch);
+    }
+    for(i=0;i<s.size();i++){
+        s[i]=str.top();
+        str.pop();
+    } 
+}
+
+int main()
+{
+	string s;
+	cout<<"Enter the string : ";
+	getline(cin,s);
+	reverse(s);
+  cout<<"String after Reverse: ";
+	cout<<s;
+	return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.io.*;
+import java.util.*;
+ 
+// Main class
+
+class Program {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        // Accepting input from user
+
+        System.out.println("Enter the string: ");
+        String str = sc.nextLine();
+
+        // revoking the function reverse
+
+        reverse(str);
+        
+    }
+
+    // Method for reversing the string
+
+    static void reverse(String s){
+
+        // Reversing the string by extracting each element from the end of the string and storing in a variable result
+
+        String result = "";
+        for (int i = s.length() - 1; i >= 0; i--)
+            result += s.charAt(i);
+
+        // Printing the reversed string
+        System.out.println("String after Reverse: ");
+        System.out.println(result);
+       
+    }
+
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the string: Hello World
+
+```
+
+#### Output:
+
+```
+String after Reverse: dlroW olleH
+
+```
+
+## Complexity Analysis
+
+- Time  complexity - O(n)
+- Space complexity - O(n)
+
+## Credits
+
+- [Harshit Pandey](https://github.com/HarshitPandey251) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/Reverse_string_using_stack.cpp)
+- [Amit Kumar Mishra](https://github.com/Amit366) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/ReverseString.java)
