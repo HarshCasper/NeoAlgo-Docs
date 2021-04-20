@@ -5,9 +5,7 @@ slug: /competitive-programming/Factorial-of-Large-Number
 
 ## Introduction
 
-Factorial of a non-negative number `n` is the product of all integers less than or equal to `n`.
-But when you have a very large `n` say 100, it's factorial has `158` digits, which is not possible to store even if 
-you use long long int. 
+Factorial of a non-negative number `n` is the product of all integers less than or equal to `n`. But when you have a very large `n` say 100, it's factorial has `158` digits, which is not possible to store even if you use `long long int`. 
 
 
 ## Explanation
@@ -35,22 +33,22 @@ Factorial(7) = 7 * 6 * 5 * 4 * 3 * 2 * 1 = 5040 = 7 * Factorial(6)
 
 ```
 largeFactorial(n):
-  - creating a vector to store the result
-  - initialize vector and it's size with 1
-  - for all numbers from 2 to n we will update 
-    the vector size and value
-  - finally print the factorial of the number
+  - Creating a vector to store the result.
+  - Initialize vector and it's size with 1.
+  - For all numbers from 2 to n we will update 
+    the vector size and value.
+  - Finally print the factorial of the number.
 
 multiply(n,res,rsize):
-  - initialize carry with 0
+  - Initialize carry with 0.
   - from i=0 to rsize-1:
-    - find value of res[i]*n + carry
-    - update res[i] by storing last digit of
+    - Find value of res[i]*n + carry
+    - Update res[i] by storing last digit of
       the result obtained from above step
-    - update carry
-  - put all digits of carry in the result vector and
+    - Update carry.
+  - Put all digits of carry in the result vector and
     increment the size of vector to number of digits
-    in carry
+    in carry.
 ```
 
 ## Code
