@@ -1,0 +1,398 @@
+---
+title: Circular Queue
+slug: /data-structures/circular-queue
+---
+
+## Introduction
+
+A circular queue is a logical data structure that works on the discipline **FIFO(First-In-First-Out)**. In this, the last position of the queue is connected back to the front position forming a circle. It is an improvement over the standard queue as in a regular queue, when an element is deleted, the vacant spaces are not utilized. In contrast, in a circular queue, the empty spaces are reutilized. For example, inserting new bullets in a gun after firing is a real-world example of a circular queue.
+<p align="center">
+  <img width="500" height="450" src="https://i.imgur.com/GBjUDlg.png" />
+</p>
+
+## Basic Operations
+
+* `Enqueue` : Inserts an element from the **rear** end in a circular queue 
+* `Dequeue` : Deletes an element from the **front** of the circular queue
+* `isEmpty` : Checks if a queue is empty or not
+* `isFull` : Checks if a queue is full or not
+* `Display` : Prints all the queue elements
+
+## Algorithm
+
+This section will discuss the algorithmic steps performed on the [basic operations](#basic-operations) of a circular queue.
+
+#### Enqueue 
+
+* Check whether the queue is `full`.
+* If the queue is full, then display `Queue is Full` or `OVERFLOW` and terminate the function.
+* If the queue is empty, then set value of rear and front to `0`.
+* Increment the rear pointer and take a `modular operation (%)` of `N (Capacity/Size of Array)`.
+
+#### Dequeue
+
+* Check whether the queue is `empty`.
+* If the queue is empty, then display `Queue is Empty` or `UNDERFLOW` and terminate the function.
+* If the queue is not empty, increment the `front` pointer and take a `modular operation (%)` of `N (Capacity/Size of Array)`.
+
+#### isEmpty 
+
+* Check whether `front = -1 or front > rear`
+* If so, then return true.
+* Else, return false.
+
+#### isFull
+
+* Check whether `((rear+1)%N == front)`
+* If so, then return true.
+* Else, return false.
+
+#### Display
+
+* Check whether the queue is empty.
+* If the queue is empty, then display `Queue is Empty` or `UNDERFLOW` and terminate the function.
+* If the queue is not empty, start a `loop` from `front` pointer till `rear` pointer and print all the elements in the queue.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//We are creating a class for array
+class Queue
+{
+private:
+    int front;
+    int rear;
+    int capacity;
+    int *ptr;
+
+public:
+
+    //Constructor to initialize the data members of Queue class
+    Queue(int cap)
+    {
+        front = 0;
+        rear = 0;
+        capacity = cap;
+        ptr = new int [capacity];
+    }
+
+    //Checking if the Queue is empty or not
+    bool isEmpty()
+    {
+        if(front == rear)
+            return true;
+        return false;
+    }
+
+    //Checking if the Queue is full or not
+    bool isFull()
+    {
+        if((rear+1) % capacity == front)
+            return true;
+        return false;
+    }
+
+    //Inserting data into the queue
+    void enQueue()
+    {
+        if(isFull())
+            cout<<"\nQueue is Full"<<endl;
+        else
+        {
+            int data;
+            cout<<"\nEnter data to be inserted : ";
+            cin>>data;
+            rear = (rear+1)%capacity;
+            ptr[rear] = data;
+        }
+    }
+
+    //Deleting data from the queue
+    void deQueue()
+    {
+        if(isEmpty())
+            cout<<"\nQueue is Empty"<<endl;
+        else
+        {
+            int data;
+            front = (front+1)%capacity;
+            data = ptr[front];
+            cout<<endl<<data<<"  is deleted from Queue"<<endl;
+        }
+    }
+
+    //Traversing queue and printing data
+    void display()
+    {
+        int i;
+        if(rear == front)
+            cout<<"\nQueue is Empty"<<endl;
+        else
+        {
+            cout<<"Queue is : ";
+            for(i = front+1 ; i != rear ; i = (i+1) % capacity)
+                cout<<ptr[i]<<"   ";
+            cout<<ptr[rear]<<endl;
+        }
+    }
+};
+
+//Driver Program
+int main()
+{
+    int cap,choice;
+    cout<<"Enter the size or capacity of Queue : ";
+    cin>>cap;
+    Queue q(cap);
+    while(1)
+    {
+        cout<<endl;
+        cout<<"1. To enter data into queue."<<endl;
+        cout<<"2. To delete data from queue."<<endl;
+        cout<<"3. To display the data."<<endl;
+        cout<<"4. TO EXIT."<<endl;
+
+        cout<<"\nENTER YOUR CHOICE... : ";
+        cin>>choice;
+
+        switch(choice)
+        {
+        case 1:
+            q.enQueue();
+            break;
+
+        case 2:
+            q.deQueue();
+            break;
+
+        case 3:
+            q.display();
+            break;
+
+        case 4:
+            exit(0);
+            break;
+
+        default:
+            cout<<"\nINVALID CHOICE..."<<endl;
+        }
+    }
+    return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java   
+import java.util.*;
+public class CircularQueue
+{
+    int cq[];
+    int first, last;
+
+    CircularQueue(int size)
+    { 
+        //This is a default constructor to declare Circular Queue and global parameters first and last.
+        cq = new int[size];
+        first =-1;
+        last = -1;
+    }
+
+    public void insert(int value)
+    {
+        if(first==0 && last==cq.length-1 || first==last+1)
+        { 
+            System.out.println("Overflow"); return;
+        }
+        else if(first==-1)
+        {
+            first=last=0;
+        }
+        else if(last==cq.length-1)
+        {
+            last=0;
+        }
+        else
+        {
+            last++;
+        }
+        cq[last]=value;
+    }
+
+    public int delete()
+    {
+
+        if(first==-1)
+        {
+            System.out.println("Underflow"); return 0; 
+        }
+        else
+        {
+            int temp = cq[first];
+            if(first==last)
+            { 
+                reset(); 
+            }
+            else if(first==cq.length-1)
+            {
+                first=0;
+            }
+            else
+            {
+                first++;
+            }
+            return temp;
+        }
+    }
+
+    private void display()
+    {
+        
+        if(first==-1)
+        {
+            System.out.print("Circular Queue is Empty");
+            return;
+        }
+
+        for(int i = first; ; i++)
+        {
+            if(i==cq.length)
+            {
+                i=0;
+            }
+
+            System.out.print(cq[i]+" ");
+
+            if(i==last)
+            {
+                break;
+            }
+        }
+        System.out.println();
+    }
+
+    void reset()
+    {
+        /**
+         * This function is used to reset first and last to original values -1.
+         */
+        first=last=-1;
+    }
+
+    void main()
+    {
+        
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter number of elements: ");
+        int size = scanner.nextInt(); scanner.nextLine();
+
+        CircularQueue ob = new CircularQueue(size);
+
+        int flag=1;
+
+        while(flag==1)
+        {
+            System.out.println("Choose from following: ");
+            System.out.println("1. Insert an element");
+            System.out.println("2. Delete an element");
+            System.out.println("3. Display the elements: ");
+            System.out.println("Enter choice: ");
+            int choice = scanner.nextInt(); scanner.nextLine();
+
+            switch(choice)
+            {
+                case 1:
+                System.out.println("Enter element: ");
+                int value = scanner.nextInt(); scanner.nextLine();
+                ob.insert(value);
+                break;
+
+                case 2:
+                if(ob.delete()!=0)
+                { 
+                    System.out.println("Deleted element: "+ob.delete());
+                }
+                break;
+
+                case 3:
+                System.out.println("Displaying the queue");
+                ob.display();
+                break;
+            }
+
+            System.out.println("Do you wish to continue? Enter 1 for YES or 0 for NO: ");
+            flag = scanner.nextInt(); scanner.nextLine();
+        }
+    }
+}
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Sample input
+```
+Enter the size or capacity of Queue : 5
+    1. To enter data into queue.
+    2. To delete data from queue.
+    3. To display the data.
+    4. TO EXIT.
+
+    ENTER YOUR CHOICE... : 1
+    Enter data to be inserted : 45
+
+    1. To enter data into queue.
+    2. To delete data from queue.
+    3. To display the data.
+    4. TO EXIT.
+
+    ENTER YOUR CHOICE... : 1
+    Enter data to be inserted : 82
+    1. To enter data into queue.
+    2. To delete data from queue.
+    3. To display the data.
+    4. TO EXIT.
+
+    ENTER YOUR CHOICE... : 3
+```
+
+#### Sample Output
+```
+ Queue is : 45   82
+```
+
+## Complexity Analysis
+
+#### Time Complexities:
+
+* Enqueue --> `O(1)`
+* DeQueue --> `O(1)`
+* IsEmpty --> `O(1)`
+* IsFull  --> `O(1)`
+
+**Space Complexity** : `O(n)`
+
+## Credits
+
+- [Sushant Gaurav](https://github.com/imsushant12) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/queue_using_circular_array.cpp)
+- [Khushee Kapoor](https://github.com/khusheekapoor) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/ds/CircularQueue.java)
