@@ -1,5 +1,4 @@
 module.exports = {
-
     docs: [
         {
             type: "category",
@@ -40,6 +39,8 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+                "sorting-algorithms/counting-sort",
+
             ],
         },
         {
@@ -96,11 +97,12 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
+		            "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		        "mathematics/fibonacci-recursion",
-		        "mathematics/catalan-number",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -112,6 +114,9 @@ module.exports = {
                 "mathematics/triangular-numbers",
 		            "mathematics/lucas-theorem",
                 "mathematics/euler-totient-function",
+		            "mathematics/matrix-addition",
+                "mathematics/matrix-transpose",
+                "mathematics/matrix-multiplication",
             ],
         },
         {
@@ -137,6 +142,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
             ],
         },
