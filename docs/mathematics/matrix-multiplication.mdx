@@ -15,17 +15,6 @@ Let's have an example:
 
 ![image](https://i.postimg.cc/wMMLjKzQ/neo-4.png)
 
-## Algorithm
-
-- Input matrix `A` and matrix `B`.
-- Input matrix `A` 
-- Input matrix `B` 
-- loop from `i = 0` to number of rows of the matrix `A`
-    - loop from `j = 0` to number of columns of the matrix `B`
-        - loop from `k = 0` to number of rows of the matrix `B`
-            - `result[i][j] += matrix 1[i][k] * mattrix 2[k][j]`
-- print `result`
-
 ## Code
 
 import Tabs from "@theme/Tabs";
@@ -53,7 +42,7 @@ void matrix_multiplication(){
     cout << "Enter the number of rows and columns of the second matrix: ";
     cin >> r2 >> c2;
 
-    //If the number of columns of the second matrix and the number of rows of first matrix differ, they cannot be added
+    // If the number of columns of the second matrix and the number of rows of first matrix differ, they cannot be added
     if (c1 != r2)
     {
         cout << "Given Matrices cannot be multiplyable!!!";
@@ -95,7 +84,6 @@ void matrix_multiplication(){
     }
 }
 
-//Driver Code
 int main()
 {
     matrix_multiplication();
