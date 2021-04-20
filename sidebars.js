@@ -112,7 +112,7 @@ module.exports = {
 		            "mathematics/hamming-distance",
                 "mathematics/triangular-numbers",
 		            "mathematics/lucas-theorem",
-                "mathematics/matrix-transpose"
+                "mathematics/matrix-transpose",
                 "mathematics/matrix-addition",
             ],
         },
