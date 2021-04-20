@@ -117,6 +117,7 @@ module.exports = {
 		            "mathematics/lucas-theorem",
 		            "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
+              "mathematics/matrix-multiplication",
             ],
         },
         {
