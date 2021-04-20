@@ -1,5 +1,4 @@
 module.exports = {
-
     docs: [
         {
             type: "category",
@@ -40,6 +39,8 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+                "sorting-algorithms/counting-sort",
+
             ],
         },
         {
@@ -111,7 +112,8 @@ module.exports = {
 		            "mathematics/hamming-distance",
                 "mathematics/triangular-numbers",
 		            "mathematics/lucas-theorem",
-                "mathematics/matrix-multiplication"
+                "mathematics/matrix-multiplication",
+                "mathematics/matrix-addition"
             ],
         },
         {
