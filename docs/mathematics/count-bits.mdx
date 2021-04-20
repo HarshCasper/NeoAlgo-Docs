@@ -47,19 +47,17 @@ import TabItem from '@theme/TabItem';
 #include<bits/stdc++.h>
 using namespace std;
 
-//function for counting occurrence
-int count_occurrence(int x,int a[],int n)
+//function for counting number of bits
+int count_bits(int n)
 {
-  //initialize count with -1
-   int count=-1;
+  //initialize count with 0
+   int count=0;
    
-   //iterating on whole array
-   for(int i=0;i<n;i++)
+   //  counting number of bits in binary representation of number
+   while(n!=0)
    {
-     if(a[i]==x)
-     {
-       count++;
-     }
+     count++;
+     n=n/2;
    }
    return count;
 }
@@ -69,22 +67,12 @@ int main()
 {
   int n;
 
-  //Taking size as input
-  cout<<"Enter the size of array: ";
+  //Taking number as input
+  cout<<"Enter the number: ";
   cin>>n;
-  int a[n];
-  cout<<"Enter the elements of array: ";
 
-  //Taking elements of array
-  for(int i=0;i<n;i++)
-  {
-    cin>>a[i];
-  }
-  int x;
-  cout<<"Enter the no. of which you want to count the occurrence: ";
-  cin>>x;
-  //Printing occurrence of given number
-  cout<<count_occurrence(x,a,n)<<endl;
+  //Printing count of bits of given number
+  cout<<count_bits(n)<<endl;
   return 0;
 }
 
@@ -107,7 +95,7 @@ def count_bits(n):
   
 # Taking number as input 
 n = int(input("Enter the number: "))
-  #Printing the occurrence of given number 
+#Printing count of bits of given number 
 print(count_bits(n))
    
     
