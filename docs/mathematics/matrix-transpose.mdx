@@ -5,23 +5,13 @@ slug: /mathematics/matrix-transpose
 
 ## Introduction
 
-The transpose of a matrix is a new matrix whose rows are the columns of the original matrix and vice versa
+The transpose of a matrix is a new matrix whose rows are the columns of the original matrix and vice versa.
 
 ## Explanation
 
-The transpose of a matrix is an operator which flips a matrix over its diagonal, It is obtained by switching the row and column indices of the matrix , It is denoted by Aᵀ
-For Example 
+The transpose of a matrix is an operator which flips a matrix over its diagonal, It is obtained by switching the row and column indices of the matrix. It is denoted by Aᵀ. Let's have an example:
 
 ![image](https://i.postimg.cc/85m3p0h9/neo-3.png) 
-
-## Algorithm
-
-- input the matrix
-- loop from `i = 0` to number of rows of the matrix 
-- loop from `j = 0` to number of columns of the matrix 
-- `transpose[i][j] = matrix[j][i]`
-- print `transpose`
-
 
 ## Code
 
@@ -42,7 +32,7 @@ import TabItem from "@theme/TabItem";
 #include<iostream>
 using namespace std ;
 
-//Function that computes transpose.
+// Function that computes transpose.
 void transpose(int frows, int fcolumns, int **finput_matrix, int **ftranspose_matrix)
 {
     int i = 0, j = 0 ;
@@ -50,7 +40,7 @@ void transpose(int frows, int fcolumns, int **finput_matrix, int **ftranspose_ma
     {
         for(j=0 ; j<frows ; ++j)
         {
-            //According to definition of transpose, each element of transpose matrix is assigned.
+            // According to definition of transpose, each element of transpose matrix is assigned.
             ftranspose_matrix[i][j] = finput_matrix[j][i] ;
         }
     }
@@ -60,13 +50,13 @@ void matrix_transpose(){
     int **input_matrix = NULL, **transpose_matrix = NULL ;
     int rows = 0, columns = 0, i = 0, j = 0 ;
 
-    //Taking input as number of rows and columns.
+    // Taking input as number of rows and columns.
     cout << "Enter the number of rows in matrix : " << endl ;
     cin >> rows ;
     cout << "Enter the number of columns in matrix : " << endl ;
     cin >> columns ;
 
-    //Assigning the memory to the 2_D array according to input matrix size.
+    // Assigning the memory to the 2_D array according to input matrix size.
     input_matrix = new int*[rows] ;
     for(i=0 ; i<rows ; ++i)
     {
@@ -74,7 +64,7 @@ void matrix_transpose(){
     }
 
     cout << "Enter the entries row wise  : " << endl ;
-    //Taking user input as each element of matrix.
+    // Taking user input as each element of matrix.
     for(i=0 ; i<rows ; ++i)
     {
         for(j=0 ; j<columns ; ++j)
@@ -83,16 +73,16 @@ void matrix_transpose(){
         }
     }
 
-    //Assigning the memory to the transpose matrix. It will have reversed rows and columns as that of input matrix.
+    // Assigning the memory to the transpose matrix. It will have reversed rows and columns as that of input matrix.
     transpose_matrix = new int*[columns] ;
     for(i=0 ; i<columns ; ++i)
     {
         transpose_matrix[i] = new int[rows] ;
     }
 
-    //Call to the function that computes the transpose.
+    // Call to the function that computes the transpose.
     transpose(rows , columns , input_matrix , transpose_matrix) ;
-   //Display the transpose of input matrix on the screen.
+   // Display the transpose of input matrix on the screen.
     cout << "The transpose matrix is : " << endl ;
     for(i=0 ; i<columns ; ++i)
     {
@@ -103,7 +93,7 @@ void matrix_transpose(){
         cout << endl ;
     }
 
-    //Deallocate the memory assigned to input matrix as well as transpose of it.
+    // Deallocate the memory assigned to input matrix as well as transpose of it.
     for(i=0 ; i<rows ; ++i)
     {
         delete[] input_matrix[i] ;
@@ -116,7 +106,7 @@ void matrix_transpose(){
     }
     delete[] transpose_matrix ;
 }
-//Driver Code
+
 int main(void)
 {
     matrix_transpose();
@@ -153,9 +143,7 @@ def matrix_transpose():
 #Driver Code
 if __name__ == "__main__":
     matrix_transpose()
-
 ```
-
 </TabItem>
 </Tabs>
 
@@ -183,8 +171,10 @@ The Transpose of the matrix is
 
 ## Complexity Analysis
 
-- Time complexity - O(`n` * `m`)
-- Space complexity - O(`n`*`m`), where `n` and `m` are the number of rows and columns
+- Time complexity - `O(n * m)`
+- Space complexity - `O(n * m)` 
+
+Here `n` and `m` are the number of rows and columns.
 
 ## Credits
 
