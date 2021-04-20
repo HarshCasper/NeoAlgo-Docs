@@ -5,7 +5,7 @@ slug: /competitive-programming/Reverse-of-String
 
 ## Introduction
 
-Given a string, we need to find the reverse of the string.
+Given a string, we need to find its reverse.
 
 ## Explanation
 
@@ -80,7 +80,7 @@ int main()
 	cout<<"Enter the string : ";
 	getline(cin,s);
 	reverse(s);
-  cout<<"String after Reverse: ";
+   cout<<"String after Reverse: ";
 	cout<<s;
 	return 0;
 }
@@ -116,7 +116,8 @@ class Program {
 
     static void reverse(String s){
 
-        // Reversing the string by extracting each element from the end of the string and storing in a variable result
+        // Reversing the string by extracting each element from the end of the string
+        // and storing in a variable result
 
         String result = "";
         for (int i = s.length() - 1; i >= 0; i--)
@@ -140,14 +141,12 @@ class Program {
 
 ```
 Enter the string: Hello World
-
 ```
 
 #### Output:
 
 ```
 String after Reverse: dlroW olleH
-
 ```
 
 ## Complexity Analysis
