@@ -1,0 +1,596 @@
+---
+title: Playfair Cipher
+slug: /cryptography/playfair-cipher
+---
+
+## Introduction
+
+Playfair cipher is a digraph substitution cipher. By this, we mean that we cipher `2` characters at each stage. We first convert the plaintext given to us into even length format by adding `Z` at the end. We then encrypt the plaintext using a key matrix in pairs of `2`. 
+
+## Explanation
+
+We first check if the given plain text is of even length or not. If found even, we don't require to do anything else we format it by adding a `Z` at the end. Also, we replace `J` in plaintext with `I` if found. Now we generate a `5x5` key matrix which we use to cipher the plaintext. We construct this matrix by putting the alphabets of key in the same order without repetition of alphabets and we fill the later spaces with the remaining alphabets in alphabetical order.
+
+We need to note that as we have only `25` spaces for `26` alphabets, generally `J` is omitted. Now we encrypt the plaintext letters pairwise. we take one pair and check for the positions of those letters in the key matrix generated. If we find them in the same row then we pick the right side letter to encrypt. If the letter is at the end we pick the first letter in the row.
+
+Similarly, if we find them in the same column then we take the letter below it. If the letter is at the end, we pick the first letter in the column. But if both the letters are neither in the same row nor column, then we form a rectangle with these two letters and take the letters on the horizontal opposite corner of the rectangle to encrypt.
+
+Let's have one example: 
+
+```
+Input : 
+
+Key       :world
+Plaintext :hello
+
+KeyMatrix :
+----------------
+|w |o |r |l |d |
+|--|--|--|--|--|
+|a |b |c |e |f |
+|--|--|--|--|--|
+|g |h |i |k |m |
+|--|--|--|--|--|
+|n |p |q |s |t |
+|--|--|--|--|--|
+|u |v |x |y |z |
+----------------
+
+Formatted plaintext : "he" "ll" "oz"
+Ciphertext          :  kb   ek   dv
+
+Encrypted text will be kbekdv
+```
+
+## Algorithm
+
+- First check if the length of the plaintext is even or not.
+- If found, not even then we format it by adding `Z` at the end and also replace `j` with `i` in the plain text.
+- Now we construct a `5x5` key matrix.
+- Now we generate the key matrix by filling it with the keyword and the remaining spaces with the other alphabets without repetition.
+- Now we start encrypting by picking `2` letters at a time from plaintext and replacing them with corresponding encrypted alphabets from the key matrix.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+class PlayFairCipher{
+     
+     //This function will form the 5x5 key Matrix 
+     static void keyTable(String key,int size2,char[][] keyMatrix){
+
+         int i=0;
+         int j=0;
+         int c = 0;
+         char[] alph = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k','l',
+         'm','n', 'o','p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+         int[] index = new int[26];
+
+         //initializing the array to 0 as it stores garbage values
+         for(int z=0;z<26;z++){
+             index[z] = 0;
+         }
+
+         int[] hash = new int[size2];
+         //marking the alphabets in key
+         for(i=0;i<size2;i++){
+            if(key.charAt(i) != 'j'){
+               for(j=0;j<26;j++){
+                   if(key.charAt(i) == alph[j]){
+                      index[j] = 2;
+                      hash[c] = j;
+                      c++;
+                   }
+               }
+            }
+         }
+
+        //marking alphabetic j
+        index[9] = 1;
+        i = 0;
+        j = 0;
+
+        //adding the marked alphabets  
+        for(int k=0;k<size2;k++){
+
+           if(index[hash[k]] == 2){
+              index[hash[k]] -= 1;
+              keyMatrix[i][j] = key.charAt(k);
+              j++;
+              if(j==5){
+                 i++;
+                 j=0;
+              }
+           }
+        }
+
+        //adding the remaining alphabets
+        for(int k=0;k<26;k++){
+
+           if(index[k] == 0){
+              keyMatrix[i][j] = alph[k];
+              j++;
+              if(j==5){
+                 i++;
+                 j=0;
+              }
+           }
+        }
+
+     }
+
+     
+     /*this function searches for the characters of the digraph in key matrix 
+       generated and gives their position*/ 
+     static void search(char[][] keyMatrix,char x,char y,int[] list){
+
+         //replacing j with i   
+          if(x == 'j')
+             x = 'i';
+          else if(y =='j')
+             y = 'i';
+
+         //returning the positions of characters through list    
+         for(int i=0;i<5;i++){
+             for(int j=0;j<5;j++){
+                 if(keyMatrix[i][j] == x){
+                     list[0] = i;
+                     list[1] = j;
+                  }
+                  else if(keyMatrix[i][j] == y){
+                     list[2] = i;
+                     list[3] = j;
+                  }
+              }
+          }
+     }
+
+     //this function ciphers the plane text 
+     static void cipher(String plaintext,char[][] keyMatrix,int size1){
+          int i = 0;
+          int[] list = new int[4];
+          char[] plt = new char[size1];
+          //cipher the plain text with the key matrix we built
+          while(i<size1){
+                 search(keyMatrix,plaintext.charAt(i),plaintext.charAt(i+1),list);
+                 if(list[0] == list[2]){
+                     plt[i]   = keyMatrix[list[0]][(list[1]+1)%5];
+                     plt[i+1] = keyMatrix[list[0]][(list[3]+1)%5];
+                  }
+                  else if(list[1] == list[3]){
+                     plt[i]   = keyMatrix[(list[0]+1)%5][list[1]];
+                     plt[i+1] = keyMatrix[(list[2]+1)%5][list[1]]; 
+                  }
+                  else{
+                     plt[i]   = keyMatrix[list[0]][list[3]];
+                     plt[i+1] = keyMatrix[list[2]][list[1]]; 
+                  }
+                  i+=2;
+          }   
+
+          //printing the cipher 
+          System.out.print("The cipher text is :");
+          for(int k=0;k<size1;k++){
+              System.out.print(plt[k]);
+          } 
+ 
+     }
+
+     static int mod(int x){
+      
+       if(x<0){
+         return 5+x;
+       }
+       else{
+         return (x % 5);
+       }
+  
+     }
+ 
+     static void decrypt(String plaintext,char[][] keyMatrix,int size1){
+          int i = 0;
+          int[] list = new int[4];
+          char[] plt = new char[size1];
+          //cipher the plain text with the key matrix we built
+          while(i<size1){
+                 search(keyMatrix,plaintext.charAt(i),plaintext.charAt(i+1),list);
+                 if(list[0] == list[2]){
+                     plt[i]   = keyMatrix[list[0]][mod(list[1]-1)];
+                     plt[i+1] = keyMatrix[list[0]][mod(list[3]-1)];
+                 }
+                 else if(list[1] == list[3]){
+                     plt[i]   = keyMatrix[mod(list[0]-1)][list[1]];
+                     plt[i+1] = keyMatrix[mod(list[2]-1)][list[1]]; 
+                 }
+                 else{
+                     plt[i]   = keyMatrix[list[0]][list[3]];
+                     plt[i+1] = keyMatrix[list[2]][list[1]]; 
+                 }
+                 i+=2;
+          }
+
+          //printing the decrypted text 
+          System.out.print("The decrypted text is :");
+          for(int k=0;k<size1;k++){
+              System.out.print(plt[k]);
+          }
+ 
+     }   
+
+
+     //this function will encript the plain-text to cipher in playfail cipher
+     static void playFairCipher(String plaintext,String key){
+
+         char[][] keyMatrix = new char[5][5];
+         int size1 = plaintext.length();
+         int size2 = key.length();
+
+         //we adjust the input plane text to even size
+         if(size1%2 != 0){
+            plaintext += "z";
+         } 
+        
+         size1 = plaintext.length(); 
+ 
+         //generate keytable
+         keyTable(key,size2,keyMatrix);
+         //cipher the plaintext
+         cipher(plaintext,keyMatrix,size1);    
+     } 
+
+     static void playFairCipherdecrypt(String plaintext,String key){
+
+         char[][] keyMatrix = new char[5][5];
+         int size1 = plaintext.length();
+         int size2 = key.length();
+
+         //generate keytable
+         keyTable(key,size2,keyMatrix);
+         //cipher the plaintext
+         decrypt(plaintext,keyMatrix,size1);
+     }
+
+     public static void main(String[] args){
+        
+         Scanner scan = new Scanner(System.in);
+         System.out.print("Enter 1 for encrypting and 2 for decrypting : ");
+         char option = scan.nextLine().charAt(0); 
+
+         if(option == '1') {
+       
+           System.out.print("Enter the key : ");
+           //we take the key here
+           String key = scan.nextLine();
+
+           System.out.print("Enter the plain text for encryption: ");
+           //we take the plaintext here
+           String plaintext = scan.nextLine(); 
+           scan.close();
+           playFairCipher(plaintext,key);   
+         }
+
+         else if(option == '2'){
+           
+           System.out.print("Enter the key : ");
+           //we take the key here
+           String key = scan.nextLine();
+
+           System.out.print("Enter the encrypted text for decryption: ");
+           //we take the plaintext here
+           String plaintext = scan.nextLine();
+           scan.close();
+           playFairCipherdecrypt(plaintext,key);
+         }
+     }
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+import re
+import sys
+
+
+def create_matrix(key_text):
+    '''
+    This function is used to generate a 5 x 5 matrix of the english alphabets
+    using the key provided. This key matrix is used for encrypting/decrypting
+    the input text.
+    :param key_text: input key string
+    :type str
+    :return final_matrix: 5x5 matrix with all the english alphabets except j
+    :type list
+    '''
+    lst = []
+    # some processing before creating matrix
+    key_text = key_text.replace(' ', '')
+    key_text = key_text.lower()
+    # remove all the duplicate characters from the key
+    for k in key_text:
+        if k not in lst:
+            lst.append(k)
+
+    # adding remaining english alphabets to the matrix
+    alphabets = "abcdefghiklmnopqrstuvwtxyz"
+    for alphabet in alphabets:
+        if alphabet not in lst:
+            lst.append(alphabet)
+
+    # creating sub-list of length 5 to form a 5x5 matrix from the list of
+    # 25 english alphabets
+    final_matrix = []
+    for i in range(0, len(lst), 5):
+        if i + 5 <= len(lst):
+            tmp = lst[i:i+5]
+            final_matrix.append(tmp)
+
+    return final_matrix
+
+
+def clean_text(text):
+    '''
+    perform generic cleaning of the plaintext before encryption i.e.
+    removal of special charcters, numbers, punctuations, etc.
+    :param text: plaintext for encryption
+    :type str
+    :return txt: processed clean text ready for encrption
+    :type str
+    '''
+    txt = re.sub(r'[^\w]', '', text)
+    txt = re.sub(r'\_', '', txt)
+    return txt
+
+
+def create_digraphs(text):
+    '''
+    This function is responsible to creating digraphs of the input plaintext.
+    The entire string is split into pairs of two characters. In case a
+    pair has same characters, the first occurence of char is paired with 'X' and
+    the second occurence of char is paired with the next char in the plaintext.
+    :param text: input plaintext for encryption
+    :type str
+    :return digraphs: a list of all characters in the plaintext in pairs of two
+    :type list
+    '''
+    digraphs = []
+    # list to keep track of extra 'x' added in the input text
+    flag = [True for x in text]
+    i = 0
+    # if the text has odd number of characters, add an 'x' to make the count even
+    if len(text) % 2 != 0:
+        text = text + 'x'
+        flag.extend([False])
+
+    while i + 1 < len(text):
+        # checking if the current char and next char are same
+        if text[i] == text[i+1] and flag[i]:
+            # appending 'x' in place of repeating char
+            digraphs.append([text[i], 'x'])
+            new_text = text[:i+1] + 'x' + text[i+1:]
+            if len(new_text) % 2 != 0:
+                text = text + 'x'
+                flag.extend([False])
+            i = i + 1
+        else:
+            # pairing the current and next character
+            if flag[i] or flag[i+1]:
+                digraphs.append([text[i], text[i+1]])
+            i = i + 2
+    return digraphs
+
+
+def get_location(elem, matrix):
+    '''
+    This function returns the row index and column index of an element
+    in the matrix.
+    :param elem: element whose position is to be searched
+    :type str
+    :param matrix: the 2D list in which the element is to be searched
+    :type list
+    :return w_col: column index
+    :type int
+    :return w_row: row index
+    :type int
+    '''
+    for i, row in enumerate(matrix):
+        if elem in row:
+            w_row = i
+            w_col = row.index(elem)
+    return w_row, w_col
+
+
+def get_new_pos(coor, method='de'):
+    '''
+    This function is used to calculate the position of the encrypted/decrypted char
+    based on the method argument value.
+    :param coor: coordinate wrt which the new position is to be calculated
+    :type int
+    :param method: defines whether the new position is for encryption or decryption task
+    :type str
+    :return int
+    '''
+    if method == 'en':
+        if coor + 1 < 5:
+            return coor + 1
+        else:
+            return 0
+    else:
+        if coor - 1 < 0:
+            return 4
+        else:
+            return coor - 1
+
+
+def encrypt(digraphs, matrix):
+    '''
+    This function is resposible for performing the encryption task. With the help of
+    digraphs of the plain text and key matrix of the encryption key, it calculates
+    the encrypted pair for every pair in diagraph based on the positions of the chars.
+    :param digraphs: 2D list containing the plain text in the form of pairs
+    :type list
+    :param matrix: 2D list with 25 english alphabets formed using the key
+    :type list
+    :return encrypted_text: the encrypted form of plain text
+    :type str
+    '''
+    encrypted_text = ''
+    for pair in digraphs:
+        # finding the location of chars in digraph pairs in key matrix
+        first, last = pair
+        first_row, first_col = get_location(first, matrix)
+        last_row, last_col = get_location(last, matrix)
+        by = ''
+        # if both the chars in the pair are in same row of key matrix
+        if first_row == last_row:
+            en_first_col = get_new_pos(first_col, method='en')
+            en_last_col = get_new_pos(last_col, method='en')
+            by = 'col'
+        # if both the chars in the pair are in the same column of key matrix
+        elif first_col == last_col:
+            en_first_row = get_new_pos(first_row, method='en')
+            en_last_row = get_new_pos(last_row, method='en')
+            by = 'row'
+        # if both the row and column for the chars in the pair are different
+        else:
+            en_first_col = last_col
+            en_last_col = first_col
+            by = 'col'
+        # find the encrypted text based on the new char positions
+        if by == 'col':
+            encrypted_text += matrix[first_row][en_first_col]
+            encrypted_text += matrix[last_row][en_last_col]
+        elif by == 'row':
+            encrypted_text += matrix[en_first_row][first_col]
+            encrypted_text += matrix[en_last_row][last_col]
+
+    return encrypted_text
+
+
+def decrypt(digraphs, matrix):
+    '''
+    This function is resposible for performing the decryption task. With the help of
+    digraphs of the encrypted text and key matrix of the decryption key, it calculates
+    the decrypted pair for every pair in diagraph based on the positions of the chars.
+    :param digraphs: 2D list containing the encrypted text in the form of pairs
+    :type list
+    :param matrix: 2D list with 25 english alphabets formed using the key
+    :type list
+    :return encrypted_text: the decrypted form of encrypted text
+    :type str
+    '''
+    encrypted_text = ''
+    for pair in digraphs:
+        # finding the location of chars in digraph pairs in key matrix
+        first, last = pair
+        first_row, first_col = get_location(first, matrix)
+        last_row, last_col = get_location(last, matrix)
+        by = ''
+        # if both the chars in the pair are in same row of key matrix
+        if first_row == last_row:
+            en_first_col = get_new_pos(first_col)
+            en_last_col = get_new_pos(last_col)
+            by = 'col'
+        # if both the chars in the pair are in the same column of key matrix
+        elif first_col == last_col:
+            en_first_row = get_new_pos(first_row)
+            en_last_row = get_new_pos(last_row)
+            by = 'row'
+        # if both the row and column for the chars in the pair are different
+        else:
+            en_first_col = last_col
+            en_last_col = first_col
+            by = 'col'
+        # find the decrypted text based on the new char positions
+        if by == 'col':
+            encrypted_text += matrix[first_row][en_first_col]
+            encrypted_text += matrix[last_row][en_last_col]
+        elif by == 'row':
+            encrypted_text += matrix[en_first_row][first_col]
+            encrypted_text += matrix[en_last_row][last_col]
+
+    return encrypted_text
+
+
+def main():
+
+        option = int(input('Enter 1 for encrypting and 2 for decrypting : '))
+        # Input for encryption task
+        if option == 1:
+            key = input('Enter the key : ')
+            key_matrix = create_matrix(key)
+            text = input("Enter the plain text for encryption: ")
+            plain_text = clean_text(text)
+            digraphs = create_digraphs(plain_text)
+            encrypted_text = encrypt(digraphs, key_matrix)
+            print("Your Encrypted text is ",encrypted_text)
+
+        # Input for decryption task
+        elif option == 2:
+            key = input('Enter the key : ')
+            key_matrix = create_matrix(key)
+            en_text = input("Enter the encrypted text for decryption: ")
+            digraphs = create_digraphs(en_text)
+            decrypted_text = decrypt(digraphs, key_matrix)
+            print("Your Decrypted text is ", decrypted_text)
+
+if __name__ == '__main__':
+    main()
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter 1 for encrypting and 2 for decrypting : 1
+Enter the key : monarchy
+Enter the plain text for encryption: instruments
+```
+
+#### Output:
+
+```
+The cipher text is :gatlmzclrqtx
+```
+
+#### Input:
+
+```
+Enter 1 for encrypting and 2 for decrypting : 2
+Enter the key : monarchy
+Enter the encrypted text for decryption: gatlmzclrqtx
+```
+
+#### Output:
+
+```
+The decrypted text is :instrumentsz
+```
+
+## Complexity Analysis
+
+- Time  complexity: `O(n+m)`
+- Space complexity: `O(n+m)`
+
+## Credits
+
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cryptography/PlayFairCipher.java)
+- [Nandini Bansal](https://github.com/nandinib1999) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cryptography/Playfair_Cipher.py)
