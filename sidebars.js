@@ -136,6 +136,7 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+		"graph-algorithms/topological-sorting"
             ],
         },
         {
