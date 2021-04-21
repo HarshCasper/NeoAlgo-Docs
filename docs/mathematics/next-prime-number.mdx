@@ -1,0 +1,131 @@
+---
+title: Next Prime Number
+slug: /mathematics/next-prime-number
+---
+
+## Introduction
+
+The next prime number _p_ of a number _n_ is a number such that
+- _p_ is greater than _n_.
+- _p_ is a prime number.
+- There are no prime numbers between _n_ and _p_.
+
+## Explanation
+
+Let's have one example:
+```
+Let n = 13, then the numbers after 13 are 14, 15, 16, 17 and so on.
+Here 14, 15 and 16 are composite numbers. Hence, the next prime number is 17 which is
+- Greater than 13.
+- Is a prime number.
+- And there are no prime numbers between 13 and 17.
+
+```
+
+## Algorithm
+
+- Start with a number greater than _n_ i.e. `p = n+1`.
+- Take `flag == false` initially and consider that _p_ is not a composite number.
+- Now, in each iteration check if _p_ is composite or not.
+- If it is, i.e. we found a factor for _p_ other than _1_ and _p_, then just set `flag == true`, increment p by 1 and break the loop.
+- If `flag == false`, it means that _p_ has only two factors _1_ and _p_, i.e. _p_ is prime hence return it.
+
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int next_prime(int n){
+    int p = n + 1;
+    if(p<=1){
+        return 2;
+    }
+    while(true){
+        //consider that p is not a composite number
+        bool flag = false;
+        for(int i=2; i<=floor(n/2)+1; i++){
+            //found a factor other than 1 or p
+            if(p%i==0){
+                p = p + 1;
+                //p is composite
+                flag = true;
+                break;
+            }
+        }
+        //p is prime
+        if(flag==false){
+            return p;
+        }
+    }
+}
+
+int main(){
+    int n;
+    cout<<"Enter a number : ";
+    cin>>n;
+    cout<<"Next prime number is "<<next_prime(n);
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def next_prime(n):
+	# looping from next number to find if it prime or not
+	p = n+1
+	while True:
+		flag = False
+		# checking whether p is divisible by numbers from 2 to it's half
+		for y in range(2,p//2+1):
+			if p%y==0:
+				p+=1
+				flag = True
+				break
+		if flag==False:
+			return(p)
+
+n = int(input("Enter a number : "))
+print('Next prime number is ', next_prime(n))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter a number : 23
+```
+
+#### Output
+
+```
+Next prime number is  29
+```
+
+## Complexity Analysis
+
+- Time  complexity : `O(n^2)`
+- Space complexity : `O(1)`
+
+## Credits
+
+- [Tanvi Bugdani](https://github.com/tanvi355) contributed the C++ implementation
+- [Tarun Kamboj](https://github.com/Tarun-Kamboj) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Next_Prime_Number.py)
