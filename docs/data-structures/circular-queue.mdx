@@ -5,7 +5,8 @@ slug: /data-structures/circular-queue
 
 ## Introduction
 
-A circular queue is a logical data structure that works on the discipline **FIFO(First-In-First-Out)**. In this, the last position of the queue is connected back to the front position forming a circle. It is an improvement over the standard queue as in a regular queue, when an element is deleted, the vacant spaces are not utilized. In contrast, in a circular queue, the empty spaces are reutilized. For example, inserting new bullets in a gun after firing is a real-world example of a circular queue.
+A circular queue is a logical data structure that works on the discipline **FIFO(First-In-First-Out)**. In this, the last position of the queue is connected back to the front position forming a circle. It is an improvement over the standard queue as in a regular queue when an element is deleted, the vacant spaces are not utilized. In contrast, in a circular queue, the empty spaces are reutilized. For example, inserting new bullets in a gun after firing is a real-world example of a circular queue.
+
 <p align="center">
   <img width="500" height="450" src="https://i.imgur.com/GBjUDlg.png" />
 </p>
@@ -348,7 +349,7 @@ public class CircularQueue
 </TabItem>
 </Tabs>
 
-## Sample I/O
+## Sample Input and Output
 
 #### Sample input
 ```
@@ -377,18 +378,19 @@ Enter the size or capacity of Queue : 5
 ```
 
 #### Sample Output
+
 ```
  Queue is : 45   82
 ```
 
 ## Complexity Analysis
 
-#### Time Complexities:
+#### Time Complexity:
 
-* Enqueue --> `O(1)`
-* DeQueue --> `O(1)`
-* IsEmpty --> `O(1)`
-* IsFull  --> `O(1)`
+* Enqueue : `O(1)`
+* DeQueue : `O(1)`
+* IsEmpty : `O(1)`
+* IsFull  : `O(1)`
 
 **Space Complexity** : `O(n)`
 
