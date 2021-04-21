@@ -39,6 +39,7 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+		"sorting-algorithms/cocktail-sort",
 		            "sorting-algorithms/bead-sort",
                 "sorting-algorithms/counting-sort",
             ],
