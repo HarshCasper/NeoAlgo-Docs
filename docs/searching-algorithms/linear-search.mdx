@@ -28,7 +28,8 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
-    { label: 'Python', value: 'py', }
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java'}
   ]
 }>
 <TabItem value="cpp">
@@ -109,6 +110,53 @@ if __name__=="__main__":
 
 ```
 </TabItem>
+
+<TabItem value = "java">
+
+```java
+import java.io.*;
+import java.util.*;
+
+public class linear-search{
+    
+    static void linearSearch(int[] arr, int key){
+        //initialize position at -1
+        int pos = -1;
+        //Traverse through the array
+        for(int i=0 ; i<arr.length ; i++){
+            //Check if the required number is present
+            if(arr[i] == key){
+                //If present then update the value of position
+                pos = i;
+                System.out.println("Found at: " + pos);
+                break;
+            }
+        }
+        //Position not found
+        if(pos == -1){
+            System.out.println("Not Found");
+        }
+    } 
+
+     public static void main(String []args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number of elements: ");
+        int n = sc.nextInt();
+        System.out.println("Enter the elements: ");
+        int arr[] = new int[n];        
+        for(int i=0 ; i<n ; i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter the element to be searched: ");
+        int key = sc.nextInt();
+        linearSearch(arr, key);
+     }
+}
+
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Sample Input and Output 
@@ -149,4 +197,5 @@ In linear search, no extra space is used to store anything. So the space complex
 
 ### Credits
 * [Utkarsh Chaurasia](https://github.com/UtkarshChaurasia) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Linear_Search.cpp) and the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Linear_Search.py)
+* [Apoorva Jain](https://github.com/apoorva0107) for the Java implementation
 
