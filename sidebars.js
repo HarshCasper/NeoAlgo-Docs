@@ -39,7 +39,8 @@ module.exports = {
       label: 'Data Structures',
       items: [
         'data-structures/data-structures',
-        'data-structures/binary-tree'
+        'data-structures/binary-tree',
+        'data-structures/invert-binary-tree',
       ],
     },
     {
@@ -65,7 +66,7 @@ module.exports = {
         'mathematics/mathematics',
         'mathematics/armstrong-number',
         'mathematics/factorial-of-number',
-	'mathematics/happy-number'
+        'mathematics/happy-number'
       ],
     },
     {
@@ -132,7 +133,7 @@ module.exports = {
         'miscellaneous/sudoku-solver'
       ],
     },
-	  {
+    {
       type: 'category',
       label: 'Docusaurus Tutorial',
       items: [
