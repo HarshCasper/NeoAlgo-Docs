@@ -113,6 +113,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/lcm-of-two-numbers",
                 "mathematics/binary-exponentiation",
                 "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
