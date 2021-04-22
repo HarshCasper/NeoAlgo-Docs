@@ -11,6 +11,11 @@ The sieve of Eratosthenes is an algorithm for finding all prime numbers up to an
 
 Let us take the number `n = 100` , so we create list from `2` to `100` . According to the algorithm , we mark all the numbers which are divisible by `2` which are greater than or equal to the square of it . Then we move to the next number `3` , we mark all the numbers which are divisible by `3`  which are greater than or equal to the square of it. we continue this process until the square of the number is greater than `n`. The numbers which are unmarked in the list are the prime numbers less than `n`.
 
+For Example in the list given below , the numbers marked as green are the prime numbers
+
+![image](https://i.postimg.cc/rpwRg2jc/table.png)
+
+
 ## Algorithm
 
 - Make a boolean list `l` of length `n+1` and initialise all entries to true
@@ -36,8 +41,8 @@ import TabItem from "@theme/TabItem";
 <TabItem value="cpp">
 
 ```cpp
-#include <iostream>  //Header file
-using namespace std; //For cin and cout
+#include <iostream>  
+using namespace std; 
 
 //Implement prime sieve function, it will store 0 in the primes array if that index is composite and 1 if prime
 void prime_sieve(int primes[], int n)
@@ -78,10 +83,10 @@ void print(int N, bool *isprime)
     {
         if (!isprime[i])
         {
-            std::cout << i << ' ';
+            cout << i << ' ';
         }
     }
-    std::cout << '\n';
+    cout << '\n';
 }
 
 //Driver Function
@@ -155,7 +160,7 @@ Enter the number upto which prime numbers are to be computed: 25
 #### Output
 
 ```
-The prime numbers less than 25 is
+The prime numbers less thn 25 is
 2 3 5 7 11 13 17 19 23
 ```
 
@@ -167,5 +172,5 @@ The prime numbers less than 25 is
 
 ## Credits
 
--   [Rajiv Singh](https://github.com/iamrajiv) for [implementation in c++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Sieve_of_Eratosthenes.cpp)
--   [Adithya kurien peter](https://github.com/aaadddiii) for implementation in python
+-   [Rajiv Singh](https://github.com/iamrajiv) for [implementation in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Sieve_of_Eratosthenes.cpp)
+-   [Adithya kurien peter](https://github.com/aaadddiii) for [implementation in python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Sieve-of-eratosthenes.py)
