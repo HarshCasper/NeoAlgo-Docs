@@ -1,0 +1,217 @@
+---
+title: Topological Sorting
+slug: /graph-algorithms/topological-sorting
+---
+
+## Introduction
+
+Topological Sorting of a Directed Acyclic Graph(DAG), `G = (V, E)` is a linear ordering of all its vertices such that if `G` contains an edge `(u, v)`, then `u` appears before `v` in the ordering. A Topological Ordering is possible if and only if the graph `G` has no directed cycles, that is, `G` is a `DAG`. More than one Topological Sorting can exist for a graph.
+
+## Explanation
+
+Let us have one example: 
+
+```
+Given a graph G = (V, E), where V is the set of vertices and E is the set of edges present in G.
+
+Let G be:
+
+         1-------*0------*3
+         *\       |\      |
+         | \	  | \	  |
+         |  \	  |  \	  |
+         |   \	  |   \   |
+         |    \	  |    \  |	 
+         |     \  *     * *
+         2      * 5*------4
+
+Here * represents the direction of the egdes.
+
+The topological sorting of this graph is: 2 1 0 3 4 5
+
+We can see that, there is an edge (1, 5) in the graph and 1 appears before 5 in the topological
+sorting.
+
+This follows for all the edges in the graph.
+
+Let us run through the process.
+
+- We start from vertex 2 here. Mark it as visited. 
+- Vertex 1 is adjacent to 2. Mark 1 as visited.
+- Now we have vertex 0 and 5 adjacent to 1. We can choose any one of them. Let us choose 5, mark it
+  as visited.
+- Now, since there is no vertex adjacent to 5, we push it into the stack. Stack - [5].
+- Now, we go back to 1. From here go to 0, and mark it as visited. We have vertex 3 and 4 both
+  adjacent to 0. We can choose any one of them. Let us choose 3, mark it as visited.
+- Now 4 is adjacent to 3, mark it as visited. Since there is no vertex adjacent to 4, we push it to
+  the stack. Stack - [4, 5].
+- Now we go back to 3. Since all of its adjacent vertices have been visited, we push it to the
+  stack. Stack - [3, 4, 5].
+- Similarly, go back to the starting vertex i.e., 2, and push the vertices to the stack
+  accordingly. Stack - [2, 1, 0, 3, 4, 5]. 
+- Pop and print the elements of the stack to get the topological sorting of vertices of the graph.
+```
+
+## Algorithm
+
+We use the `Depth-First Search(DFS)` algorithm to get the topological sorting of vertices of the graph. In `DFS`, we start from a vertex `v`, mark it as visited. Then, recursively visit all the vertices adjacent to `v` till the adjaceney list of `v` is completely visited and push it to the stack. The elements of the stack are popped and printed to get the topological sorting of vertices of the graph.
+
+  - Call `DFS(G)`.
+  - Insert a vertex into the `stack` after its adjacency list has been visited.
+  - return the `stack`.
+  - Pop the elements of the `stack` and print them to get the `topological sorting` of vertices of the graph.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void dfs_visit(vector<vector<int>>& Graph, int src, stack<int>& s, vector<bool>& visit) {
+	visit[src] = 1;
+	for(int i = 0; i < Graph[src].size(); i++)
+		if(visit[Graph[src][i]] == 0)
+		    dfs_visit(Graph, Graph[src][i], s, visit);
+    s.push(src);
+}
+
+void dfs(vector<vector<int>>& Graph, int v, stack<int>& s) {
+	vector<bool> visit(v);
+	for(int i = 0; i < v; i++)
+		if(visit[i] == 0)
+			dfs_visit(Graph, i, s, visit);
+}
+
+void topological_sort(vector<vector<int>>& Graph, int v) {
+	stack<int> s;
+	dfs(Graph, v, s);
+	while(!s.empty()) {
+		cout << s.top() << ' ';
+		s.pop();
+	}
+	cout << '\n';
+}
+
+int main() {
+	int v, e, a, b;
+	// all vertices are labelled from 0 to v-1
+	cout << "Enter the number of vertices and number of edges: ";
+	cin >> v >> e;
+	cout << "Enter all the vertex pairs forming an edge: " << endl;
+	vector<vector<int>> Graph(v);
+	// all directed edges
+	for(int i = 0; i < e; i++) {
+		cin >> a >> b;
+		// edge a -> b
+		Graph[a].push_back(b);
+	}
+        cout << "\nThe topological sorting of vertices is: ";	
+	topological_sort(Graph, v);
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.io.*; 
+import java.util.*;
+
+public class TopologicalSort {
+	private static void dfs_visit(ArrayList<ArrayList<Integer> > graph, int src, Stack<Integer> s, boolean[] visit) {
+		visit[src] = true;
+		for(int i = 0; i < graph.get(src).size(); i++)
+			if(visit[graph.get(src).get(i)] == false)
+			    dfs_visit(graph, graph.get(src).get(i), s, visit);
+	    s.push(new Integer(src));
+	}
+
+	private static void dfs(ArrayList<ArrayList<Integer> > graph, int v, Stack<Integer> s) {
+		boolean[] visit = new boolean[v];
+		for(int i = 0; i < v; i++)
+			if(visit[i] == false)
+				dfs_visit(graph, i, s, visit);
+	}
+
+	private static void topological_sort(ArrayList<ArrayList<Integer> > graph, int v) {
+		Stack<Integer> s = new Stack<Integer>();
+		dfs(graph, v, s);
+		while(s.empty() == false)
+			System.out.print(s.pop() + " ");
+		System.out.println();
+	}
+
+	public static void main(String[] args) {
+		int v, e, a, b;
+		System.out.print("Enter the number of vertices and number of edges: ");
+		// all vertices are labelled from 0 to v-1
+		Scanner sc= new Scanner(System.in);
+		v = sc.nextInt();
+		e = sc.nextInt();
+		ArrayList<ArrayList<Integer> > graph = new ArrayList<ArrayList<Integer> >(v);
+		System.out.println("Enter all the vertex pairs forming an edge: ");
+		for (int i = 0; i < v; i++) 
+            graph.add(new ArrayList<Integer>());
+		// all directed edges
+		for(int i = 0; i < e; i++) {
+			a = sc.nextInt();
+			b = sc.nextInt();
+			// edge a -> b
+			graph.get(a).add(b);
+		} 
+		System.out.print("\nThe topological sorting of vertices is: ");
+		topological_sort(graph, v);
+	}
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number of vertices and number of edges: 6 8
+Enter all the vertex pairs forming an edge: 
+0 3
+0 4
+0 5
+1 5
+1 0
+2 1
+3 4
+4 5
+```
+
+#### Output:
+
+```
+The topological sorting of vertices is: 2 1 0 3 4 5
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(V + E)`
+  - Space complexity: `O(V)`
+
+Here `V` is the number of vertices and `E` is the number of edges in the graph.
+
+## Credits
+
+  - [YASH01009](https://github.com/YASH01009) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/TopologicalSort.cpp)
+  - [YASH01009](https://github.com/YASH01009) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/TopologicalSort.java)
