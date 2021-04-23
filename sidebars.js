@@ -41,6 +41,10 @@ module.exports = {
                 "sorting-algorithms/quick-sort",
                 "sorting-algorithms/radix-sort",
                 "sorting-algorithms/counting-sort",
+		            "sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/counting-sort",
+		            "sorting-algorithms/stooge-sort", 
             ],
         },
         {
@@ -59,6 +63,7 @@ module.exports = {
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
 		"data-structures/palindromic-linked-list",
+                "data-structures/circular-queue",
             ],
         },
         {
@@ -111,6 +116,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/lcm-of-two-numbers",
                 "mathematics/binary-exponentiation",
                 "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
@@ -136,6 +142,7 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+		"graph-algorithms/topological-sorting"
             ],
         },
         {
