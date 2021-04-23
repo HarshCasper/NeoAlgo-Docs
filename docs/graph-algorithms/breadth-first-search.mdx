@@ -1,0 +1,101 @@
+---
+title: Breadth First Search
+slug: /graph-algorithms/breadth-first-search
+---
+
+## Introduction
+Breadth First Search Algorithm (BFS) is a Popular algorith to find shortest path in unwighted graph
+
+## Explanation
+
+- Given an undirected & Connected Graph (V, E)
+  V: Vertices E: Edges
+- Goal: methodically explore every vertex and every edge
+- “Explore” a graph, turning it into a tree
+- One vertex at a time
+- Expand frontier of explored vertices across its breadth
+- Discovers all vertices at distance k from s before those at distance k+1
+- A level-by-level order traversal
+
+##APPS
+
+- Find Connected Components in Undirected G
+- Web Crawling
+- Social N/W: Friend Finder
+- Pocket Cube (2x2x2 Rubic Cube)
+- Garbage Collector
+
+
+## Algorithm
+
+- Builds a tree over the graph
+- Pick a source vertex to be the root
+- Find (“discover”) all of its children, then all of their children, etc.
+
+- Associate vertex “colors” to guide the algorithm
+- white  vertices have not been discovered
+- All vertices start out white
+- Grey vertices are discovered but not fully explored
+- They may be adjacent to white vertices
+- Black vertices are discovered and fully explored
+- They are adjacent only to black and gray vertices
+- Explore vertices by scanning neighbors of grey vertices
+
+## Code
+
+```cpp
+#include <iostream>
+#include <queue>
+#include <algorithm>
+
+void BFS(queue<int>Q, map<int, vector<int>> Boxes, vector<int>Parents, vector<int>Color) {
+	
+	while (!Q.empty()) {
+		int u = Q.front();
+		Q.pop();
+		for (int i = 0; i < Boxes[u].size(); i++) {
+			if (Color[Boxes[u][i]] == 'W') {
+				Parents[Boxes[u][i]] = u;
+				Color[Boxes[u][i]] = 'G';
+				Q.push(Boxes[u][i]);
+			}
+		}
+                Color[u] = 'B'
+	}
+	
+}
+int main() {
+	
+	int t;
+	cin >> t;
+	int n;
+	cin >> n;
+	map<int, vector<int>> Boxes(n);
+        map<int, vector<int>>:: iterator it = Boxes.begin();
+	vector<int>Parents(n + 1);
+	vector<char>Color(n + 1);
+	queue<int>Q;
+        for (int i = 0; i < n; i++) {
+                int x;
+		cin >> x;
+                Boxes[x] = 0;
+                Color[x] = 'W';
+		Parents[i] = 0;
+	}
+        for (int i = 0; i < n; i++) {
+               int x, y;
+               cin >> x >> y;
+               if(Boxes.find(x) != Boxes.end())
+                  Boxes[x].push_back(y);
+	}	
+        Color[it->first] = 'G';
+        Q.push(it->first)
+	BFS(Q, Boxes, Parents, Color);
+	return 0;
+}
+
+```
+
+## Complexity
+- Time Complexity: O(V+E)
+
