@@ -1,0 +1,194 @@
+---
+title: Count the Number of Divisors of a Number
+slug: /mathematics/number-of-divisors
+---
+
+## Introduction
+
+In this article, we will learn about count the number of divisors of a given number.
+Let us say, You are given a number `20`. `20` has `6` divisors. Thus, count the number of divisors of any given number.
+
+
+## Explanation
+
+Let us have one example:
+
+```
+Let us say, you are given a number 100. 100 has 9 divisors. They are 1,2,4,5,10,20,25,50 and 100.
+Now, we will take square root of 100, it's 10. If we run a loop from 1 to 10, we will get all 9 divisors of
+100. Thus we have to count the number of divisors.
+```
+
+## Algorithm
+
+ - Firstly we will have to take square root `√` of our given number.
+ - Let us say, given number is `100`. so it's square root is `10`.
+ - Now run a loop from `1` to `9`.
+ - Inside our loop, if the `number` divides by any number, means their remainder is zero `0`, then we have found a pair of divisors.
+ - We can increment our count by `2` as we found `2` divisors.
+ - Now, we will check if the `number` is divided by `10` or not.
+ - If the number divides, then we need to check whether the number is perfect square.
+ - If the number is perfect square, then we can increment our count by `1`, as only we found `1` divisor only.
+ - Else the number is not a perfect square, then we can increment our count by `2`, as only we found `2` divisors.
+ - Thus we can count the number of divisors of any given number.
+ - This algorithm reduces our time complexity from `O(N)` to `O(sqrt(N))`.
+
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// this get_number_of_divisors will count the number of divisors of the number
+int get_number_of_divisors(int Number)
+{
+    int number_of_divisors = 0;
+    int limit = (int) sqrt(Number);
+    for(int i = 1; i < limit; i++)
+    {
+        if(Number % i == 0)
+        {
+            /* Here i is a divisor of that number
+            ( Number / i ) is also a divisor
+            */
+            number_of_divisors += 2;
+        }
+    }
+
+    if(Number % limit == 0)
+    {
+        if(limit * limit == Number)
+        {
+            //means perfect square number
+            number_of_divisors++;
+        }
+        else
+        {
+            number_of_divisors += 2;
+        }
+    }
+    return number_of_divisors;
+}
+
+int main()
+{
+    cout << "Enter the number : \n";
+    int Number;
+    cin >> Number;
+    int number_of_divisors = get_number_of_divisors(Number);
+    cout << "Number of Divisors of this Number is : ";
+    cout << number_of_divisors << endl;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+import java.lang.*;
+import java.math.*;
+
+public class NumberofDivisors
+{
+   // this get_number_of_divisors will count the number of divisors of the numbe
+   static long get_number_of_divisors(long number)
+   {
+      long number_of_divisors = 0, i = 0;
+      int limit = (int) Math.sqrt(number);
+      for(i = 1; i < limit; i++)
+      {
+         if(number % i == 0)
+         {
+            /* Here i is a divisor of that number
+            ( Number / i ) is also a divisor
+            */
+            number_of_divisors += 2;
+         }
+      }
+	
+
+    if(number % limit == 0)
+    {
+        if(limit * limit == number)
+        {
+            //means perfect square number
+           number_of_divisors++;
+        }
+        else
+        {
+            number_of_divisors += 2;
+        }
+    }
+    return number_of_divisors;
+	   
+   }
+
+    public static void main(String args[])  
+    {
+        Scanner scan = new Scanner(System.in);
+	System.out.print("Enter the number : \n");
+	long number = scan.nextLong();
+        long number_of_divisors = get_number_of_divisors(number);
+        
+        System.out.print("Number of Divisors of this Number is : ");
+        System.out.print(number_of_divisors);
+        scan.close();
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number :
+1000000000
+```
+
+#### Output
+
+```
+Number of Divisors of this Number is : 100
+```
+
+#### Input
+
+```
+Enter the number :
+4567323
+```
+
+#### Output
+
+```
+Number of Divisors of this Number is : 16
+```
+
+## Complexity Analysis
+
+  - Time complexity : `O(sqrt(N))`
+  - Space complexity: `O(1)`
+
+## Credits
+
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/number_of_divisors.cpp)
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/number_of_divisors.java)
