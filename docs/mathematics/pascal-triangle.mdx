@@ -1,0 +1,176 @@
+---
+title: Pascal Triangle
+slug: /mathematics/pascal-triangle
+---
+
+## Introduction
+
+Pascal Triangle refers to the triangle which consists of binomial coefficients. It was named after the French mathematician Blaise Pascal. The first line of the pascal triangle has only one element, the second has two elements, and this keeps on increasing by `1` as we proceed to the nth line. We need to take an integer `n` as input and print the first `n` lines of the pascal triangle. 
+
+## Explanation 
+
+Starting and Ending element of every line of the pascal triangle is `1`. We just need to run two loops and print every element using the formula given below.
+
+<img src="https://i.imgur.com/ZXtP0KW.jpg" width="201" height="201" /><br/><br/>
+
+The value of `jth` entry in `ith` line is:
+```
+C(i, j) = i! / ( (i-j)! * j! ), ways to select j objects from the set of i objects
+```
+
+Let's have one example: 
+```
+n = 3
+
+1st row
+C(0 ,0) = 1, first element
+
+2nd row
+C(1 ,0) = 1, first element  
+C(1 ,1) = 1, second element
+
+3rd row
+C(2 ,0) = 1, first element
+C(2 ,1) = 2, second element
+C(2 ,2) = 1, third element
+```
+
+## Algorithm
+
+- Iterate `i` from `0 to n-1`.
+
+- For each iteration of `i`, iterate `j` from `0 to i` and print `C(i,j)`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to print pascal triangle
+
+int pascal(int n) 
+{
+    int i = 0;
+    while (i < n) 
+    {
+        int j = 0;
+        while (j <= i) 
+        {
+            // Calculating C(i,j) = i!/((i-j)!*j!)
+
+            int res = 1;
+            int k = 1;
+            while (k <= i) 
+            {
+                res = res * k;
+                k++;
+            }
+            k = 1;
+            while (k <= (i - j)) 
+            {
+                res = res / k;
+                k++;
+            }
+            k = 1;
+            while (k <= j)
+            {
+                res = res / k;
+                k++;
+            }
+            if (res != 0) cout << res << " ";
+            j++;
+        }
+        cout << endl;
+        i++;
+    }
+}
+
+int main() 
+{
+    int n;
+    cout << "Enter the Number of rows: ";
+    cin >> n;
+
+    pascal(n);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to print pascal triangle
+
+def pascal(n):
+    i = 0
+    while i < n:
+        j = 0
+        while j <= i:
+            # Calculating C(i,j) = i!/((i-j)!*j!)
+
+            res = 1
+            k = 1
+            while k <= i:
+                res = res * k
+                k += 1
+
+            k = 1
+            while k <= (i - j):
+                res = res // k
+                k += 1
+
+            k = 1
+            while k <= j:
+                res = res // k
+                k += 1
+
+            if res != 0:
+                print(res, end=" ")
+            j += 1
+
+        print("")
+        i += 1
+
+if __name__ == "__main__":
+    n = int(input("Enter the Number of rows: "))
+
+    pascal(n)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number of rows: 3
+```
+
+#### Output :
+
+```
+1
+1 1
+1 2 1
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n^3)`
+
+- Space Complexity: `O(1)`
