@@ -39,10 +39,11 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
-		"sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/cocktail-sort",
 		            "sorting-algorithms/bead-sort",
                 "sorting-algorithms/counting-sort",
-		  "sorting-algorithms/stooge-sort",
+        		    "sorting-algorithms/wiggle-sort",
+                "sorting-algorithms/stooge-sort",
             ],
         },
         {
@@ -60,7 +61,7 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		"data-structures/palindromic-linked-list",
+		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
             ],
         },
@@ -140,7 +141,7 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
-		"graph-algorithms/topological-sorting"
+	             	"graph-algorithms/topological-sorting"
             ],
         },
         {
