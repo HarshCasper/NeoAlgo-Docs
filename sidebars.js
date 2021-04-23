@@ -40,8 +40,9 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+		"sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/bead-sort",
                 "sorting-algorithms/counting-sort",
-
             ],
         },
         {
@@ -60,6 +61,7 @@ module.exports = {
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
 		"data-structures/palindromic-linked-list",
+                "data-structures/circular-queue",
               "data-structures/invert-binary-tree",
             ],
         },
@@ -113,6 +115,7 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/lcm-of-two-numbers",
                 "mathematics/binary-exponentiation",
                 "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
@@ -138,6 +141,7 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+		"graph-algorithms/topological-sorting"
             ],
         },
         {
