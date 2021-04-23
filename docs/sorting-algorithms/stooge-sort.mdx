@@ -5,11 +5,11 @@ slug: /sorting-algorithms/stooge-sort
 
 ## Introduction
 
-Stooge sort is a recursive sorting algorithm. It checks if the value at index `0` is greater than the value at the last index, if `YES` then it swaps those two values. It then calls the Stooge sort function recursively on the initial `2/3rd` elements of the array, then on the last `2/3rd` elements, and then again on the initial `2/3rd` elements to get the given array sorted.
+Stooge sort is a recursive sorting algorithm. It checks if the value at index `0` is greater than the value at the last index, if `YES` then it swaps those two values. It then calls the Stooge sort function recursively on the initial `2/3rd` elements of the array, and later on the last `2/3rd` elements, and then again on the initial `2/3rd` elements to get the given array sorted.
 
 ## Explanation
 
-Let's have one example: 
+Let's have an example: 
 
 ```
 Given array A = [6, 5, 4, 3, 2, 1]
@@ -34,13 +34,13 @@ After these steps, array A is sorted.
 
 ## Algorithm
 
-Given an unsorted array `A[1......n]`.
+Given an unsorted array `A[]`:
 
-- If the value at the `0th` index is greater than the value at the last index, swap them.
-- Recursively sort the initial `2/3rd` elements of array `A`.
-- Recursively sort the last `2/3rd` elements of array `A`.
-- Recursively sort the initial `2/3rd` elements of the array `A`, again.
-- Array `A` is now sorted.
+- If the value at the zero index is greater than the value at the last index, swap them.
+- Recursively sort the initial `2/3rd` of the elements of array `A[]`.
+- Recursively sort the last `2/3rd` of the elements of array `A[]`.
+- Recursively sort the initial `2/3rd` of the elements of the array `A[]` again.
+- Array `A[]` is now sorted.
 
 ## Code
 
@@ -72,7 +72,7 @@ void stooge_sort(int arr[], int start, int end)
         int twobythird = (end - start + 1) / 3;
 
         /* Recursively call the function on the initial two by third,
-        last two by third followed by the initial two by third*/
+        last two by third followed by the initial two by third   x*/
         if ((end - twobythird) >= start)
             stooge_sort(arr, start, end - twobythird);
         if (end >= (start + twobythird))
