@@ -5,44 +5,52 @@ slug: /data-structures/infix-to-postfix
 
 ## Introduction
 
-An infix expression is of the form: `operand1 operator operand2`, whereas a postfix expression is of the form `operand1 operand2 operator`. Converting an infix expression to postfix expression is one of the many applications of stacks due to its 'Last in First Out' policy.
+An infix expression is of the form: operand1 operator operand2, whereas a postfix expression is of the form operand1 operand2 operator. Converting an infix expression to postfix expression is one of the many applications of stacks due to its 'Last in First Out' policy.
 
 ## Algorithm
 
+```
 - Initialize a stack.
 - Scan the element from left to right.
-- If the scanned element is a '(' push to stack.
-- If scanned element is a '), pop and output contents of stack till empty or '(' is encountered.
+- If the scanned element is a `(` push to stack.
+- If scanned element is a `)`, pop and output contents of stack till empty or `(` is encountered.
 - If scanned element is an operand output it.
 - If scanned element is an operator, then check for precedence.
 - If the precedence of scanned elements is less than the precedence of the operators in the stack then pop and output.
 - If the precedence of scanned elements is greater than the precedence of the operators in the stack then push into stack.
+```
+
+## Explanation
+
+Let s be an infix string. Let us visualize how the stack works in this case.
+
+<img src="https://i.imgur.com/ZGQu6aN.png" width="400" height="200" /><br/><br/>
 
 ## Examples
 
 #### Example 1
 
 ```
-Let the string entered be `A+B`.
-The first scanned element is `A`, an operand, so it is printed.
-The second element `+` is an operator and the stack is empty, so it is pushed into stack.
-The third element `B` is an operand and is printed.
+Let the string entered be A+B.
+The first scanned element is A, an operand, so it is printed.
+The second element + is an operator and the stack is empty, so it is pushed into stack.
+The third element B is an operand and is printed.
 No other element left to be scanned.
 The operator from stack is popped and printed.
-The output is `AB+`.
+The output is AB+.
 ```
 
 #### Example 2
 
 ```
-Let the string be `a+b*c`.
-`a` is printed and `+` is pushed into the stack.
-`b` is also printed.
-`*` is an operator and its precedence is compared with taht of the top of the stack.
-`*` is of greater precedence than `+`,, so it is pushed into stack.
-`c` is printed.
+Let the string be a+b*c.
+a is printed and + is pushed into the stack.
+b is also printed.
+* is an operator and its precedence is compared with that of the top of the stack.
+* is of greater precedence than +, so it is pushed into stack.
+c is printed.
 The top element of the stack is popped and printed till stack is empty.
-The output is `abc*+`.
+The output is abc*+.
 ```
 
 ## Code
@@ -143,7 +151,6 @@ Postfix Expression: ab+cd*+
 ## Complexity Analysis
 
 - Time Complexity: `O(n^2)`
-
 - Space Complexity: `O(n)`
 
 
