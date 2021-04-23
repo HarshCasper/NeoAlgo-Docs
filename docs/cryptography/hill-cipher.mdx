@@ -1,0 +1,379 @@
+---
+title: Hill Cipher
+slug: /cryptography/hill-cipher
+---
+
+## Introduction
+
+The Hill Cipher is a polygraphic substitution cipher built on the concepts of linear algebra. It is more towards the mathematical side as it uses matrix multiplication, matrix inverse, and modulo arithmetic. It is also a block cipher, hence is extendable to work on different sized blocks of letters.
+
+## Explanation
+
+- Each letter in the plaintext and key is represented by a number from `[0-25]`. Typically, we assign `0` to `A`, `1` to `B`, . . . . , `25` to `Z`. Though this is not a feature of the cipher, we use it to make the implementation clearer and simple.
+- The numerical plaintext is now converted to a `n x 1` matrix and the numerical key is converted to a `n x n` matrix.
+- The key matrix is then multiplied by the plaintext matrix to get the `n x 1` ciphertext matrix. All operations done here are against modulo 26 to keep everything within the range `[0-25]`.
+- The numerical ciphertext matrix is then converted back to ASCII to get the encrypted message.
+
+Let's have one example: 
+
+```
+Plaintext: ASK
+Key      : THISISKEY
+
+Plaintext matrix:
+
+A - [ 0]
+S - [18]
+K - [10]
+
+Key matrix:
+
+T H I - [19 7  8]
+S I S - [18 8 18]
+K E Y - [10 4 24]
+
+Ciphertext matrix = key matrix * plaintext matrix
+
+Ciphertext matrix = [19 7  8]   [ 0]   [24]
+                    [18 8 18] * [18] = [12]
+                    [10 4 24]   [10]   [ 0]
+
+[24] - Y
+[12] - M
+[ 0] - A
+
+Encrypted message: YMA
+```
+
+## Algorithm
+
+#### Encryption
+
+```
+Given plaintext and a key,
+
+- Assign numbers to each letter in the plaintext and the key.
+- Here we assign 0 to A, 1 to B, . . . . , 25 to Z.
+- Form the `n x 1` plaintext matrix and the `n x n` key matrix.
+- Multiply the key matrix with the plaintext matrix to get the `n x 1` ciphertext matrix.
+- Convert the numerical ciphertext to ASCII to get the encrypted message.
+```
+
+#### Decryption
+
+```
+Given ciphertext and a key,
+
+- Assign numbers to each letter in the ciphertext and the key.
+- Here we assign 0 to A, 1 to B, . . . . , 25 to Z.
+- Form the `n x 1` ciphertext matrix.
+- Form the `n x n` key matrix.
+- Take the inverse of the key matrix.
+- Multiply the inverse of the key matrix with the ciphertext matrix to get the `n x 1` plaintext
+  matrix.
+- Convert the numerical plaintext to ASCII to get the underlying plaintext message.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'C++', value: 'cpp', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+// The below code is an implementation of encryption algorithm.
+import java.util.*;
+import java.lang.*;
+
+public class HillCipher {
+
+	// This global variable defines the size of n
+	public static int size = 3;
+
+	/* This method forms the nxn matrix of keyword. The value of
+	   n can be changed by setting the global vaiable size.*/
+	static void generateKeyMatrix(String key, int[][] keymatrix) {
+
+		int count = 0;
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < size; j++) {
+				// Stores decimal value of ASCII
+				keymatrix[i][j] = key.charAt(count);
+				/* Here, a = 97, b = 98 and so on.
+			   	We want a = 0, b = 1 and so on. So,
+				we subtract 97.*/
+				keymatrix[i][j] -= 97;
+				count = count + 1;
+			}
+		}
+	}
+
+	/* This method forms the nx1 matrix of the plaintext. The value of n can be
+	   changed by setting the global variable size.*/
+	static void generatePlaintextMatrix(String plaintext, int[][] plaintextmatrix) {
+
+		int count = 0;
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < 1; j++) {
+				// Stores decimal value of ASCII
+				plaintextmatrix[i][j] = plaintext.charAt(count);
+				/* As we did above, we subtract 97 from the
+				decimal value to start indexing from 0.*/
+				plaintextmatrix[i][j] -= 97;
+				count = count + 1;
+			}
+		}
+	}
+
+	/* This function forms the nx1 ciphertext matrix. The matrix of decimal is then converted
+	to ascii value and combined and then returned.*/
+	static String generateCiphertextMatrix(String plaintext, String key, int[][] ciphertextmatrix){
+
+		// Forming the keyword matrix
+		int[][] keymatrix = new int[size][size];
+		// Calling the keyord matrix function
+		generateKeyMatrix(key, keymatrix);
+
+		// Forming the plaintext matrix
+		int[][] plaintextmatrix = new int[size][1];
+		// Calling the plaintext matrix function
+		generatePlaintextMatrix(plaintext, plaintextmatrix);
+
+		/* Initializing the ciphertext matrix values to
+		zero. Otherwise, it would store garbage values.*/
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < 1; j++) {
+				ciphertextmatrix[i][j] = 0;
+			}
+		}
+
+		/* Multiplying key matrix with plaintext matrix
+		and forming the ciphertext matrix. */
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < 1; j++) {
+				for(int k = 0; k < size; k++) {
+					ciphertextmatrix[i][j] += keymatrix[i][k] * plaintextmatrix[k][j];
+				}
+			}
+		}
+
+		/* Taking mod 26 of obtained ciphertext values to
+		ensure they lie within the range [0-25].*/
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < 1; j++) {
+				ciphertextmatrix[i][j] = ciphertextmatrix[i][j] % 26;
+			}
+		}
+
+		// Decalaring the ciphertext string
+		String cipher = new String("");
+
+		/* Since, we decremented 97 from the decimal values
+		of plaintext and key, we add back 97 to the ciphertext
+		values, in order to get proper ASCII.*/
+		for(int i = 0; i < size; i++) {
+			for(int j = 0; j < 1; j++) {
+				cipher += (char) (ciphertextmatrix[i][j] + 97);
+			}
+		}
+
+		// Return the encrypted plaintext
+		return cipher;
+	}
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("\n-----------------HILL CIPHER-----------------\n");
+		System.out.println("The length of plaintext must be same as size\n");
+		System.out.println("Current value of size is " + size + "\n");
+
+		// Taking plaintext as input from the user
+		System.out.print("Enter a plaintext of size " + size + ": ");
+		String plaintext = scan.nextLine();
+
+		// Checking if proper message is provided or not.
+		if(plaintext.length() != size) {
+			System.out.println("\nEnter a valid message.");
+			System.exit(0);
+		}
+		
+		// Taking key as input from the user
+		System.out.print("Enter a keyword of size " + size*size + ": ");
+		String key = scan.nextLine();
+
+		// Checking if proper key is provided or not.
+		if(key.length() != size*size) {
+			System.out.println("\nEnter a valid key.");
+			System.exit(0);
+		}
+
+		scan.close();
+
+		int[][] ciphertextmatrix = new int[size][1];
+
+		String ciphertext = new String("");
+
+		plaintext = plaintext.toLowerCase();
+		key = key.toLowerCase();
+
+		// Calling the method to get the encrypted plaintext
+		ciphertext = generateCiphertextMatrix(plaintext, key, ciphertextmatrix);
+
+		System.out.println("\nThe encrypted plaintext is: " + ciphertext);
+	}
+}
+```
+
+</TabItem>
+<TabItem value="cpp">
+
+```cpp
+// The below code is an implementation of encryption algorithm.
+#include<bits/stdc++.h>
+using namespace std;
+#define SIZE 3
+
+//This function prints the cipher text
+void printciphertext(int cipherMatrix[SIZE][1]){
+    
+    string output;
+    for(int i=0;i<SIZE;i++){
+        output += cipherMatrix[i][0]+97;
+    }
+
+    cout<<"\nThe encrypted plaintext is: "<<output;
+}
+
+//This function calculates the matrix multiplication
+void cipher(int cipherMatrix[SIZE][1],int keyMatrix[SIZE][SIZE],int plaintextMatrix[SIZE][1]){
+
+      //calculating the multiplication 
+      for(int i=0;i<SIZE;i++){
+          cipherMatrix[i][0] = 0;
+          for(int j=0;j<SIZE;j++){
+              cipherMatrix[i][0] += keyMatrix[i][j]*plaintextMatrix[j][0];
+          }
+
+          cipherMatrix[i][0] = cipherMatrix[i][0]%26;
+      }     
+}
+
+//This function builds the key matrix
+void buildkeyMatrix(int keyMatrix[SIZE][SIZE],string key){
+ 
+    int counter =0;
+    //storing the key in matrix
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            keyMatrix[i][j] = key[counter]%97;
+            counter++; 
+        }
+    }
+}
+
+//This function builds the plaintext matrix
+void buildplaintextMatrix(int plaintextMatrix[][1],string plaintext){
+
+    //storing the plaintext in matrix form
+    for(int i=0;i<SIZE;i++){
+        plaintextMatrix[i][0] = (plaintext[i])%97;
+    }
+}
+
+//This fuinction helps us in calling all the functions in sequential order
+void hillcipher(string plaintext,string key){
+
+    int plaintextMatrix[SIZE][1];
+    buildplaintextMatrix(plaintextMatrix,plaintext);
+
+    int keyMatrix[SIZE][SIZE];
+    buildkeyMatrix(keyMatrix,key);
+
+    int cipherMatrix[SIZE][1];
+    cipher(cipherMatrix,keyMatrix,plaintextMatrix);
+
+    printciphertext(cipherMatrix);
+}
+
+int main(){
+
+    string plaintext;
+    string key;
+
+    cout << "\n-----------------HILL CIPHER-----------------\n" << endl;
+    cout << "The length of plaintext must be same as size\n" << endl;
+    cout << "Current value of size is " << SIZE << "\n" << endl;
+
+    cout << "Enter a plaintext of size " << SIZE << ": ";
+    //Taking plaintext from here
+    cin >> plaintext;
+
+    if(plaintext.length() != SIZE) {
+	    cout << "\nEnter a valid message." << endl;
+	    exit(0);
+    }
+
+    cout << "Enter a keyword of size " << SIZE * SIZE << ": ";
+    cin >> key;
+
+    if(key.length() != SIZE * SIZE) {
+	    cout << "\nEnter a valid key." << endl;
+	    exit(0);
+    }
+
+    transform(plaintext.begin(), plaintext.end(), plaintext.begin(), ::tolower);
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+
+    hillcipher(plaintext,key);
+
+    cout << endl;
+
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+-----------------HILL CIPHER-----------------
+
+The length of plaintext must be same as size
+
+Current value of size is 3
+
+Enter a plaintext of size 3: xyx
+Enter a keyword of size 9: thisisaki
+```
+
+#### Output:
+
+```
+The encrypted plaintext is: jgi
+```
+
+## Complexity Analysis
+
+  - Time complexity - `O(n^2)`
+  - Space complexity - `O(n^2)`
+
+where `n` is the length of the plaintext.
+
+## Credits
+
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cryptography/HillCipher.java)
+  - [Naga srihith Penjarla](https://github.com/nagasrihith608) for the [CPP Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/HillCipher.cpp)

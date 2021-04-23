@@ -7,7 +7,7 @@ slug: /searching-algorithms/linear-search
 
 Linear search is the simplest of the search algorithms. The motive of any searching algorithm is to search for the presence of a key element in the collection of elements( arrays, linked lists, etc). Linear search starts the search of the key element(the element whose presence in the given list is to be searched) sequentially. 
 
-# Algorithm
+## Algorithm
 
 In the linear search, we follow the following algorithm:
 
@@ -17,40 +17,7 @@ In the linear search, we follow the following algorithm:
 
 * If the key does not match any element scanned in the array, then return `-1`.
 
-
-## Explanation
-
-#### Example 1
-
-```
- Given the below array arr[2]:        
- | 1 | 5 |
-
- The key element = 5
-
- The key is compared to the first element arr[0]=1
- The key does not match  arr[0].
- Next key is compared to arr[1] = 5
- Key matches arr[2] and index 1 is returned
-
-```
-#### Example 2
-
-```
- Given the below array arr[2]:        
- | 1 | 3 | 
-
- Key element = 9
-
- The key is compared to the first element arr[0]=1
- The key does not match  arr[0]
- Next, key is compared to arr[1] = 3
- Key = 5 does not match the arr[1]
-
- The end of the array is reached, but the key is not found in the array. Hence it is not present. 
- -1 is returned.
-
-```
+![image](https://user-images.githubusercontent.com/70858557/114910727-dcd2e580-9e3b-11eb-8b0f-dd19c5f3a488.PNG)
 
 ## Code
 
@@ -61,7 +28,8 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
-    { label: 'Python', value: 'py', }
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', }
   ]
 }>
 <TabItem value="cpp">
@@ -142,6 +110,53 @@ if __name__=="__main__":
 
 ```
 </TabItem>
+
+<TabItem value = "java">
+
+```java
+import java.io.*;
+import java.util.*;
+
+public class linear_search{
+    
+    static void linearSearch(int[] arr, int key){
+        //initialize position at -1
+        int pos = -1;
+        //Traverse through the array
+        for(int i=0 ; i<arr.length ; i++){
+            //Check if the required number is present
+            if(arr[i] == key){
+                //If present then update the value of position
+                pos = i;
+                System.out.println("Found at: " + pos);
+                break;
+            }
+        }
+        //Position not found
+        if(pos == -1){
+            System.out.println("Not Found");
+        }
+    } 
+
+     public static void main(String []args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number of elements: ");
+        int n = sc.nextInt();
+        System.out.println("Enter the elements: ");
+        int arr[] = new int[n];        
+        for(int i=0 ; i<n ; i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter the element to be searched: ");
+        int key = sc.nextInt();
+        linearSearch(arr, key);
+     }
+}
+
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Sample Input and Output 
@@ -166,6 +181,7 @@ Enter the elements: 1 2 4 5 6
 Enter element to be searched: 3
 ```
 #### Output :
+
 ```
 Not Found
 ```
@@ -179,8 +195,6 @@ In linear search, no extra space is used to store anything. So the space complex
 * Time Complexity: `O(n)`
 * Space Complexity: `O(1)`
 
-
-
 ### Credits
 * [Utkarsh Chaurasia](https://github.com/UtkarshChaurasia) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Linear_Search.cpp) and the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Linear_Search.py)
-
+* [Apoorva Jain](https://github.com/apoorva0107) for the Java implementation

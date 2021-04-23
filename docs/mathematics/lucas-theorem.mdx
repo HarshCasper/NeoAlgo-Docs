@@ -1,0 +1,176 @@
+---
+title: Lucas Theorem
+slug: /mathematics/lucas-theorem
+---
+
+## Introduction
+
+Lucas theorem is the computation of `nCr %p`. It suggests that the value of `nCr` can be computed by multiplying results of `niCri` where `ni` and `ri` are individual same-positioned digits in base `p` representations of `n` and `r` respectively.
+
+## Explanation
+
+Lucas theorem says the computation of nCr can be done by the formula :
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\binom{n}{r}&space;=&space;\prod_{i=0}^{i=k}&space;\binom{ni}{ri}&space;(mod&space;p)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\binom{n}{r}&space;=&space;\prod_{i=0}^{i=k}&space;\binom{ni}{ri}&space;(mod&space;p)" title="\binom{n}{r} = \prod_{i=0}^{i=k} \binom{ni}{ri} (mod p)" /></a>
+
+where,
+<a href="https://www.codecogs.com/eqnedit.php?latex=n&space;=&space;n_kp^{k}&plus;n_{k-1}p^{k-1}&plus;....&plus;n_1p&plus;n0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?n&space;=&space;n_kp^{k}&plus;n_{k-1}p^{k-1}&plus;....&plus;n_1p&plus;n0" title="n = n_kp^{k}+n_{k-1}p^{k-1}+....+n_1p+n0" /></a>
+
+and
+<a href="https://www.codecogs.com/eqnedit.php?latex=r&space;=&space;r_kp^{k}&plus;r_{k-1}p^{k-1}&plus;....&plus;r_1p&plus;r0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?r&space;=&space;r_kp^{k}&plus;r_{k-1}p^{k-1}&plus;....&plus;r_1p&plus;r0" title="r = r_kp^{k}+r_{k-1}p^{k-1}+....+r_1p+r0" /></a>
+
+
+## Algorithm
+
+- Take the `n`, `p` and `r` values from user. 
+- Then compute the value of `nCr %p` value using the above formula given.
+- Call a function which computes the `nCr %p` value recursively by computing the last digits of `n` and `r` in base `p`.
+- Then we recur for the remaining digits.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+class lucastheorem{
+
+   // minimum return function
+   static int min(int x,int y){
+
+     if(x<y)
+       return x;
+     else
+       return y;
+
+   } 
+
+   //computes the nCr % p value
+   static int mod(int n,int r,int p){
+
+     int[] array = new int[r+1];
+     array[0] = 1;
+     for(int i=1;i<r+1;i++){
+         array[i] = 0;
+     }
+
+     for(int i=1;i<n+1;i++){
+        int j = min(i,r);
+        while(j>0){
+           array[j] = (array[j]+array[j-1] )%p;
+           j--;
+        }
+     }
+
+     return array[r];
+
+   }
+
+   // lucas theoreme function
+   static int lucastheorem(int n,int r,int p){
+
+      if(r == 0){
+         return 1;
+      }  
+      int n1 = n % p; 
+      int r1 = r % p;            
+      return(lucastheorem(n/p,r/p,p) * mod(n1,r1,p)) % p;  
+
+   }
+
+   // driver method
+   public static void main(String[] args){
+
+      // taking the input from user from here
+      Scanner scan = new Scanner(System.in);
+      System.out.print("Enter The Value of n : "); 
+      int n = scan.nextInt();
+
+      System.out.print("Enter The Value of r : ");
+      int r = scan.nextInt();
+
+      System.out.print("Enter The Value of p : ");
+      int p  = scan.nextInt();
+
+      System.out.print("Value of nCr % p is ");
+      // calling lucastheorem
+      System.out.print(lucastheorem(n,r,p));
+   }
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def Mod(n, r, p): 
+    arr = [0] * (n + 1);   
+           #The array arr is going to store the
+           # last row of the triangle 
+           # at the end. And last entry  
+           # of last row is nCr 
+    arr[0] = 1;    
+    for i in range(1, (n + 1)):       
+        j = min(i, r);  
+        while(j > 0): 
+            arr[j] = (arr[j] + arr[j - 1]) % p; 
+            j -= 1; 
+    return arr[r]; 
+
+'''calculate the last digit of n and r for base p, 
+then recur the remaining digits'''
+
+def Lucas(n, r, p): 
+    if (r == 0):
+        return 1;  
+    nth = int(n % p); 
+    rth = int(r % p);            
+    return (Lucas(int(n / p), int(r / p), p) * Mod(nth, rth, p)) % p; 
+
+if __name__ == '__main__':
+
+  n = int(input("Enter The Value of n : "))
+  r = int(input("Enter The Value of r : "))
+  p = int(input("Enter The Value of p : "))
+  print("Value of nCr % p is",Lucas(n, r, p));
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter The Value of n : 10
+Enter The Value of r : 2
+Enter The Value of p : 13
+```
+
+#### Output:
+
+```
+Value of nCr % p is 6
+```
+
+## Complexity Analysis
+
+- Time complexity: `O(p^2)`
+- Space complexity : `O(p)`
+
+## Credits
+
+- [Naga Srihith Penjarla](https://github.com/nagasrihith608) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/lucastheorem.java)
+- [RISHIKESH RAJ](https://github.com/Rishikeshrajrxl) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Lucas_Theorem.py)
