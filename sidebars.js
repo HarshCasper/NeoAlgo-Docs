@@ -42,6 +42,7 @@ module.exports = {
 		"sorting-algorithms/cocktail-sort",
 		            "sorting-algorithms/bead-sort",
                 "sorting-algorithms/counting-sort",
+		  "sorting-algorithms/stooge-sort",
             ],
         },
         {
