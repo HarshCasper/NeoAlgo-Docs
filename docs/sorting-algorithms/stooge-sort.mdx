@@ -1,0 +1,207 @@
+---
+title: Stooge Sort
+slug: /sorting-algorithms/stooge-sort
+---
+
+## Introduction
+
+Stooge sort is a recursive sorting algorithm. It checks if the value at index `0` is greater than the value at the last index, if `YES` then it swaps those two values. It then calls the Stooge sort function recursively on the initial `2/3rd` elements of the array, then on the last `2/3rd` elements, and then again on the initial `2/3rd` elements to get the given array sorted.
+
+## Explanation
+
+Let's have one example: 
+
+```
+Given array A = [6, 5, 4, 3, 2, 1]
+Sorted array = [1, 2, 3, 4 ,5, 6]
+
+Let us walk through the process.
+
+Compare the 0th element with the element present at the last index.
+[6, 5, 4, 3, 2, 1] -> [1, 5, 4, 3, 2, 6] (Swap 2 and 6)
+
+Recursively sort the initial 2/3rd elements of A.
+[1, 5, 4, 3, 2, 6] -> [1, 3, 4, 5, 2, 6]
+
+Recursively sort the last 2/3rd elements of A.
+[1, 3, 4, 5, 2, 6] -> [1, 3, 2, 4, 5, 6]
+
+Again sort the initial 2/3rd elements of A.
+[1, 3, 2, 4, 5 ,6] -> [1, 2, 3, 4, 5, 6]
+
+After these steps, array A is sorted.
+```
+
+## Algorithm
+
+Given an unsorted array `A[1......n]`.
+
+- If the value at the `0th` index is greater than the value at the last index, swap them.
+- Recursively sort the initial `2/3rd` elements of array `A`.
+- Recursively sort the last `2/3rd` elements of array `A`.
+- Recursively sort the initial `2/3rd` elements of the array `A`, again.
+- Array `A` is now sorted.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'C', value: 'c', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void stooge_sort(int arr[], int start, int end)
+{
+    // If the value at last index is smaller than the value at index 0, Swap them.
+    if (arr[start] > arr[end])
+        swap(arr[start], arr[end]);
+
+    // For finding the first and last two by third elements in the array
+    if (end - start + 1 > 2)
+    {
+        int twobythird = (end - start + 1) / 3;
+
+        /* Recursively call the function on the initial two by third,
+        last two by third followed by the initial two by third*/
+        if ((end - twobythird) >= start)
+            stooge_sort(arr, start, end - twobythird);
+        if (end >= (start + twobythird))
+            stooge_sort(arr, start + twobythird, end);
+        if ((end - twobythird) >= start)
+            stooge_sort(arr, start, end - twobythird);
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "How many numbers do you want to sort? ";
+    cin >> n;
+    int arr[n];
+
+    if (n <= 0)
+    {
+        cout << "There are no numbers to sort!!!";
+        return 0;
+    }
+    // Input the numbers to sort
+    cout << "Enter the numbers: ";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    //Call the sort function
+    stooge_sort(arr, 0, n - 1);
+
+    cout << "\nThe numbers in sorted order is: ";
+    // Print the sorted array
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="c">
+
+```c
+#include <stdio.h>
+
+// Helper function to swap two values
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void stooge_sort(int arr[], int start, int end)
+{
+    // If the value at last index is smaller than the value at index 0, Swap them.
+    if (arr[start] > arr[end])
+        swap(&arr[start], &arr[end]);
+
+    // For finding the first and last two by third elements in the array
+    if (end - start + 1 > 2)
+    {
+        int twobythird = (end - start + 1) / 3;
+
+        /* Recursively call the function on the initial two by third,
+        last two by third followed by the initial two by third*/
+        if ((end - twobythird) >= start)
+            stooge_sort(arr, start, end - twobythird);
+        if (end >= (start + twobythird))
+            stooge_sort(arr, start + twobythird, end);
+        if ((end - twobythird) >= start)
+            stooge_sort(arr, start, end - twobythird);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("How many numbers do you want to sort? ");
+    scanf("%d", &n);
+    int arr[n];
+
+    if (n <= 0)
+    {
+        printf("There are no numbers to sort!!!");
+        return 0;
+    }
+    // Input the numbers to sort
+    printf("Enter the numbers: ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    //Call the sort function
+    stooge_sort(arr, 0, n - 1);
+
+    printf("\nThe numbers in sorted order is: ");
+    // Print the sorted array
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+How many numbers do you want to sort? 6
+Enter the numbers: 6 5 4 3 2 1
+```
+
+#### Output:
+
+```
+The numbers in sorted order is: 1 2 3 4 5 6
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(n^2.7095)`
+  - Space complexity: `O(n)`
+
+## Credits
+
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/stooge_sort.cpp)
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/stooge_sort.c)
