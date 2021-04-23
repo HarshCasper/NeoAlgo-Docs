@@ -16,21 +16,21 @@ Given a knapsack of weight W and n number of items, we need to calculate the max
 #### Example 1
 
 ```
-Let capacity W be `50` and  number of items be `2`.
-The weights are `5, 10`.
-The values are  `50, 100`.
+Let capacity W be 50 and  number of items be 2.
+The weights are 5, 10.
+The values are  50, 100.
 We start from the nth item whose weight is 10 which is less than W. So we can either choose it or not depending on what will maximise the value of the knapsack.
 We get greater value when including the nth item than when we get by excluding it.
-The maximum value comes out to be `5*100=500`.
+The maximum value comes out to be 5*100=500.
 ```
 #### Example 2
 
 ```
-Let capacity W be `5` and number of items be `2`.
-The weights are `3,5`.
-The values of items are `10,15`.
-We start from the nth item whose weight is equal to the knapsack W, so we may either include it or exclude it. If we include it the value of the knapsack will be `15`, but if we exclude it the value of the knapsack will be `10`. 
-So the maximum value of the knapsack will be `15`.
+Let capacity W be 5 and number of items be 2.
+The weights are 3,5.
+The values of items are 10,15.
+We start from the nth item whose weight is equal to the knapsack W, so we may either include it or exclude it. If we include it the value of the knapsack will be `15`, but if we exclude it the value of the knapsack will be 10. 
+So the maximum value of the knapsack will be 15.
 ```
 
 ## Algorithm
@@ -78,10 +78,10 @@ int unboundedKnap(int w[], int v[], int W, int n)
         }
     }
 
-    /*-->If the weight of the ith item is less than the weight of the knapsack, then we can either include the item or exclude it depending upon which will maximise the value
-      -->If included then we can include it again
-      -->If not included once then it is not included again
-      -->If the weight is greater than the weight of the knapsack then we cannot include it into the knapsack at any time
+    /*1.If the weight of the ith item is less than the weight of the knapsack, then we can either include the item or exclude it depending upon which will maximise the value
+      2.If included then we can include it again
+      3.If not included once then it is not included again
+      4.If the weight is greater than the weight of the knapsack then we cannot include it into the knapsack at any time
     */
 
     for (int i = 1; i < n + 1; i++)
