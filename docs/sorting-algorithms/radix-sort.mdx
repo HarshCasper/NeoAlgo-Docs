@@ -5,12 +5,11 @@ slug: /sorting-algorithms/radix-sort
 
 ## Introduction
 
-Radix sort is an efficient sorting algorithm that behaves like **counting sort**. This algorithm doesn't require comparing elements like the other sorting methods. The numbers are sorted from the least significant digit to the most significant digit.
-For example, if we are dealing with unsorted numbers, we know that there are ten digits from 0 to 9 that are used to form any number. So we will need ten buckets labelled 0 to 9 to sort the unsorted numbers.
+Radix sort is an efficient sorting algorithm that behaves like **counting sort**. This algorithm doesn't require comparing elements like the other sorting methods. The numbers are sorted from the least significant digit to the most significant digit. For example, if we are dealing with unsorted numbers, we know that there are ten digits from 0 to 9 that are used to form any number. So we will need ten buckets labelled 0 to 9 to sort the unsorted numbers.
 
 ## Explanation
 
-To understand better, let us take an example of an unsorted array.
+To understand the algorithm better, let us take an example of an unsorted array:
 
 ![unsortedarray](https://user-images.githubusercontent.com/61618767/115116244-424ae180-9fb6-11eb-96dc-cdbb00e2b918.png)
 
@@ -91,11 +90,13 @@ using namespace std;
 #define DIF 2147483648
 
 /* The idea behind sorting negative numbers too is below
--> A signed 32 bit integer goes from -2,147,483,648 to 2,147,483,647
-and an unsigned integer from 0 to 4,294,967,295.
--> So you could just add 2,147,483,648 to the signed number to 
-convert it to an unsigned one for sorting
-then subtract to get back to signed numbers when you have finished sorting*/
+  
+  A signed 32 bit integer goes from -2,147,483,648 to 2,147,483,647
+  and an unsigned integer from 0 to 4,294,967,295.
+  
+  So you could just add 2,147,483,648 to the signed number to 
+  convert it to an unsigned one for sorting then subtract to 
+  get back to signed numbers when you have finished sorting */
 
 void counting_sort(ll arr[], ll  n, ll p) {
     ll element = pow(10, p);
@@ -189,7 +190,7 @@ main()
 </TabItem>
 </Tabs>
 
-## Sample I/O
+## Sample Input and Output:
 
 #### Input :
 
@@ -206,9 +207,10 @@ main()
 
 ## Complexity Analysis
 
-- Time Complexity: `O(dn)` where d is the maximum number of digits
-
+- Time Complexity: `O(dn)` 
 - Space Complexity: `O(n)`
+
+Here `d` is the maximum number of digits.
 
 ## Credits
 
