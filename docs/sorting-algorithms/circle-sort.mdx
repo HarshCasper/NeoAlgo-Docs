@@ -1,0 +1,284 @@
+---
+title: Circle Sort
+slug: /sorting-algorithms/circle-sort
+---
+
+## Introduction
+
+Circle sort is an in-place, recursive sorting algorithm. It can be visualized by drawing concentric circles on an array and the elements lying on the same circle diametrically opposite to each other are compared. If the value of the left element is greater than the value of the right element, then the elements are swapped. This process is repeated in a recursive manner where the array is divided into sub-arrays forming pairs of sorted elements until the whole array is sorted.
+
+## Explanation
+
+Given an unsorted array `A[]`. In layman's terms what circle sort does is, compares the first element of the array with the last element, the second element with the second last element, and so on. The array is then divided into two parts, and the same thing is repeated in both parts. This recursion goes on until the parts can't be divided any further.
+
+Let us have one example: 
+```
+Let given array A = [4, 5, 3, 6, 2, 1]
+The sorted array is A' = [1, 2, 3, 4, 5, 6]
+
+Let us walk through the process of circle sort.
+
+Compare first element and last element of the array
+- [4, 5, 3, 6, 2, 1] -> [1, 5, 3, 6, 2, 4] (Swapping first and last element)
+
+Compare second element and second last element of the array
+- [1, 5, 3, 6, 2, 4] -> [1, 2, 3, 6, 5, 4] (Swapping the elements)
+
+Compare third element and third last element of the array
+- [1, 2, 3, 6, 5, 4] -> [1, 2, 3, 6, 5, 4]
+
+- Now, A is divided into two halves.
+
+A1 = [1, 2, 3], A2 = [6, 5, 4]
+
+- Same steps are repeated for both the halves.
+
+A1 = [1, 2, 3]
+
+Compare first element and last element of the array
+- [1, 2, 3] -> [1, 2, 3]
+
+A2 - [6, 5, 4]
+
+Compare first element and last element of the array
+- [6, 5, 4] -> [4, 5, 6] (Swapping the elements)
+
+- Again A1 and A2 are divided.
+
+A1 = [1], A2 = [2, 3], A3 = [4], A4 = [5, 6]
+
+A2 = [2, 3]
+
+Compare first element and last element of the array
+- [2, 3] -> [2, 3]
+
+A4 = [5, 6]
+
+Compare first element and last element of the array
+- [5, 6] ->[5, 6]
+
+- Again A2 and A4 are divided.
+
+A1 = [1], A2 = [2], A3 = [3], A4 = [5], A6 = [6]
+
+- Now, each sub-array contain a single element. The algorithm stops here. And the array A is
+  now sorted.
+```
+
+## Algorithm
+
+Given an unsorted array `A[]`.
+
+  - Compare first element of the array to the last element, second element to the second last element, and so on.
+  - Split the array into two halves and recursively repeat the same steps on both the halves.
+  - The array is sorted when the sub-arrays can not be split any further, which means that each sub-array contains only one element.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'C', value: 'c', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h> 
+using namespace std; 
+  
+/*
+Performs recursive circular swaps and returns true if atleast one swap occurs
+*/
+bool rec_sort(int arr[], int beg, int end) 
+{ 
+    bool isSwap = false; 
+  
+    // If concerned array is empty, Return
+    if (beg == end) 
+        return false; 
+  
+    // Storing the values of beg, end to later use in the recursive call
+    int begA, endA;
+    for(begA = beg, endA = end; begA < endA; begA++, endA--) 
+    { 
+        //Compares the first and last elements 
+        if (arr[begA] > arr[endA]) 
+        { 
+            swap(arr[begA], arr[endA]); 
+            isSwap = true; 
+        } 
+        
+    } 
+  
+    // If the array has odd number of elements
+    if (begA == endA) 
+        if (arr[begA] > arr[endA + 1]) 
+        { 
+            swap(arr[beg], arr[endA+1]); 
+            isSwap = true; 
+        } 
+  
+    int mid = (end - beg) / 2; 
+    bool isSwapA = rec_sort(arr, beg, beg+mid); 
+    bool isSwapB = rec_sort(arr, beg+mid+1, end); 
+  
+    return (isSwap || isSwapA || isSwapB); 
+} 
+
+void circle_sort(int arr[], int n) 
+{  
+    while (rec_sort(arr, 0, n-1)) 
+    {    
+        
+    } 
+} 
+  
+
+int main()
+{
+    int n;
+    cout<<"How many numbers do you want to sort? ";
+    cin>>n;
+    int arr[n];
+
+    if (n <= 0)
+    {
+        cout<<"\nThe array is Empty!!!" << endl;
+        return 0;
+    }
+    // Input the numbers to sort
+    cout<<"Enter the numbers: ";
+    for (int i = 0; i < n; i++)
+        cin>>arr[i];
+  
+    //Call the sort function 
+    circle_sort(arr,n);  
+
+    cout<<"\nThe numbers in sorted order is: ";
+    // Print the sorted array
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="c">
+
+```c
+#include <stdio.h>
+
+// Helper function to swap to values
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+/*
+Performs recursive circular swaps and returns value 1 if atleast one swap occurs
+*/
+int rec_sort(int arr[], int beg, int end)
+{
+    int isSwap = 0;
+
+    // If concerned array is empty, Return
+    if (beg == end)
+        return 0;
+
+    // Storing the values of beg, end to later use in the recursive call
+    int begA, endA;
+    for (begA = beg, endA = end; begA < endA; begA++, endA--)
+    {
+        //Compares the first and last elements
+        if (arr[begA] > arr[endA])
+        {
+            swap(&arr[begA], &arr[endA]);
+            isSwap = 1;
+        }
+    }
+
+    // If the array has odd number of elements
+    if (begA == endA)
+        if (arr[begA] > arr[endA + 1])
+        {
+            swap(&arr[beg], &arr[endA + 1]);
+            isSwap = 1;
+        }
+
+    int mid = (end - beg) / 2;
+    int isSwapA = rec_sort(arr, beg, beg + mid);
+    int isSwapB = rec_sort(arr, beg + mid + 1, end);
+
+    return (isSwap || isSwapA || isSwapB);
+}
+
+void circle_sort(int arr[], int n)
+{
+    while (rec_sort(arr, 0, n - 1))
+    {
+    }
+}
+
+int main()
+{
+    int n;
+    printf("How many numbers do you want to sort? ");
+    scanf("%d", &n);
+    int arr[n];
+
+    if (n <= 0)
+    {
+        printf("\nThe array is Empty!!!\n");
+        return 0;
+    }
+    // Input the numbers to sort
+    printf("Enter the numbers: ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    //Call the sort function
+    circle_sort(arr, n);
+
+    printf("\nThe numbers in sorted order is: ");
+    // Print the sorted array
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+How many numbers do you want to sort? 5
+Enter the numbers: 5 4 3 2 1
+```
+
+#### Output:
+
+```
+The numbers in sorted order is: 1 2 3 4 5
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(nlogn)`
+  - Space complexity: `O(n)`
+
+## Credits
+
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/circle_sort.cpp)
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/circle_sort.c)
