@@ -82,6 +82,7 @@ module.exports = {
                 "dynamic-programming/kadane-algorithm",
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/golomb-sequence",
+		"dynamic-programming/cutting-a-rod",
             ],
         },
         {

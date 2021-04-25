@@ -1,0 +1,178 @@
+---
+title: Cutting a rod
+slug: /dynamic-programming/cutting-a-rod
+---
+
+## Introduction
+
+Given a rod of length `n` and an array of prices of all pieces of length `1` to `n`, we need to determine the maximum price that can be obtained by cutting up the rod and selling its pieces.
+
+## Explanation
+
+The given rod of length `n` can be cut into sub-rods in various ways, each way resulting in a different selling price. We need to maximize the selling price.
+
+Let us have one example: 
+```
+Given, length of the rod n = 5, and price of rods of various lengths,
+
+Length - 1 | 2 | 3 | 4 | 5
+Price  - 2 | 5 | 7 | 8 | 10
+
+Ways of cutting the rod into sub-rods:
+
+1) Length 1 + Length 4
+
+  - Selling price = 2 + 8 = 10
+
+2) Length 2 + Length 3
+
+  - Selling price = 5 + 7 = 12
+
+3) Length 5
+
+  - Selling price = 10
+
+Here, we see that a maximum selling price of 12 is generated when the given rod is cut into
+sub-rods of length 2 and 3.
+```
+
+## Algorithm
+
+- Initialize an array `dp[]` such that the `ith` element stores the maximum price obtained by a rod of length `i`.
+
+```
+for i = 1 to n
+    current_max = i
+    for j = 0 to i - 1
+        current_max = max(cost[j] + dp[ i- j - 1], current_max)
+    dp[i] = current_max
+return dp[n]
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="c"
+  values={[
+    { label: 'C', value: 'c', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="c">
+
+```c
+#include <stdio.h>
+#include <limits.h>
+//Helper function to find the maximum of two values
+int max(int a, int b)
+{
+    if (a > b)
+        return a;
+    return b;
+}
+
+// We build a dp table in bottom-up manner
+int max_sell_price(int n, int cost[])
+{
+    int dp[n + 1];
+    dp[0] = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        int curr_max = INT_MIN;
+        for (int j = 0; j < i; j++)
+            curr_max = max(curr_max, cost[j] + dp[i - j - 1]);
+
+        // Stores the maximum cost achieved for a rod of length i
+        dp[i] = curr_max;
+    }
+
+    return dp[n];
+}
+
+int main()
+{
+    int n;
+    printf("What is the length of the rod? ");
+    scanf("%d", &n);
+    int cost[n], max_price;
+
+    if (n <= 0)
+    {
+        printf("\nThe given rod length is Invalid!!!\n");
+        return 0;
+    }
+    // Input the cost of the rod of different length
+    printf("Enter the cost of the rod for length 1 to %d: ", n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &cost[i]);
+
+    max_price = max_sell_price(n, cost);
+
+    printf("\nThe maximized sell price: ");
+    // Print the maximized sell price
+    printf("%d ", max_price);
+    printf("\n");
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def max_sell_price(m, cost):
+    dp = [0 for i in range(n+1)]
+
+    for i in range(1, n + 1):
+        curr_max = -1
+        for j in range(i):
+            curr_max = max(cost[j] + dp[i-j-1], curr_max)
+        #  Stores the maximum cost obtainable for a rod of length i
+        dp[i] = curr_max
+    return dp[n]
+
+
+if __name__ == '__main__':
+    print("What is the length of the rod? ", end="")
+    n = int(input())
+    if (n <= 0):
+        print("\nThe given rod length is Invalid!!!")
+        exit()
+    print("Enter the cost of the rod for length 1 to {} :  ".format(n), end="")
+    cost = [int(x) for x in input().split(' ')]
+    max_price = max_sell_price(n, cost)
+    print("\nThe maximized sell price: {}".format(max_price))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+What is the length of the rod? 5
+Enter the cost of the rod for length 1 to 5: 2 5 7 8 10
+```
+
+#### Output:
+
+```
+The maximized sell price: 12
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(n^2)`
+  - Space complexity: `O(n)`
+
+Here `n` is the length of the rod.
+
+## Credits
+
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/dp/cutting_a_rod.c)
+  - [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/cutting_a_rod.py)
