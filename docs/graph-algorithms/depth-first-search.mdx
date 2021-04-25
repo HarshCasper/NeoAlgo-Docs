@@ -5,8 +5,8 @@ slug: /graph-algorithms/depth-first-search
 
 ## Introduction
 
-Depth First Search or DFS uses stack data structure. The algorithm starts with an initial node of the Graph and goes deeper and deeper until it finds a node which has no children called the **dead node**. Then it starts backtracking from the dead node towards the most recent
-node that is yet to be completely unexplored. Here the unvisited nodes are named as **discovery edges** while the ones that leads to an already visited node are called **block edges**.
+Depth First Search or DFS uses stack data structure. The algorithm starts with an initial node of the Graph and goes deeper and deeper until it finds a node that has no children called the **dead node**. Then it starts backtracking from the dead node towards the most recent
+node that is yet to be completely unexplored. Here the unvisited nodes are named as **discovery edges** while the ones that lead to an already visited node are called **block edges**.
 
 ## How does is work?
 
@@ -17,12 +17,13 @@ Consider a six node graph where the number of edges are four:
 - Edge from `vertex D to vertex E`
 
 ### The depth first traversal of the above will be as follows:
-![1](https://user-images.githubusercontent.com/70858557/115229930-40f1f400-a131-11eb-9732-c7f45ac38975.PNG)
-![2](https://user-images.githubusercontent.com/70858557/115229939-45b6a800-a131-11eb-9438-4e93dc66cab4.PNG)
-![3](https://user-images.githubusercontent.com/70858557/115229943-46e7d500-a131-11eb-8f3f-d19cf2856d3c.PNG)
-![4](https://user-images.githubusercontent.com/70858557/115229946-47806b80-a131-11eb-8265-924bcc158ddb.PNG)
-![5](https://user-images.githubusercontent.com/70858557/115229947-47806b80-a131-11eb-94a6-fc80ca30fd0a.PNG)
 
+|![1](https://user-images.githubusercontent.com/70858557/115229930-40f1f400-a131-11eb-9732-c7f45ac38975.PNG)|
+|---	|
+|![2](https://user-images.githubusercontent.com/70858557/115229939-45b6a800-a131-11eb-9438-4e93dc66cab4.PNG)|
+|![3](https://user-images.githubusercontent.com/70858557/115229943-46e7d500-a131-11eb-8f3f-d19cf2856d3c.PNG)| 
+|![4](https://user-images.githubusercontent.com/70858557/115229946-47806b80-a131-11eb-8265-924bcc158ddb.PNG)| 
+|![5](https://user-images.githubusercontent.com/70858557/115229947-47806b80-a131-11eb-94a6-fc80ca30fd0a.PNG)| 
 
 ## Algorithm
 
@@ -32,7 +33,6 @@ Consider a six node graph where the number of edges are four:
 - push on the stack all the neighbours of top node that are in the ready state.
 - change the status of the top node and set its status to waiting state.
 - Repeat the steps until the stack is empty.
-
 
 ## Code
 
@@ -134,16 +134,16 @@ void Dfs(int v1)
 #include<bits/stdc++.h>
 using namespace std;
 void dfs(int source, vector <int> adj[],bool visited[]){
-    //visit the source
+    // visit the source
     cout<<source<<" ";
-    //mark visited as true
+    // mark visited as true
     visited[source] = true;
-    //Traverse all its adjacents
+    // Traverse all its adjacents
     for(auto s:adj[source]){
-        //Check if the adjacent is not visited
+        // Check if the adjacent is not visited
         if(!visited[s]){
-            //Do the same for this vertex i.e. call dfs for this adjacent as source
-            //This lets you reach the depth of the graph, So you traverse down a hirearchy instead of going to all adjacents as we do in bfs
+            // Do the same for this vertex i.e. call dfs for this adjacent as source
+            // This lets you reach the depth of the graph, So you traverse down a hirearchy instead of going to all adjacents as we do in bfs
             dfs(s,adj,visited);
         }
     }
@@ -159,7 +159,7 @@ int main(){
     }
     bool visited[n];
     memset(visited,false,sizeof(visited));
-    //Calling dfs for all non visited graphs to cover non connected compnents in graph
+    // Calling dfs for all non visited graphs to cover non connected compnents in graph
     for(int i=0;i<n;i++){
         if(!visited[i]){
             dfs(i,adj,visited);
