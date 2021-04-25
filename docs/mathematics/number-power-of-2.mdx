@@ -54,11 +54,11 @@ using namespace std;
 
 bool number_is_power_of_2(int number)
 {
-  /* if bitwise and of number and number - 1 is zero
-    then we can say that number is power of 2
-    otherwise it is not.
-    */
-    if((number & (number - 1)) == 0)
+   /* if bitwise and of number and number - 1 is zero
+   then we can say that number is power of 2
+   otherwise it is not. */
+   
+   if((number & (number - 1)) == 0)
         return true;
     return false;
 }
@@ -88,14 +88,15 @@ public class Powerof2
 	// This function will tell us whether a number is power of 2
 	static boolean number_is_power_of_2(int number) 
 	{
-		/* if bitwise and of number and number-1 is zero
-        then we can say that number is power of 2
-        otherwise it is not. */
-        if((number & (number - 1)) == 0)
-        {
-            return true;
-        }
-        return false;
+	    /* if bitwise and of number and number - 1 is zero
+            then we can say that number is power of 2
+            otherwise it is not. */
+	 
+	    if((number & (number - 1)) == 0)
+	     {
+	        return true;
+	     }
+             return false;
 	}
 	public static void main(String args[]) 
 	{
