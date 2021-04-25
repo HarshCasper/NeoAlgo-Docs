@@ -1,0 +1,219 @@
+---
+title: Cocktail Sort
+slug: /sorting-algorithms/cocktail-sort
+---
+
+## Introduction
+
+Cocktail Sort, also known as bi-directional bubble sort is a variation of the bubble sort algorithm. In a single iteration, bubble sort traverses the list in the forward direction only, whereas cocktail sort traverses in both directions alternatively thereby speeding up the process by a bit.
+
+
+## Explanation
+
+Let's have one example: 
+
+```
+Consider the array, A = [10, 2, 7, 3, 6, 5]
+
+- First Iteration
+
+[10, 2, 7, 3, 6, 5] -> [2, 10, 7, 3, 6, 5] (10 > 2)
+[2, 10, 7, 3, 6, 5] -> [2, 7, 10, 3, 6, 5] (10 > 7)
+[2, 7, 10, 3, 6, 5] -> [2, 7, 3, 10, 6, 5] (10 > 3)
+[2, 7, 3, 10, 6, 5] -> [2, 7, 3, 6, 10, 5] (10 > 6)
+[2, 7, 3, 6, 10, 5] -> [2, 7, 3, 6, 5, 10] (10 > 5)
+Largest element of the array comes to the right end of the array.
+
+[2, 7, 3, 6, 5, 10] -> [2, 7, 3, 5, 6, 10] (5 < 6)
+[2, 7, 3, 5, 6, 10] -> [2, 7, 3, 5, 6, 10] (No swap)
+[2, 7, 3, 5, 6, 10] -> [2, 3, 7, 5, 6, 10] (3 < 7)
+[2, 3, 7, 5, 6, 10] -> [2, 3, 7, 5, 6, 10] (No swap)
+Smallest element of the array comes to the left end of the array.
+
+- Second Iteration
+
+[2, 3, 7, 5, 6, 10] -> [2, 3, 7, 5, 6, 10] (No swap)
+[2, 3, 7, 5, 6, 10] -> [2, 3, 5, 7, 6, 10] (7 > 5)
+[2, 3, 5, 7, 6, 10] -> [2, 3, 5, 6, 7, 10] (7 > 6)
+
+[2, 3, 5, 6, 7, 10] -> [2, 3, 5, 6, 7, 10] (No swap)
+
+The array is now sorted. But for the algoritm to knowm it will have to complete one whole iteration
+without any swaps.
+
+Sorted array - [2, 3, 5, 6, 7, 10]
+```
+
+## Algorithm
+
+Each iteration of the algorithm is divided into two stages. One forward iteration and one backward iteration.
+
+- Forward iteration
+  - Iterate from left to right. This step is the same as the bubble sort.
+  - Compare the adjacent elements. If the value of the left element is greater than the right element, swap them.
+  - At the end of this, the largest element in the array will be placed at the end of the array.
+
+- Backward iteration
+  - Iterate from the rightmost unsorted element to the left of the array.
+  - Compare the adjacent elements. If the value of the right element is smaller than the left element, swap them.
+  - At the end of this, the smallest element in the array will be placed at the beginning of the array.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+//  function to sort the array using Cocktail sort
+void Cocktail_shaker_sort(int a[], int n)
+{
+	int initial = 0;
+	int end = n - 1;
+	bool flag = true;
+	while (flag) 
+	{
+		flag = false;
+		
+		// loop from left to right
+		for (int i = initial; i < end; ++i) 
+		{
+			if (a[i] > a[i + 1]) {
+				swap(a[i], a[i + 1]);
+				flag = true;
+			}
+		}
+		
+		// if nothing moved, then array is sorted
+		if (!flag)
+			break;
+
+		flag = false;
+
+		--end;
+
+        // comparing from right to left
+		for (int i = end - 1; i >= initial; --i) 
+		{
+			if (a[i] > a[i + 1]) {
+				swap(a[i], a[i + 1]);
+				flag = true;
+			}
+		}
+
+		++initial;
+	}
+}
+
+// Function to print the sorted array 
+void Print(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		printf("%d ", a[i]);
+	printf("\n");
+}
+
+// Main function
+int main()
+{
+	int no_element;
+	cout << "Enter the number of elements: "; 
+  	cin >> no_element;
+	int a[no_element];
+
+	cout << "Enter the numbers: ";
+	for(int x=0; x < no_element; x++){
+		cin>>a[x];
+	}
+
+	int n = sizeof(a) / sizeof(a[0]);
+	Cocktail_shaker_sort(a, n);
+	printf("\nSorted array is: ");
+	Print(a, n);
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def cocktailSort(arr):
+    isSwapped = True
+    First = 0
+    Last = len(arr)-1
+    while isSwapped is True:
+        # reset isSwapped so that we can use it for this iteration
+        isSwapped = False
+        # traversing from first to last element
+        for i in range(First, Last):
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                isSwapped = True
+
+        # if array is already sorted, break the loop
+        if isSwapped is False:
+            break
+
+        isSwapped = False
+        # last element is largest so we'll reduce last by one position.
+        Last = Last-1
+        # iteration from last to first element
+        for i in range(Last-1, First-1, -1):
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                isSwapped = True
+        # first element is smallest so moving a first one position ahead
+        First = First+1
+
+
+# number of elements
+n = int(input("Enter number of elements: "))
+arr = list(map(int, input("Enter the numbers: ").strip().split()))[:n]
+cocktailSort(arr)
+print("\nSorted array is: ", end = '')
+for i in arr:
+    print(i, end = ' ')
+print()
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the number of elements: 6
+Enter the numbers: 10 2 8 3 6 1
+```
+
+#### Output:
+
+```
+Sorted array is: 1 2 3 6 8 10
+```
+
+## Complexity Analysis
+
+  - Time complexity: 
+    - Average case / Worst case: `O(n^2)`
+    - Best case: `O(n)`, when the array is already sorted.
+  - Space complexity: `O(1)` (Auxiliay)
+
+## Credits
+
+  - [Sushobhan Pramanik](https://github.com/sahebsunny) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Cocktail_shaker_sort.cpp)
+  - [Rutuja Dhanawade](https://github.com/rutujadhanawade) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/cocktail_sort.py)

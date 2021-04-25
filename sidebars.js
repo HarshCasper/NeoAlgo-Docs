@@ -1,5 +1,4 @@
 module.exports = {
-
     docs: [
         {
             type: "category",
@@ -40,6 +39,17 @@ module.exports = {
                 'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
+                "sorting-algorithms/radix-sort",
+                "sorting-algorithms/counting-sort",
+		            "sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/counting-sort",
+		            "sorting-algorithms/stooge-sort", 
+		            "sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/counting-sort",
+        		    "sorting-algorithms/wiggle-sort",
+                "sorting-algorithms/stooge-sort",
             ],
         },
         {
@@ -48,16 +58,14 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
-                "data-structures/Singly-Linked-list",
                 "data-structures/binary-search-tree",
+                "data-structures/Singly-Linked-list",
+                "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
-                "data-structures/binary-search-tree",
                 "data-structures/queue",
-                "data-structures/Circular-Linked-list",
-                "data-structures/binary-search-tree",
-                "data-structures/preorder_traversal",
-		        "data-structures/palindromic-linked-list",
+                "data-structures/circular-queue",
+                "data-structures/palindromic-linked-list",
             ],
         },
         {
@@ -96,6 +104,7 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
+		            "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
@@ -109,8 +118,15 @@ module.exports = {
                 "mathematics/ugly-numbers",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
+                "mathematics/lcm-of-two-numbers",
+                "mathematics/binary-exponentiation",
+                "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
 		            "mathematics/lucas-theorem",
+                "mathematics/euler-totient-function",
+		            "mathematics/matrix-addition",
+                "mathematics/matrix-transpose",
+                "mathematics/matrix-multiplication",
             ],
         },
         {
@@ -129,6 +145,7 @@ module.exports = {
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/depth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+	             	"graph-algorithms/topological-sorting"
             ],
         },
         {
@@ -137,7 +154,9 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+                "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
+                "competitive-programming/reverse-of-string",
             ],
         },
         {
@@ -151,7 +170,7 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher"],
+            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher", "cryptography/vigenere-cipher"],
         },
         {
             type: "category",
