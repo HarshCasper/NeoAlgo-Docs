@@ -5,7 +5,7 @@ slug: /dynamic-programming/cutting-a-rod
 
 ## Introduction
 
-Given a rod of length `n` and an array of prices of all pieces of length `1` to `n`, we need to determine the maximum price that can be obtained by cutting up the rod and selling its pieces.
+We are given a rod of length `n` and an array containing prices of all pieces of rods of length varying from `1` to `n`. We are required to cut the rod into sub-rods such that the sub-rods together form the whole rod of length `n` and the sum of selling prices of sub-rods is maximum. That is, we need to determine the maximum price that can be obtained by cutting up the rod and selling its pieces.
 
 ## Explanation
 
@@ -22,13 +22,39 @@ Ways of cutting the rod into sub-rods:
 
 1) Length 1 + Length 4
 
+  ________________________
+ |___|____|____|____|____|
+
+            |
+           
+  ___      _________________
+ |__|  +   |___|___|___|___|
+
+  2     +         8
+                      
+
   - Selling price = 2 + 8 = 10
 
 2) Length 2 + Length 3
 
+  _______________________
+  |___|____|____|____|___|
+
+             |
+
+  ________      _____________ 
+  |___|___|  +  |___|___|___|
+
+      5      +        7
+
   - Selling price = 5 + 7 = 12
 
 3) Length 5
+
+  _____________________
+  |___|___|___|___|___|
+
+           10
 
   - Selling price = 10
 
@@ -38,16 +64,11 @@ sub-rods of length 2 and 3.
 
 ## Algorithm
 
-- Initialize an array `dp[]` such that the `ith` element stores the maximum price obtained by a rod of length `i`.
-
-```
-for i = 1 to n
-    current_max = i
-    for j = 0 to i - 1
-        current_max = max(cost[j] + dp[ i- j - 1], current_max)
-    dp[i] = current_max
-return dp[n]
-```
+- Initialize an array `max_price[]` such that the `ith` element stores the maximum price obtained by a rod of length `i`.
+- Iterate `i` from `1` to `n`.
+- Find the maximum price obtained by selling the rod of length `i`, using the optimal sub-structure mentioned below.
+- Optimal sub-structure: `max_price[i] = max(cost[j] + max_price[i - j - 1]) for all j = 0 to i - 1`.
+- return max_price[n]
 
 ## Code
 
