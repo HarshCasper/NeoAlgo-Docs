@@ -153,7 +153,7 @@ module.exports = {
                 "competitive-programming/anagram-numbers",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
-                "competitive-programming/first-occurrence-1",
+                "competitive-programming/first-occurence-1",
                 "competitive-programming/reverse-of-string",
             ],
         },
