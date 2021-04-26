@@ -1,0 +1,213 @@
+---
+title: Spiral Traversal of Matrix
+slug: /mathematics/spiral-traversal-of-matrix
+---
+
+## Introduction
+
+We are given a matrix and we need to print the elements of the matrix in spiral form. It's like traversing the boundary of the matrix in clockwise order. We need to print the outermost boundary first, then we need to print the second outermost boundary and this process keeps on going until the entire matrix gets printed.
+
+## Explanation 
+
+Spiral Traversal basically refers to traversing first row, then last column, then bottom row in reverse order, then first column in reverse order, then second row and so on. Refer to image given below for better understanding.
+
+<img src="https://i.imgur.com/i2MCv71.jpg" width="350" height="240" /><br/><br/>
+
+Let's have one example: 
+```
+arr[3][3] = {{1, 2, 3},
+             {4, 5, 6},
+             {7, 8, 9}}
+top = 0    ,to mark the top boundary of matrix
+right = 2  ,to mark the right boundary of matrix
+bottom = 2 ,to mark the bottom boundary of matrix
+left = 0   ,to mark to left boundary of matrix
+
+Iteration 1:
+Print the top-most row of the matrix bounded by the above variables by traversing from arr[top][left] to arr[top][right]
+Increase top by 1
+
+Iteration 2:
+Print the right-most column of the matrix bounded by the above variables by traversing from arr[top][right] to arr[bottom][right]
+Decrease right by 1
+
+Iteration 3:
+Print the bottom-most row of the matrix bounded by the above variables by traversing from arr[botttom][right] to arr[bottom][left]
+Decrease bottom by 1
+
+Iteration 4:
+Print the left-most column of the matrix bounded by the above variables by traversing from arr[bottom][left] to arr[top][right]
+Increase left by 1
+
+Iteration 5:
+Print the top-most row of the matrix bounded by the above variables by traversing from arr[top][left] to arr[top][right]
+Increase top by 1
+```
+
+## Algorithm
+
+- Initilize `top` to `0`, `right` to `column-1`, `bottom` to `row-1` and `left` to `0`.
+
+- Traverse top-most row and increase `top` by `1`.
+
+- Traverse right-most column and decrease `right` by `1`.
+
+- Traverse bottom-most row and decrease `bottom` by `1`.
+
+- Traverse left-most column and increase `left` by `1`.
+
+- Apply previous four steps till `top <= bottom` and `left <= right`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to print matrix in spiral form
+
+vector < int > spiral_traversal(int * matrix, int row, int col) 
+{
+    int top = 0, right = col - 1, bottom = row - 1, left = 0;
+
+    vector < int > arr;
+
+    while (true) 
+    {
+        // Printing top-most row of the matrix
+
+        if (top <= bottom) 
+        {
+            int i = left;
+            while (i <= right) 
+            {
+                arr.push_back( * (matrix + top * col + i));
+                i++;
+            }
+            top++;
+        }
+        // Printing right-most column of the matrix
+
+        if (left <= right) 
+        {
+            int i = top;
+            while (i <= bottom)
+            {
+                arr.push_back( * (matrix + i * col + right));
+                i++;
+            }
+            right--;
+        }
+        // Printing bottom-most row of the matrix
+
+        if (top <= bottom) 
+        {
+            int i = right;
+            while (i >= left) 
+            {
+                arr.push_back( * (matrix + bottom * col + i));
+                i--;
+            }
+            bottom--;
+        }
+        // Printing left-most column of the matrix
+
+        if (left <= right) 
+        {
+            int i = bottom;
+            while (i >= top) 
+            {
+                arr.push_back( * (matrix + i * col + left));
+                i--;
+            }
+            left++;
+        }
+        if (top > bottom || left > right) break;
+    }
+    return arr;
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    vector < int > ans = spiral_traversal((int * ) arr, row, col);
+
+    for (auto e: ans) 
+    {
+        cout << e << " ";
+    }
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to return nth tetrahedral number
+def tetrahedral_number(n):
+    res = n * (n+1) * (n+2)
+    res = res // 6
+    return res
+if __name__ == "__main__":
+    n = int(input("Enter the Number: "))
+    print("Tetrahedral Number is: ",tetrahedral_number(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix: 
+1 2 3 
+4 5 6 
+7 8 9
+```
+
+#### Output :
+
+```
+1 2 3 6 9 8 7 4 5
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row*Column)`
+
+- Space Complexity: `O(1)`
