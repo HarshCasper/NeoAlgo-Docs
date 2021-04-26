@@ -55,7 +55,7 @@ module.exports = {
                 "data-structures/Singly-Linked-list",
                  "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-                "data-structures/infix-to-postfix"
+                "data-structures/infix-to-postfix",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
@@ -64,7 +64,7 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		"data-structures/palindromic-linked-list",
+		        "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
             ],
         },
@@ -77,7 +77,7 @@ module.exports = {
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
 		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+		            "dynamic-programming/golomb-sequence",
             ],
         },
         {
