@@ -119,8 +119,9 @@ public class SleepSort {
 
     public static void sleepSort(int[] array) {
         
-        // CountDownLatch in java is used to make sure that a task waits for other threads before it starts.
-        // Here the task is going to wait for threads which is equal to array length before it starts.
+        /* CountDownLatch in java is used to make sure that a task waits for other threads before it starts.
+           Here the task is going to wait for threads which is equal to array length before it starts. */
+	   
         final CountDownLatch countDone = new CountDownLatch(array.length);
         System.out.println("The sorted array is: ");
         
@@ -167,7 +168,7 @@ The sorted array is: 5 9 14 10 30 77 981
 
 ## Complexity Analysis
 
-- Time complexity: `O(NlogN + max(input))` where, N = number of elements in the input array, and array = input array elements
+- Time complexity: `O(NlogN + max(input))` where, `N` signifies the number of elements in the input array
 - Space complexity : `O(N)`
 
 ## Credits
