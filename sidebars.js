@@ -154,7 +154,6 @@ module.exports = {
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/first-occurrence-1",
-                "competitive-programming/first-occurrence-1",
                 "competitive-programming/reverse-of-string",
             ],
         },
