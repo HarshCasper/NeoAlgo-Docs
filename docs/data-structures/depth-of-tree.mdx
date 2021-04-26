@@ -38,7 +38,7 @@ In this section, we will discuss about the algorithmic steps performed to find t
 
 #### Maximum Depth of Tree
 
-* If the root is null, then the depth of the tree is 0.
+* If the root is null, then the depth of the tree is `0`.
 * Else, start from the root and, 
   * Recursively find the maximum depth of the left sub-tree.
   * Recursively find the maximum depth of right sub-there.
@@ -46,7 +46,7 @@ In this section, we will discuss about the algorithmic steps performed to find t
 
 #### Depth of a Node
 
-* If the root is null, return -1.
+* If the root is null, return `-1`.
 * If the root is equal to the value of the node who's depth we are supposed to find, print depth = 0.
 * Else, recursively check if the node is present in either of the sub-trees.
 * If found, calculate the distance between the root node and the given node.
@@ -236,15 +236,6 @@ Enter elements to insert in  tree: 50 60 40 55 30 70 45
 #### Sample Output
 ```
 Depth of tree : 3
-
-         50                         level 1
-      /     \
-     /       \
-    40        60                    level 2
-   /   \     /   \
-  /     \   /     \
-30    45  55      70                level 3
-
 ```
 
 ## Complexity Analysis
