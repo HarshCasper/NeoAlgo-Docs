@@ -5,12 +5,10 @@ slug: /mathematics/next-permutation
 
 ## Introduction
 
-Implementation of next permutation, it rearranges numbers into the lexicographically next greater permutation of numbers.
-If such an arrangement is not possible, it must rearrange it as the lowest possible order (sorted in ascending order).
+Implementation of next permutation, it rearranges numbers into the lexicographically next greater permutation of numbers.If such an arrangement is not possible, it must rearrange it as the lowest possible order (sorted in ascending order).
 
 ## Explanation 
-We need to find the next lexicographic permutation of the given list of numbers than the number formed by the given array.
-Our approach would be inplace.
+We need to find the next lexicographic permutation of the given list of numbers than the number formed by the given array and Our approach would be inplace.
 
 
 
@@ -32,22 +30,13 @@ Output: [1]
 ## Algorithm
 
 * We will find length of array and store it in `length` variable.
-
 * We will check a base condition if the `length` is less than or equal to 2 simply return `reverse` of array ( as that's the next permutation). 
-
 * Now, Let's keep a pointer at `length - 2` position of array and call it `pointer`.
-
-* Now, we will iterate with conditions `pointer >=0` and Element at that index must be graeter than or equal to Element at next index simply `array[pointer] >= array[pointer + 1]`
-  Here we will be decrementing pointer as `pointer = pointer -1` (ensures us that we are moving backwards over the array)
-
+* Now, we will iterate with conditions `pointer >=0` and Element at that index must be graeter than or equal to Element at next index simply `array[pointer] >= array[pointer + 1]` , Here we will be decrementing pointer as `pointer = pointer -1` (ensures us that we are moving backwards over the array)
 * Now, Over that process once the `pointer` is equal to `-1` then it simply means we have to return `array.reverse()` 
-
 * If it is not yet equal to `-1' then we iterate over the range of `length - 1, pointer` with incrementer as `-1` and variable as `number`.
-
 * Inside the loop we check condition if `array[pointer] < array[number]` is `True` then swap `array[pointer]` with `array[number]` and `break` after that is done.
-
 * Finally we index over our array from `pointer + 1` till `end` of array and simply reverse is using `reversed` function.
-
 * Now, we'd simply return the modified array as our answer.
 
 ## Code
