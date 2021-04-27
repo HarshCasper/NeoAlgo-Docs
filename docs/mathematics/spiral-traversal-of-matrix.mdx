@@ -174,14 +174,64 @@ int main()
 <TabItem value="py">
 
 ```python   
-# Function to return nth tetrahedral number
-def tetrahedral_number(n):
-    res = n * (n+1) * (n+2)
-    res = res // 6
-    return res
+# Function to print matrix in spiral form
+
+def spiral_traversal(matrix, row, col):
+    top = 0
+    right = col - 1
+    bottom = row - 1
+    left = 0
+
+    while True:
+        # Printing top-most row of the matrix
+
+        if top <= bottom:
+            i = left
+            while i <= right:
+                print(matrix[top][i], end=" ")
+                i += 1
+            top += 1
+        # Printing right-most column of the matrix
+
+        if left <= right:
+            i = top
+            while i <= bottom:
+                print(matrix[i][right], end=" ")
+                i += 1
+            right -= 1
+        # Printing bottom-most row of the matrix
+
+        if top <= bottom:
+            i = right
+            while i >= left:
+                print(matrix[bottom][i], end=" ")
+                i -= 1
+            bottom -= 1
+        # Printing left-most column of the matrix
+
+        if left <= right:
+            i = bottom
+            while i >= top:
+                print(matrix[i][left], end=" ")
+                i -= 1
+            left += 1
+
+        if top > bottom or left > right:
+            break
+
 if __name__ == "__main__":
-    n = int(input("Enter the Number: "))
-    print("Tetrahedral Number is: ",tetrahedral_number(n))
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    spiral_traversal(matrix, row, col)
 ```
 </TabItem>
 
@@ -195,9 +245,15 @@ if __name__ == "__main__":
 Enter the number of rows: 3
 Enter the number of columns: 3
 Enter the elements of Matrix: 
-1 2 3 
-4 5 6 
-7 8 9
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9
 ```
 
 #### Output :
