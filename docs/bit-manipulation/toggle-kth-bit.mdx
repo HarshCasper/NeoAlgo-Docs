@@ -16,7 +16,7 @@ Consider n = 24,  k = 3
 
 Binary equivalent of n = 11000
 
-Binary equivalent of n after toggling its third bit = 11100 (28)
+Binary equivalent of n after toggling its third bit(from the LSB) = 11100 (28)
 ```
 
 Hence `28` is the number obtained after toggling the k'th bit.
@@ -45,53 +45,39 @@ import TabItem from "@theme/TabItem";
 <TabItem value="cpp">
 
 ```cpp
-//CPP Program to find whether a number is a Krishnamurthy number
+/*
+ Program to Toggle kth bit of a number.
+ Given a number we want to toggle the kth  bit of a number .
 
-#include<iostream>
+  Ex:-6 (110) and k=2
+     after toggling  2nd bit our number would be (100) 4.
+ Approach:
+  firstly we will left shift the given number k-1 times.
+  After then we will xor the left shifted result with given number and return
+*/
 
-//Function to calculate the factorial of the individual digits
+#include <bits/stdc++.h>
+using namespace std;
 
-int Factorial ( int n )
+int  toggle_k_bit(int n,int k)
 {
-    if ( n == 1 || n == 0 )
-    {
-        return 1;
-    }
-    return n * Factorial( n - 1 );
+   int temp=1<<(k-1);
+
+   return n^temp;
 }
 
-int Krishnamurthy_No ( int num )
+int main()
 {
-    int digit, sum = 0 ,copy = num;
+    int n,k;
 
-    //Running a loop till we have extracted all the digits from the copy of the given number
+    cout<<"Enter the number: ";
+    cin>>n;
+    cout<<"Enter the value of k(where you need to toggle the k'th bit): ";
+    cin>>k;
 
-    while ( copy > 0 )
-    {
-        digit = copy % 10;
-        sum = sum + Factorial ( digit );
-        copy = copy / 10;
-    }
-    return sum;
-}
+    cout<<"The given number, after toggling the k-th bit is "<< toggle_k_bit(n,k)<<"\n";
 
-int main ()
-{
-    int number, digit, sum = 0;
-    std::cout << "Enter the number: ";
-    std::cin >> number;
-    int answer = Krishnamurthy_No ( number );
-
-    //Comparing if calculated sum adds up to the number
-
-    if ( answer == number)
-    {
-        std:: cout <<"The given number "<< number <<" is a Krishnamurthy number.";
-    }
-    else
-    {
-        std:: cout <<"The given number "<< number <<" is not a Krishnamurthy number.";
-    }
+    return 0;
 }
 
 ```
@@ -100,25 +86,18 @@ int main ()
 <TabItem value="py">
 
 ```python
-def factorial(n) :
-    p = 1
-    for i in range(1 , n + 1) :
-        p = p * i
-    return p
+# Python program to toggle the k-th bit of a number.
+def toggle(num, k):
+    return (num ^ (1 << (k-1)))
 
-print("Enter the number: ", end="")
-number = int(input())
-temp = number
-sums = 0
-if number > 0 :
-    while temp > 0 :
-        remainder = temp % 10
-        sums = sums + factorial(remainder)
-        temp = temp // 10
-    if sums == number :
-        print("The given number {} is a Krishnamurthy number.".format(number))
-    else :
-        print("The given number {} is not a Krishnamurthy number.".format(number))
+
+if __name__ == '__main__':
+    print("Enter the number: ", end="")
+    n = int(input())
+    print("Enter the value of k(where you need to toggle the k'th bit): ", end="")
+    b = int(input())
+    res = toggle(n, b)
+    print("The given number, after toggling the k-th bit is {}".format(res))
 
 ```
 
@@ -130,21 +109,22 @@ if number > 0 :
 #### Input
 
 ```
-Enter the number: 45
+Enter the number: 33
+Enter the value of k(where you need to toggle the k'th bit): 12
 ```
 
 #### Output
 
 ```
-The given number 145 is a Krishnamurthy number.
+The given number, after toggling the k-th bit is 2081.
 ```
 
 ## Complexity Analysis
 
--   Time complexity - `O(n * log(n))`, where `n` is the given number
+-   Time complexity - `O(1)`
 -   Space complexity - `O(1)`
 
 ## Credits
 
 -   [Faiz Alam](https://github.com/zhcet19) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/togglebit.cpp)
--   [Shaik Javeed Suhail](https://github.com/javeed3157) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/Strong_Number.py)
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/Bit--Manipulation/toggle_kth_bit.py)
