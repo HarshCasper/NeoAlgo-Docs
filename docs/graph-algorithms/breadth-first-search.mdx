@@ -10,19 +10,20 @@ Breadth-first search (BFS) is an algorithm to traverse/search the data structure
 ## Explanation
 
 - The BFS traversal of the graph is similar to the level-order traversal in trees. It starts the traversal with a given `source vertex (V)`, visits all of the vertices adjacent to the given vertex and `pushes them all to a queue` in order of visiting and `pops it from the front of the queue`, visits all adjacent nodes and pushes them into the queue. This process is repeated until the queue is empty or all of the vertices are visited.
+
+
 #### Quick Example :  
+
 - Consider the graph shown below. The vertex numbered 0 is the source vertex i.e. the BFS traversal will start from the vertex 0.
 
-**Step 1]**![BFS 1](https://user-images.githubusercontent.com/72685035/115226603-0ede9300-a12d-11eb-81f6-7947fa9a3366.jpg) 
+![graph20](https://user-images.githubusercontent.com/72685035/116195549-fd5e4200-a74f-11eb-9df9-0f68eb0ce664.gif) 
+**Step 1] Start at vertex 0**
 
-**Step 2]**![BFS 2](https://user-images.githubusercontent.com/72685035/115226742-36cdf680-a12d-11eb-83c9-018e1654a0fb.jpg) 
+![graph40](https://user-images.githubusercontent.com/72685035/116195625-1830b680-a750-11eb-8e2a-f586882273c8.gif) 
+**Step 2] Visit all the neighbors of node 0 first**
 
-**Step 3]**![BFS 3](https://user-images.githubusercontent.com/72685035/115226830-4cdbb700-a12d-11eb-8fe2-37987f6d1ff1.jpg) 
-
-**Step 4]**![BFS 4](https://user-images.githubusercontent.com/72685035/115226837-5107d480-a12d-11eb-89ca-8ce70a1c3583.jpg)
-
-**Step 5]**![BFS 5](https://user-images.githubusercontent.com/72685035/115226850-549b5b80-a12d-11eb-9c48-bccb2a9a831c.jpg)
-
+![graph41](https://user-images.githubusercontent.com/72685035/116195639-1b2ba700-a750-11eb-92d2-31345cc6a5cf.gif)
+**Step 3] Then visit the other vertices neighbors & so on**
 
 ## Algorithm
 
@@ -131,11 +132,11 @@ int main()
         g.addEdge(A, B);
     }
 
-    cout << "Enter the Vertex to traverse Graph\n";
+    cout << "Enter the Edges to traverse Graph\n";
     cin >> S;
 
     cout << "The BFS Traversal of given Graph is : "
-         << "(starting from vertex )" << S << " \n";
+        << S << " \n";
 
     g.BFS(S);
 
@@ -194,17 +195,17 @@ public class BFS {
 		
 		Scanner sc=new Scanner(System.in);
 	
-		System.out.println("Enter the number of vertices in Graph : ");
+		System.out.println("Enter the No of Vertex : ");
 		int V=sc.nextInt();
 		
-		System.out.println("Enter the number of edges in the Graph : ");
+		System.out.println("Enter the No of Edges : ");
 		int E=sc.nextInt();
 		
         // Adjaceny Matrix :
 		int edges[][]=new int[V][V];
 		
        // Taking edges as input :
-		System.out.println("Enter the edges :");
+		System.out.println("Enter the Edges to traverse graph:");
 		for(int i=0;i<E;i++) {
 			int sv=sc.nextInt();
 			int ev=sc.nextInt();
@@ -212,7 +213,7 @@ public class BFS {
 			edges[ev][sv]=1;
 		}
 		
-		System.out.println("BFS Traversal : ");
+		System.out.println("BFS Traversal of given Graph is: ");
 		breadthFirst(edges,V);
 
 	}
@@ -294,7 +295,7 @@ if __name__ == "__main__":
     if v > 0 and e > 0:
         g = Graph(v)
         for i in range(e):
-            print("Enter vertices having edge between them-")
+            print("Enter the No of Vertex & no of Edges-")
             v1, v2 = map(int, input().split())
             g.addEdge(v1, v2)
         print("Enter starting and ending vertex")
@@ -304,6 +305,7 @@ if __name__ == "__main__":
         while x != -1:
             print(x, end=" ")
             x = path.get(x, -1)
+
 
 ```
 
@@ -315,11 +317,11 @@ if __name__ == "__main__":
 #### Input:
 
 ```
-Enter the number of vertices in Graph : 
+Enter the No of Vertex : 
 4
-Enter the number of edges in the Graph : 
+Enter the No of Edges  : 
 4
-Enter the edges :
+Enter the Edges to traverse Graph :
 0 1
 1 2
 0 2
@@ -329,7 +331,7 @@ Enter the edges :
 #### Output:
 
 ```
-BFS Traversal : 
+The BFS Traversal of given Graph is : 
 0 1 2 3 
 ```
 
