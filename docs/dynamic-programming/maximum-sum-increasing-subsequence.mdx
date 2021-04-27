@@ -1,0 +1,176 @@
+---
+title: Maximum Sum Increasing Subsequence
+slug: /dynamic-programming/maximum-sum-increasing-subsequence
+---
+
+## Introduction
+
+Given an array of `n` integers, we need to find the sum of the maximum sum subsequence of the given array such that the integers in the subsequnece are increasing in value.
+
+## Explanation
+
+For Example,
+
+```
+Consider an array [6, 107, 8, 9, 106, 10, 11]
+
+In this array, the maximum sum formed by an increasing sequence is 130 formed by [7, 8, 9, 106]
+```
+
+## Algorithm
+
+Let us assume that the given array be `arr`,
+
+-   Set `n` the length of the array `arr`
+-   Declare `max_sum` and assign it a value of `0`
+-   Declare an array of length `n` named `dp` and assign every element of it a value of `0`
+-   Set `i`, the value of `0`
+-   Iterate a While loop till `i` is less than `n`
+    -   Assign `dp[i]`, the value of `arr[i]`
+-   Set `i`, the value of `0`
+-   Iterate a While loop till `i` is less than `n`
+    -   Set `j`, the value of `i`
+    -   Iterate a While loop till `j` is less than `i`
+    -   If `arr[i]` is greater than `arr[j]` and `dp[i]` is less than `dp[i] + arr[i]`
+        -   Set `dp[i]`the value `dp[j]` + `arr[i]`
+-   Find the maximum element in the array `dp` and assign it to `max_sum`
+-   Return `max_sum`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+// C++ program to implement Maximum Sum Increasing Subsequence
+/*
+In this problem, given an array we have to find the maximum sum an increasing subsequence of that array can make.
+This problem is a slight modification to the Longest Increasing subsequence problem.
+The problem can be solved using Dynamic Programming
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+int max_sum_increasing_subsequence(int arr[], int n)
+{
+    int dp[n], max_sum = 0;
+
+    /* Initialize the dp array with the array values, as the maximum sum
+       at each point is atleast as the value at that point         */
+    for (int i = 0; i < n; i++)
+        dp[i] = arr[i];
+
+    // Now Lets Fill the dp array in Bottom-Up manner
+    /* Compare Each i'th element to its previous elements from 0 to i-1,
+       If arr[i] > arr[j], then it qualifies for increasing subsequence and
+       If dp[i] < dp[j] + arr[i], then that subsequence sum qualifies for being the maximum one */
+    for (int i = 1; i < n; i++)
+        for (int j = 0; j < i; j++)
+            if (arr[i] > arr[j] && dp[i] < dp[j] + arr[i])
+                dp[i] = dp[j] + arr[i];
+
+    //Now Find the maximum element in the 'dp' array
+    max_sum = *max_element(arr, arr + n);
+
+    return max_sum;
+}
+
+int main()
+{
+    int n, max_sum;
+    cout << "\nWhat is the length of the array? ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the numbers: ";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    max_sum = max_sum_increasing_subsequence(arr, n);
+
+    cout << "The maximum sum of an increasing subsequence of the given array is " << max_sum;
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+"""
+Python program to implement Maximum Sum Increasing Subsequence
+In this problem, given an array we have to find the maximum sum an increasing subsequence of that array can make.
+This problem is a slight modification to the Longest Increasing subsequence problem.
+The problem can be solved using Dynamic Programming
+"""
+
+def maximum_sum_increasing_subsequence(arr, n):
+    max_sum = 0
+    dp = [0 for i in range(n)]
+
+   # Initialize the dp array with the array values, as the maximum sum
+   # at each point is atleast as the value at that point
+    for i in range(n):
+        dp[i] = arr[i]
+
+    for i in range(1, n):
+        for j in range(i):
+            if(arr[i] > arr[j] and dp[i] < dp[j] + arr[i]):
+                dp[i] = dp[j] + arr[i]
+
+    # Now Find the maximum element in the dp array
+    max_sum = max(dp)
+    return max_sum
+
+
+if __name__ == '__main__':
+    print("What is the length of the array? ", end="")
+    n = int(input())
+    if (n <= 0):
+        print("No numbers present in the array!!!")
+        exit()
+    print("Enter the numbers: ", end="")
+    arr = [int(x) for x in input().split(' ')]
+    res = maximum_sum_increasing_subsequence(arr, n)
+    print("The maximum sum of an  increasing subsequence of the given array is {}".format(res))
+
+```
+
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+What is the length of the array? 10
+Enter the numbers: 23 14 5 84 24 222 321 43 123 432
+```
+
+#### Output
+
+```
+The maximum sum of an increasing subsequence of the given array is 1082
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(n ^ 2)`, where `n` is the given number
+-   Space complexity - `O(n)`
+
+## Credits
+
+-   [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/maximum_sum_increasing_subsequence.cpp)
+-   [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/maximum_sum_increasing_subsequence.py)
