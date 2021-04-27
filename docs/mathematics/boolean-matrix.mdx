@@ -1,0 +1,226 @@
+---
+title: Boolean Matrix
+slug: /mathematics/boolean-matrix
+---
+
+## Introduction
+
+Boolean Matrix refers to the matrix which only contains `0` and `1`. We are given a boolean matrix of size `N X N`, we need to modify the matrix such that if a matrix cell `matrix[i][j]` is `1`, then make all cells of `ith` row and `jth` column as `1`.
+
+## Explanation 
+
+It can be solved using the simple method of traversing the matrix and if we found `1`, make its whole row and column as `1`. The Time Complexity of this method is `O(N*N*N)`. We will be looking at an optimized approach to solve this question in time complexity `O(N*N)`.
+
+<img src="https://i.imgur.com/W5yucjK.jpg" width="161" height="165" /><br/><br/>
+
+Let's have one example: 
+```
+Input1:
+0 0 0
+0 0 1
+0 1 0
+
+Output1:
+0 1 1
+1 1 1
+1 1 1
+
+Input2:
+0 0 0
+0 1 0
+0 0 0
+
+Output2:
+0 1 0
+1 1 1
+0 1 0
+```
+
+## Algorithm
+
+- Make two arrays `row` and `col` and initialize them to `0`.
+
+- Traverse the whole matrix and mark the indexes of the cell where `1` is present in the `row` and `col` array.
+
+- Traverse the whole matrix and mark the cell as `1` if its row index or column index is marked in the `row` or `col` array.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to modify boolean matrix
+
+void boolean_matrix(int * matrix, int n, int m) 
+{
+    int row[n+2]={0};
+    int col[m+2]={0};
+    // Storing the position of 1
+
+    int i = 0;
+    while (i < n) 
+    {
+        int j = 0;
+        while (j < m) 
+        {
+            if ( * (matrix + i * m + j) == 1) 
+            {
+                row[i]++;
+                col[j]++;
+            }
+            j++;
+        }
+        i++;
+    }
+    // Adding 1 to the matrix
+
+    i = 0;
+    while (i < n) 
+    {
+        int j = 0;
+        while (j < m) 
+        {
+            if (row[i] != 0 || col[j] != 0) 
+            {
+                *(matrix + i * m + j) = 1;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    boolean_matrix((int * ) arr, row, col);
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to modify boolean matrix
+
+def boolean_matrix(matrix, n, m):
+    row = [0] * n
+    col = [0] * m
+    # Storing the position of 1
+
+    i = 0
+    while i < n:
+        j = 0
+        while j < m:
+            if matrix[i][j] == 1:
+                row[i] += 1
+                col[j] += 1
+            j += 1
+        i += 1
+    # Adding 1 to the matrix
+
+    i = 0
+    while i < n:
+        j = 0
+        while j < m:
+            if row[i] != 0 or col[j] != 0:
+                matrix[i][j] = 1
+            j += 1
+        i += 1
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    boolean_matrix(matrix, row, col)
+
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            print(matrix[i][j], end=" ")
+        print()
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix: 
+0 
+0 
+0
+0
+1 
+0
+0 
+0
+0
+```
+
+#### Output :
+
+```
+0 1 0
+1 1 1
+0 1 0
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N*N)`
+
+- Space Complexity: `O(N+N)`

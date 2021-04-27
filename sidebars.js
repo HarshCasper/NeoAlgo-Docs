@@ -124,6 +124,7 @@ module.exports = {
 		            "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
+                "mathematics/boolean-matrix",
             ],
         },
         {
