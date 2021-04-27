@@ -24,39 +24,34 @@ bottom = 2 ,to mark the bottom boundary of matrix
 left = 0   ,to mark to left boundary of matrix
 
 Iteration 1:
-Print the top-most row of the matrix bounded by the above variables by traversing from arr[top][left] to arr[top][right]
+Print top-most row of the matrix bounded by above variables by traversing from arr[top][left] to arr[top][right]
 Increase top by 1
 
 Iteration 2:
-Print the right-most column of the matrix bounded by the above variables by traversing from arr[top][right] to arr[bottom][right]
+Print right-most column of the matrix bounded by above variables by traversing from arr[top][right] to arr[bottom][right]
 Decrease right by 1
 
 Iteration 3:
-Print the bottom-most row of the matrix bounded by the above variables by traversing from arr[botttom][right] to arr[bottom][left]
+Print bottom-most row of the matrix bounded by above variables by traversing from arr[botttom][right] to arr[bottom][left]
 Decrease bottom by 1
 
 Iteration 4:
-Print the left-most column of the matrix bounded by the above variables by traversing from arr[bottom][left] to arr[top][right]
+Print left-most column of the matrix bounded by above variables by traversing from arr[bottom][left] to arr[top][right]
 Increase left by 1
 
 Iteration 5:
-Print the top-most row of the matrix bounded by the above variables by traversing from arr[top][left] to arr[top][right]
+Print top-most row of the matrix bounded by above variables by traversing from arr[top][left] to arr[top][right]
 Increase top by 1
 ```
 
 ## Algorithm
 
 - Initilize `top` to `0`, `right` to `column-1`, `bottom` to `row-1` and `left` to `0`.
-
 - Traverse top-most row and increase `top` by `1`.
-
 - Traverse right-most column and decrease `right` by `1`.
-
 - Traverse bottom-most row and decrease `bottom` by `1`.
-
 - Traverse left-most column and increase `left` by `1`.
-
-- Apply previous four steps till `top <= bottom` and `left <= right`.
+- Apply the previous four steps till `top <= bottom` and `left <= right`.
 
 ## Code
 
@@ -265,5 +260,4 @@ Enter the elements of Matrix:
 ## Complexity Analysis
 
 - Time Complexity: `O(Row*Column)`
-
 - Space Complexity: `O(1)`
