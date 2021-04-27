@@ -14,14 +14,14 @@ Every hexagonal number is a triangular number and every odd triangular number is
 <img src="https://i.imgur.com/2JrXeU5.jpg" width="391" height="189" /><br/><br/>
 
 Formula: 
+
 ```
 nth Hexagonal Number: n * (2 * n - 1) 
 ```
 
-Test for Hexagonal Number:
-```
 We can test whether a positive integer `x` is a hexagonal number or not by calculating below expression:
 
+```
 n = (sqrt(8*x + 1) + 1) / 4
 
 If n is an integer then x is a hexagonal number
@@ -29,6 +29,7 @@ Else x is not a hexagonal number
 ```
 
 Let's have few examples: 
+
 ```
 n = 1
 1st hexagonal number = 1
@@ -39,10 +40,6 @@ n = 3
 n = 6
 6th hexagonal number = 66
 ```
-
-## Algorithm
-
-- Return `n * (2 * n - 1)`.
 
 ## Code
 
