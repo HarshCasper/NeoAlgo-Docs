@@ -36,12 +36,17 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
-                'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
-		"sorting-algorithms/cocktail-sort",
+		            "sorting-algorithms/sleep-sort",
+		            "sorting-algorithms/cocktail-sort",
 		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/radix-sort",
                 "sorting-algorithms/counting-sort",
+		            "sorting-algorithms/cocktail-sort",
+                "sorting-algorithms/wiggle-sort",
+                "sorting-algorithms/stooge-sort",
             ],
         },
         {
@@ -61,6 +66,7 @@ module.exports = {
                 "data-structures/preorder_traversal",
 		"data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
+
             ],
         },
         {
@@ -71,8 +77,7 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+                "dynamic-programming/catalan-number",
             ],
         },
         {
@@ -103,14 +108,15 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+                "mathematics/fibonacci-recursion",
+                "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
                 "mathematics/gcd-of-two-numbers",
                 "mathematics/power-linear",
                 "mathematics/ugly-numbers",
+                "mathematics/noble-integer",
 		            "mathematics/lucky-numbers",
 		            "mathematics/hamming-distance",
                 "mathematics/lcm-of-two-numbers",
@@ -123,6 +129,8 @@ module.exports = {
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
                 "mathematics/hexagonal-number",
+                "mathematics/spiral-traversal-of-matrix",
+                "mathematics/tetrahedral-number",
             ],
         },
         {
@@ -140,7 +148,7 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
-		"graph-algorithms/topological-sorting"
+	        "graph-algorithms/topological-sorting"
             ],
         },
         {
@@ -165,7 +173,20 @@ module.exports = {
         {
             type: "category",
             label: "Cryptography",
-            items: ["cryptography/cryptography", "cryptography/caesar-cipher", "cryptography/keyword-cipher", "cryptography/playfair-cipher", "cryptography/railfence-cipher", "cryptography/vernam-cipher", "cryptography/homophonic-cipher", "cryptography/hill-cipher", "cryptography/columnar-transposition-cipher", "cryptography/burrows-wheeler-transform", "cryptography/affine-cipher", "cryptography/vigenere-cipher"],
+            items: [
+                "cryptography/cryptography",
+                "cryptography/caesar-cipher",
+                "cryptography/keyword-cipher",
+                "cryptography/playfair-cipher",
+                "cryptography/railfence-cipher",
+                "cryptography/vernam-cipher",
+                "cryptography/homophonic-cipher",
+                "cryptography/hill-cipher",
+                "cryptography/columnar-transposition-cipher",
+                "cryptography/burrows-wheeler-transform",
+                "cryptography/affine-cipher",
+                "cryptography/vigenere-cipher",
+            ],
         },
         {
             type: "category",
