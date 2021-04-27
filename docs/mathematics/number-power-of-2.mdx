@@ -5,17 +5,15 @@ slug: /mathematics/number-power-of-2
 
 ## Introduction
 
-Some Numbers can be represented as power of 2. Let us say `64` = `2^6`.
-But some numbers can not be represented as power of 2. Such as `22`, `45` and so on.
-
+Some numbers can be represented as power of 2, such as `64` = `2^6`. But `22` can not be represented as power of 2.
 
 ## Explanation
 
 Let us have one example:
 
 ```
-Let us say, number  = 256
-Number can be expressed as, 256 = 2^8
+Let us say, number = 256
+The number can be expressed as: 256 = 2^8
 Clearly we see, the number 256 is power of 2.
 But let's take another number, say number = 567.
 Since , it is an odd number.
@@ -24,14 +22,14 @@ Clearly we see, the number 567 is not power of 2.
 
 ## Algorithm
 
- - Given a number `number` to check whether it can represented as power of `2` or not.
+ - Given an integer. Check whether it can represented as power of `2` or not.
  - Well, if the number is power of `2`, then it's binary representation will contain only `1` setbit.
- - for example `16` = `10000` in binary representation. 
- - after subtracting 1 from the number all unset bits will become set and set bits will be unset.
- - for example `15` = `01111` in binary representation.
- - this two numbers bitwise AND `&` will be zero 
- - `10000 & (1000 - 1)` -> `0000`
- - if the number is not Power of `2` , then their bitwise AND will not zero. 
+ - For example `16` = `10000` in binary representation. 
+ - After subtracting 1 from the number all unset bits will become set and set bits will be unset.
+ - For example `15` = `01111` in binary representation.
+ - This two numbers bitwise AND `&` will be zero.
+ - `10000 & (1000 - 1)` -> `0000`.
+ - If the number is not Power of `2` , then their bitwise AND will not zero. 
 
 ## Code
 
