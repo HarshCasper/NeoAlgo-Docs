@@ -19,18 +19,12 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Algorithms",
-            items: [
-                "Algorithms/Two_Pointer",
-            ],
-        },
-        {
-            type: "category",
             label: "Searching Algorithms",
             items: [
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/two_pointer"
             ],
         },
         {
