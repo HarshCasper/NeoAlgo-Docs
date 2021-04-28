@@ -39,9 +39,7 @@ module.exports = {
                 "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
-<<<<<<< HEAD
-                "sorting-algorithms/shell-sort"
-=======
+                "sorting-algorithms/shell-sort",
 		            "sorting-algorithms/sleep-sort",
 		            "sorting-algorithms/cocktail-sort",
 		            "sorting-algorithms/bead-sort",
@@ -50,7 +48,6 @@ module.exports = {
 		            "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
->>>>>>> 37f5a3ca28c94bee818a0949e5382b2b07515c15
             ],
         },
         {
@@ -109,16 +106,14 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		            "mathematics/perfect-number",
+		        "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-
 		        "mathematics/fibonacci-recursion",
 		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
 		        "mathematics/automorphic-number",
-
                 "mathematics/fibonacci-recursion",
                 "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
@@ -128,15 +123,15 @@ module.exports = {
                 "mathematics/power-linear",
                 "mathematics/ugly-numbers",
                 "mathematics/noble-integer",
-		            "mathematics/lucky-numbers",
-		            "mathematics/hamming-distance",
+		        "mathematics/lucky-numbers",
+		        "mathematics/hamming-distance",
                 "mathematics/lcm-of-two-numbers",
                 "mathematics/binary-exponentiation",
                 "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
-		            "mathematics/lucas-theorem",
+		        "mathematics/lucas-theorem",
                 "mathematics/euler-totient-function",
-		            "mathematics/matrix-addition",
+		        "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
                 "mathematics/hexagonal-number",
