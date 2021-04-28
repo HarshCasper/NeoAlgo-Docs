@@ -1,0 +1,149 @@
+---
+title: Reverse Words in String
+slug: /competitive-programming/Reverse-Words-in-String
+---
+
+## Introduction
+
+Given a string, we need to reverse the whole string without reversing the individual words in it.
+
+## Explanation
+
+In this algorithm we have to reverse each word of a string. In other words, we have to reverse text without reversing individual word in a string.
+Let us have a few examples:
+```
+Reverse of "i like this program very much" will be "much very program this like i"
+Reverse of "pqr mno" will be "mno pqr"
+```
+
+## Algorithm
+
+#### Using Stack
+
+```
+- declaring an empty stack and a string.
+- adding each character of string,that is not a "space" to the declared string.
+- pushing declared "string" and "space" character in the stack.
+- using while loop, storing the top character in result string and popping out every single character.
+```
+
+#### Iterative
+
+```
+- creating a string array to store result.
+- using for loop, extracting each word from the string and storing in the array.
+- using for loop, printing the words of string in reverse order.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+   
+    stack<string> str_stack;
+    string str, stack_string;
+
+    cout << "Enter the string: " << endl;
+    getline(cin,str); 
+
+    for (int i = 0 ; i < str.size() ; i++) {
+        if (str[i] != ' ') {
+            stack_string += str[i];
+        } else {
+            str_stack.push(stack_string);
+            str_stack.push(" ");
+            stack_string = "";
+        }
+    }
+    str_stack.push(stack_string);
+    str = "";
+    while (!str_stack.empty()) {
+        str += str_stack.top();
+        str_stack.pop();
+    }
+    cout<<"String after Reverse:\n";
+    cout << str << endl;
+    return (0);
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+public class Main 
+{
+    /*
+    This is an constructor called from main function
+    */
+    public Main(String in[],int n)
+    {
+        System.out.println(); 
+        System.out.println("String after Reverse: ");
+	    for (int i = n - 1; i >= 0; i--) 
+           {
+               System.out.print(in[i] + " ");
+           }
+    }
+    public static void main(String[] args) 
+    {
+
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Please Enter the number of words your String have....");
+       int n = scan.nextInt();
+       String in[] = new String[n];
+       System.out.println("Enter the string: ");
+           for (int i = 0; i <= n-1; i++) 
+	       {
+              in[i] = scan.next();
+           }
+       Main r1=new Main(in,n);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the string:
+Hello World
+```
+
+#### Output:
+
+```
+String after Reverse:
+World Hello
+```
+
+## Complexity Analysis
+
+- Time complexity - `O(n)` 
+- Space complexity - `O(n)`
+Here in "stack" approach `n` denotes the length of the string, whereas in "recursive" approach `n` denotes the number of words in the string.
+
+## Credits
+
+- [Omkar Langhe](https://github.com/omkarlanghe) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/Reverse_Words_in_String.cpp)
+- [Ruchi Sahu](https://github.com/RuchiGitHu) contributed the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/Reverse_words_in_String.java)
