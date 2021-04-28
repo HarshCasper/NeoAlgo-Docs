@@ -57,17 +57,17 @@ import TabItem from '@theme/TabItem';
 using namespace std;
 
 //function to convert a positive decimal number into its binary equivalent
-void DecimalToBinary(int num){
-	if(num == 0){
+void DecimalToBinary(int decimal){
+	if(decimal == 0){
 		cout<<"0000";
 	}
 	vector<int> binary;
 	double binaryNumber;
 	int rem, i = 1;
-	while(num > 0){
-		rem = num % 2;
+	while(decimal > 0){
+		rem = decimal % 2;
 		binary.push_back(rem);
-		num = num / 2;
+		decimal = decimal / 2;
 	}
 
 	//reverse the vector
@@ -91,16 +91,16 @@ int main(){
 
 ```py
 #Function to convert a positive decimal number into its binary equivalent
-def DecimalToBinary(num):
-    if num == 0:
+def DecimalToBinary(decimal):
+    if decimal == 0:
         print('0000')
         return
     else:
         binary = []
-        while num != 0:
-            rem = num % 2
+        while decimal != 0:
+            rem = decimal % 2
             binary.append(rem)
-            num = num // 2
+            decimal = decimal // 2
 
     binary.reverse()
     for bit in binary:
