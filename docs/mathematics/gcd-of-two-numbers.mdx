@@ -1,0 +1,159 @@
+---
+title: GCD of two Numbers
+slug: /mathematics/gcd-of-two-numbers
+---
+
+## Introduction
+
+Greatest Common Divisor(GCD) is the highest number which is the factor of both the numbers. It is also called as Highest Common Factor(HCF). Two numbers are coprime if their GCD is `1`. GCD of two even numbers is always even and odd numbers is always odd.
+
+## Explanation 
+
+GCD of two numbers `a` and `b` is denoted by `gcd(a,b)`. GCD of any number with `1` is `1`. GCD of any number with `0` is the same number.
+
+GCD has following properties:
+
+```
+gcd(m⋅a, m⋅b) = m⋅gcd(a, b)
+gcd(a + m⋅b, b) = gcd(a, b)
+
+where m is a non-negative integer
+```
+
+Let's have one example: 
+
+```
+num1 = 6
+num2 = 9
+mini = 6, it contains minimum of num1 and num2
+
+Iteration 1:
+mini = 6
+Both numbers are not divisible by mini, so reduce mini by 1
+mini = mini-1
+
+Iteration 2:
+mini = 5
+Both numbers are not divisible by mini, so reduce mini by 1
+mini = mini-1
+
+Iteration 3:
+mini = 4
+Both numbers are not divisible by mini, so reduce mini by 1
+mini = mini-1
+
+Iteration 4:
+mini = 3
+Both the numbers are divisible by mini, so return mini
+```
+
+## Algorithm
+
+- Declare a variable `mini` and initialize it to minimum of two numbers.
+
+- Decrease `mini` by `1` until both the numbers become divisible by it.
+
+- Return `mini`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to determine the gcd of two numbers
+
+int gcd(int a, int b) 
+{
+    // Assigning minimum element to mini
+
+    int mini;
+    if (a <= b) mini = a;
+    else mini = b;
+
+    while (mini > 1) 
+    {
+        if (a % mini == 0 && b % mini == 0) 
+        {
+            break;
+        }
+        mini--;
+    }
+    return mini;
+}
+int main() 
+{
+    cout << "Enter the First Number: ";
+    int a;
+    cin >> a;
+
+    cout << "Enter the Second Number: ";
+    int b;
+    cin >> b;
+
+    cout << "GCD of two Numbers is: " << gcd(a, b);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to determine the gcd of two numbers
+
+def gcd(a,b):
+  # Assigning minimum element to mini
+
+  mini = b;
+  if (a < b): 
+    mini = a
+
+  while (mini > 1):
+    if (a % mini == 0 and b % mini == 0): 
+      break    
+    mini -= 1
+
+  return mini;
+
+if __name__ == '__main__':
+
+  a = int(input("Enter the First Number: "))
+  b = int(input("Enter the Second Number: "))
+
+  print("GCD of two Numbers is:",gcd(a,b))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the First Number: 5
+Enter the Second Number: 15
+```
+
+#### Output :
+
+```
+GCD of two Numbers is: 5
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+- Space Complexity: `O(1)`
