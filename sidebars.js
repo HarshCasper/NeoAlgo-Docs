@@ -124,6 +124,7 @@ module.exports = {
 		            "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
+                "mathematics/rotate-matrix-by-90-degree"
             ],
         },
         {
