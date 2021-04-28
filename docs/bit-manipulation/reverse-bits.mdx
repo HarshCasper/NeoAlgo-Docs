@@ -1,0 +1,161 @@
+---
+title: Reverse Bits of a Number
+slug: /bit-manipulation/reverse-bits
+---
+
+## Introduction
+
+Given an integer, reverse its bits in its binary equivalent and obtain the reversed number's decimal equivalent.
+
+## Explanation
+
+Consider a number `n` = `13`.
+
+```
+The binary equivalent of the number is 1101
+Its reverse is 1011
+
+The decimal equivalent of 1011 is 11.
+```
+
+Hence the number obtained by reversing the bits of the number `13` is `11`.
+
+## Algorithm
+
+Let us assume that the given number be `num`,
+
+-   Declare `rem`
+-   Declare a variable `rev` and set its value to 0.
+-   Begin a While loop till `num` greater than `0`
+    -   Left shift `rev` by `1` place
+    -   Set `rem` the bitwise AND of `num` and `1`
+    -   Set `rev` the bitwise OR of `rem` and `rev`
+    -   Set `n` the value of `n` right shifted by `1` place
+-   Return `rev`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// C++ program to reverse the bits of a number
+
+/*
+Given an integer, reverse its bits in its binary equivalent and
+print the new number obtained in its decimal form
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+The code first stores the lsb of the given number in a variable and then left shifts
+the given number and gives this number to the lsb of the answer variable and then right
+shifts it
+*/
+int reverse_bits(int n)
+{
+
+    int rev = 0, rem;
+
+    // Traverse while there exist bits for the given number
+    while (n)
+    {
+        // Shift the bit of the reversed(answer) number to the right
+        rev = rev << 1;
+        //Stores the temporary lsb of the given number
+        rem = n & 1;
+        //Set the lsb of the answer variable with the stored value
+        rev = rem | rev;
+        //Drops the already processed lsb of the given number
+        n = n >> 1;
+    }
+    return rev;
+}
+
+int main()
+{
+    int n, ans;
+    cout << "\nEnter the number? ";
+    cin >> n;
+
+    //Call the function
+    ans = reverse_bits(n);
+    cout << "The bits-reversed number is: " << ans << endl;
+    return 0;
+}
+
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+"""
+Python program to reverse the bits of a number
+Given an integer, reverse its bits in its binary equivalent and
+print the new number obtained in its decimal form
+"""
+
+
+def reverse_bits(n):
+    rev = 0
+
+    while(n > 0):
+        # Shift the bit of the reversed(answer) number to the right
+        rev = rev << 1
+        #  Stores the temporary lsb of the given number
+        rem = n & 1
+        # Set the lsb of the answer variable with the stored value
+        rev = rem | rev
+        # Drops the already processed lsb of the given number
+        n = n >> 1
+    return rev
+
+
+if __name__ == '__main__':
+    print("Enter the number? ", end="")
+    num = int(input())
+    rev = reverse_bits(num)
+    print("The bits-reversed number is: {}".format(rev))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number? 39
+```
+
+#### Output
+
+```
+The bits-reversed number is: 57
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(n)`, where `n` is the given number
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/reverse_bits.cpp)
+-   [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/Bit--Manipulation/reverse_bits.py)
