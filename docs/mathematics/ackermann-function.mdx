@@ -5,20 +5,18 @@ slug: /mathematics/Ackermann-Function
 
 ## Introduction
 
-Ackermann function is one of the simplest examples of a total computable function,
-that is not primitive recursive.
+The Ackermann function is one of the classic example of a recursive function, that is not a primitive recursive function. It grows very quickly in value, faster than an exponential function.
 
 ## Explanation
 
 It is basically a function with two non-negative integers as arguments.
-
+Assuming `i` and `j` as the non-negative integers.
 Ackermann function can be declared as:
 ```
 A(0, j)=j+1 for j ≥ 0
 A(i, 0)=A(i-1, 1) for i > 0
 A(i, j)=A(i-1, A(i, j-1)) for i, j > 0
 ```
-
 Let's have few examples: 
 ```
 For i=1,j=2
@@ -31,14 +29,11 @@ Output=61
 ## Algorithm
 
 ```
+- Taking two non-negative integers from user.
+- Calling the function with the input values.
 Ackermann_Function(int i, int j):
-  - Checking whether `i` is `0`,if yes 
-    then applying the associated condition.
-  - Checking whether `i` is greater than `0` and 
-    `j` is `0` , if yes then calling the function
-    with `m-1` and `1`.
-  - Checking whether `i` and `j` are greater than `0`, if yes
-    then applying the associated condition.
+  - Checking the values of `i` and `j`, 
+    then applying the associated conditions.
 ```
 
 ## Code
@@ -129,10 +124,11 @@ Result: 4
 
 ## Complexity Analysis
 
-- Time  complexity - `O(mA(m, n))`
-- Space complexity - `O(m)`
+- Time  complexity - `O(mA(m, n))` to calculate `A(m,n)`
+- Space complexity - `O(m)` to calculate `A(m, n)`
+  Here, `m` and `n` are two numbers that we take from user
 
 ## Credits
 
 - [Ritvij Kumar Sharma](https://github.com/ritvij14) contributed the [Dart implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Dart/maths/Ackermann_function.dart)
-- [Rajiv Singh](https://github.com/iamrajiv) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Ackermann_function.cpp)
+- [Yash Thakare](https://github.com/YashThakare) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Ackermann_function.cpp)
