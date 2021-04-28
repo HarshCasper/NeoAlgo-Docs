@@ -185,7 +185,6 @@ module.exports = {
                 "cryptography/burrows-wheeler-transform",
                 "cryptography/affine-cipher",
                 "cryptography/vigenere-cipher",
-
             ],
         },
         {
