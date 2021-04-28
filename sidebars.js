@@ -138,7 +138,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
-                "bit-manipulation/no-of-bits-to-be-flipped-to-interconvert-two-numbers",
+                "bit-manipulation/count-bits-flipped-to-convert-two-numbers",
             ],
         },
         {
