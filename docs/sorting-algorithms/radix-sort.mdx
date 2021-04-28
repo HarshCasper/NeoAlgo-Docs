@@ -1,0 +1,218 @@
+---
+title: Radix Sort
+slug: /sorting-algorithms/radix-sort
+---
+
+## Introduction
+
+Radix sort is an efficient sorting algorithm that behaves like **counting sort**. This algorithm doesn't require comparing elements like the other sorting methods. The numbers are sorted from the least significant digit to the most significant digit. For example, if we are dealing with unsorted numbers, we know that there are ten digits from 0 to 9 that are used to form any number. So we will need ten buckets labelled 0 to 9 to sort the unsorted numbers.
+
+## Explanation
+
+To understand the algorithm better, let us take an example of an unsorted array:
+
+![unsortedarray](https://user-images.githubusercontent.com/61618767/115116244-424ae180-9fb6-11eb-96dc-cdbb00e2b918.png)
+
+#### Step 1: Creating 10 Bins
+
+We need to initialize 10 Bins because only ten digits are used to form any number.
+
+![empty](https://user-images.githubusercontent.com/61618767/115120236-0c175d00-9fca-11eb-9901-2fed191f8144.png)
+  
+#### Step 2: Drop Numbers  
+
+In this step, check every number's last digit and drop them in the bins. For example, we see the value 300 at the 2nd position in the array, and we have to drop it inside the 0th bin as 0 is the last digit of 300.
+
+![1stpass](https://user-images.githubusercontent.com/61618767/115121105-8e098500-9fce-11eb-86fa-7d36ce4c7b0f.png)
+
+#### Step 3: Remove Data
+
+After we are done filling the buckets, we have to now remove the data one by one starting from the 0th bucket.
+
+#### Step 4: Again Drop Numbers
+
+After emptying the bucket, we saw that the numbers are not yet sorted. So, we have to drop them inside the buckets again, but this time, we will check every number's tenth place digit and drop them accordingly. This drop and empty step depend on the maximum number's digits. For example, in the given array, we have 840 as the maximum number. As it contains 3 digits, this method is applied 3 times starting from the least significant digit to the most significant digit.
+
+![2ndpass](https://user-images.githubusercontent.com/61618767/115121386-19374a80-9fd0-11eb-97ad-25c910225189.png)
+
+#### Step 5: Remove Data
+
+Repeat **Step 3**
+
+#### Step 6: Again Drop Numbers
+
+Repeat **Step 4**. This time we have to check every number's hundredth place digit and drop them accordingly.
+
+![3rdpass](https://user-images.githubusercontent.com/61618767/115121440-6b786b80-9fd0-11eb-9b08-fee7c7717983.png)
+
+#### Step 7: Remove Data
+
+Repeat **Step 3**
+
+#### Step 8: Final Step
+
+After we empty the buckets, we have to store the values inside an array. Here's our final sorted array.
+
+![finalarray](https://user-images.githubusercontent.com/61618767/115121660-8ac3c880-9fd1-11eb-9c8f-0dea8ad10ace.png)
+
+## Algorithm
+
+For sorting an array of size n:
+    
+* Find the `MAX` number in the array.
+* Initialize 10 queues each representing a bin/bucket for each digit from 0 to 9.
+* Consider the least significant digit of each number and insert them in their respective queues based on this digit.
+* Arrange the numbers from left to right from all queues.
+* Repeat after Step 3 based on the next least significant digit.
+* Keep repeating the above steps until all the numbers are sorted based on the most significant digit.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define K 10
+#define M 10
+#define DIF 2147483648
+
+/* The idea behind sorting negative numbers too is below
+  
+  A signed 32 bit integer goes from -2,147,483,648 to 2,147,483,647
+  and an unsigned integer from 0 to 4,294,967,295.
+  
+  So you could just add 2,147,483,648 to the signed number to 
+  convert it to an unsigned one for sorting then subtract to 
+  get back to signed numbers when you have finished sorting */
+
+void counting_sort(ll arr[], ll  n, ll p) {
+    ll element = pow(10, p);
+    ll divs = element / 10;
+    ll count[M];
+    for(ll i = 0; i < M; i++)
+        count[i] = 0;
+    for(ll i = 0; i < n; i++)
+        count[(arr[i] % element) / divs] ++;
+    for(ll i = 1; i < M; i++)
+        count[i] += count[i-1];
+    ll op[n];
+    for(ll i = n-1; i >= 0; i--) {
+        op[count[(arr[i] % element) / divs] - 1] = arr[i];
+        count[(arr[i] % element) / divs] --;
+    }
+    // copying the array back
+    for(ll i = 0; i < n; i++)
+        arr[i] = op[i];
+}
+
+void radix_sort(ll arr[], ll n) {
+    // apply counting sort for all decimal places
+    for(ll i = 1; i <= K; i++)
+        counting_sort(arr, n, i);
+}
+
+int main() {    
+    ll n;
+    cin >> n;
+    ll arr[n];
+    // Taking input
+    for(ll i = 0; i < n; i++) {
+        cin >> arr[i];
+        // Adding DIF to make negative numbers positive
+        arr[i]+=DIF;
+    }
+    // perform the sort
+    radix_sort(arr, n);
+
+    // Outputting the sorted array
+    for(ll i = 0; i < n; i++) {
+        cout << arr[i]-DIF << ' ';
+    }
+    cout << '\n';
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+def radix_sort(arr):
+    #finding the number with the maximum number of digits
+    max_number = max(arr)
+    #making a copy of the original list
+    arr_copy = arr[:] 
+    
+    #iterating over the length of the number with the maximum digits
+    for digit in range(len(str(max_number))): 
+        #denotes the place value we are currently sorting according to; we do a +1 because the indices start from 0 but the place values start from 1
+        place = digit + 1
+        #initializing buckets for each base, i.e 10 (0 to 9) in this case 
+        digits = [[] for _ in range(10)] 
+        #iterating over the list that contains the unsorted list
+        for number in arr_copy: 
+            #this handles the case when the numbers with less digits than the maximum one is out of digits to be placed in a corresponding bucket
+            try: 
+                #adding values to the corresponding buckets
+                digits[int(str(number)[-place])].append(number)
+                #handles the case when some smaller number(compared to the one with the maximum digits) is out of digits and places in it the 0 bucket 
+                except IndexError:
+                #adding the numbers to the 0 bucket 
+                digits[0].append(number) 
+        #intializing an the empty array after placing all numbers into respective buckets for a single digit(LSD to MSD)
+        #iterating over the buckets to collect back the numbers from the buckets 
+        for base in digits:        
+        arr_copy = []
+            #collecting back the numbers from their respective buckets in a sorted manner as per a particular digit 
+            arr_copy.extend(base)
+            #returning the sorted list      
+    return arr_copy 
+ 
+def main():
+    unsorted_list = list(map(int, input("Enter space separated numbers for the list\n").split()))
+    print("Unsorted List:", unsorted_list)
+    print("Sorted List:", radix_sort(unsorted_list))
+main() 
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output:
+
+#### Input :
+
+```
+8
+175 45 75 90 802 24 2 66
+```
+
+#### Output :
+
+```
+2 24 45 66 75 90 175 802
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(dn)` 
+- Space Complexity: `O(n)`
+
+Here `d` is the maximum number of digits.
+
+## Credits
+
+- [YASH01009](https://github.com/YASH01009) for the C++ implementation.
+- [Rayvant Sahni](https://github.com/rayvantsahni) for the Python implementation.
