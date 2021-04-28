@@ -131,6 +131,7 @@ module.exports = {
                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
+                "mathematics/row-with-max-one",
             ],
         },
         {
