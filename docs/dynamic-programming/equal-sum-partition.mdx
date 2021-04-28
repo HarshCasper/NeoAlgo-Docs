@@ -1,0 +1,231 @@
+---
+title: Equal Sum Partition
+slug: /dynamic-programming/equal-sum-patition
+---
+
+## Introduction
+
+We have to determine if the given array of positive integers can be divided into two subsets which need not be equal such that the sum of elements of both the subsets is equal. Each element must belong to exactly one subset only.
+
+## Explaination
+
+- We will use the **bottom-up dynamic programming** approach to solve this problem. 
+- Let `n` be the number of elements in the array; `sum` is the sum of all elements of the array. 
+- If the sum is odd, then the answer will be false as we cannot divide the array into two parts having equal sum. 
+- If the sum is even, we will see if we are able to find a subset whose sum is equal to half of `sum`.
+
+
+## Algorithm
+
+1. Make an array `dp[n+1][sum/2+1]` where row represents array values and column represents sum values from `0` to `sum` (C++ code follows this approach) or `dp[sum/2+1][n+1]` where column represents array values and row represents sum values from `0` to `sum` (Python code follows this approach). We will use first approach for explaining the algorithm.`dp[i][j]` represents that whether we can find the sum `j` from the subset of array elements upto index `i`. 
+2. Initialize first column with `true` as we can always find sum `0` by taking no element from the array.
+3. Initialize the first row with `false` except `dp[0][0]` as its not possible to have the sum `j` by not taking any element from the array.
+4. Each element of the array has two choices, either to be included or to be excluded. `dp[i-1][j]` for `i>=1`, represents whether its possible to find the sum `j` without including that element. `dp[i-1][j-a[i-1]]` represents whether its possible to find the sum `j` by including that element.
+5. For `1<=i<=n` and `1<=j<=n` calculate `dp[i][j]` using `dp[i][j]=dp[i-1][j]||dp[i-1][j-a[i-1]]`.
+6. `dp[n][sum/2]` represents the final answer to the problem. If it is `true` then its possible to parition the given array ito two parts having equal sum, else, we can't partition.
+
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+
+bool EqualPartition(int* array, int array_size ){
+    int array_sum=0;
+    
+    //Finding the sum of all elements of array
+    for(int i=0;i<array_size;i++){
+        array_sum = array_sum + array[i];
+    }
+    
+    // Checking whether array sum is odd or not, if odd, return false
+    if((array_sum % 2) != 0){
+        return false;
+    }
+
+    // Dividing array sum by 2
+    array_sum = array_sum / 2;
+    bool dp[array_size + 1][array_sum + 1]; //Declaring dp matrix
+
+     //Initialising DP matrix with true and false
+    for(int i=0; i<=array_size; i++){
+        for(int j=0; j<=array_sum; j++){
+            if(i==0)
+                dp[i][j]=false;
+            if(j==0)
+                dp[i][j]=true;
+            
+        }
+    }
+    /*
+      Filling DP matrix int dp[][], where dp[i][j] stores whether a given sum = j,
+      can be obtained as a sum of elements of a subset, using the first (i+1) elements
+      of array.
+    */
+    for(int i=1; i<=array_size; i++){
+        for(int j=1; j<=array_sum; j++){
+            if(j >= array[i-1] ){
+                dp[i][j] = ( dp[i-1][j-array[i-1]] ) || (dp[i-1][j]);
+            }
+            else{
+                dp[i][j] = dp[i-1][j];
+            }
+        }
+    }
+    /*
+     Return the last element of the DP matrix, which stores true, if sum = (sum of array/2)
+     can be obtained as a sum of elements of a subset, using all the elements of array, else 
+     it stores false.
+     */
+    return dp[array_size][array_sum];
+
+}
+
+int main(){
+    cout<<"Enter size of array:"<<endl;
+    int array_len;
+    cin >> array_len;
+    int my_array[array_len + 1];
+    cout<<"Enter the array elements: ";
+    for(int i=0; i<array_len; i++){
+        cin >> my_array[i];
+    } 
+    
+    //Function call to check whether the array can be divided into two subsets of equal sum or not.
+    if(EqualPartition(my_array, array_len)){
+        cout<<"Yes"<<"\n";
+
+    }
+    else{
+        cout<<"No"<<"\n";
+    }
+      
+	return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+def Partition_Problem(n, arr):
+
+    # Calculate the sum of the each element in the array
+    s = sum(arr)
+
+    # Base Case: if the sum is odd, return false
+    if s % 2:
+        return False
+
+    DP = [[True] * (n + 1) for j in range(s // 2 + 1)]
+
+    # Initilize the leftmost col to False
+    for i in range(1, s // 2 + 1):
+        DP[i][0] = False
+
+    # Construct the DP table
+    for row in range(1, s // 2 + 1):
+
+        for col in range(1, n + 1):
+            DP[row][col] = DP[row][col - 1]
+
+            if row >= arr[col - 1]:
+                DP[row][col] = (DP[row][col] or DP[row - arr[col - 1]][col-1])
+
+    # Return the last element of the table
+    return DP[s//2][n]
+
+
+# ------------------------DRIVER CODE ------------------------
+
+if __name__ == "__main__":
+
+    # Input the array form the user
+    print("Enter size of array:")
+    n = int(input())
+    a = list(map(int, input("Enter the array elements: ").split()))
+
+    ans = Partition_Problem(n, a)
+
+    if ans:
+        print("Yes")
+    else:
+        print("No")
+
+
+```
+
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter size of array:
+3
+Enter the array elements : 4 5 1
+```
+
+#### Output
+
+```
+Yes
+```
+
+#### Input
+
+```
+Enter size of array:
+3
+Enter the array elements : 4 5 2
+```
+
+#### Output
+
+```
+No
+```
+
+#### Input
+
+```
+Enter size of array:
+3
+Enter the array elements : 4 5 3
+```
+
+#### Output
+
+```
+No
+```
+
+## Complexity Analysis
+
+- Time Complecity:  `O(Sum * n)`
+- Space Complexity: `O(Sum * n)`
+- where `Sum` = (sum of array elements)/2 and `n` = number of array elements
+
+## Credits
+
+- [Nandini Tiwari](https://github.com/nandinit02) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/Equal_sum_partition.cpp)
+- [Akash Kumar Bhagat](https://github.com/charlie219) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/Partition_Problem.py)
