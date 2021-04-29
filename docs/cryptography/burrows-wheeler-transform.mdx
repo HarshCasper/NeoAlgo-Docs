@@ -1,0 +1,312 @@
+---
+title: Burrows-Wheeler Transform
+slug: /cryptography/burrows-wheeler-transform
+---
+
+## Introduction
+
+The Burrows-Wheeler Transform(BWT) generates the ciphertext by lexicographically permuting the characters of the plaintext. The BWT clusters the common characters of a string together. This property of rearranging character strings into runs of similar characters makes the BWT useful for many compression. The BWT is not a compression algorithm, but it is used in many compression algorithms.
+
+## Explanation
+
+- Given an input string, we form all its cyclic rotations and store them in a 2-D array. Each rotation is stored as a row in the array.
+- Now, the cyclic rotations are sorted lexicographically.
+- The last column of the 2-D array is then returned as the ciphertext or the BWT.
+
+Let's have one example: 
+
+```
+Plaintext: MATCH
+
+Cyclic rotations:
+
+	M A T C H
+	A T C H M
+	T C H M A
+	C H M A T
+	H M A T C
+
+Lexicographically sorted cyclic rotations:
+	
+	A T C H M
+	C H M A T
+	H M A T C
+	M A T C H
+	T C H M A
+
+The BWT for the given plaintext is: MTCHA (Last column)
+```
+
+## Algorithm
+
+#### Encryption
+
+```
+- Given a plaintext.
+- Generate all the cyclic rotations of the given plaintext and store them in a 2-D array.
+- Sort the cyclic rotations lexicographically.
+- Output the last column of the sorted array as the BWT, or the ciphertext.
+```
+
+#### Decryption
+
+```
+- To reverse the BWT, we need to know the last character of the plaintext, and the character should
+  also be unique.
+- Form a 2-D array, write the given BWT in a column, lexicographically sort the column.
+- Now, consider two columns - the first one being the BWT, and the second one being the above 
+  sorted column. Lexicographically sort these two columns together.
+- Repeat the process and build the entire array.
+- Now the row whose last character is the same as the last character of the original plaintext, is
+  the original message.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="c"
+  values={[
+    { label: 'C', value: 'c', },
+    { label: 'Go', value: 'go', },
+  ]
+}>
+<TabItem value="c">
+
+```c
+// Below code is an implementation of enctyption algorithm.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define maximum length of plaintext, ciphertext
+#define MAXLENGTH 100
+
+// Gloabal variable(to be initialized with size of the plaintext)
+int size;
+
+// This function generates all cyclic rotations of given plaintext
+void generate(char* plaintext, char combinations[][size]) {
+
+	int index = 0;
+	for(int i = 0; i < size; i++) {
+		for(int j = 0; j < size; j++) {
+			// Mod is used to wrap around the index
+			combinations[i][j] = plaintext[(index + j) % size];
+		}
+		index += 1;
+	}
+}
+
+// This function sorts the above rotations lexicographically.
+void sort(char* plaintext, char combinations[][size], int arr[size]) {
+
+	// Calling the generate function to generate all rotations
+	generate(&plaintext[0], combinations);
+
+	int count = 0;
+	int k = 0;
+
+	while(k < size) {
+
+		// Iterate through the first column
+		for(int i = 0; i < 1; i++) {
+			/* Char { is lexicograqphically greater than
+			[A-Z] and [a-z]. So, we use it here as a maximum.*/
+			char min = '{';
+			int index;
+
+			// Iterate though first element of each row
+			for(int j = 0; j < size; j++) {
+				if(combinations[j][i] < min) {
+					// Find the minimum
+					min = combinations[j][i];
+					// Store its index
+					index = j;
+				}
+			}
+			// Add the index to the array
+			arr[count++] = index;
+			// Replace the minimum with {
+			combinations[index][i] = '{';
+		}
+		k++;
+	}
+}
+
+// This is the encrpytion function
+char* encrypt(char* plaintext, char combinations[][size]) {
+
+	int arr[size];
+
+	// Calling the sort function to get the sorted order
+	sort(plaintext, combinations, arr);
+
+	// Declaring variable to store the ciphertext
+	static char encrypted[MAXLENGTH];
+
+	int count = 0;
+	// Adding last element of sorted rotation to the encrypted text
+	for(int i = 0; i < size; i++) {
+		encrypted[count++]  = combinations[arr[i]][size - 1];
+	}
+	// Returning the encrypted message
+	return encrypted;
+}
+
+int main() {
+
+	printf("----------Burrows Wheeler Transform----------\n");
+
+	// Taking plaintext as input from the user
+	char plaintext[MAXLENGTH];
+	printf("\nEnter a plaintext: ");
+	fgets(plaintext, MAXLENGTH, stdin);
+
+	size = strlen(plaintext) - 1;
+	
+	// Decalring matrix to store the rotations
+	char combinations[size][size];
+
+	// Calling the encrypted fuction and printing ciphertext
+	char* encrypted = encrypt(&plaintext[0], combinations);
+	printf("\nThe encrypted text is: %s\n", encrypted);
+
+	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="go">
+
+```go
+// Below code is an implementation of encryption algorithm.
+package main
+
+import (
+	"fmt"
+)
+
+// Global variable(to be initialized with length of the plaintext)
+var n int
+
+// This function generates all cyclic rotations of given plaintext
+func gen_rotations(plaintext string, combinations [][]string) {
+
+	var indx int = 0
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			combinations[i][j] = string(plaintext[(indx + j) % n])
+		}
+		indx += 1;
+	}
+}
+
+// This function sorts the above rotations lexicographically.
+func sort(plaintext string, combinations [][]string, arr []int) {
+
+	// Calling the generate function to generate all rotations
+	gen_rotations(plaintext, combinations)
+
+	var count int = 0
+
+	for k := 0; k < n; k++ {
+
+		// Iterate through the first column
+		for i := 0; i < 1; i++ {
+			/* Character { is lexicograqphically greater than
+			[A-Z] and [a-z]. So, we use it here as a maximum.*/
+			var min string = "{"
+			var indx int
+
+			// Iterate though first element of each row
+			for j := 0; j < n; j++ {
+				if(combinations[j][i] < min) {
+					// Find the minimum
+					min = combinations[j][i]
+					// Store its index
+					indx = j
+				}
+			}
+			// Add the index to the array
+			arr[count] = indx
+			count += 1
+			// Replace the minimum with {
+			combinations[indx][i] = "{"
+		}
+	}
+}
+
+// This is the encrpytion function
+func encrypt(plaintext string, combinations [][]string) string {
+
+	var arr = make([]int, n)
+
+	// Calling the sort function to get the sorted order
+	sort(plaintext, combinations, arr)
+
+	var encrypted string
+
+	// Adding last element of sorted rotation to the encrypted text
+	for i := 0; i < n; i++ {
+		encrypted += combinations[arr[i]][n - 1]
+	}
+	// Returning the encrypted message
+	return encrypted
+}
+
+func main() {
+
+	fmt.Print("----------Burrows Wheeler Transform----------\n\n")
+
+	// Taking plaintext as input from user
+	fmt.Print("Enter a plaintext: ")
+	var plaintext string
+	fmt.Scan(&plaintext)
+
+	n = len(plaintext)
+
+	// Decalring matrix to store the rotations
+	var combinations = make([][]string, n)
+	for i := range combinations {
+		combinations[i] = make([]string, n)
+	}
+
+	// Calling the encrypted fuction and printing ciphertext
+	var encrypted string = encrypt(plaintext, combinations)
+	fmt.Print("\nThe encrypted text is: ", encrypted, "\n")
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+----------Burrows Wheeler Transform----------
+
+Enter a plaintext: MATCH
+```
+
+#### Output:
+
+```
+The encrypted text is: MTCHA
+```
+
+## Complexity Analysis
+
+  - Time  complexity: `O(n^2)` 
+  - Space complexity: `O(n^2)`
+
+where `n` is the length of the plaintext.
+
+## Credits
+
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/cryptography/Burrows_Wheeler_Transform.c)
+- [Nidhish Bhimrajka](https://github.com/nidh-ish) for the [Go implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Go/cryptography/Burrows_Wheeler_Transform/Burrows_Wheeler_Transform.go)
