@@ -1,0 +1,294 @@
+---
+title: Diameter of Binary Tree
+slug: /competitive-programming/diameter-of-BT
+---
+
+## Introduction
+
+The maximum no. of edges between the two farthest nodes in a tree is called the diameter of a binary tree.
+
+## Explanation
+
+Let us take an example of two trees, so that we get a better understanding of this concept.
+
+![diameter](https://user-images.githubusercontent.com/61618767/116555232-c20f6f00-a919-11eb-9c79-68fdd7aefbe7.png)
+
+In the above picture, as you can see, we took two different cases for finding the diameter of a binary tree.
+
+#### Case 1 : Finding diameter including the root node
+
+As you can see in the tree of case 1, the longest path is from Node `G -> F`, including root node `A`. So, the diameter for this tree will be `5` as there are five edges between Node `G` and `F`. Alternatively, we can count the number of nodes in the path between Node `G` & `F` and then subtracting `1` from the total nodes to get the number of edges which in this case is the diameter of the tree.
+
+#### Case 2 : Finding diameter excluding the root node
+
+As you can see in the tree of case 2, the longest path is from Node `G -> F`, but in this case the diameter is not passing through the root node. So the diameter for this tree will be `6` as there are six edges between Node `G` and `F`.
+
+#### Conclusion : 
+So to find the diameter of a binary tree, the diameter doesn't need to pass through the root.
+
+## Algorithm
+
+Here, we will use recursive approach to solve this problem.
+
+* Check whether the node passed in recursive function is null; if yes, then return `0`.
+* Recursively find the height of left sub-tree and right sub-tree.
+* Recursively find the diameter of left sub-tree and right sub-tree.
+* Check whether the diameter passes through the root node
+  * If yes, then no. of nodes in the path will be `lh + rh + 1` where lh and rh are the heights of left sub-tree and right sub-tree respectively.
+  * Else, diameter will be `max(ld,rd)` where ld and rd are the diameters of left sub-tree and right sub-tree respectively.
+* Return the maximum value of above steps.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child */
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+Node *newNode(int val)
+{
+    Node *temp = new Node;
+    temp->data = val;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+Node *buildTree(string str)
+{
+    // Corner Case
+    if (str.length() == 0 || str[0] == 'N')
+        return NULL;
+
+    // Creating vector of strings from input
+    // string after spliting by space
+    vector<string> v;
+
+    istringstream iss(str);
+    for (string str; iss >> str;)
+        v.push_back(str);
+
+    // Create the root of the tree
+    Node *root = newNode(stoi(v[0]));
+
+    // Push the root to the queue
+    queue<Node *> queue;
+    queue.push(root);
+
+    // Starting from the second element
+    int i = 1;
+    while (!queue.empty() && i < v.size())
+    {
+
+        // Get and remove the front of the queue
+        Node *currNode = queue.front();
+        queue.pop();
+
+        // Get the current node's value from the string
+        string currVal = v[i];
+
+        // If the left child is not null
+        if (currVal != "N")
+        {
+
+            // Create the left child for the current node
+            currNode->left = newNode(stoi(currVal));
+
+            // Push it to the queue
+            queue.push(currNode->left);
+        }
+
+        // For the right child
+        i++;
+        if (i >= v.size())
+            break;
+        currVal = v[i];
+
+        // If the right child is not null
+        if (currVal != "N")
+        {
+
+            // Create the right child for the current node
+            currNode->right = newNode(stoi(currVal));
+
+            // Push it to the queue
+            queue.push(currNode->right);
+        }
+        i++;
+    }
+
+    return root;
+}
+
+int height(Node *n, int *dia)
+{
+    if (!n)
+        return 0;
+
+    // Height of left subtree
+    int l = height(n->left, dia);
+    // Height of right subtree
+    int r = height(n->right, dia);
+
+    // l+r+1 is a possible max dia
+    if (l + r + 1 > *dia)
+        *dia = l + r + 1;
+
+    // Returning height of subtree
+    return 1 + max(l, r);
+}
+
+/* Function to get diameter of a binary tree */
+int diameter(Node *root)
+{
+    int dia = 0;
+    height(root, &dia);
+    return dia;
+}
+
+int main()
+{
+    string s;
+    getline(cin, s);
+    Node *root = buildTree(s);
+    // Diameter
+    cout << diameter(root) << endl;
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+import queue
+from sys import stdin
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+def levelOrderInput():
+    '''
+    Summary Line:
+    This function helps us to take level order
+    input and build the tree.
+
+    Args:
+    No arguments
+
+    Returns:
+    Root- root of the tree formed using level
+    order input
+    '''
+    tlist = list(map(int, stdin.readline().strip().split(" ")))
+    start = 0
+    data = tlist[start]
+    start += 1
+    if data != -1:
+        root = Node(data)
+    else:
+        return None
+    q = queue.Queue()
+    q.put(root)
+    while not q.empty():
+        current = q.get()
+        data = tlist[start]
+        start += 1
+        if data != -1:
+            leftChild = Node(data)
+            current.left = leftChild
+            q.put(leftChild)
+        data = tlist[start]
+        start += 1
+        if data != -1:
+            rightChild = Node(data)
+            current.right = rightChild
+            q.put(rightChild)
+    return root
+
+
+def Diameter(root):
+    '''
+    Summary Line:
+    This function helps us to calculate the diameter
+    of our tree. Diameter is the number of nodes
+    between the two farthest nodes in our tree.
+
+    Args:
+    root- root of our inputted tree
+
+    Returns-
+    h- height of the tree
+    d- diameter of the tree
+
+    Intuition-
+    Height is calculated because the diameter
+    is the sum of max left and max right heights.
+    '''
+    if root is None:
+        return 0, 0
+    lh, ld = Diameter(root.left)
+    rh, rd = Diameter(root.right)
+    h = 1 + max(lh, rh)
+    d = lh + rh
+    b = max(d, max(ld, rd))
+    return h, b
+
+if __name__ == "__main__":
+    print("Enter level order input for the tree:")
+    root = levelOrderInput()
+    h, d = Diameter(root)
+    print(d + 1)  # added 1 for the root node
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+```
+Enter level order input for the tree:
+1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
+```
+
+#### Sample Output
+```
+5
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N^2)` where N is the total number of nodes in the tree.
+- Space Complexity: `O(h)` where h is the height of the tree.
+
+## Credits
+
+- [Faiz alam](https://github.com/zhcet19) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/Diameter_of_binary_tree.cpp)
+- [Pranav](https://github.com/Pranav016) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/DiameterOfBinaryTree.py)
