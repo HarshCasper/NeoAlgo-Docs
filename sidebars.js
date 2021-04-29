@@ -39,12 +39,12 @@ module.exports = {
                 "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
-		            "sorting-algorithms/sleep-sort",
-		            "sorting-algorithms/cocktail-sort",
-		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/sleep-sort",
+                "sorting-algorithms/cocktail-sort",
+                "sorting-algorithms/bead-sort",
                 "sorting-algorithms/radix-sort",
                 "sorting-algorithms/counting-sort",
-		            "sorting-algorithms/cocktail-sort",
+                "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
             ],
@@ -66,7 +66,6 @@ module.exports = {
                 "data-structures/preorder_traversal",
 		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
-
             ],
         },
         {
@@ -129,6 +128,10 @@ module.exports = {
 		            "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
+                "mathematics/hexagonal-number",
+                "mathematics/spiral-traversal-of-matrix",
+                "mathematics/tetrahedral-number",
+                "mathematics/rotate-matrix-by-90-degree",
             ],
         },
         {
@@ -137,6 +140,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/reverse-bits",
             ],
         },
         {
