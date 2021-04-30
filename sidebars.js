@@ -184,6 +184,7 @@ module.exports = {
             label: "Operating Systems",
             items: [
                 "operating-systems/operating-systems",
+                "operating-systems/FCFS-algorithm",
                 "operating-systems/banker-algorithm",
             ],
         },
