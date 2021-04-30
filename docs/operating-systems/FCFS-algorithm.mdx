@@ -3,11 +3,11 @@ title: FCFS Algorithm
 slug: /operating-systems/FCFS-algorithm
 ---
 
-##Introduction
+## Introduction
 
 First come first served (FCFS) is the simplest operating system scheduling algorithm which supports both preemptive and non-preemptive scheduling, implemented with a FIFO queue. It automatically executes queued requests and processes them by order of their arrival,the processes which requests the CPU first get the CPU allocation first.
 
-##Explanation
+## Explanation
 
 First in first out (FIFO) simply queues processes in the order that they arrive in the ready queue. For managing the tasks, as the processes come they are kept at the end of the queue. As CPU finishes each task, it removes it from the start of the queue and heads onto the next task.
 
@@ -23,10 +23,10 @@ First in first out (FIFO) simply queues processes in the order that they arrive 
     - There is a convoy effect as all the other processes wait for the one big process to get off the CPU. This effect results in lower CPU and device utilization than might be possible if the shorter processes were allowed to go first.
     - It is poor in performance since the average waiting time is higher as compared to other scheduling algorithms.
 
-##Algorithm
+## Algorithm
 
+```
 Non-preemptive scheduling without arrival time:
-
     -  Firstly, take inputs as number of processes `n`, processes `pn`, and burst times `bt`.
     -  Find the waiting time `wt` for all processes.
     -  The first process has no waiting time so 
@@ -39,8 +39,10 @@ Non-preemptive scheduling without arrival time:
         - Sum of turnaround time, `sum2 = sum2 + tat[i]`
     -  Calculate average waiting time, `avg1 = sum1 / n`.
     -  Similarly, find average turnaround time, `avg2 = sum2 / n`.
+```
 
-##Code
+## Code
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -70,25 +72,27 @@ int main ()
     scanf ("%d", &n);
     printf ("Enter processes and burst times:\n");
     for (i = 0; i < n; i++)
-        {
+    {
         scanf ("%d", b[i].pn);
         scanf ("%d", &b[i].bt);
-        }
+    }
     b[0].wt = 0;
     for (i = 0; i < n; i++)
-        {
+    {
         b[i + 1].wt = b[i].bt + b[i].wt;
         b[i].tat = b[i].wt + b[i].bt;
         
-        }
+    }
     //display all processes and details
     printf ("PN\tBT\tWT\tTAT\n");
     for (i = 0; i < n; i++)
-        {
+    {
+        //compute sum of waiting time and turnaround time
         sum1 += b[i].wt;
         sum2 += b[i].tat;
         printf ("%d\t%d\t%d\t%d\n", *b[i].pn, b[i].bt, b[i].wt, b[i].tat);
-        }
+    }
+    // calculate average waiting time and turnaround time
     avg1 = (float) sum1 / n;
     avg2 = (float) sum2 / n;
     printf ("Average waiting time = %.2f\n", avg1);
@@ -96,14 +100,14 @@ int main ()
     return 0;
 }
 ```
-</TabItem>
 
+</TabItem>
 <TabItem value="java">
 
 ```java
 import java.util.*;
 
-class Main{
+public class fcfs{
 
 	// Function to find the waiting time 
 	static void findWaitingTime(int processes[], int n,int bt[], int wt[])
@@ -166,12 +170,13 @@ class Main{
 	}
 }
 ```
+
 </TabItem>
 </Tabs>
 
-##Sample I/O
+## Sample Input and Output
 
-### Sample Input
+### Input:
 
 ```bash
 Enter number of processes:                                                                                                                    
@@ -182,7 +187,7 @@ Enter processes and burst times:
 3 3 
 ```
 
-### Sample Output
+### Output:
 
 ```bash
 PN      BT      WT      TAT                                                                                                                   
@@ -197,10 +202,10 @@ Average turn around time = 27.00
 
 - Time Complexity:
 
-  - **Best Case**: O (n)
-  - **Average Case**: O (n<sup>2</sup>)
-  - **Worst Case**: O (n<sup>2</sup>)
+  - **Best Case** : O(n)
+  - **Average Case** : O(n<sup>2</sup>)
+  - **Worst Case** : O(n<sup>2</sup>)
 
-- Space Complexity: O (1)
+- Space Complexity : O(1)
 
 
