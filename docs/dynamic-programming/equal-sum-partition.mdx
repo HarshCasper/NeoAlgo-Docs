@@ -5,24 +5,59 @@ slug: /dynamic-programming/equal-sum-patition
 
 ## Introduction
 
-We have to determine if the given array of positive integers can be divided into two subsets which need not be equal such that the sum of elements of both the subsets is equal. Each element must belong to exactly one subset only.
+We have to determine if the given array of positive integers can be divided into two parts which need not be of equal size such that the sum of elements of both the parts is equal. Each element must belong to exactly one part only.
 
 ## Explaination
 
 - We will use the **bottom-up dynamic programming** approach to solve this problem. 
 - Let `n` be the number of elements in the array; `sum` is the sum of all elements of the array. 
-- If the sum is odd, then the answer will be false as we cannot divide the array into two parts having equal sum. 
+- If the sum is odd, then the answer will be false as we cannot divide the array into two parts having equal sum.
+- Let's suppose that it can be divided into two parts having equal sum, say `x`, then `2*x=sum`, which implies `x=sum/2`, thus, `x` is not an integer but sum of integers is always an integer.
+- Therefore, it's not possible to divide the array having odd sum into two parts having equal sum.
 - If the sum is even, we will see if we are able to find a subset whose sum is equal to half of `sum`.
 
-
+Examples:
+```
+Example 1
+n=3, Array:[4,5,1]
+sum=10 
+Two subsets having equal sums are: (4,1) and (5)
+```
+```
+Example 2
+n=3, Array:[4,5,2]
+sum=11
+Since sum is odd it is not possible to split the array into 2 parts having equal sums.
+```
+```
+Example 3
+n=3, Array:[4,5,3]
+sum=12
+Though the sum is even but still it is not possible to split the array into 2 parts having equal sums.
+```
 ## Algorithm
 
-1. Make an array `dp[n+1][sum/2+1]` where row represents array values and column represents sum values from `0` to `sum` (C++ code follows this approach) or `dp[sum/2+1][n+1]` where column represents array values and row represents sum values from `0` to `sum` (Python code follows this approach). We will use first approach for explaining the algorithm.`dp[i][j]` represents that whether we can find the sum `j` from the subset of array elements upto index `i`. 
-2. Initialize first column with `true` as we can always find sum `0` by taking no element from the array.
-3. Initialize the first row with `false` except `dp[0][0]` as its not possible to have the sum `j` by not taking any element from the array.
-4. Each element of the array has two choices, either to be included or to be excluded. `dp[i-1][j]` for `i>=1`, represents whether its possible to find the sum `j` without including that element. `dp[i-1][j-a[i-1]]` represents whether its possible to find the sum `j` by including that element.
-5. For `1<=i<=n` and `1<=j<=n` calculate `dp[i][j]` using `dp[i][j]=dp[i-1][j]||dp[i-1][j-a[i-1]]`.
-6. `dp[n][sum/2]` represents the final answer to the problem. If it is `true` then its possible to parition the given array ito two parts having equal sum, else, we can't partition.
+- Make an array `dp[n+1][sum/2+1]` where row represents array values and column represents sum values from `0` to `sum` (C++ code follows this approach) or `dp[sum/2+1][n+1]` where column represents array values and row represents sum values from `0` to `sum` (Python code follows this approach). 
+- We will use first approach for explaining the algorithm.`dp[i][j]` represents that whether we can find the sum `j` from the subset of array elements upto index `i`. 
+- Initialize first column with `true` as we can always find sum `0` by taking no element from the array.
+- Initialize the first row with `false` except `dp[0][0]` as its not possible to have the sum `j` by not taking any element from the array.
+- Each element of the array has two choices, either to be included or to be excluded. `dp[i-1][j]` for `i>=1`, represents whether its possible to find the sum `j` without including that element. `dp[i-1][j-a[i-1]]` represents whether its possible to find the sum `j` by including that element.
+- For `1<=i<=n` and `1<=j<=n` calculate `dp[i][j]` using `dp[i][j]=dp[i-1][j]||dp[i-1][j-a[i-1]]`.
+- `dp[n][sum/2]` represents the final answer to the problem. If it is `true` then its possible to parition the given array ito two parts having equal sum, else, we can't partition.
+
+For `Example 1` the `dp` array will look as below:
+
+```
+|---|---|---|---|---|---|
+| 1 | 0 | 0 | 0 | 0 | 0 |
+|---|---|---|---|---|---|
+| 1 | 0 | 0 | 0 | 1 | 0 |
+|---|---|---|---|---|---|
+| 1 | 0 | 0 | 0 | 1 | 1 |
+|---|---|---|---|---|---|
+| 1 | 1 | 0 | 0 | 1 | 1 |
+|---|---|---|---|---|---|
+```
 
 
 ## Code
