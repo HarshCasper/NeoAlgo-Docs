@@ -78,7 +78,6 @@ module.exports = {
                 "dynamic-programming/kadane-algorithm",
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/equal-sum-partition",
-
             ],
         },
         {
