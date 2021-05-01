@@ -1,0 +1,155 @@
+---
+title: Factorial of a number
+slug: /mathematics/factorial-of-number
+---
+
+## Introduction
+
+Factorial of a number `n` is defined as the product of all positive integers less than or equal to `n`. Factorial function is defined for all non-negative integers. The value of `0!` is `1`.
+
+## Explanation
+
+For a non-negative integer say `n`, factorial of `n` is defined as follows:
+
+```
+Factorial(n) = n * (n - 1) * (n - 2) * . . . . . 3  * 2 * 1
+```
+
+It is also defined as:
+
+```
+Factorial(n) = n * Factorial(n - 1)
+```
+
+Let us have a few examples:
+
+```
+Factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
+Factorial(6) = 6 * 5 * 4 * 3 * 2 * 1 = 720 = 6 * Factorial(5)
+```
+
+## Algorithm
+
+### Recursive
+
+For a given number `n`,
+
+ - If `n` == `1`, return `1`.
+ - Else recursively return `n` * `factorial(n - 1)`
+
+```
+factorial(n):
+    if(n == 1)
+        return 1
+    else
+        return n * factorial(n - 1)
+```
+
+### Iterative
+
+For a given number `n`,
+
+ - Declare a variable factorial and initialize it to `1`.
+ - For `num` starting from `1` to `n`.
+ - Compute `factorial` = `factorial` * `num`
+ - Add the end of the for loop, return the `factorial`.
+
+```
+factorial = 1
+for i = 1 to n
+  factorial = factorial * i
+return factorial
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//This function calculates the factorial iteratively
+void factorial(int val) {
+    int f = 1;
+    if (val>0) {
+       for(int i=1;i<=val;i++){
+          f = f*i;
+       }
+       cout << "The factorial of " << val << " is: "<< f << endl;
+    }   
+}
+
+// driver function
+int main(void) {
+    int num;
+    cout << "Enter the number: ";
+    cin>>num;
+    factorial(num);
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# Iterative implementation for factorial
+def fact(x):
+    result = 1
+    for i in range(1,x):
+        result = result * (i+1)
+    return result
+
+# Calculate factorial using recursion
+def fact_rec(x):
+    if x == 0 or x == 1:
+        return 1
+    else:
+        return x * fact_rec(x-1)
+
+
+if __name__ == "__main__":
+    n = int(input("Enter the number: "))
+    print("The factorial of {} is: {} ".format(n, fact(n)))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input
+
+```
+Enter the number: 6
+```
+
+### Output
+
+```
+The factorial of 6 is: 720
+```
+
+## Complexity Analysis
+
+```
+Time complexity - O(n)
+Space complexity - O(1)
+```
+
+## Credits
+
+   - [Harsh Ghodkar](https://github.com/Saviour1001) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/long_factorials.cpp)
+   - [Ricardo Prins](https://github.com/ricardoprins) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/factorial.py)

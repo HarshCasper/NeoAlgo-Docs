@@ -1,0 +1,355 @@
+---
+title: Affine Cipher
+slug: /cryptography/affine-cipher
+---
+
+## Introduction
+
+The Affine cipher is a type of monoalphabetic substitution cipher. Here each of the letter in the message is mapped to a number, then encrypted using a mathematical function. The numbers are then converted back to letters to form the ciphertext. Here, the size of the alphabet is taken as `m`, and every mathematical operation is performed with respect to modulus `m`. The key consists of two values, `a` and `b`. The value of `a` must be chosen such that `a` and `m` are coprime.
+
+## Explanation
+
+- For our purpose, we take `m = 26`. So, letters `[A-Z]` are mapped to numbers `[0-25]`, where `A` is mapped to `0`, `B` is mapped to `1`, . . . , `Z` is mapped to `25`.
+- Given a `message`, keys `a` and `b`.
+
+Let's have one example: 
+
+```
+a = 17
+
+b = 10
+
+message =  N E  O A  L G  O
+message = 13 4 14 0 11 6 14
+
+ciphertext[i] = (17*x + 10)  % 26, here x is a number equivalent of a character of the message.
+
+ciphertext[0] = (221 + 10) % 26 = 23
+ciphertext[1] = ( 68 + 10) % 26 =  0
+ciphertext[2] = (238 + 10) % 26 = 14
+ciphertext[3] = (  0 + 10) % 26 = 10
+ciphertext[4] = (187 + 10) % 26 = 15
+ciphertext[5] = (102 + 10) % 26 =  8
+ciphertext[6] = (238 + 10) % 26 = 14
+
+ciphertext = 23 0 14 10 15 8 14
+ciphertext =  X A  O  K  P I  O
+
+ciphertext = XAOKPIO
+```
+
+## Algorithm
+
+#### Encyption
+
+- Given a `message`, keys `a` and `b`.
+- Convert the letters of `message` to their respective numbers.
+- Perform the below operation on the number equivalent of each character of the `message`.
+- `Encryption(x)` = `(ax + b) % m`
+  - `x` is a number equivalent of a single character of the message.
+- Convert the numbers back to letters to get the ciphertext.
+
+#### Decryption
+
+- Given a `ciphertext`, keys `a` and `b`.
+- Convert the letters of `ciphertext` to their respective numbers.
+- Perform the below operation on number equivalent of each character of the `ciphertext`.
+- `Decryption(x)` = a<sup>-1</sup>(x - b) % m
+  - `x` is a single character of the ciphertext.
+  - a<sup>-1</sup> is the modular multiplicative inverse of `a` modulo `m`.
+  - It satisfies the following relation:
+    - 1 = a a<sup>-1</sup> mod m
+- Convert the numbers back to letters to get the underlying plaintext.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Key values declared as global variables
+int a;
+int b;
+int m = 26;
+
+// This is the encryption function
+string encryption(string message) {
+
+	string cipher;
+
+	/* Encrypted Message(x) = ( a * x + b ) mod m
+	 modulus m: size of the alphabet, here 26 a and
+         b: key of the cipher. a and m should be coprime.*/
+	
+	for (int i = 0; i < message.size(); ++i) {
+
+		// Spaces should not be encrypted
+		if (message[i] != ' ') {
+			// to make in range of ASCII "A" is added
+			cipher += (char)((a * (message[i] - 'A') + b) % 26 + 'A');
+		}
+		else {
+			cipher += message[i];
+		}
+	}
+
+	// Return the ciphertext
+	return cipher;
+}
+
+// This is the decryption function
+string decryption(string cipher) {
+
+	string message;
+	int a_inv = 0;
+
+	for (int i = 0; i < 26; ++i) {
+		if ((a * i) % 26 == 1) {
+			a_inv = i;
+			break;
+		}
+	}
+
+	/* Decrypted Message(x) = a_inv ( x - b ) mod m
+	a_inv : modular multiplicative inverse of a modulo m
+	1 = (a * a_inv) mod m .*/
+
+	for (int i = 0; i < cipher.size(); ++i) {
+		// Spaces should not be encrpyted
+		if (cipher[i] != ' ') {
+			// to make it in range of ASCII "A" is added
+			message += (char)(a_inv * (cipher[i] + 'A' - b) % 26 + 'A');
+		}
+		else {
+			message += cipher[i];
+		}
+	}
+	
+	// Return the underlying plaintext
+	return message;
+}
+
+int main() {
+
+	int choice;
+
+	cout << "----------Affine Cipher----------\n\n";
+
+	cout << "1. Encryption" << endl;
+	cout << "2. Decryption" << endl;
+	cout << "3. Exit" << endl;
+
+	cout << "\nEnter your choice: ";
+	cin >> choice;
+
+	// Encryption
+	if(choice == 1) {
+		cout << "\nEnter the key 'a': ";
+		cin >> a;
+		cout << "Enter the key 'b': ";
+		cin >> b;
+		string message;
+		cout << "Enter a message: ";
+		cin >> message;
+
+		transform(message.begin(), message.end(), message.begin(), ::toupper);
+		cout << "\nEncrypted message is: " << encryption(message) << endl;
+
+	}
+	// Decryption
+	else if(choice == 2) {
+		cout << "\nEnter the key 'a': ";
+		cin >> a;
+		cout << "Enter the key 'b': ";
+		cin >> b;
+		string ciphertext;
+		cout << "\nEnter a ciphertext: ";
+		cin >> ciphertext;
+
+		transform(ciphertext.begin(), ciphertext.end(), ciphertext.begin(), ::toupper);
+		cout << "\nDecrypted message is: " << decryption(ciphertext) << endl;
+	}
+	else if(choice == 3) {
+		cout << "\nExiting program." << endl;
+		exit(0);
+	}
+	else {
+		cout << "\nInvalid choice." << endl;
+	}
+       	return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+public class AffineCipher {
+
+	// Key values declared as global variables
+	static int a;
+	static int b;
+	static int m = 26;
+
+	// This is the encryption function
+	static String encryption(String message) {
+		
+		String cipher = new String("");
+		/* Encrypted Message(x) = ( a * x + b ) mod m
+		 modulus m: size of the alphabet, here 26 a and
+		 b: key of the cipher. a and m should be coprime.*/
+
+		for (int i = 0; i < message.length(); ++i) {
+			
+			// Spaces should not be encrypted
+			if (message.charAt(i) != ' ') {
+				// to make in range of ASCII "A" is added
+				cipher += (char)((a * (message.charAt(i) - 'A') + b) % 26 + 'A');
+			}
+			else {
+				cipher += message.charAt(i);
+			}
+		}
+
+		// Return the ciphertext
+		return cipher;
+	}
+
+	// This is the decryption function
+	static String decryption(String cipher) {
+
+		String message = new String("");
+		int a_inv = 0;
+
+		for (int i = 0; i < 26; ++i) {
+			if ((a * i) % 26 == 1) {
+				a_inv = i;
+				break;
+			}
+		}
+
+		/* Decrypted Message(x) = a_inv ( x - b ) mod m
+		a_inv : modular multiplicative inverse of a modulo m
+		1 = (a * a_inv) mod m .*/
+
+		for (int i = 0; i < cipher.length(); ++i) {
+
+			// Spaces should not be encrpyted
+			if (cipher.charAt(i) != ' ') {
+				// to make it in range of ASCII "A" is added
+				message += (char)(a_inv * (cipher.charAt(i) + 'A' - b) % 26 + 'A');
+			}
+			else {
+				message += cipher.charAt(i);
+			}
+		}
+
+		// Return the underlying plaintext
+		return message;
+	}
+
+	public static void main(String args[]) {
+
+		Scanner scan = new Scanner(System.in);
+		int choice;
+		System.out.print("----------Affine Cipher----------\n\n");
+
+		System.out.println("1. Encryption");
+		System.out.println("2. Decryption");
+		System.out.println("3. Exit");
+
+		System.out.print("\nEnter your choice: ");
+		choice = scan.nextInt();
+
+		// Encryption
+		if(choice == 1) {
+			System.out.print("\nEnter the key 'a': ");
+			a = scan.nextInt();
+			scan.nextLine();
+			System.out.print("Enter the key 'b': ");
+			b = scan.nextInt();
+			scan.nextLine();
+
+			String message = new String("");
+			System.out.print("Enter a message: ");
+			message = scan.nextLine();
+
+			System.out.println("\nEncrypted message is: " + encryption(message.toUpperCase()));
+		}
+
+		// Decryption
+		else if(choice == 2) {
+			System.out.print("\nEnter the key 'a': ");
+			a = scan.nextInt();
+			scan.nextLine();
+			System.out.print("Enter the key 'b': ");
+			b = scan.nextInt();
+			scan.nextLine();
+
+			String ciphertext;
+			System.out.print("\nEnter a ciphertext: ");
+			ciphertext = scan.nextLine();
+			System.out.println("\nDecrypted message is: " + decryption(ciphertext.toUpperCase()));
+		}
+
+		else if(choice == 3) {
+			System.out.println("\nExiting program.");
+		}
+		else {
+			System.out.println("\nInvalid choice.");
+		}
+		scan.close();
+	}
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+----------Affine Cipher----------
+
+1. Encryption
+2. Decryption
+3. Exit
+
+Enter your choice: 1
+
+Enter the key 'a': 17
+Enter the key 'b': 21
+Enter a message: NEOALGO
+```
+
+#### Output:
+
+```
+Encrypted message is: ILZVATZ
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(n)`
+  - Space complexity: `O(1)`
+
+## Credits
+
+  - [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cryptography/Affine_substitution_Cipher.cpp)
+  - [Nidhish Bhimrajka](https://github.com/nidh-ish) for the Java Implementation
