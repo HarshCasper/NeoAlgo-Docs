@@ -222,7 +222,7 @@ module.exports = {
             items: [
                 "miscellaneous/miscellaneous",
                 "miscellaneous/sudoku-solver",
-                "miscellaneous/moore-voting-algorithm"
+                "miscellaneous/moore-voting-algorithm",
             ],
         },
         {
