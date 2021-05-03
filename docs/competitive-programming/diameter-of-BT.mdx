@@ -5,11 +5,11 @@ slug: /competitive-programming/diameter-of-BT
 
 ## Introduction
 
-The maximum no. of edges between the two farthest nodes in a tree is called the diameter of a binary tree.
+The maximum number of edges between the two farthest nodes in a tree is called the diameter of a binary tree.
 
 ## Explanation
 
-Let us take an example of two trees, so that we get a better understanding of this concept.
+Let us take an example of two trees so that we get a better understanding of this concept.
 
 ![diameter](https://user-images.githubusercontent.com/61618767/116555232-c20f6f00-a919-11eb-9c79-68fdd7aefbe7.png)
 
@@ -17,13 +17,16 @@ In the above picture, as you can see, we took two different cases for finding th
 
 #### Case 1 : Finding diameter including the root node
 
-As you can see in the tree of case 1, the longest path is from Node `G -> F`, including root node `A`. So, the diameter for this tree will be `5` as there are five edges between Node `G` and `F`. Alternatively, we can count the number of nodes in the path between Node `G` & `F` and then subtracting `1` from the total nodes to get the number of edges which in this case is the diameter of the tree.
+As you can see in the tree of case 1, the longest path is from Node `G -> F`, including root node `A`. So, the diameter for this tree will be `5` as there are five edges between Node `G` and `F`. 
+
+Alternatively, we can count the number of nodes in the path between Node `G` & `F` and then subtracting `1` from the total nodes to get the number of edges which in this case is the diameter of the tree.
 
 #### Case 2 : Finding diameter excluding the root node
 
 As you can see in the tree of case 2, the longest path is from Node `G -> F`, but in this case the diameter is not passing through the root node. So the diameter for this tree will be `6` as there are six edges between Node `G` and `F`.
 
 #### Conclusion : 
+
 So to find the diameter of a binary tree, the diameter doesn't need to pass through the root.
 
 ## Algorithm
@@ -31,12 +34,12 @@ So to find the diameter of a binary tree, the diameter doesn't need to pass thro
 Here, we will use recursive approach to solve this problem.
 
 * Check whether the node passed in recursive function is null; if yes, then return `0`.
-* Recursively find the height of left sub-tree and right sub-tree.
-* Recursively find the diameter of left sub-tree and right sub-tree.
+* Recursively find the height of the left subtree and right sub-tree.
+* Recursively find the diameter of the left sub-tree and right sub-tree.
 * Check whether the diameter passes through the root node
   * If yes, then no. of nodes in the path will be `lh + rh + 1` where lh and rh are the heights of left sub-tree and right sub-tree respectively.
-  * Else, diameter will be `max(ld,rd)` where ld and rd are the diameters of left sub-tree and right sub-tree respectively.
-* Return the maximum value of above steps.
+  * Else, the diameter will be `max(ld,rd)` where ld and rd are the diameters of the left subtree and right sub-tree respectively.
+* Return the maximum value of the above steps.
 
 ## Code
 
@@ -168,6 +171,7 @@ int diameter(Node *root)
 int main()
 {
     string s;
+    cout << "Enter level order input for the tree:" << endl;
     getline(cin, s);
     Node *root = buildTree(s);
     // Diameter
@@ -273,20 +277,24 @@ if __name__ == "__main__":
 ## Sample Input and Output
 
 #### Sample input
+
 ```
 Enter level order input for the tree:
 1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
 ```
 
 #### Sample Output
+
 ```
 5
 ```
 
 ## Complexity Analysis
 
-- Time Complexity: `O(N^2)` where N is the total number of nodes in the tree.
-- Space Complexity: `O(h)` where h is the height of the tree.
+- Time Complexity: `O(N^2)` 
+- Space Complexity: `O(h)`
+
+Here `N` is the total number of nodes in the tree while `h` is the height of the tree.
 
 ## Credits
 
