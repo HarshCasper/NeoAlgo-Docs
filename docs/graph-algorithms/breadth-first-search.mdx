@@ -1,0 +1,264 @@
+---
+title: Breadth First Search
+slug: /graph-algorithms/breadth-first-search
+---
+
+## Introduction
+Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures.
+It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]),
+and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+
+## Explanation
+
+- Given an undirected & Connected Graph (V, E)
+  V: Vertices E: Edges
+- Goal: methodically explore every vertex and every edge
+- “Explore” a graph, turning it into a tree
+- One vertex at a time
+- Expand frontier of explored vertices across its breadth
+- Discovers all vertices at distance k from s before those at distance k+1
+- A level-by-level order traversal
+- For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it. 2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process.
+ A Breadth First Traversal of the following graph is 2, 0, 3, 1.
+ [![graph.png](https://media.geeksforgeeks.org/wp-content/uploads/bfs-5.png)]
+
+##Applications of Breadth First Traversal
+
+- Find Connected Components in Undirected G
+- Web Crawling
+- Social N/W: Friend Finder
+- Pocket Cube (2x2x2 Rubic Cube)
+- Garbage Collector
+
+
+## Algorithm
+
+- Builds a tree over the graph
+- Pick a source vertex to be the root
+- Find (“discover”) all of its children, then all of their children, etc.
+- Associate vertex “colors” to guide the algorithm
+- white  vertices have not been discovered
+- All vertices start out white
+- Grey vertices are discovered but not fully explored
+- They may be adjacent to white vertices
+- Black vertices are discovered and fully explored
+- They are adjacent only to black and gray vertices
+- Explore vertices by scanning neighbors of grey vertices
+
+## Code
+
+```cpp
+
+#include <iostream>
+#include <queue>
+#include <algorithm>
+
+void BFS(queue<int>Q, map<int, vector<int>> Boxes, vector<int>Parents, vector<int>Color) {
+	
+	while (!Q.empty()) {
+		int u = Q.front();
+		Q.pop();
+		for (int i = 0; i < Boxes[u].size(); i++) {
+			if (Color[Boxes[u][i]] == 'W') {
+				Parents[Boxes[u][i]] = u;
+				Color[Boxes[u][i]] = 'G';
+				Q.push(Boxes[u][i]);
+			}
+		}
+                Color[u] = 'B'
+	}
+	
+}
+int main() {
+	
+	int t;
+	cin >> t;
+	int n;
+	cin >> n;
+	map<int, vector<int>> Boxes(n);
+        map<int, vector<int>>:: iterator it = Boxes.begin();
+	vector<int>Parents(n + 1);
+	vector<char>Color(n + 1);
+	queue<int>Q;
+        for (int i = 0; i < n; i++) {
+                int x;
+		cin >> x;
+                Boxes[x] = 0;
+                Color[x] = 'W';
+		Parents[i] = 0;
+	}
+        for (int i = 0; i < n; i++) {
+               int x, y;
+               cin >> x >> y;
+               if(Boxes.find(x) != Boxes.end())
+                  Boxes[x].push_back(y);
+	}	
+        Color[it->first] = 'G';
+        Q.push(it->first)
+	BFS(Q, Boxes, Parents, Color);
+	return 0;
+}
+
+```
+
+```java
+
+// Java program to print BFS traversal from a given source vertex.
+// BFS(int s) traverses vertices reachable from s.
+import java.io.*;
+import java.util.*;
+ 
+// This class represents a directed graph using adjacency list
+// representation
+class Graph
+{
+    private int V;   // No. of vertices
+    private LinkedList<Integer> adj[]; //Adjacency Lists
+ 
+    // Constructor
+    Graph(int v)
+    {
+        V = v;
+        adj = new LinkedList[v];
+        for (int i=0; i<v; ++i)
+            adj[i] = new LinkedList();
+    }
+ 
+    // Function to add an edge into the graph
+    void addEdge(int v,int w)
+    {
+        adj[v].add(w);
+    }
+ 
+    // prints BFS traversal from a given source s
+    void BFS(int s)
+    {
+        // Mark all the vertices as not visited(By default
+        // set as false)
+        boolean visited[] = new boolean[V];
+ 
+        // Create a queue for BFS
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+ 
+        // Mark the current node as visited and enqueue it
+        visited[s]=true;
+        queue.add(s);
+ 
+        while (queue.size() != 0)
+        {
+            // Dequeue a vertex from queue and print it
+            s = queue.poll();
+            System.out.print(s+" ");
+ 
+            // Get all adjacent vertices of the dequeued vertex s
+            // If a adjacent has not been visited, then mark it
+            // visited and enqueue it
+            Iterator<Integer> i = adj[s].listIterator();
+            while (i.hasNext())
+            {
+                int n = i.next();
+                if (!visited[n])
+                {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+    }
+ 
+    // Driver method to
+    public static void main(String args[])
+    {
+        Graph g = new Graph(4);
+ 
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+ 
+        System.out.println("Following is Breadth First Traversal "+
+                           "(starting from vertex 2)");
+ 
+        g.BFS(2);
+    }
+}
+
+```
+
+```py
+
+# Python3 Program to print BFS traversal
+# from a given source vertex. BFS(int s)
+# traverses vertices reachable from s.
+from collections import defaultdict
+ 
+# This class represents a directed graph
+# using adjacency list representation
+class Graph:
+ 
+    # Constructor
+    def __init__(self):
+ 
+        # default dictionary to store graph
+        self.graph = defaultdict(list)
+ 
+    # function to add an edge to graph
+    def addEdge(self,u,v):
+        self.graph[u].append(v)
+ 
+    # Function to print a BFS of graph
+    def BFS(self, s):
+ 
+        # Mark all the vertices as not visited
+        visited = [False] * (max(self.graph) + 1)
+ 
+        # Create a queue for BFS
+        queue = []
+ 
+        # Mark the source node as
+        # visited and enqueue it
+        queue.append(s)
+        visited[s] = True
+ 
+        while queue:
+ 
+            # Dequeue a vertex from
+            # queue and print it
+            s = queue.pop(0)
+            print (s, end = " ")
+ 
+            # Get all adjacent vertices of the
+            # dequeued vertex s. If a adjacent
+            # has not been visited, then mark it
+            # visited and enqueue it
+            for i in self.graph[s]:
+                if visited[i] == False:
+                    queue.append(i)
+                    visited[i] = True
+ 
+# Driver code
+ 
+# Create a graph given in
+# the above diagram
+g = Graph()
+g.addEdge(0, 1)
+g.addEdge(0, 2)
+g.addEdge(1, 2)
+g.addEdge(2, 0)
+g.addEdge(2, 3)
+g.addEdge(3, 3)
+ 
+print ("Following is Breadth First Traversal"
+                  " (starting from vertex 2)")
+g.BFS(2)
+ 
+
+```
+
+## Complexity
+- Time Complexity: O(V+E) V: Vertices  E: Edges
+
+##Credits
+- [Geeks for Geeks Website](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/) for the [Java & Python Implementation] and the give example.
