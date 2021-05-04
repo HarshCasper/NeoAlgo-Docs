@@ -1,0 +1,231 @@
+---
+title: Wiggle Sort
+slug: /sorting-algorithms/wiggle-sort
+---
+
+## Introduction
+
+Given an unsorted array `A[n]`, Wiggle Sort algorithm sorts the array `A[5]` such that `A[0] < A[1] > A[2] < A[3] > A[4]`. Wiggle sort sorts the array in a waveform, which means the wiggle sorted array resembles a wave-like structure.
+
+## Explanation
+
+Let us have one example: 
+
+```
+Given A = [5, 4, 3, 2, 1]
+
+Wiggle Sorted A' = [3, 5, 2, 4, 1]
+
+We can see that, A[0] < A[1] > A[2] < A[3] > A[4].
+```
+
+## Algorithm
+
+Given an unsorted array `A[1......n]`.
+
+- Sort the array `A`.
+- `A` is partitioned into two halves.
+- The left half is from `0` to `(n - 1) / 2`.
+- The right half is from `(n + 1) / 2` to `(n - 1)`.
+- Make a new array `A'` to store the wiggle sorted elements.
+- Elements in left half of `A` are added to even indices of `A'`.
+- Elements in right half of `A` are added to odd indices of `A'`.
+- Return `A'`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'C', value: 'c', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void wiggle_sort(int n, vector<int> arr)
+{
+    int left, right;
+    //A new vector res is initialized to store sorted array
+    vector<int> res(arr);
+    //res is sorted with the built-in sort() function.
+    sort(res.begin(), res.end());
+
+    /*res is partitioned into two such that left sub-array 
+    contains elements less than the elements in right sub-array*/
+
+    // left points to the end of left sub-array 
+    left = (n - 1) / 2;
+    // right points to the end of right sub-array
+    right = n - 1;
+    
+    //Elements in the left sub-array are added to the even indices of vector res
+    for (int k = 0; k < n; k += 2)
+        // left is decremented
+        arr[k] = res[left--];
+
+    //Elements in the right sub-array are added to the odd indices of vector x
+    for (int k = 1; k < n; k += 2)
+        // right is decremented
+        arr[k] = res[right--];
+
+    for (int i = 0; i < n; i++)
+    { //for printing the wiggle sorted array
+        cout << arr[i];
+        if (i != n - 1)
+            cout << " ";
+    }
+}
+
+int main()
+{
+    int element, i, no_of_elements;
+    cout << "Enter the size of array: ";
+    cin >> no_of_elements;
+    vector<int> arr;
+    cout << "Enter the array: ";
+    for (int i = 0; i < no_of_elements; i++)
+    { //The given array is stored in a vector arr
+        cin >> element;
+        arr.push_back(element);
+    }
+    //to wiggle sort arr
+    cout << "\nWiggle sorted array: ";
+    wiggle_sort(no_of_elements, arr);
+    cout << endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="c">
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+
+//to merge the sorted arrays
+void merge(int *ar, int l, int mid, int r)
+{
+    int i = l, j = mid + 1, k = 0, c[r - l + 1];
+    while (i <= mid && j <= r)
+    {
+        if (ar[i] <= ar[j])
+            c[k++] = ar[i++];
+        else
+            c[k++] = ar[j++];
+    }
+    if (i > mid && j <= r)
+    {
+        for (int m = j; m <= r; m++)
+            c[k++] = ar[m];
+    }
+    else if (i <= mid && j > r)
+    {
+        for (int m = i; m <= mid; m++)
+            c[k++] = ar[m];
+    }
+    for (int m = 0; m < k; m++)
+        ar[l++] = c[m];
+}
+
+//to sort the array using merge sort
+void merge_sort(int *ar, int l, int r)
+{
+    if (l < r)
+    {
+        int mid = l + (r-l) / 2;
+        merge_sort(ar, l, mid);
+        merge_sort(ar, mid + 1, r);
+        merge(ar, l, mid, r);
+    }
+}
+
+void wiggle_sort(int n, int* arr)
+{
+    int left, right;
+    //A new vector res is initialized to store sorted array
+    int* res = malloc(sizeof(int)*n);
+    for(int i=0;i<n;i++)
+        res[i]=arr[i];
+    //res is sorted with the built-in sort() function.
+    merge_sort(res,0, n-1);
+
+    /*res is partitioned into two such that left sub-array
+    contains elements less than the elements in right sub-array*/
+
+    // left points to the end of left sub-array
+    left = (n - 1) / 2;
+    // right points to the end of right sub-array
+    right = n - 1;
+
+    //Elements in the left sub-array are added to the even indices of vector res
+    for (int k = 0; k < n; k += 2)
+        // left is decremented
+        arr[k] = res[left--];
+
+    //Elements in the right sub-array are added to the odd indices of vector x
+    for (int k = 1; k < n; k += 2)
+        // right is decremented
+        arr[k] = res[right--];
+
+    for (int i = 0; i < n; i++)
+    { //for printing the wiggle sorted array
+        printf("%d ",arr[i]);
+    }
+}
+
+//driver code
+int main()
+{
+    int element, i, no_of_elements;
+    printf("Enter the size of array: ");
+    scanf("%d", &no_of_elements);
+    int *arr=malloc(sizeof(int)*no_of_elements);
+    printf("Enter the array: ");
+    for (int i = 0; i < no_of_elements; i++)
+    { //The given array is stored in a vector arr
+       scanf("%d",&arr[i]);
+    }
+    printf("\nWiggle sorted array: ");
+    //to wiggle sort arr
+    wiggle_sort(no_of_elements, arr);
+    printf("\n");
+    return 0;
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input:
+
+```
+Enter the size of array: 5
+Enter the array: 5 4 3 2 1
+```
+
+#### Output:
+
+```
+Wiggle sorted array: 3 5 2 4 1
+```
+
+## Complexity Analysis
+
+  - Time complexity: `O(nlogn)`
+  - Space complexity: `O(n)`
+
+## Credits
+
+  - [Aishwarya A J](https://github.com/aish2002) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/wiggle_sort.cpp)
+  - [Aishwarya A J](https://github.com/aish2002) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/Wiggle_sort.c)
