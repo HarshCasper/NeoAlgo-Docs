@@ -58,14 +58,19 @@ module.exports = {
             items: [
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
-                "data-structures/binary-search-tree",
                 "data-structures/Singly-Linked-list",
-                "data-structures/Circular-Linked-list",
+                "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
+                "data-structures/binary-search-tree",
                 "data-structures/queue",
+                "data-structures/Circular-Linked-list",
+                "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
+		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
-                "data-structures/palindromic-linked-list",
+                "data-structures/size-of-binary-tree",
+                "data-structures/inorder_traversal"
             ],
         },
         {
