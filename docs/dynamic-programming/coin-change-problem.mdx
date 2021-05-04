@@ -1,0 +1,229 @@
+---
+title: Coin Change Problem
+slug: /dynamic-programming/coin-change-problem
+---
+
+## Introduction
+
+Given an integer `amount`, which represents the total amount of money, an integer array `coins` representing different coin values, and each denomination has an infinite supply of coins. Find what will be the minimum number of coins required to make up the given amount?
+
+## Explaination
+
+In this problem, we are using the **Bottom-up approach** of dynamic programming. In the dynamic programming approach, we divide the problem into subproblems. We divide this problem into subproblems by dividing the amount from 0 to the total amount and representing it as the column-indices of the 2-d array. We will solve these subproblems and store them in cells of the 2-d array. The row-indices of this 2-d array represent indices of coins array.
+
+## Algorithm
+
+- Make a 2-d array, say `dp[n+1][amount+1]`.
+- Assign all the columns of the `0th` row of the 2d-array to a maximum value: `dp[0][i]= INT_MAX`.
+- Assign all the rows of the `0th` column of the 2-d array as 0, that is, `dp[i][0]=0`.
+- For the `1st` row, if the column indices value is divisible by the first coin, write the quotient in that cell, else write the max value.
+- For row>1, iterate till column index value is less than the ith coin value (i.e for all column indices, j,such that, j<coins[i-1] )and assign `dp[i][j]` to the previous upper row value, that is, `dp[i][j]=dp[i-1][j]`.
+- Now we have two options for all column indices, j, such that, j>=coins[i-1], whether to include ith coin or not.
+- Case1- If we don't consider the ith coin, then the cell value is the previous row cell value that is, `dp[i][j]=dp[i-1][j]`.
+- Case2- If we consider the ith coin, then the cell value is `1+ dp[i][j-coins[i-1]]` cell value.
+- The final value of the cell is the minimum of both the cases,that is, `dp[i][j]= min(dp[i-1][j], 1+dp[i][j-coins[i-1]])`.
+- The final answer will be `dp[n][amount]`.
+
+## Example
+
+coins[]={1,5,6,9}
+
+n=4
+
+amount=10
+
+Final `dp` array after following the above algorithmic steps:
+
+![image](https://user-images.githubusercontent.com/64724041/117053094-2bd2b300-ad36-11eb-87a6-ef2f6397440e.png)
+
+`Answer = dp[4][10] = 2`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+
+class CoinChangeUsingDp {
+
+    public static int coinChange(int[] coins, int amount) {
+
+        if (amount == 0) {
+            return 0;
+        }
+
+        int n = coins.length;
+        int t[][] = new int[n + 1][amount + 1];
+
+        for (int i = 0; i < amount + 1; i++) {
+            t[0][i] = Integer.MAX_VALUE - 1;
+        }
+
+        for (int i = 1; i < n + 1; i++) {
+            t[i][0] = 0;
+        }
+
+        for (int i = 1; i < amount + 1; i++) {
+
+            if (i % coins[0] == 0) {
+                t[1][i] = i / coins[0];
+            } else {
+                t[1][i] = Integer.MAX_VALUE - 1;
+            }
+        }
+
+        for (int i = 2; i < n + 1; i++) {
+
+            for (int j = 1; j < amount + 1; j++) {
+
+                if (coins[i - 1] <= j) {
+                    t[i][j] = (1 + t[i][j - coins[i - 1]]) < t[i - 1][j] ? (1 + t[i][j - coins[i - 1]]) : t[i - 1][j];
+                } else
+                    t[i][j] = t[i - 1][j];
+            }
+        }
+
+        if (t[n][amount] == Integer.MAX_VALUE - 1) {
+            return -1;
+        } else {
+            return t[n][amount];
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please input the length of the array ");
+        int n = sc.nextInt();
+        int coins[] = new int[n];
+        System.out.println("Please input the " + n + " elements of the array ");
+        for (int i = 0; i < n; i++) {
+            coins[i] = sc.nextInt();
+        }
+        System.out.println("Please input the required amount ");
+        int amount = sc.nextInt();
+        System.out.println("Minimum coins required are " + coinChange(coins, amount));
+    }
+
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+import sys
+
+# assigning max value a variable can take
+
+INT_MAX = sys.maxsize - 1
+
+# size of coins list
+
+print ('Please input the length of the array ')
+n = int(input())
+
+# taking input of list of coins
+
+print ('Please input the ' + str(n) + ' elements of the array ')
+coins = list(map(int, input().split()))
+
+# taking input of value of coin to be changed
+
+print ('Please input the required amount ')
+amount = int(input())
+
+value = amount
+
+# constructing a matrix of size n * value
+
+k = [[0 for i in range(value + 1)] for j in range(n + 1)]
+
+
+# Bottom Up Dp Apporach
+
+# coinchange function
+
+def coinChange(coins, value, n):
+
+  # Initialize first row with sys.maxsize
+
+    for i in range(1, value + 1):
+        k[0][i] = INT_MAX
+
+  # Initialize first column with 0
+
+    for j in range(n + 1):
+        k[j][0] = 0
+
+    for i in range(1, n + 1):
+        for j in range(1, value + 1):
+
+      # checking if coins[i-1] is less than index j
+
+            if coins[i - 1] <= j:
+
+        # assigning the min value
+
+                k[i][j] = min(k[i][j - coins[i - 1]] + 1, k[i - 1][j])
+            else:
+
+        # assigning the previous value from matrix
+
+                k[i][j] = k[i - 1][j]
+
+  # returns value in n * value block
+
+    return k[n][value]
+
+if __name__ == "__main__":
+    min_coins = coinChange(coins, value, n)
+    # printing the min required coins
+    print ('Minimum coins required are {}'.format(min_coins))
+
+```
+
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+4
+1 5 6 9
+10
+```
+
+#### Output
+
+```
+Minimum coins required are 2
+```
+
+## Complexity Analysis
+
+- n is the size of the coins array.
+- amount is the total required amount.
+- Space Complexity : `O(n*amount)`
+- Time Complexity : upperbounded by `O(n*amount)`
+
+## Credits
+
+- [Huzaib](https://github.com/Huzaib) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/dp/CoinChangeUsingDp.java)
+- [Alifbhanvadiya14](https://github.com/Alifbhanvadiya14) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/CoinChange.py)
