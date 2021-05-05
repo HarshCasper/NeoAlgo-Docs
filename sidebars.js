@@ -67,7 +67,8 @@ module.exports = {
 		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/size-of-binary-tree",
-                "data-structures/inorder_traversal"
+                "data-structures/inorder_traversal",
+                "data-structures/tower-of-hanoi"
             ],
         },
         {
