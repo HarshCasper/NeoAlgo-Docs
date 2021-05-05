@@ -1,0 +1,161 @@
+---
+title: Tower of Hanoi
+slug: /data-structures/tower-of-hanoi
+---
+
+## Introduction
+
+In this, we are given three towers. Tower 1 has n disks placed one over the other in ascending order such that the smallest disk is at the top of Tower 1 similar to a cone shape, where n is any positive number. Tower 2 and Tower 3 are empty. We have to move all discs from Tower 1 to Tower 3 using Tower 2.
+
+## Explanation 
+
+<img src="https://i.imgur.com/PCk9mpI.jpg?1" width="900" height="250"/>
+We have to move all the disks from Tower 1 to Tower 3 (see in above figure) using Tower 2. 
+
+#### Properties:
+```
+If there are n number of discs, then we require at least 2 raised to power n minus 1 move.
+
+``` 
+
+#### Rules:
+```
+❖ Print the instructions to move the disks.
+❖ From Tower 1 to Tower 2 using Tower 3.
+❖ Following the rules:
+       • Move one disk at a time.
+       • Never place a smaller disk under a larger disk.
+       • You can only move a disk at the top.
+
+```
+
+#### Example 1
+<img src="https://i.imgur.com/ZJNAOFy.jpg" width="900" height="350"/>
+
+```
+
+In the above example, we are given 3 towers A, B and C. 
+We have to move all the discs from tower A to tower C using tower B.
+Here we are given 3 discs, n=3.
+Disc 1 moved from A to C
+Disc 2 moved from A to B
+Disc 1 moved from C to B
+Disc 3 moved from A to C
+Disc 1 moved from B to A
+Disc 2 moved from B to C
+Disc 1 moved from A to C
+
+```
+## Algorithm
+
+* If the number of disc is 1, then simply move from source to destination.
+
+* Else, move first n-1 disc from source to auxiliary tower recursively.
+
+* Move one disc from source to destination tower.
+
+* Move n-1 disc from auxiliary tower to destination tower.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+// Program for tower of hanoi
+#include <bits/stdc++.h>
+using namespace std;
+
+// recursive function for moving disc
+void TOH(int n, string sour, string dest, string aux)
+{
+  // if no. of disc is 1 then simply move the disc from A to C
+	if (n == 1)
+	{
+		cout<<"Move disk 1 from tower "<<sour<<" to tower "<<dest<<endl;
+		return;
+	}
+	TOH(n - 1, sour, aux, dest);
+	cout << "Move disk "<<n<<" from tower "<<sour<<" to tower "<<dest<< endl;
+	TOH(n - 1, aux, dest, sour);
+}
+// Main function
+int main()
+{
+	int n;
+
+  // Taking no. of disks as input
+  cout<<"Enter number of disks: ";
+  cin>>n;
+
+  // Calling TOH function
+	TOH(n, "A", "C", "B"); // A, B and C are names of towers
+	return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+
+
+# function for tower of hanoi
+def TOH(n , sour, dest, aux):
+
+  # Only one disk
+	if n == 1:
+		print("Move disk 1 from rod",sour,"to rod",dest)
+		return
+
+	TOH(n-1, sour, aux, dest)
+	print("Move disk",n,"from rod",sour,"to rod",dest)
+	TOH(n-1, aux, dest, sour)
+		
+# Taking number of discs as input
+n=(int(input("Enter number of disks: ")))
+
+# Calling TOH function
+TOH(n, "A", "C", "B")
+     
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter number of disks: 3
+```
+
+#### Output :
+
+```
+Move disk 1 from rod A to rod C
+Move disk 2 from rod A to rod B
+Move disk 1 from rod C to rod B
+Move disk 3 from rod A to rod C
+Move disk 1 from rod B to rod A
+Move disk 2 from rod B to rod C
+Move disk 1 from rod A to rod C
+```
+
+## Complexity Analysis
+ 
+- Time Complexity: `O(2^n)`
+
+- Space Complexity: `O(n)`
+
+where `n` is the number of discs.

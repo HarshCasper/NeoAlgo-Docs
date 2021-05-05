@@ -2,6 +2,16 @@
   "name": "neoalgo-docs",
   "version": "0.0.0",
   "private": true,
+   "workspaces": {
+       "packages": [
+           "src/*",
+           "plugins/*",
+           "./docs"
+        ],
+        "nohoist": [
+            "**/html-minifier-terser"
+        ]
+    },
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
