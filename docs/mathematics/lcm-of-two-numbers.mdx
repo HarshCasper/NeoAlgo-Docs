@@ -1,0 +1,168 @@
+---
+title: LCM of two Numbers
+slug: /mathematics/lcm-of-two-numbers
+---
+
+## Introduction
+
+Lowest Common Multiple (LCM) is the lowest number which is divisible by both the numbers. It is also called as Least Common Divisor (LCD). LCM of two numbers cannot be less than the greater of them. If smaller number is the factor of greater number then the greater number will be the LCM.
+
+## Explanation 
+
+LCM of two numbers `a` and `b` is denoted by `lcm(a,b)`. LCM of any number with `1` will be the number itself. LCM of two coprime numbers is the product of numbers. LCM can be found by Listing Multiples, Prime Factorization, Ladder Method, and Divison Method.
+
+LCM has the following properties:
+```
+lcm(a,b) = lcm(b,a)
+lcm(da, db, dc) = d * lcm(a, b, c), where d is any positive integer
+lcm(a, b, c) = lcm(lcm(a, b), c) = lcm(a, lcm(b, c))
+```
+
+Let's have one example: 
+```
+num1 = 4
+num2 = 6
+maxx = 6, it contains maximum of num1 and num2
+
+Iteration 1:
+maxx = 6
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 2:
+maxx = 7
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 3:
+maxx = 8
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 4:
+maxx = 9
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 5:
+maxx = 10
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 6:
+maxx = 11
+maxx is not divisible by both numbers, so increase maxx by 1
+maxx = maxx + 1
+
+Iteration 7:
+maxx = 12
+maxx is divisible by both the numbers, so this is our LCM
+```
+
+## Algorithm
+
+- Declare a variable `maxx` and initialize it to maximum of two numbers.
+- Increase `maxx` by `1` until it becomes divisible by both the numbers.
+- Return `maxx`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to determine the lcm of two numbers
+
+int lcm(int a, int b) 
+{
+    // Assigning maximum element to maxx
+
+    int maxx;
+    if (a <= b) maxx = b;
+    else maxx = a;
+
+    while (true) 
+    {
+        if (maxx % a == 0 && maxx % b == 0) 
+        {
+            break;
+        }
+        maxx++;
+    }
+    return maxx;
+}
+
+int main() 
+{
+    cout << "Enter the First Number: ";
+    int a;
+    cin >> a;
+    cout << "Enter the Second Number: ";
+    int b;
+    cin >> b;
+
+    cout << "LCM of two Numbers is: " << lcm(a, b);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to determine the lcm of two numbers
+
+def lcm(a, b):
+    # Assigning maximum element to maxx
+
+    if a <= b:
+        maxx = b
+    else:
+        maxx = a
+    while True:
+        if maxx % a == 0 and maxx % b == 0:
+            break
+        maxx += 1
+    return maxx
+
+
+if __name__ == "__main__":
+
+    a = int(input("Enter the First Number: "))
+    b = int(input("Enter the Second Number: "))
+
+    print("LCM of two Numbers is:", lcm(a, b))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the First Number: 5
+Enter the Second Number: 15
+```
+#### Output :
+
+```
+LCM of two Numbers is: 15
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+- Space Complexity: `O(1)`

@@ -1,0 +1,109 @@
+---
+title: Tetrahedral Number
+slug: /mathematics/tetrahedral-number
+---
+
+## Introduction
+
+A Tetrahedral number is a figurate number. A Figurate number is a number that can be represented by a regular geometrical arrangement of equally spaced points. The Tetrahedral number represents a pyramid with a triangular base and three sides. We are given a number `n` and we need to print the `nth` tetrahedral number.
+
+## Explanation 
+
+The `nth` Tetrahedral number is the sum of first `n` triangular numbers. For calculating the `nth` tetrahedral number just apply the formula given below. First few tetrahedral numbers are `1`, `4`, `10`, `20`, `35`, `56`, `84`, `120`, `165`, `220`.
+
+<img src="https://i.imgur.com/lSdNIiO.jpg" width="272" height="189" /><br/><br/>
+
+Formula: 
+```
+nth Tetrahedral Number: (n * (n + 1) * (n + 2)) / 6
+```
+
+Let's have few examples: 
+```
+n = 3
+3rd tetrahedral number = 10
+
+n = 5
+5th tetrahedral number = 35
+
+n = 7
+7th tetrahedral number = 84
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to return nth tetrahedral number
+
+int tetrahedral_number(int n) 
+{
+    int res = n * (n+1) * (n+2);
+    res = res / 6;
+    return res;
+}
+
+int main() 
+{
+    int n;
+    cout << "Enter the Number: ";
+    cin >> n;
+
+    cout<<"Tetrahedral Number is: "<<tetrahedral_number(n)<<endl;
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to return nth tetrahedral number
+
+def tetrahedral_number(n):
+    res = n * (n+1) * (n+2)
+    res = res // 6
+    return res
+
+if __name__ == "__main__":
+
+    n = int(input("Enter the Number: "))
+
+    print("Tetrahedral Number is: ",tetrahedral_number(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number: 10
+```
+
+#### Output :
+
+```
+Tetrahedral Number is: 220
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(1)`
+- Space Complexity: `O(1)`
