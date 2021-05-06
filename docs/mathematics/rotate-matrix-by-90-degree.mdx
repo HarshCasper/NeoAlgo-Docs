@@ -1,0 +1,218 @@
+---
+title: Rotate Matrix by 90 Degree
+slug: /mathematics/rotate-matrix-by-90-degree
+---
+
+## Introduction
+
+We are given a matrix of size `N*N` and we need to rotate it by `90` degrees in the anticlockwise direction. Anticlockwise refers to the opposite direction to how the hands of a clock move round.
+
+## Explanation 
+
+We can do it by traversing the right-most column from top to down, then the second right-most column from top to down, and so on. While traversing the matrix we also need to store elements in the different matrix of the same size. This method is having Space Complexity `O(Row*Column)`. We will see another approach that will rotate the matrix In-place.
+
+Let's have few examples: 
+```
+Input 1:
+1 2
+3 4
+
+Output 1:
+2 4
+1 3
+
+Input 2:
+1 2 1
+3 1 3
+1 4 1
+
+Output 2:
+1 3 1 
+2 1 4
+1 3 1
+```
+
+## Algorithm
+
+- Convert Matrix into its Transpose
+    - Iterate `i` from `0 to n-1`  
+        - Iterate `j` from `i+1 to m-1` 
+            - Swap Matrix element at index `(i,j)` with `(j,i)`.
+- Reverse each Column of Matrix
+    - Iterate `j` from `0 to m-1` 
+        - Initialize `tmp` to `n/2` 
+        - If `n` is divisible by `2`, reduce `tmp` by `1`
+        - Iterate `i` from `0 to tmp` 
+            - Swap Matrix element at index `(i,j)` with `(n-i-1,j)`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to rotate matrix by 90 degree
+
+void rotate_matrix(int * matrix, int n, int m) 
+{
+    // To convert matrix into its Transpose
+
+    int i=0;
+    while(i<n)
+    {
+        int j = i + 1;
+        while(j<m)
+        {
+            swap( * (matrix + i * m + j), *(matrix + j * m + i));
+            j++;
+        }
+        i++;
+    }
+    // Reversing each column of matrix
+
+    int j=0;
+    while(j<m)
+    {
+        int tmp = n / 2;
+        if (n % 2 == 0) tmp--;
+        int i=0;
+        while(i<=tmp)
+        {
+            swap( * (matrix + i * m + j), *(matrix + (n - i - 1) * m + j));
+            i++;
+        }   
+        j++;
+    }
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    rotate_matrix((int * ) arr, row, col);
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to rotate matrix by 90 degree
+
+def rotate_matrix(matrix, n, m):
+    # To convert matrix into its Transpose
+
+    i = 0
+    while i < n:
+        j = i + 1
+        while j < m:
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+            j += 1
+        i += 1
+    # Reversing each column of matrix
+
+    j = 0
+    while j < m:
+        tmp = n // 2
+        if n % 2 == 0:
+            tmp = tmp - 1
+        i = 0
+        while i <= tmp:
+            matrix[i][j], matrix[n - i - 1][j] = matrix[n - i - 1][j], matrix[i][j]
+            i += 1
+        j += 1
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    rotate_matrix(matrix, row, col)
+
+    for r in matrix:
+        for c in r:
+            print(c, end=" ")
+        print()
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix: 
+1
+1
+1
+2
+2
+2
+3
+3
+3
+```
+
+#### Output :
+
+```
+1 2 3 
+1 2 3 
+1 2 3 
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row*Column)`
+- Space Complexity: `O(1)`
