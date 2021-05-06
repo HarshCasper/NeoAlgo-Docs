@@ -163,7 +163,7 @@ module.exports = {
 		"graph-algorithms/topological-sorting",
 
 
-	             	"graph-algorithms/topological-sorting"
+	             	"graph-algorithms/topological-sorting", 
 
 
                 "graph-algorithms/topological-sorting",
