@@ -1,0 +1,176 @@
+---
+title: Product of count of bits of each element in array
+slug: /mathematics/product-of-count-of-bits-of-each-elements
+---
+
+## Introduction
+
+In this article, we will see how to calculate the product of the count of bits of each element present in the array.  
+
+## Explanation 
+
+In this, we are given an array. We have to calculate the product of bits of each element present in the array so first, we have to calculate the number of bits in each element then simply multiply them.
+
+#### Example :
+
+```
+Given array  a[5]: { 3, 2, 4, 1, 5 }
+Binary representation of 3 : 11
+So no. of bits in 3 :  2
+
+Binary representation of 2 : 10
+So no. of bits in 2 :  2
+
+Binary representation of 4 : 100
+So no. of bits in 4 :  3
+
+Binary representation of 1 : 1
+So no. of bits in 1 :  1
+
+Binary representation of 5 : 101
+So no. of bits in 5 :  3
+
+Product of all bits of each element : 2*2*3*1*3=36
+
+```
+## Algorithm
+
+For calculating product of count of bits of each element in array, we follow the following algorithm:
+
+* First, we will calculate the number of bits in binary representation of each element.
+
+* Initialize product variable with 1 and keep multiply count of bits of each element.
+
+* Print the value of product.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function countbits for calculating no. of bits in a number
+int countbits(int n)
+{
+  int count=0;
+  
+  //for counting bits count++ until n is equal to zero
+  while(n!=0)
+  {
+    count++;
+    n=n/2;
+  }
+  
+  //after calculating count return
+  return count;
+}
+
+// main function
+int main()
+{
+  int n;
+  cout<<"Enter the size of array: ";
+  cin>>n;
+  int a[n];
+  cout<<"Enter the elements of array: ";
+  
+  //input array
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+  }
+    
+  //initialize product with 1
+  int product=1;
+  
+  //for loop for calculating bits of all elements in array
+  for(int i=0;i<n;i++)
+  {
+    int bits;
+    
+    //calling countbits function
+    bits=countbits(a[i]);
+    product*=bits;
+  }
+  
+  //printing product 
+  cout<<product<<endl;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# function count_bits for counting number of bits in binary representation
+def count_bits(n):
+    
+    # initialize count with 0
+    count=0
+    while(n!=0):
+      count+=1
+      n=n//2
+    
+    return count
+  
+# Taking size as input 
+n = int(input("Enter the size of array: "))
+
+#  Taking elements of array as input
+print("Enter the elements of array: ")
+data=[]
+for i in range(n):
+    data.append(int(input()))
+
+# Initializing product variable with 1
+product=1
+
+# loop for calculating bits of each element present in array
+for i in range(n):
+  bits=0
+  # calling count_bits function
+  bits=count_bits(data[i]);
+  product*=bits;
+
+# Printing the value of product
+print(product)
+     
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the size of array: 5
+Enter the elements of array: 3 2 4 1 5
+
+```
+#### Output :
+
+```
+36
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(nlogn)`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements.

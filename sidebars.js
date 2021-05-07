@@ -68,10 +68,11 @@ module.exports = {
                 "data-structures/Circular-Linked-list",
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		        "data-structures/palindromic-linked-list",
-
-                "data-structures/palindromic-linked-list",
+		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
+                "data-structures/size-of-binary-tree",
+                "data-structures/inorder_traversal",
+                "data-structures/tower-of-hanoi",
             ],
         },
         {
@@ -140,6 +141,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+                "mathematics/product-of-count-of-bits-of-each-elements"
             ],
         },
         {
