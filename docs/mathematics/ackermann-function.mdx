@@ -5,7 +5,7 @@ slug: /mathematics/Ackermann-Function
 
 ## Introduction
 
-The Ackermann function is one of the classic example of a recursive function, that is not a primitive recursive function. It grows very quickly in value, faster than an exponential function.
+The Ackermann function is multi-variable function from the natural numbers to the natural numbers with very fast rate of growth. It is one of the classic example of a recursive function, that is not a primitive recursive function. All primitive recursive functions are total and computable, but the Ackermann function illustrates that not all total computable functions are primitive recursive.
 
 ## Explanation
 
@@ -17,23 +17,25 @@ A(0, j)=j+1 for j ≥ 0
 A(i, 0)=A(i-1, 1) for i > 0
 A(i, j)=A(i-1, A(i, j-1)) for i, j > 0
 ```
-Let's have few examples: 
+Let's have an example to see how the Ackermann function grows so quickly: 
 ```
-For i=1,j=2
-Output=4
-
-For i=3,j=3
-Output=61
+A(1,2)  = A(0, A(1, 1)) 	// applying third condition of Ackermann function
+	= A(0, A(0, A(1, 0))) 	// applying third condition of Ackermann function
+	= A(0, A(0, A(0, 1))) 	// applying second condition of Ackermann function
+	= A(0, A(0, 2)) 	// applying first condition of Ackermann function: A(0, 1) = 2
+	= A(0, 3) 		// applying first condition of Ackermann function: A(0, 2) = 3
+	= 4.			// applying first condition of Ackermann function: A(0, 3) = 4
 ```
 
 ## Algorithm
 
 ```
-- Taking two non-negative integers from user.
-- Calling the function with the input values.
-Ackermann_Function(int i, int j):
-  - Checking the values of `i` and `j`, 
-    then applying the associated conditions.
+Ackermann(i, j):
+  - Checking the values of `i` and `j` 
+  - Applying the associated conditions
+  - Recursively calling the function until the first condition is applied
+  - Obtaining the final result
+  - Returning the resultant value
 ```
 
 ## Code
