@@ -134,7 +134,6 @@ module.exports = {
                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
-                "mathematics/boolean-matrix",
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
