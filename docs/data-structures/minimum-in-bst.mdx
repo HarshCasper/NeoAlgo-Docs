@@ -8,8 +8,11 @@ slug: /data-structures/minimum-in-bst
 In this article, we will see how to find the node having minimum data or key. We are given an Binary Search Tree(BST) and we have to find the minimum element. In this type of tree(BST), left child is always smaller than its parent and right child is always greater than its parent.
 
 ## Explanation 
+
 In this we are given an Binary Search Tree and we have to find out the node which have minimum data or key. We know that in this type of tree left child is smaller than its parent and right child is always greater than its parent. So the minimum data will lie in left part of tree so keep moving in left until we get null.
-#### Example 1
+
+#### Examples
+
 <img src="https://i.imgur.com/vjoI6QE.jpg?1" width="600" height="350"/>
 
 ```
@@ -26,11 +29,8 @@ Print 11
 For finding minimum node in BST, we follow the following algorithm:
 
 * First, we will check that tree is empty or not.
-
 * If tree is empty then simply return 0 because it has no node.
-
 * Otherwise keep moving on left child until we get left child as NULL.
-
 * Print the left child because this is the minimum node in BST.
 
 ## Code
@@ -186,8 +186,8 @@ Minimum element in BST: 11
 
 ## Complexity Analysis
  
-- **Time Complexity:** `O(h)`
+- Time Complexity: `O(h)`
 
-- **Space Complexity:** `O(1)`
+- Space Complexity: `O(1)`
 
-where `n` is the number of elements and `h` is the height of binary tree.
+here `n` is the number of elements and `h` is the height of binary tree.
