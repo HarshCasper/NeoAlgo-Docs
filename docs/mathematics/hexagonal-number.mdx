@@ -1,0 +1,121 @@
+---
+title: Hexagonal Number
+slug: /mathematics/hexagonal-number
+---
+
+## Introduction
+
+A Hexagonal number is a figurate number. A Figurate number is a number that can be represented by a regular geometrical arrangement of equally spaced points. The `nth` hexagonal number `Hn` refers to the count of distinct dots which can be used to draw the outlines of regular hexagonal pattern such that hexagons are overlaid to share one vertex. We are given a number `n` and we need to print the `nth` hexagonal number.
+
+## Explanation 
+
+Every hexagonal number is a triangular number and every odd triangular number is a hexagonal number. For calculating the `nth` hexagonal number just apply the formula given below. The first few hexagonal few hexagonal numbers are `1`, `6`, `15`, `28`, `45`, `66`, `91`, `120`, `153`, `190`.
+
+<img src="https://i.imgur.com/2JrXeU5.jpg" width="391" height="189" /><br/><br/>
+
+Formula: 
+
+```
+nth Hexagonal Number: n * (2 * n - 1) 
+```
+
+We can test whether a positive integer `x` is a hexagonal number or not by calculating below expression:
+
+```
+n = (sqrt(8*x + 1) + 1) / 4
+
+If n is an integer then x is a hexagonal number
+Else x is not a hexagonal number 
+```
+
+Let's have few examples: 
+
+```
+n = 1
+1st hexagonal number = 1
+
+n = 3
+3rd hexagonal number = 15
+
+n = 6
+6th hexagonal number = 66
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to return nth hexagonal number
+
+int hexagonal_number(int n) 
+{
+    int res = n;
+    res = res * (2 * n - 1);
+    return res;
+}
+
+int main() 
+{
+    int n;
+    cout << "Enter the Number: ";
+    cin >> n;
+
+    cout<<"Hexagonal Number is: "<<hexagonal_number(n)<<endl;
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to return nth hexagonal number
+
+def hexagonal_number(n):
+    res = n
+    res = res * (2 * n - 1);
+    return res
+
+if __name__ == "__main__":
+
+    n = int(input("Enter the Number: "))
+
+    print("Hexagonal Number is: ",hexagonal_number(n))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the Number: 5
+```
+
+#### Output :
+
+```
+Hexagonal Number is: 45
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(1)`
+
+- Space Complexity: `O(1)`
