@@ -5,7 +5,7 @@ slug: /mathematics/boolean-matrix
 
 ## Introduction
 
-Boolean Matrix refers to the matrix which only contains `0` and `1`. We are given a boolean matrix of size `N X N`, we need to modify the matrix such that if a matrix cell `matrix[i][j]` is `1`, then make all cells of `ith` row and `jth` column as `1`.
+Boolean Matrix refers to the matrix which only contains `0` and `1`. We are given a boolean matrix of size `N X N`, we need to modify the matrix such that if a matrix cell `matrix[i][j]` is `1`, then make all cells of i<sup>th</sup> row and j<sup>th</th> column as `1`.
 
 ## Explanation 
 
@@ -39,9 +39,7 @@ Output2:
 ## Algorithm
 
 - Make two arrays `row` and `col` and initialize them to `0`.
-
 - Traverse the whole matrix and mark the indexes of the cell where `1` is present in the `row` and `col` array.
-
 - Traverse the whole matrix and mark the cell as `1` if its row index or column index is marked in the `row` or `col` array.
 
 ## Code
@@ -222,5 +220,4 @@ Enter the elements of Matrix:
 ## Complexity Analysis
 
 - Time Complexity: `O(N*N)`
-
 - Space Complexity: `O(N+N)`
