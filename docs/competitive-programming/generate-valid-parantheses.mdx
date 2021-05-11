@@ -1,0 +1,153 @@
+---
+title: Generate Valid Parantheses
+slug: /competitive-programming/generate-valid-parantheses
+---
+
+## Introduction
+
+You are given a number n, your job is to find al the n balanced parenthesis combinations possible.
+
+## Explanation 
+
+We can do it by first taking an empty string. First we can place either an opening or a closing bracket but by checking conditions, 
+if the count of the opening brackets is less than the total number of brackets then we can put an opening bracket.
+If the count of the closing brackets is less than that of the opening brackets then we can put a closing bracket.
+We can recursively call the function and print when we reach twice the size of the number of brackets because that is the maximum number of brackets possible.
+
+Let's have few examples: 
+```
+Input 1:
+2
+Output 1:
+(())
+()()
+Input 2:
+3
+Output 2:
+((()))
+(()())
+(())()
+()(())
+()()()
+```
+
+## Algorithm
+
+- Initialize open=0,close=0,index=0
+    - If the current index is equal to (2*total)
+        - Add a NULL character at the end
+	- Print the character array
+
+    - If open<total
+	- Add an '(' to the character array
+	- recursively call the function
+
+    - If close<open
+	- Add an ')' to the character array
+	- recursively call the function
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void FindValidParenthesis(char *out, int n, int index, int open, int close)
+{
+	if (index == 2 *n)
+	{
+		out[index] = '\0';
+		cout << out << endl;
+		return;
+	}
+
+	//If the number of open brackets is less than n
+	if (open < n)
+	{
+		out[index] = '(';
+		FindValidParenthesis(out, n, index + 1, open + 1, close);
+	}
+
+	//If the number of close brackets is less than the number of open brackets
+	if (close < open)
+	{
+		out[index] = ')';
+		FindValidParenthesis(out, n, index + 1, open, close + 1);
+	}
+
+	return;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	char out[1000];
+	int index = 0;
+	FindValidParenthesis(out, n, 0, 0, 0);
+	return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Generate valid parantheses
+def generateParantheses(openB,closeB,total,s=[]):
+    if(closeB==total):
+        print(''.join(s))
+        return
+    else:
+        if(openB>closeB):
+            s.append(')')
+            generateParantheses(openB,closeB+1,total,s)
+            s.pop()
+        if(openB<total):
+            s.append('(')
+            generateParantheses(openB+1,closeB,total,s)
+            s.pop()
+    return
+
+if __name__ == '__main__':
+    total=int(input("Enter total number of parantheses: "))
+    generateParantheses(0,0,total)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+n = 3
+```
+
+#### Output :
+
+```
+((()))
+(()())
+(())()
+()(())
+()()()
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
