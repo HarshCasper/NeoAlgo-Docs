@@ -7,10 +7,9 @@ slug: /mathematics/invert-binary-tree
 
 A binary tree is a data structure in which each node has at most two children. To invert a binary tree we have to interchange the `left` and `right` child of each node. It is also known as the mirror of the binary tree
 
-
 ## Explanation
 
-For inverting a binary tree we recursively swap the `left` and `right` subtrees
+For inverting a binary tree we recursively swap the `left` and `right` subtrees.
 Let us have an example, consider this binary tree shown below
 ![image](https://i.postimg.cc/WzTd9Rp8/tree-1.png)   
 The below image of the binary tree is the binary tree obtained after inverting the binary tree in the above image
@@ -21,8 +20,7 @@ The below image of the binary tree is the binary tree obtained after inverting t
 - Swap the `right` and `left` subtrees of the binary tree
 - Recursively call the function using the left subtree until the root becomes `null`
 - Recursively call the function using the right subtree until the root becomes `null`
-
-
+- 
 ## Code
 
 import Tabs from "@theme/Tabs";
@@ -249,8 +247,8 @@ Preorder traversal of the inverted binary tree is
 
 ## Complexity Analysis
 
-- Time complexity - O(`n`) , Where `n` is the number of nodes
-- Space complexity - O(`n`)
+- Time complexity - `O(n)` , Where `n` is the number of nodes
+- Space complexity - `O(n)`
 
 
 ## Credits
