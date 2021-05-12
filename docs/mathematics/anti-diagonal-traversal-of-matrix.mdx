@@ -1,0 +1,193 @@
+---
+title: Anti Diagonal Traversal of Matrix
+slug: /mathematics/anti-diagonal-traversal-of-matrix
+---
+
+## Introduction
+
+We are given a matrix of size `N*N` and we need to print an anti diagonal traversal of it. Anti diagonal traversal refers to the traversal in which the top-left diagonal is printed first, then second top-left diagonal, then third top-left diagonal, and so on. For better understanding refer to the image given below.
+
+## Explanation 
+
+We can do it by traversing the matrix in `2` parts. First, we will traverse all the diagonals that start with the topmost row, and then we will traverse all the diagonals that start with the rightmost column.
+
+<img src="https://i.imgur.com/l05QYQE.jpg" width="176" height="177" /><br/><br/>
+
+Let's have few examples: 
+```
+Input 1:
+1 2
+3 4
+
+Output 1:
+Anti-Diagonal Traversal: 1 2 3 4
+
+Input 2:
+1 2 1
+3 1 3
+1 4 1
+
+Output 2:
+Anti-Diagonal Traversal: 1 2 3 1 1 1 3 4 1
+```
+
+## Algorithm
+
+- Iterate `j` from `0` to `N-1` 
+    - Print left diagonal starting from `matrix[0][j]`. 
+- Iterate `i` from `1` to `N-1` 
+    - Print left diagonal starting from `matrix[i][N-1]`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to print anti diagonal traversal of matrix
+
+void anti_diagonal_traversal(int * matrix, int n, int m) 
+{
+    int tmp = 0; 
+    while(tmp < n)
+    {
+        int i = 0;
+        int j = tmp;
+        while (i < n && j >= 0) 
+        {
+            cout << * (matrix + i * m + j) << " ";
+            i++;
+            j--;
+        }
+        tmp++;
+    }
+    tmp = 1;
+    while(tmp < n)
+    {
+        int i = tmp;
+        int j = n - 1;
+        while (i < n && j >= 0) 
+        {
+            cout << * (matrix + i * m + j) << " ";
+            i++;
+            j--;
+        }
+        tmp++;
+    }
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix row-wise: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++)
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    cout<<"Anti-Diagonal Traversal: ";
+    anti_diagonal_traversal((int * ) arr, row, col);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to print anti diagonal traversal of matrix
+
+def anti_diagonal_traversal(matrix, n, m):
+
+    tmp = 0
+    while tmp < n:
+        i = 0
+        j = tmp
+        while i < n and j >= 0:
+            print(matrix[i][j], end=" ")
+            i += 1
+            j -= 1
+        tmp += 1
+
+    tmp = 1
+    while tmp < n:
+        i = tmp
+        j = n - 1
+        while i < n and j >= 0:
+            print(matrix[i][j], end=" ")
+            i += 1
+            j -= 1
+        tmp += 1
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    print("Anti-Diagonal Traversal:", end = " ")
+    anti_diagonal_traversal(matrix, row, col)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix row-wise: 
+1
+1
+1
+2
+2
+2
+3
+3
+3
+```
+
+#### Output :
+
+```
+Anti-Diagonal Traversal: 1 1 2 1 2 3 2 3 3 
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row*Column)`
+- Space Complexity: `O(1)`
