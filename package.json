@@ -2,6 +2,16 @@
   "name": "neoalgo-docs",
   "version": "0.0.0",
   "private": true,
+   "workspaces": {
+       "packages": [
+           "src/*",
+           "plugins/*",
+           "./docs"
+        ],
+        "nohoist": [
+            "**/html-minifier-terser"
+        ]
+    },
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -16,6 +26,7 @@
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.72",
     "@docusaurus/plugin-google-analytics": "^2.0.0-alpha.72",
+    "@docusaurus/plugin-pwa": "^2.0.0-alpha.72",
     "@docusaurus/preset-classic": "2.0.0-alpha.72",
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.72",
     "@mdx-js/react": "^1.6.21",
