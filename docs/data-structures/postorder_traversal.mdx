@@ -8,6 +8,7 @@ slug: /data-structures/postorder_traversal
 A binary tree is a type of tree which have at most two children or we can say at most degree is 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Postorder traversal.
 
 ## Explanation 
+
 In this type of traversal (Postorder traversal) first, we have to visit the left part then the right part then its root respectively. In this first, we visit the left part that means we have to traverse the whole left subtree in this order (left->right->root) after that whole right subtree in this order (left->right->root) and then visit the root of that subtree. 
 
 Postorder: (left->right->root). 
@@ -47,7 +48,7 @@ For Postorder traversal, we follow the following algorithm:
 
 * Root means parent of that particular subtree.
 
-* Right means traverse the whole right subtree in this <span class="x x-first x-last">```</span>left<span class="x x-first x-last"> -&gt; </span>right<span class="x x-first x-last"> -&gt; </span>root<span class="x x-first x-last">```</span> order until we get null.
+* Right means traverse the whole right subtree in this order until we get null.
 
 ## Code
 
