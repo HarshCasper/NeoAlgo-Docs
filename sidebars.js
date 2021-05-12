@@ -168,6 +168,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
+		"competitive-programming/bigmod-algorithm",
             ],
         },
         {
