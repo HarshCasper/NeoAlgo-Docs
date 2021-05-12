@@ -5,13 +5,13 @@ slug: /competitive-programming/generate-valid-parantheses
 
 ## Introduction
 
-You are given a number n, your job is to find al the n balanced parenthesis combinations possible.
+You are given a number n, and your job is to find all the n balanced parenthesis combinations possible.
 
 ## Explanation 
 
-We can do it by first taking an empty string. First we can place either an opening or a closing bracket but by checking conditions, 
-if the count of the opening brackets is less than the total number of brackets then we can put an opening bracket.
-If the count of the closing brackets is less than that of the opening brackets then we can put a closing bracket.
+We can do it by first taking an empty string. First, we can place either an opening or a closing bracket, but by checking conditions, 
+if the count of the opening brackets is less than the total number of brackets, then we can put an opening bracket.
+If the count of the closing brackets is less than that of the opening brackets, then we can put a closing bracket.
 We can recursively call the function and print when we reach twice the size of the number of brackets because that is the maximum number of brackets possible.
 
 Let's have few examples: 
