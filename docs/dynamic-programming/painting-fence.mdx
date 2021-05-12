@@ -5,11 +5,11 @@ slug: /mathematics/painting-fence
 
 ## Introduction
 
-Given a fence with `n` posts and `k` colors , find out the number of ways of painting the fence such that atmost `2` adjacent posts have the same color.
+There is a fence with `n` posts, you are given `k` colors to paint the fence. Each post can be painted with one of the `k` colors. You have to paint all the posts with the k colors such that atmost two adjacent posts have the same color. You have to find the total number of ways to paint the fence.
 
 ## Explanation
 
-Suppose we have a single post, The number of ways of painting the fence with `k` colors is `k` Now we consider `2` posts, Then the number of ways of painting the second fence with the same color as the first post is `k`, and the number of ways of painting the second post with a different color is `k*(k-1)` as we have `k-1` colors that are different from the first post's color. So the total number of ways of painting `2` fences is `k*(k-1) + k`. Now we consider `3` posts, Then the number of ways of painting the third fence same as the second fence is the number of ways of painting the second fence with a different color that is `k*(k-1)`. The number of ways of painting the third fence using a different color is equal to the `total number of ways of painting the second fence * (k-1)`. Hence the total number of ways of painting `3` fences is `k*(k-1) + (k+k*(k-1))*(k-1)`. This way we can find the total number of ways of painting n fences
+Suppose we have a single post, The number of ways of painting the fence with `k` colors is `k` Now we consider `2` posts, Then the number of ways of painting the second fence with the same color as the first post is `k`, and the number of ways of painting the second post with a different color is `k*(k-1)` as we have `k-1` colors that are different from the first post's color. So the total number of ways of painting `2` fences is `k*(k-1) + k`. Now we consider `3` posts, Then the number of ways of painting the third fence same as the second fence is the number of ways of painting the second fence with a different color that is `k*(k-1)`. The number of ways of painting the third fence using a different color is equal to the total number of ways of painting the second fence times `(k-1)`. Hence the total number of ways of painting `3` fences is `k*(k-1) + (k+k*(k-1))*(k-1)`. This way we can find the total number of ways of painting n fences
 
 ## Algorithm
 
@@ -20,9 +20,9 @@ Suppose we have a single post, The number of ways of painting the fence with `k`
 - initialise `diff[0]` to `k*(k-1)`
 - initialise `total[0]` to `k*k`
 - loop from `i = 1` to `n-1`
-    - `same[i] = diff[i-1]`
-    - `diff[i] = total[i-1]*(k-1)`
-    - `total[i] = same[i] + diff[i]`
+    - assign `same[i]` equal to `diff[i-1]`
+    - assign `diff[i]` equal to `total[i-1]*(k-1)`
+    - assign `total[i]` equal to sum of `same[i]` and  `diff[i]`
 - return `total[n-2]`
 
 ## Code
@@ -132,8 +132,8 @@ Number of Possiblities: 120
 
 ## Complexity Analysis
 
-- Time complexity - O(`n`)
-- Space complexity - O(`n`), where `n` is the number of posts
+- Time complexity - `O(n)`
+- Space complexity - `O(n)`, where `n` is the number of posts
 
 
 ## Credits
