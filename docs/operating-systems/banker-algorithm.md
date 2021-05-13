@@ -10,7 +10,10 @@ Introduction
 
 Banker’s algorithm is used in the operating systems to avoid deadlocks and allocate resources.
 It is called the Banker’s algo because it is used a lot in the banking systems.
-When a new process is created in a computer system, the process must provide all types of information to the operating system like upcoming processes, requests for their resources, counting them, and delays. Based on these criteria, the operating system decides which process sequence should be executed or waited so that no deadlock occurs in a system. Therefore, it is also known as the deadlock avoidance algorithm or deadlock detection in the operating system.
+When a new process is created in a computer system, the process must provide all types of information 
+to the operating system like upcoming processes, requests for their resources, counting them, and delays. 
+Based on these criteria, the operating system decides which process sequence should be executed or waited so that no deadlock occurs in a system.
+Therefore, it is also known as the deadlock avoidance algorithm or deadlock detection in the operating system.
 
 Sample Problem
 
@@ -20,7 +23,8 @@ Max: Expression of the maximum number of resources of any type
 Allocation: Indicates which process you have received a resource of type j
 Need: Expresses how many more resources can be allocated in the future
 
-Consider a system that contains five processes P1, P2, P3, P4, P5 and the three resource types A, B and C. Following are the resources types: A has 10, B has 5 and the resource type C has 7 instances.
+Consider a system that contains five processes P1, P2, P3, P4, P5 and the three resource types A, B and C.
+Following are the resources types: A has 10, B has 5 and the resource type C has 7 instances.
 Process
 Allocation
 A         B         C
@@ -51,13 +55,6 @@ P5
 0         0         2
 4         3         3
 
-
-
-Answer the following questions using the banker's algorithm:
-What is the reference of the need matrix?
-Determine if the system is safe or not.
-What will happen if the resource request (1, 0, 0) for process P1 can the system accept this request immediately?
-Context of the need matrix is as follows:
 Need [i] = Max [i] - Allocation [i]
 Need for P1: (7, 5, 3) - (0, 1, 0) = 7, 4, 3
 Need for P2: (3, 2, 2) - (2, 0, 0) = 1, 2, 2
@@ -87,6 +84,8 @@ P5
 Application:
 
 For example, in the banking field, there is X number of account holders of a specific bank, and the total amount of money of their accounts is G.
-When the bank processes a car loan, the software system subtracts the amount of loan granted for purchasing a car from the total money ( G+ Fixed deposit + Monthly Income Scheme + Gold, etc.) that the bank has.
-It also checks that the difference is more than or not G. It only processes the car loan when the bank has sufficient money even if all account holders withdraw the money G simultaneously.
+When the bank processes a car loan, the software system subtracts the amount of loan granted for purchasing a car from the total money
+( G+ Fixed deposit + Monthly Income Scheme + Gold, etc.) that the bank has.
+It also checks that the difference is more than or not G. It only processes the car loan when the bank has sufficient money even
+if all account holders withdraw the money G simultaneously.
 
