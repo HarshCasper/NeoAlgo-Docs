@@ -1,0 +1,185 @@
+---
+title: Prefix Sum Algorithm
+slug: /competitive-programming/prefix-sum-algorithm
+---
+
+## Introduction
+
+In this article, we will learn about Prefix Sum Algorithm.
+Let us say, You are given an array of `N` elements. It's Prefix Sum is another array of same size.
+where `PrefixSum[i]` is sum of all prefix elements of the given array. Formally, 
+`PrefixSum[i]` = `ar[0] + ar[1] + ar[2] ... + ar[i]`.
+
+
+## Explanation
+
+Let us have one example:
+
+```
+Let us say, given array is ar[] = {1,2,3,4};
+then it's prefix sum array will be prefix_sum_array[] = {1,3,6,10};
+here, prefix_sum_array[1] = ar[0] + ar[1].
+thus will goes on for the rest indexes of Prefix Sum array.
+```
+
+## Algorithm
+
+ - New Prefix Sum array's first element will be same as given array's first element. `prefix_sum_array[0] = ar[0]`.
+ - Next we will run a loop from index `1` to `last` index.
+ - In Each iteration, Prefix Sum array's current element will be sum of previous element of this array and current index value of our given array.
+ - So, iterations will be like this, `prefix_sum_array[1]` = `prefix_sum_array[0] + ar[1]`.
+ - `prefix_sum_array[2]` = `prefix_sum_array[1] + ar[2]` and so on.
+ - Let's assume array size is `6`, so next iterations will look like this.
+ - `prefix_sum_array[3]` = `prefix_sum_array[2] + ar[3]`.
+ - `prefix_sum_array[4]` = `prefix_sum_array[3] + ar[4]`.
+ - `prefix_sum_array[5]` = `prefix_sum_array[4] + ar[5]`.
+ - thus we will create our prefix sum array.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// this function will give us the new Prefix Sum array
+void prefix_sum_array(int ar[] ,int N)
+{
+    int pref_ar[N+1] = {0};
+    pref_ar[0] = ar[0];
+    /*we will add the current element of ar[] array 
+    and previous element of pref_ar [] array */
+    for(int i = 1; i < N; i++)
+    {
+        pref_ar[i] = ar[i] + pref_ar[i - 1];
+    }
+    cout << "The New Prefix sum array is \n";
+    for(int i = 0; i < N; i++)
+    {
+        cout << pref_ar[i] << ' ';
+    }
+    cout << endl;
+    return;
+}
+
+int main()
+{
+    cout << "Enter the size of array \n";
+    int N;
+    cin >> N;
+    int ar[N + 1];
+    cout << "Enter array elements \n";
+    for(int i = 0; i < N; i++)
+    {
+        cin >> ar[i];
+    }
+    prefix_sum_array(ar , N);
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+import java.lang.*;
+
+public class PrefixSum 
+{
+    // this function will give us prefix sum of the array
+	static void prefix_sum_array(int ar[], int N)
+	{
+	    int pref_ar[] = new int[N];
+
+	    pref_ar[0] = ar[0];
+	    /* we will add the current element of ar[] array
+         and previous element of pref_ar [] array */
+        for(int i = 1; i < N; i++)
+        {
+           pref_ar[i] = ar[i] + pref_ar[i - 1];
+        }
+        System.out.println("The New Prefix sum array is \n");
+		for (int i = 0; i < N; i++)
+        {
+            System.out.print(pref_ar[i] + " ");
+        }
+        System.out.println('\n');
+	}
+
+	public static void main(String args[]) 
+	{
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter the size of array \n");
+		int number = scan.nextInt();
+
+		int[] ar = new int[number];
+		System.out.println("Enter array elements \n"); 
+		for(int i = 0; i < number; i++)
+		{
+		    ar[i] = scan.nextInt();
+		}
+		scan.close();
+		prefix_sum_array(ar,number);
+
+		}
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the size of array 
+7
+Enter array elements
+10 4 16 34 23 5 90
+```
+
+#### Output
+
+```
+The New Prefix sum array is
+10 14 30 64 87 92 182
+```
+
+#### Input
+
+```
+Enter the size of array 
+4
+Enter array elements
+1 2 3 4
+```
+
+#### Output
+
+```
+The New Prefix sum array is
+1 3 6 10
+```
+
+## Complexity Analysis
+
+  - Time complexity : `O(N)`
+  - Space complexity: `O(N)`
+
+## Credits
+
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/prefix_sum.cpp)
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/prefix_sum.java)
