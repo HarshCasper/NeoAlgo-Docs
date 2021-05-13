@@ -99,6 +99,7 @@ module.exports = {
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
                 "mathematics/happy-number",
+                "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
 		"mathematics/number-power-of-2",
@@ -155,7 +156,19 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+
+
+
+                "graph-algorithms/prims-algorithm", 
+
+		"graph-algorithms/topological-sorting",
+
+
+	             	"graph-algorithms/topological-sorting", 
+
+
                 "graph-algorithms/topological-sorting",
+
             ],
         },
         {
