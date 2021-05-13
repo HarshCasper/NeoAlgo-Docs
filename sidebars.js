@@ -178,10 +178,18 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+		"competitive-programming/prefix-sum-algorithm",
+                "competitive-programming/max-number-from-array",
+		
+		    
+
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
+
+
                 "competitive-programming/diameter-of-BT",
+
             ],
         },
         {
