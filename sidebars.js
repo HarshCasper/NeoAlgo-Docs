@@ -189,6 +189,7 @@ module.exports = {
 
 
                 "competitive-programming/diameter-of-BT",
+                "competitive-programming/generate-subsequences",
 
             ],
         },
