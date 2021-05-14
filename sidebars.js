@@ -67,7 +67,8 @@ module.exports = {
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
-                "data-structures/tower-of-hanoi"
+                "data-structures/tower-of-hanoi",
+                "data-structures/maximum-in-bst"
             ],
         },
         {
