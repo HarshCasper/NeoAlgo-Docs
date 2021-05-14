@@ -22,7 +22,7 @@ So we iterate on whole array
 And increase the count if current number is equal to 3
 So after traversing the whole array it prints the count=2 
 That means 3 is present 2 times
-
+If number is not present then it returns zero.
 ```
 ## Algorithm
 
@@ -57,8 +57,8 @@ using namespace std;
 //function for counting occurrence
 int count_occurrence(int x,int a[],int n)
 {
-  //initialize count with -1
-   int count=-1;
+  //initialize count with 0
+   int count=0;
    
    //iterating on whole array
    for(int i=0;i<n;i++)
