@@ -1,0 +1,223 @@
+---
+title: Leaf Nodes in Binary Search Tree
+slug: /data-structures/leaf-nodes-bst
+---
+
+## Introduction
+
+The **binary search tree** is a special type of **binary tree** in which for every node, all the elements in its left sub-tree are lesser than that node, and all the elements in its right sub-tree are greater than that node. A binary search tree is useful for searching an element and sorting an array by lesser number of comparisons. Leaf nodes in a binary search tree are the nodes which do not have left or right sub-trees
+
+## Explanation
+
+<p align="center">
+  <img src="https://i.postimg.cc/442hPvmL/bst.png"></img>
+</p>
+
+The above diagram is an example of a binary search tree. The `root` node is `35`. The left sub-tree of the root node consists of nodes `10`, `5`,`20`, `14`,`27`. All these nodes are **lesser** than the root node. The right sub-tree of the root node consists of nodes `56`, `45` and `70` which are **greater** than the root node. Each of the sub-trees recursively obeys the binary search tree constraint. Here `7`,`17`,`27`,`45` and `75` are the leaf nodes as these nodes do not have **left subtree** or **right subtree**.
+
+## Algorithm
+
+This section focuses on the algorithmic steps for finding the count of leaf nodes
+
+### Count of Leaf Nodes in BST
+
+In a given binary search tree, counting the number of leaf nodes proceeds as follows:
+* `count` is initialized as `0` 
+* If `root node` is `not null` 
+    * If the `right child` of `root` and `left child` of `root` are `null` increment `count`
+    * Else
+        * If `left child` of `root` is `not null` recursively proceed the process in `left subtree`
+        * If `right child` of `root` is `not null` recursively proceed the process in `right subtree`
+* Return `count` to the calling function
+
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Declare treeNode with data , rc (right child) and lc (left child )
+typedef struct treeNode
+{
+    int data;
+    struct treeNode *lc;
+    struct treeNode *rc;
+} treeNode;
+
+//to insert a node into BST
+treeNode *insertIntoTree(treeNode *root, int data)
+{
+    //If tree is empty insert as root node
+    if (root == NULL)
+    {
+        treeNode *ptr;
+        ptr = new treeNode;
+        ptr->data = data;
+        ptr->lc = NULL;
+        ptr->rc = NULL;
+        root = ptr;
+    }
+    else
+    {
+        // insert recursively in accordance with BST properties
+        if (root->data >= data)
+        {
+            root->lc = insertIntoTree(root->lc, data);
+        }
+        else if (root->data < data)
+        {
+            root->rc = insertIntoTree(root->rc, data);
+        }
+    }
+    return root;
+}
+
+//to count the leaf nodes
+int leaf_nodes(treeNode *root)
+{
+    //Initially count of leaf nodes is set as 0
+    static int count=0;
+    //If tree is not empty
+    if (root)
+    {
+        //If the node doesn't have any child increment count
+        if (root->lc == NULL && root->rc == NULL)
+            count++;
+        else
+        {
+            //recursively check left and right sub-trees
+            if (root->lc)
+                leaf_nodes(root->lc);
+            if (root->rc)
+                leaf_nodes(root->rc);
+        }
+    }
+    return count;
+}
+
+// driver code
+int main()
+{
+    //Initialize tree as empty
+    treeNode *root;
+    root = NULL;
+    int n, data;
+    //Accept the no. of elements and elements as user input
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &data);
+        root = insertIntoTree(root, data);
+    }
+
+    printf("\nNo. of leaf nodes in the binary search tree = %d", leaf_nodes(root));
+    printf("\n");
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+# Declare treeNode with data , rc (right child) and lc (left child )
+class treeNode:
+    def __init__(self, item):
+        self.data = item
+        self.lc = None
+        self.rc = None
+
+# to insert a node into BST
+def insertIntoTree(root, data):
+    # If tree is empty insert as root node
+    if root is None:
+        root = treeNode(data)
+    else:
+        # insert recursively in accordance with BST properties
+        if root.data >= data:
+            root.lc = insertIntoTree(root.lc, data)
+        elif root.data < data:
+            root.rc = insertIntoTree(root.rc, data)
+    return root
+
+# to count the leaf nodes
+def leaf_nodes(root):
+    # If tree is not empty
+    if root is not None:
+        # If the node doesn't have any child increment count
+        if root.lc is None and root.rc is None:
+            leaf_nodes.count += 1
+        else:
+            # recursively check left and right sub-trees
+            if root.lc is not None:
+                leaf_nodes(root.lc)
+            if root.rc is not None:
+                leaf_nodes(root.rc)
+    return leaf_nodes.count
+
+# driver code
+def main():
+    # Initialize tree as empty
+    root = None
+    # Accept the no. of elements and elements as user input
+    n = int(input("Enter the number of elements: "))
+    print("Enter the numbers: ")
+    for _ in range(0, n):
+        data = int(input())
+        root = insertIntoTree(root, data)
+    # Initially count of leaf nodes is set as 0
+    leaf_nodes.count = 0
+    print("\nNo. of leaf nodes in the binary search tree = " +str(leaf_nodes(root)))
+
+if __name__ == "__main__":
+    main()
+
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Sample input
+```
+Enter the number of elements: 7 
+Enter the numbers: 
+6
+2
+10
+1
+4
+8
+11
+```
+
+#### Sample Output
+```
+No. of leaf nodes in the binary search tree = 4
+```
+## Complexity Analysis
+
+Time Complexity : O(n)
+
+Space Complexity : O(n)
+
+## Credits
+
+   - [Aishwarya A J](https://github.com/aish2002) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Leaf_Nodes_BST.cpp)
+   - [Aishwarya A J](https://github.com/aish2002) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Leaf_Nodes_BST.py)
