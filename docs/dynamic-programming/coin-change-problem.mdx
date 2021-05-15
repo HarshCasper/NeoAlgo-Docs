@@ -7,6 +7,20 @@ slug: /dynamic-programming/coin-change-problem
 
 Given an integer `amount`, which represents the total amount of money, an integer array `coins` representing different coin values, and each denomination has an infinite supply of coins. Find what will be the minimum number of coins required to make up the given amount?
 
+## Example
+
+coins[]={1,5,6,9}
+
+n=4
+
+amount=10
+
+Final `dp` array after following the algorithmic steps:
+
+![image](https://user-images.githubusercontent.com/64724041/117053094-2bd2b300-ad36-11eb-87a6-ef2f6397440e.png)
+
+`Answer = dp[4][10] = 2`
+
 ## Explaination
 
 In this problem, we are using the **Bottom-up approach** of dynamic programming. In the dynamic programming approach, we divide the problem into subproblems. We divide this problem into subproblems by dividing the amount from 0 to the total amount and representing it as the column-indices of the 2-d array. We will solve these subproblems and store them in cells of the 2-d array. The row-indices of this 2-d array represent indices of coins array.
@@ -23,20 +37,6 @@ In this problem, we are using the **Bottom-up approach** of dynamic programming.
 - Case2- If we consider the ith coin, then the cell value is `1+ dp[i][j-coins[i-1]]` cell value.
 - The final value of the cell is the minimum of both the cases,that is, `dp[i][j]= min(dp[i-1][j], 1+dp[i][j-coins[i-1]])`.
 - The final answer will be `dp[n][amount]`.
-
-## Example
-
-coins[]={1,5,6,9}
-
-n=4
-
-amount=10
-
-Final `dp` array after following the above algorithmic steps:
-
-![image](https://user-images.githubusercontent.com/64724041/117053094-2bd2b300-ad36-11eb-87a6-ef2f6397440e.png)
-
-`Answer = dp[4][10] = 2`
 
 ## Code
 
@@ -218,7 +218,7 @@ Minimum coins required are 2
 
 ## Complexity Analysis
 
-- n is the size of the coins array.
+- `n` is the size of the coins array.
 - amount is the total required amount.
 - Space Complexity : `O(n*amount)`
 - Time Complexity : upperbounded by `O(n*amount)`
