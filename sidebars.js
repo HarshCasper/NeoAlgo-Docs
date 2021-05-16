@@ -186,6 +186,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
+                "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
             ],
         },
