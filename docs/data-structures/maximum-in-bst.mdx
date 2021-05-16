@@ -1,0 +1,193 @@
+---
+title: Maximum in Binary Search Tree(BST)
+slug: /data-structures/maximum-in-bst
+---
+
+## Introduction
+
+In this article, we will see how to find the node having maximum data or key. We are given an Binary Search Tree(BST) and we have to find the maximum element. In this type of tree(BST), left child is always smaller than its parent and right child is always greater than its parent.
+
+## Explanation 
+In this we are given an Binary Search Tree and we have to find out the node which have maximum data or key. We know that in this type of tree left child is smaller than its parent and right child is always greater than its parent. So the maximum data will lie in right part of tree so keep move in right until we get null.
+#### Example 1
+<img src="https://i.imgur.com/vjoI6QE.jpg?1" width="600" height="350"/>
+
+```
+In the above diagram root of binary search tree is: Node(33)
+Right child of Node(33): Node(66)
+Again it has right child: Node(77)
+Right child of Node(77): NULL
+So the maximum in BST is: Node(77)
+Print 77
+
+```
+## Algorithm
+
+For finding maximum node in BST, we follow the following algorithm:
+
+* First, we will check that tree is empty or not.
+
+* If tree is empty then simply return 0 because it has no node.
+
+* Otherwise keep moving on right child until we get right child as NULL.
+
+* Print the right child because this is the maximum node in BST.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+//creating structure for node
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+// Insert Function
+Node* Insert(Node *root, int data) {
+    //if root have no value
+    //then create a node and insert values
+    if (root == NULL) {
+        root = new Node();
+        root->data = data;
+        root->left = root->right = NULL;
+    }
+    //check if data is less than root value
+    //then insert into left subtree
+    else if (data <= root->data)
+        root->left = Insert(root->left, data);
+    //check if data is less than root value
+    //then insert into right subtree
+    else
+        root->right = Insert(root->right, data);
+    return root;
+}
+
+// Function for finding maximum element in BST
+int maximum_ele(struct Node* root)
+{
+  struct Node* curr=root;
+  while(curr->right!=NULL)
+  {
+    curr=curr->right;
+  }
+  return curr->data;
+}
+
+//Main Function began
+int main() {
+    Node* root = NULL;
+    //input values
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
+
+    cout << "Maximum element in BST: "<<maximum_ele(root);
+    
+    cout << "\n";
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+
+class Node:
+	def __init__(self,key):
+		self.left = None
+		self.right = None
+		self.value = key
+ 
+# A function to insert a new node with the given key value
+def insert(root,node):
+	if root is None:
+		root=node
+	else:
+		if root.value<node.value:
+			if root.right is None:
+				root.right=node
+			else:
+				insert(root.right,node)
+		else:
+			if root.left is None:
+				root.left = node
+			else:
+				insert(root.left,node)
+
+# for finding maxmum element in BST
+def maximum_ele(root):
+  curr=root
+  while(curr.right):
+    curr=curr.right
+  return curr.value
+
+# Taking size as input
+n = int(input("Enter the size of tree: "))
+
+# Taking data as input
+m = int(input("Enter the data: "))
+tree = Node(m)
+i=1
+while(i<n):
+  k = int(input("Enter the data: "))
+  insert(tree,Node(k))
+  i+=1
+print('Maximum element in BST: ')
+
+# printing maximum element in BST
+print(maximum_ele(tree))
+     
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the size of tree: 6
+Enter the data: 44
+Enter the data: 22
+Enter the data: 66
+Enter the data: 11
+Enter the data: 33
+Enter the data: 77
+
+```
+
+#### Output :
+
+```
+Maximum element in BST: 77
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(h)`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements and `h` is the height of binary tree.
