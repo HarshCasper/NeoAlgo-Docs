@@ -67,7 +67,8 @@ module.exports = {
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
-                "data-structures/tower-of-hanoi"
+                "data-structures/tower-of-hanoi",
+                "data-structures/maximum-in-bst"
             ],
         },
         {
@@ -102,18 +103,18 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		"mathematics/number-power-of-2",
+		            "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		        "mathematics/perfect-number",
+		            "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		        "mathematics/fibonacci-recursion",
-		        "mathematics/catalan-number",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -138,7 +139,8 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
-                "mathematics/boolean-matrix",
+                "mathematics/boolean-matrix",  
+                "mathematics/count-bits"
             ],
         },
         {
@@ -180,19 +182,21 @@ module.exports = {
                 "competitive-programming/anagram-numbers",
 		"competitive-programming/prefix-sum-algorithm",
                 "competitive-programming/max-number-from-array",
-		
-		    
-
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
-
-
                 "competitive-programming/diameter-of-BT",
+
 
 		"competitive-programming/bigmod-algorithm",
 
 
+
+
+                "competitive-programming/generate-subsequences",
+                "competitive-programming/generate-valid-parantheses",
+                "competitive-programming/left-view-of-BT",
+                "competitive-programming/top-view-of-BT",
 
             ],
         },
