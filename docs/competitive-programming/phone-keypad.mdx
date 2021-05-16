@@ -1,0 +1,173 @@
+---
+title: Phone Keypad Problem
+slug: /competitive-programming/phone-keypad
+---
+
+## Introduction
+
+Given an integer array containing digits from [0, 9], the task is to print all possible letter combinations that the numbers could represent. 
+
+## Explanation 
+
+First we can input the number from the user, and take an empty output array.
+We will include the first digit of the number and make three sub-calls, likewise we will make sub-calls for each digit and generate the strings possible.
+
+Let's have few examples: 
+```
+Input 1:
+23
+Output 1:
+dg
+dh
+di
+eg
+eh
+ei
+fg
+fh
+fi
+Input 2:
+67
+Output 2:
+pt
+pu
+pv
+qt
+qu
+qv
+rt
+ru
+rv
+st
+su
+sv 
+```
+
+## Algorithm
+
+- Initialize an empty array(out)
+    - If the input string reaches its end
+        - Add a NULL character at the end
+	- Print the string
+
+    - digit=input[i]-'0'
+    - make a for loop from 0 to keypad[digit][k] is not NULL
+	- include the current character in the out array
+	- Make aa recursive call furthur
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+char keypad[][10]={" ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+void generate_names(char *in,char *out,int i,int j)
+{
+	//Base case
+	if(in[i]=='\0')
+	{
+		out[j]='\0';
+		cout<<out<<endl;
+		return;
+	}
+	int digit=in[i]-'0';
+	for(int k=0;keypad[digit][k]!='\0';k++)
+	{
+		out[j]=keypad[digit][k];
+		//filling the remaining part
+		generate_names(in,out,i+1,j+1);
+	}
+	return;
+}
+int main()
+{
+	char in[100];
+	cin>>in;
+	char out[100];
+	generate_names(in,out,0,0);
+	return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Generate phone keypad strings
+def getString(d):
+    if d==2:
+        return "abc"
+    if d==3:
+        return "def"
+    if d==4:
+        return "ghi"
+    if d==5:
+        return "jkl"
+    if d==6:
+        return "mno"
+    if d==7:
+        return "pqrs"
+    if d==8:
+        return "tuv"
+    if d==9:
+        return "wxyz"
+    return " "
+
+def printKeypad(n,outputSoFar):
+    if n==0:
+        print(outputSoFar)
+        return
+    smallNumber=n//10
+    lastDigit=n%10
+    optionsForLastDigit=getString(lastDigit)
+    for c in optionsForLastDigit:
+        newOutput=outputSoFar+c
+        printKeypad(smallNumber,newOutput)
+
+d=eval(input("enter value: "))
+printKeypad(d,"")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+23
+```
+
+#### Output :
+
+```
+dg
+dh
+di
+eg
+eh
+ei
+fg
+fh
+fi
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
