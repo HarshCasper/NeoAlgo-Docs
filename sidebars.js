@@ -142,6 +142,7 @@ module.exports = {
                 "mathematics/boolean-matrix",  
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
+                "mathematics/row-with-max-one",
             ],
         },
         {
