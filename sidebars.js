@@ -139,9 +139,18 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
+
                 "mathematics/boolean-matrix",
 		"mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/count-bits"
+
+                "mathematics/next-prime-number",
+                "mathematics/boolean-matrix",  
+                "mathematics/count-bits",
+                "mathematics/searching-in-matrix",
+                "mathematics/row-with-max-one",
+                "mathematics/snake-traversal-of-matrix",
+
             ],
         },
         {
