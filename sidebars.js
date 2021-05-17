@@ -144,6 +144,7 @@ module.exports = {
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
+                "mathematics/snake-traversal-of-matrix",
             ],
         },
         {
