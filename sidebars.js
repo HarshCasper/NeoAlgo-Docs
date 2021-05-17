@@ -141,6 +141,7 @@ module.exports = {
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/boolean-matrix",  
                 "mathematics/count-bits",
+                "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
             ],
         },
