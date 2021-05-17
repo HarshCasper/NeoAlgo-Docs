@@ -1,0 +1,185 @@
+---
+title: Searching in Matrix
+slug: /mathematics/searching-in-matrix
+---
+
+## Introduction
+
+We are given a matrix and a number `n`, we need to find whether `n` is present in the matrix or not. If it is present we need to print `Element Found` and if it is not present we need to print `Element Not Found`.
+
+## Explanation 
+
+We will traverse the entire matrix row by row and will compare each element with the given number `n`. If at any point in time the matrix element becomes equal to `n`, then the element is present in the matrix.
+
+Let's have few examples: 
+```
+Input 1:
+no = 5 , number to be searched
+1 2 3
+4 5 6
+7 8 9
+
+Output 1:
+Element Found
+
+Input 2:
+no = 5 , number to be searched
+1 2 
+3 4
+
+Output 2:
+Element Not Found
+```
+
+## Algorithm
+
+- Iterate `i` from `0` to `n`
+    - Iterate `j` from `0` to `n`
+        - If matrix element `matrix[i][j]` becomes equal to given number `n`, then return `true`.
+- If none of the element is equal to `n`, then return `false`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to search in a matrix
+
+int search(int * matrix, int n, int m, int no) 
+{
+    int i = 0;
+    while (i < n) 
+    {
+        int j = 0;
+        while (j < m) 
+        {
+            if ( * (matrix + i * m + j) == no) 
+            {
+                return 1;
+            }
+            j++;
+        }
+        i++;
+    }
+    return 0;
+}
+
+int main() 
+{
+    int row, col, no;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    cout << "Enter the number to be searched: ";
+    cin >> no;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix row-wise: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    if(search((int * ) arr, row, col, no))
+    {
+        cout<< "Element Found"<<endl;
+    }
+    else 
+    {
+        cout<< "Element Not Found"<<endl;
+    }
+
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to search in matrix
+
+def search(matrix, n, m, no):
+    i = 0
+    while i < n:
+        j = 0
+        while j < m:
+            if matrix[i][j] == no:
+                return 1
+            j += 1
+        i += 1
+    return 0
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+    no = int(input("Enter the number to be searched: "))
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    if search(matrix, row, col, no) == 1:
+        print("Element Found")
+    else:
+        print("Element Not Found")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the number to be searched: 6
+Enter the elements of Matrix: 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+#### Output :
+
+```
+Element Found
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row*Column)`
+
+- Space Complexity: `O(1)`
