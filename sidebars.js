@@ -62,13 +62,14 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
-		            "data-structures/palindromic-linked-list",
+		        "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
-                "data-structures/maximum-in-bst"
+                "data-structures/maximum-in-bst",
+                "data-structures/height_BST"
             ],
         },
         {

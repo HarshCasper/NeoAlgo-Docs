@@ -1,0 +1,202 @@
+---
+title: Height of Binary Search Tree
+slug: /data-structures/height_BST
+---
+
+## Introduction
+
+In this article, we will see how to find the height of binary search tree(BST). We are given an Binary Search Tree(BST) and we have to find the height. In this type of tree(BST), left child is always smaller than its parent and right child is always greater than its parent.
+
+## Explanation 
+
+The height of a binary search tree is the maximum distance from the root node to the leaf node or equivalently, the depth of its deepest node. Height of the empty tree is zero.
+
+#### Example 1
+
+<img src="https://i.imgur.com/himCv7y.jpg?1" width="600" height="350"/>
+
+```
+
+ In the above example, we are given a binary search tree(BST).
+ If the tree is empty then simply return height=0;
+ Otherwise, calculate the maximum of height of left child and height right child.
+ Simply add 1(for root node) after each recursive call for calculating height of BST. 
+
+```
+## Algorithm
+
+For calculating Height of BST, we follow the following algorithm:
+
+* First, we check whether tree is empty or not.
+
+* If tree is empty, then simply return height zero. 
+
+* Otherwise calculate height of BST that is maximum distance from root node to leaf node.
+
+* Recursively calculate maximum of height of left child and right child and simply add 1(for root node).
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+
+//creating structure for node
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+// Insert Function
+Node* Insert(Node *root, int data) {
+    //if root have no value
+    //then create a node and insert values
+    if (root == NULL) {
+        root = new Node();
+        root->data = data;
+        root->left = root->right = NULL;
+    }
+    //check if data is less than root value
+    //then insert into left subtree
+    else if (data <= root->data)
+        root->left = Insert(root->left, data);
+    //check if data is less than root value
+    //then insert into right subtree
+    else
+        root->right = Insert(root->right, data);
+    return root;
+}
+
+//heightofbst Function
+int heightofbst(Node *root) {
+    // if tree is empty then return
+    if (root == NULL) 
+    {
+      return 0;
+    }
+    else
+    {
+      return max(heightofbst(root->left),heightofbst(root->right))+1;
+    }
+    
+}
+//Main Function began
+int main() {
+    Node* root = NULL;
+    //input values
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
+    //Print heigh of bst.
+    cout << "Height of Binary Search Tree(BST) : "<<heightofbst(root);
+    cout << "\n";
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+class Node:
+
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+
+# A function to insert a new node with the given key value
+
+def insert(root, node):
+    if root is None:
+        root = node
+    else:
+        if root.value < node.value:
+            if root.right is None:
+                root.right = node
+            else:
+                insert(root.right, node)
+        else:
+            if root.left is None:
+                root.left = node
+            else:
+                insert(root.left, node)
+
+
+# A function for calculating height of bst 
+
+def heightofbst(root):
+    if root is None:
+        return 0 ;
+    else :
+      return max(heightofbst(root.left),heightofbst(root.right))+1;    
+
+n = int(input('Enter the size of tree: '))
+
+m = int(input('Enter the data: '))
+
+tree = Node(m)
+
+i = 1
+while i < n:
+    k = int(input('Enter the data: '))
+    insert(tree, Node(k))
+    i += 1
+print ('Height of Binary Search Tree(BST) : ')
+
+# print height of BST
+
+print (heightofbst(tree))
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter the size of tree: 5
+Enter the data: 44
+Enter the data: 22
+Enter the data: 66
+Enter the data: 11
+Enter the data: 33
+
+```
+#### Output :
+
+```
+Height of Binary Search Tree(BST) : 3 
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(h)`
+
+where `h` is the height of binary tree and `n` is the number of elements.
