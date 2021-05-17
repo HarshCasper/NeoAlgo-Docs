@@ -139,6 +139,7 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
+                "mathematics/next-prime-number",
                 "mathematics/boolean-matrix",  
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
