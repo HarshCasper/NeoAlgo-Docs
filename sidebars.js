@@ -68,7 +68,8 @@ module.exports = {
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
-                "data-structures/maximum-in-bst"
+                "data-structures/maximum-in-bst",
+                "data-structures/postorder_traversal"
             ],
         },
         {
@@ -139,8 +140,12 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
+                "mathematics/next-prime-number",
                 "mathematics/boolean-matrix",  
-                "mathematics/count-bits"
+                "mathematics/count-bits",
+                "mathematics/searching-in-matrix",
+                "mathematics/row-with-max-one",
+                "mathematics/snake-traversal-of-matrix",
             ],
         },
         {
@@ -186,6 +191,13 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
+
+
+		"competitive-programming/bigmod-algorithm",
+
+
+
+
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
