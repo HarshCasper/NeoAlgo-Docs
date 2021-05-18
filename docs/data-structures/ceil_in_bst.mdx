@@ -1,0 +1,242 @@
+---
+title: Ceil in Binary Search Tree
+slug: /data-structures/ceil_in_bst
+---
+
+## Introduction
+
+In this article, we will see how to find the ceil value in binary search tree(BST). We are given an Binary Search Tree(BST) and an element and we have to find the ceil value of that element in bst . In this type of tree(BST), left child is always smaller than its parent and right child is always greater than its parent.
+
+## Explanation 
+
+Ceil means smallest greater or equal value, if element is present then simply print that element otherwise print the smallest value which is greater than given value and if no greater value present then print null.
+
+#### Example 1
+
+<img src="https://i.imgur.com/vjoI6QE.jpg?1" width="600" height="350"/>
+
+```
+ Input: x=50,
+ In the above example, we are given a binary search tree(BST) and an element x(50).
+ Root is 44.
+ So given element is greater than root, traverse the right child.
+ Right child is 66 which is greater than given element, so keep this in res variable.
+ Traverse the left child of the node(66).
+ Left child of node(66) is null.
+ So we stop traversing ans simply return res value thet is ceil value of 50 that is 66.
+
+```
+## Algorithm
+
+For calculating Ceil in BST, we follow the following algorithm:
+
+* If element is present then simply return the element.
+
+* If element is not present then return the smallest value which is greater than the given element. 
+
+* If no greater value is present then simply return NULL.
+
+* Traverse the whole BST and follow the above steps.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+
+//creating structure for node
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+// Insert Function
+Node* Insert(Node *root, int data) {
+    //if root have no value
+    //then create a node and insert values
+    if (root == NULL) {
+        root = new Node();
+        root->data = data;
+        root->left = root->right = NULL;
+    }
+    //check if data is less than root value
+    //then insert into left subtree
+    else if (data <= root->data)
+        root->left = Insert(root->left, data);
+    //check if data is less than root value
+    //then insert into right subtree
+    else
+        root->right = Insert(root->right, data);
+    return root;
+}
+
+//Ceilbst Function
+Node* Ceilbst(Node *root, int x) {
+    Node* res=NULL;
+    while(root!=NULL)
+    {
+
+      // if root-> data is equal to given element
+      // return root
+      if(root->data==x)
+      {
+        return root;
+      }
+
+      // if root->data is smaller than given element
+      // then traverse its right child
+      else if(root->data<x)
+      {
+        root=root->right;
+      }
+
+      // otherwise keep updating res
+      // and traverse root->left
+      else
+      {
+        res=root;
+        root=root->left;
+      }
+    }
+    return res;
+}
+//Main Function began
+int main() {
+    Node* root = NULL;
+    //input values
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
+    int x;
+    
+    // Taking element as input for which user want 
+    // to calculate the Ceil value
+    cout<<"Enter the element : ";
+    cin>>x;
+    //Print Ceil value.
+    cout << "Ceil value of given element in Binary Search Tree(BST) : "<<Ceilbst(root,x)->data;
+    cout << "\n";
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+
+class Node:
+
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+
+# A function to insert a new node with the given key value
+
+def insert(root, node):
+    if root is None:
+        root = node
+    else:
+        if root.value < node.value:
+            if root.right is None:
+                root.right = node
+            else:
+                insert(root.right, node)
+        else:
+            if root.left is None:
+                root.left = node
+            else:
+                insert(root.left, node)
+
+
+# A function for calculating Ceil value 
+
+def Ceilbst(root,x):
+    if (not root): 
+        return -1
+    if (root.value == x) :
+        return root.value
+    if (root.value < x) :
+        return Ceilbst(root.right, x)    
+    res = Ceilbst(root.left, x) 
+    return res if (res >= x) else root.value           
+
+n = int(input('Enter the size of tree: '))
+
+m = int(input('Enter the data: '))
+
+
+
+tree = Node(m)
+
+i = 1
+while i < n:
+    k = int(input('Enter the data: '))
+    insert(tree, Node(k))
+    i += 1
+
+# Taking element as input of which user wants 
+# to calculate Ceil value 
+x = int(input('Enter the element: '))    
+print ('Ceil value of given element in Binary Search Tree(BST) : ')
+
+# print Ceil value of given element int bst
+
+print (Ceilbst(tree,x))
+   
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter the size of tree: 6
+Enter the data: 44
+Enter the data: 22
+Enter the data: 66
+Enter the data: 11
+Enter the data: 33
+Enter the data: 77
+Enter the element : 50
+
+```
+#### Output :
+
+```
+Ceil value of given element in Binary Search Tree(BST) : 66
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(h)`
+
+- **Space Complexity:** `O(1)`
+
+where `h` is the height of binary tree .
