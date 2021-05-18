@@ -36,18 +36,18 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
-                "sorting-algorithms/insertion-sort",
+                'sorting-algorithms/insertion-sort',
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
-                "sorting-algorithms/shell-sort",
-		            "sorting-algorithms/sleep-sort",
-		            "sorting-algorithms/cocktail-sort",
-		            "sorting-algorithms/bead-sort",
+                "sorting-algorithms/sleep-sort",
+                "sorting-algorithms/cocktail-sort",
+                "sorting-algorithms/bead-sort",
                 "sorting-algorithms/radix-sort",
                 "sorting-algorithms/counting-sort",
-		            "sorting-algorithms/cocktail-sort",
+                "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
+                "sorting-algorithms/shell-sort",
             ],
         },
         {
@@ -60,14 +60,16 @@ module.exports = {
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
-                "data-structures/binary-search-tree",
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
-                "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
-		"data-structures/palindromic-linked-list",
+		            "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
-
+                "data-structures/depth-of-tree",
+                "data-structures/size-of-binary-tree",
+                "data-structures/inorder_traversal",
+                "data-structures/tower-of-hanoi",
+                "data-structures/maximum-in-bst"
             ],
         },
         {
@@ -78,7 +80,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-                "dynamic-programming/catalan-number",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence"
             ],
         },
         {
@@ -101,6 +104,7 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
+		            "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
@@ -110,12 +114,8 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		        "mathematics/fibonacci-recursion",
-		        "mathematics/catalan-number",
-                "mathematics/reverse-a-number",
-		        "mathematics/automorphic-number",
-                "mathematics/fibonacci-recursion",
-                "mathematics/catalan-number",
+		            "mathematics/fibonacci-recursion",
+		            "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -123,21 +123,29 @@ module.exports = {
                 "mathematics/power-linear",
                 "mathematics/ugly-numbers",
                 "mathematics/noble-integer",
-		        "mathematics/lucky-numbers",
-		        "mathematics/hamming-distance",
+                "mathematics/lucky-numbers",
+                "mathematics/hamming-distance",
                 "mathematics/lcm-of-two-numbers",
                 "mathematics/binary-exponentiation",
                 "mathematics/pascal-triangle",
                 "mathematics/triangular-numbers",
-		        "mathematics/lucas-theorem",
+                "mathematics/lucas-theorem",
                 "mathematics/euler-totient-function",
-		        "mathematics/matrix-addition",
+                "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
-
+                "mathematics/rotate-matrix-by-90-degree",
+                "mathematics/anti-diagonal-traversal-of-matrix",
+                "mathematics/product-of-count-of-bits-of-each-elements",
+                "mathematics/next-prime-number",
+                "mathematics/boolean-matrix",  
+                "mathematics/count-bits",
+                "mathematics/searching-in-matrix",
+                "mathematics/row-with-max-one",
+                "mathematics/snake-traversal-of-matrix",
             ],
         },
         {
@@ -146,6 +154,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/reverse-bits",
             ],
         },
         {
@@ -155,7 +164,19 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
-	        "graph-algorithms/topological-sorting"
+
+
+
+                "graph-algorithms/prims-algorithm", 
+
+		"graph-algorithms/topological-sorting",
+
+
+	             	"graph-algorithms/topological-sorting", 
+
+
+                "graph-algorithms/topological-sorting",
+
             ],
         },
         {
@@ -164,9 +185,16 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+		"competitive-programming/prefix-sum-algorithm",
+                "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
+                "competitive-programming/diameter-of-BT",
+                "competitive-programming/generate-subsequences",
+                "competitive-programming/generate-valid-parantheses",
+                "competitive-programming/left-view-of-BT",
+                "competitive-programming/top-view-of-BT",
             ],
         },
         {

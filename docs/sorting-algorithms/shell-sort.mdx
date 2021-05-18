@@ -62,6 +62,7 @@ import TabItem from "@theme/TabItem";
   values={[
     { label: 'C', value: 'c', },
     { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'python', },
   ]
 }>
 <TabItem value="c">	
@@ -197,6 +198,52 @@ public class ShellSort {
 }
 ```
 </TabItem>
+<TabItem value="java">
+
+```python
+# Python program for implementation of Shell Sort
+def shellSort(arr):
+
+    # Start with a big gap, then reduce the gap
+    size = len(arr)
+    gap = size // 2
+
+    # Do a gapped insertion sort for this gap size.
+    while gap > 0:
+
+        for i in range(gap, size):
+
+            # add a[i] to the elements that have been gap sorted
+            # save a[i] in temp and make a hole at position i
+            temp = arr[i]
+
+            # shift earlier gap-sorted elements up until the correct
+            # location for a[i] is found
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+
+            # put temp (the original a[i]) in its correct location
+            arr[j] = temp
+        gap //= 2
+
+
+arr = []
+size = int(input('Enter number of elements: '))
+print ('Enter the elements:')
+for i in range(0, size):
+    item = int(input())
+    arr.append(item)
+
+shellSort(arr)
+
+print ('\nSorted Array in ascending order is:')
+for i in range(size):
+    print (arr[i])
+
+```
+</TabItem>
 </Tabs>
 
 ## Sample Input and Output
@@ -236,3 +283,5 @@ Sorted Array in ascending order is :
 - [Vaibhav Singhal](https://github.com/iamvs-2002) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/ShellSort.java)
 
 - [Yashaswibiyahut](https://github.com/yashaswibiyahut) for the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/ShellSort.c)
+
+- [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Shell_Sort.py)
