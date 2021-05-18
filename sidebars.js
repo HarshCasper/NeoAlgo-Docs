@@ -69,6 +69,7 @@ module.exports = {
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
                 "data-structures/maximum-in-bst",
+                "data-structures/postorder_traversal",
                 "data-structures/floor_in_bst"
             ],
         },
@@ -191,10 +192,18 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
+
+
+		"competitive-programming/bigmod-algorithm",
+
+
+
+
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
+
             ],
         },
         {
