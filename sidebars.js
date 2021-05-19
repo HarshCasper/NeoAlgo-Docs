@@ -133,6 +133,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+		"mathematics/product-of-count-of-bits-of-each-elements"
             ],
         },
         {
