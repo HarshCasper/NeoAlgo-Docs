@@ -69,7 +69,8 @@ module.exports = {
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
                 "data-structures/maximum-in-bst",
-                "data-structures/postorder_traversal"
+                "data-structures/postorder_traversal",
+                "data-structures/double-ended-queue",
             ],
         },
         {
