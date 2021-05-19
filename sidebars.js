@@ -80,6 +80,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence"
             ],
@@ -138,6 +140,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+		"mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
