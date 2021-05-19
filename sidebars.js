@@ -47,6 +47,7 @@ module.exports = {
                 "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
+                "sorting-algorithms/shell-sort",
             ],
         },
         {
@@ -112,7 +113,7 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		            "mathematics/perfect-number",
+		        "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
