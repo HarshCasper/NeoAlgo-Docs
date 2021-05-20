@@ -192,7 +192,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
-		        "competitive-programming/bigmod-algorithm",
+		"competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
