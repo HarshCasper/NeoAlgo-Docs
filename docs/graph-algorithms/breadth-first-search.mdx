@@ -10,19 +10,19 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 
 ## Explanation
 
-- Given an undirected & Connected Graph (V, E)
-  V: Vertices E: Edges
-- Goal: methodically explore every vertex and every edge
-- “Explore” a graph, turning it into a tree
-- One vertex at a time
-- Expand frontier of explored vertices across its breadth
+- Given an undirected & Connected Graph (V, E) <br />
+  V: Vertices E: Edges <br />
+- Goal: methodically explore every vertex and every edge <br />
+- “Explore” a graph, turning it into a tree<br />
+- One vertex at a time<br />
+- Expand frontier of explored vertices across its breadth<br />
 - Discovers all vertices at distance k from s before those at distance k+1
-- A level-by-level order traversal
+- A level-by-level order traversal<br />
 - For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it. 2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process.
- A Breadth First Traversal of the following graph is 2, 0, 3, 1.
- [![graph.png](https://media.geeksforgeeks.org/wp-content/uploads/bfs-5.png)]
+ A Breadth First Traversal of the following graph is 2, 0, 3, 1.<br />
+ [![graph.png](https://media.geeksforgeeks.org/wp-content/uploads/bfs-5.png)]<br />
 
-##Applications of Breadth First Traversal
+## Applications of Breadth First Traversal
 
 - Find Connected Components in Undirected G
 - Web Crawling
@@ -53,51 +53,127 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 #include <queue>
 #include <algorithm>
 
-void BFS(queue<int>Q, map<int, vector<int>> Boxes, vector<int>Parents, vector<int>Color) {
-	
-	while (!Q.empty()) {
-		int u = Q.front();
-		Q.pop();
-		for (int i = 0; i < Boxes[u].size(); i++) {
-			if (Color[Boxes[u][i]] == 'W') {
-				Parents[Boxes[u][i]] = u;
-				Color[Boxes[u][i]] = 'G';
-				Q.push(Boxes[u][i]);
-			}
-		}
-                Color[u] = 'B'
-	}
-	
+/*
+Best First Search Algorithm is a search algorithm that is used to find a path between source vertex 
+and target vertex in an undirected weighted graph. It is a search algorithm that works on a specific
+rule. It is an example of "Informed Search" algorithm as it uses an evaluation function to decide 
+which adjacent is most promising and then explores it.
+It uses the concept of a priority queue (min heap) to store costs of nodes.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//Function to implement best first search algorithm
+void bestFirstSearchAlgorithm(int sv, int tv, int n, vector<vector<pair<int, int> > > graph)
+{
+
+    //array for keeping track of visited vertices
+    vector<bool> visited(n, false);
+
+    //min heap priority queue for storing cost of nodes
+    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
+
+    //inserted source position in the priority queue
+    pq.push(make_pair(0, sv));
+
+    //mark source vertex as visited
+    visited[sv] = true;
+
+    //array to store path from the source to the target vertex
+    vector<int> path;
+
+    while (!pq.empty()) {
+
+        int temp = pq.top().second;
+
+        path.push_back(temp);
+        pq.pop();
+
+        //If target vertex is found then exit from the loop
+        if (temp == tv)
+            break;
+
+        for (int i = 0; i < graph[temp].size(); i++) {
+            //For each neighbouring vertex of temp
+            // Continue if it is already visited
+            if (visited[graph[temp][i].second])
+                continue;
+            //Else mark it visited and insert it in the priority queue
+            else {
+                visited[graph[temp][i].second] = true;
+                pq.push(graph[temp][i]);
+            }
+        }
+    }
+
+    cout << "Path between source vertex and target vertex: " << endl;
+    for (int i = 0; i < path.size(); i++) {
+        cout << path[i] << " ";
+    }
+    cout << endl;
 }
-int main() {
-	
-	int t;
-	cin >> t;
-	int n;
-	cin >> n;
-	map<int, vector<int>> Boxes(n);
-        map<int, vector<int>>:: iterator it = Boxes.begin();
-	vector<int>Parents(n + 1);
-	vector<char>Color(n + 1);
-	queue<int>Q;
-        for (int i = 0; i < n; i++) {
-                int x;
-		cin >> x;
-                Boxes[x] = 0;
-                Color[x] = 'W';
-		Parents[i] = 0;
-	}
-        for (int i = 0; i < n; i++) {
-               int x, y;
-               cin >> x >> y;
-               if(Boxes.find(x) != Boxes.end())
-                  Boxes[x].push_back(y);
-	}	
-        Color[it->first] = 'G';
-        Q.push(it->first)
-	BFS(Q, Boxes, Parents, Color);
-	return 0;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    vector<vector<pair<int, int> > > graph;
+
+    int vertices, edges;
+
+    cout << "Input number of vertices and edges" << endl;
+    cin >> vertices >> edges;
+
+    graph.resize(vertices);
+
+    cout << "Input edges: start vertex, end vertex and weight of edge between them" << endl;
+    for (int i = 0; i < edges; i++) {
+        int a, b, cost;
+        cin >> a >> b >> cost;
+        graph[a].push_back(make_pair(cost, b));
+        graph[b].push_back(make_pair(cost, a));
+    }
+
+    int sv, tv;
+
+    cout << "Input Source vertex and target vertex" << endl;
+    cin >> sv >> tv;
+
+    bestFirstSearchAlgorithm(sv, tv, vertices, graph);
+
+    return 0;
 }
+
+/*
+Sample Output:
+Input number of vertices and edges
+14 13
+Input edges: start vertex, end vertex and weight of edge between them
+0 1 3
+0 2 6
+0 3 5
+1 4 9 
+1 5 8
+2 6 12
+2 7 14
+3 8 7
+8 9 5
+8 10 6
+9 11 1
+9 12 10
+9 13 2
+Input Source vertex and target vertex
+0 9
+Output:
+Path between source vertex and target vertex:
+0 1 3 2 8 9
+Time Complexity: O(V log V)
+Space Complexity: O(V^2)
+where,
+    V = Number of vertices
+*/
 
 ```
 
@@ -260,5 +336,6 @@ g.BFS(2)
 ## Complexity
 - Time Complexity: O(V+E) V: Vertices  E: Edges
 
-##Credits
+## Credits
 - [Geeks for Geeks Website](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/) for the [Java & Python Implementation] and the give example.
+- [Neo Algo Project](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/Best_First_Search_Algorithm.cpp) for the [C++ implementation]
