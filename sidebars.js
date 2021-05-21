@@ -24,8 +24,10 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
+
             ],
         },
         {

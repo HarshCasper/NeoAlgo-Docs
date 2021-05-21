@@ -1,0 +1,147 @@
+---
+title: Two Pointer Algorithm
+slug: /Algorithm/Two_Pointer
+---
+
+## Introduction
+
+This is an technique which comes to reduce complexity of a problem. The simple words to introduce it is
+"In an sorted array there will be two pointer to solve the problem whether it can sum of three,two digit"
+
+## Explanation
+
+Let an sorted array(Note : This algorithm is for sorted array only to reduce time and space)
+X = -1 0 2 3 7 9, now if we want the sum of any two digit which will be equal to my given number(say 5) without using
+time or space of n*n. Let's see :
+
+```
+X = -1 0 2 3 7 9
+
+Iteration 1:
+   [-1 0 2 3 7 9]
+     |         |
+  point1   point2
+  Check if = point1 + point2 == 5(given number)
+`point1 + point2` > 5 but we have sorted array so if sum is greater then given numbers,
+we will move `point2` so that we can decrease the sum of that.
+
+ Iteration 2:
+   [-1 0 2 3 7 9]
+     |       |
+ point1  point2
+Check if = point1 + point2 == 5(given number)
+`point1 + point2` > 5 but we have sorted array so if sum is greater then given numbers,
+we will move `point2` so that we can decrease the sum of that.
+
+Iteration 3:
+  [-1 0 2 3 7 9]
+    |     |
+point1 point2
+Check if = point1 + point2 == 5(given number)
+`point1 + point2` < 5 but we have sorted array so if sum is less then given numbers,
+we will move `point1` so that we can increase the sum of that.
+
+Iteration 4:
+  [-1 0 2 3 7 9]
+      |   |
+  point1 point2
+Check if = point1 + point2 == 5(given number)
+`point1 + point2` < 5 but we have sorted array so if sum is less then given numbers,
+we will move `point1` so that we can increase the sum of that.
+
+Iteration 5:
+  [-1 0 2 3 7 9]
+        | |
+   point1 point2
+Check if = point1 + point2 == 5(given number)
+Here we found the sum of two digit which is equal to 5.
+
+```
+
+## Algorithm
+
+Approach:
+
+  - Input one array called `arr` .
+  - Create two integer `i` and `j`, where `i` and `j` will be pointer as `point1` and `point2` respectively.
+  - Check if sum of two digit `i`, `j` has result equal to given number.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+ public class two_pointer {
+   public two_pointer(int array[], int k) {
+     int j = array.length - 1;
+     while (j > 0) {
+       for (int i = 0; i < j; i++) {
+         if (array[i] + array[j] > k) {
+         --j;
+           if (i == j) {
+             break;
+            }
+          }
+         /*
+          * Check if sum of two digit is equal to k or not.
+          * if it is equal to the value of k then print those digits.
+          */
+           if (array[i] + array[j] == k) {
+             System.out.println("The sum of these two digit " + array[i] + "," + array[j] + "will be equal to k");
+             break;
+          }
+          j--;
+       }
+    }
+  }
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Please enter length of the array : ");
+    int l = scan.nextInt();
+    System.out.println("Please enter value the sum you want to be : ");
+    int k = scan.nextInt();
+    int array[] = new int[l];
+    for (int n = 0; n < l - 1; n++) {
+      array[n] = scan.nextInt();
+    }
+    two_pointer obj = new two_pointer(array, k);
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+ Please enter length of the array :
+ 10
+ Please enter value the sum you want to be :
+ 10
+ enter array
+ 2 3 4 4 5 6 7 8 9 1
+  ```
+
+#### Output
+
+```
+The sum of these two digit 4,6 will be equal to 10
+```
+
+## Complexity Analysis
+
+  - Time Complexity : `O(n)`
+  - Space Complexity: `O(n)`
