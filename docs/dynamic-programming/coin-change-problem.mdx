@@ -64,13 +64,20 @@ class CoinChangeUsingDp {
             return 0;
         }
 
+        // size of coins list
         int n = coins.length;
+
+        // Bottom Up Dp Apporach
+
+        // constructing a matrix of size n+1 * amount+1
         int t[][] = new int[n + 1][amount + 1];
 
+        // Initialize first row with Integer.MAX_VALUE - 1
         for (int i = 0; i < amount + 1; i++) {
             t[0][i] = Integer.MAX_VALUE - 1;
         }
 
+        // Initialize first column with 0
         for (int i = 1; i < n + 1; i++) {
             t[i][0] = 0;
         }
@@ -84,16 +91,26 @@ class CoinChangeUsingDp {
             }
         }
 
+
         for (int i = 2; i < n + 1; i++) {
 
             for (int j = 1; j < amount + 1; j++) {
 
+                // checking if coins[i-1] is less than index j
+
                 if (coins[i - 1] <= j) {
+
+                    //assigning the min value
+
                     t[i][j] = (1 + t[i][j - coins[i - 1]]) < t[i - 1][j] ? (1 + t[i][j - coins[i - 1]]) : t[i - 1][j];
                 } else
+
+                    // assigning the previous value from matrix
                     t[i][j] = t[i - 1][j];
             }
         }
+
+        // returns value in n * amount block
 
         if (t[n][amount] == Integer.MAX_VALUE - 1) {
             return -1;
