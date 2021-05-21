@@ -1,0 +1,215 @@
+---
+title: Postorder traversal of Binary Tree
+slug: /data-structures/postorder_traversal
+---
+
+## Introduction
+
+A binary tree is a type of tree which have at most two children or we can say at most degree is 2. So to traverse the binary tree according to Depth-first search. We have a traversal algorithm called Postorder traversal.
+
+## Explanation 
+
+In this type of traversal (Postorder traversal) first, we have to visit the left part then the right part then its root respectively. In this first, we visit the left part that means we have to traverse the whole left subtree in this order (left->right->root) after that whole right subtree in this order (left->right->root) and then visit the root of that subtree. 
+
+Postorder: (left->right->root). 
+
+#### Example 1
+
+<img src="https://i.imgur.com/f0nHPpz.jpg?1" width="600" height="350"/>
+
+```
+
+ First traverse the left subtree: Node(44).
+ Then its left subtree: Node(22)
+ Again it has left child
+ Visit its left: Node(11)
+ Postorder traversal: 11
+ Visit right child of node(22): Node(33)
+ Postorder traversal: 11 33
+ Visit its root: Node(22)
+ Postorder traversal: 11 33 22 
+ Right of this subtree parent root(Node(44)): Node(66)
+ Left subtree of this root(Node(66)): Node(55)
+ Right child of this subtree: Node(77)
+ Postorder traversal: 11 33 22 55 77
+ Root of this subtree: Node(66)
+ Postorder traversal: 11 33 22 55 77 66
+ Root of the right subtree: Node(44)
+ Now our Postorder traversal: 11 33 22 55 77 66 44 !!
+
+```
+## Algorithm
+
+For Postorder traversal, we follow the following algorithm:
+
+* First, we have to traverse the Binary tree in the order ```left -> right -> root```.
+
+* Left means traversing the whole left subtree in this order ```left -> right -> root``` until we get a left child as null. 
+
+* Root means parent of that particular subtree.
+
+* Right means traverse the whole right subtree in this order until we get null.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+using namespace std;
+
+//creating structure for node
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+
+// Insert Function
+Node* Insert(Node *root, int data) {
+    //if root have no value
+    //then create a node and insert values
+    if (root == NULL) {
+        root = new Node();
+        root->data = data;
+        root->left = root->right = NULL;
+    }
+    //check if data is less than root value
+    //then insert into left subtree
+    else if (data <= root->data)
+        root->left = Insert(root->left, data);
+    //check if data is less than root value
+    //then insert into right subtree
+    else
+        root->right = Insert(root->right, data);
+    return root;
+}
+
+//Postorder Function
+void Postorder(Node *root) {
+    // if tree is empty then return
+    if (root == NULL) return;
+    //visit left subtree
+    Postorder(root->left);    
+    //Visit right subtree
+    Postorder(root->right);
+    //Print data
+    printf("%d ", root->data);
+}
+//Main Function began
+int main() {
+    Node* root = NULL;
+    //input values
+     int n;
+     cout<<"Enter the size of tree: ";
+     cin>>n;
+    while(n--){
+        int d;
+        cout<<"Enter the data: ";
+        cin>>d;
+        root = Insert(root, d);
+    }
+    //Print Nodes in Postorder.
+    cout << "Postorder traversal : ";
+    Postorder(root);
+    cout << "\n";
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+class Node:
+
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+
+# A function to insert a new node with the given key value
+
+def insert(root, node):
+    if root is None:
+        root = node
+    else:
+        if root.value < node.value:
+            if root.right is None:
+                root.right = node
+            else:
+                insert(root.right, node)
+        else:
+            if root.left is None:
+                root.left = node
+            else:
+                insert(root.left, node)
+
+
+# A function for Postorder tree traversal
+
+def Postorder(root):
+    if root:        
+        Postorder(root.left)
+        Postorder(root.right)
+        print (root.value)
+
+
+n = int(input('Enter the size of tree: '))
+
+m = int(input('Enter the data: '))
+
+tree = Node(m)
+
+i = 1
+while i < n:
+    k = int(input('Enter the data: '))
+    insert(tree, Node(k))
+    i += 1
+print ('Postorder traversal : ')
+
+# Postorder Traversal :- left -> root -> right
+
+Postorder(tree)
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter the data: 44 22 66 11 33 55 77 
+
+```
+#### Output :
+
+```
+Postorder traversal : 11 33 22 55 77 66 44
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(h)`
+
+where `h` is the height of binary tree and `n` is the number of elements.
+
+#### Credits
+* [Yashaswi Biyahut](https://github.com/yashaswibiyahut) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Inorder.cpp)
