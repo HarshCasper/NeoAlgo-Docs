@@ -87,7 +87,7 @@ module.exports = {
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
-                "dynamic-programming/coin-change-problem"
+		    "dynamic-programming/coin-change-problem",
             ],
         },
         {
