@@ -20,7 +20,7 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 - A level-by-level order traversal<br />
 - For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it. 2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process.
  A Breadth First Traversal of the following graph is 2, 0, 3, 1.<br />
- [![graph.png](https://media.geeksforgeeks.org/wp-content/uploads/bfs-5.png)]<br />
+
 
 ## Applications of Breadth First Traversal
 
@@ -46,6 +46,20 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 - Explore vertices by scanning neighbors of grey vertices
 
 ## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'C', value: 'c', },
+    { label: 'Java', value: 'java', }
+  ]
+}>
+
+<TabItem value="cpp">
 
 ```cpp
 
@@ -176,6 +190,9 @@ where,
 */
 
 ```
+</TabItem>
+
+<TabItem value="c">
 
 ```c
 
@@ -316,6 +333,11 @@ Do you want to traverse from any other node?
 */
 
 ```
+</TabItem>
+
+
+
+<TabItem value="java">
 
 ```java
 
@@ -406,6 +428,7 @@ BFS Traversal :
 }
 
 ```
+</TabItem>
 
 ## Complexity
 - Time Complexity: O(V+E) V: Vertices  E: Edges
@@ -413,4 +436,4 @@ BFS Traversal :
 ## Credits
 - [Manu Gupta](https://github.com/ManuGupta9780) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/Best_First_Search_Algorithm.cpp)
 - [Muthu Annamalai Venkatachalam](https://github.com/muthuannamalai12) for the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/graphs/BFS.c)
-- [Himanshu Judge](https://github.com/Himanshu70565) for the [java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/BFS.java)
+- [Himanshu Judge](https://github.com/Himanshu70565) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/BFS.java)
