@@ -32,6 +32,7 @@ import TabItem from "@theme/TabItem";
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
   ]
 }>
 
@@ -161,6 +162,72 @@ if __name__ == "__main__":
 ```
 
 </TabItem>
+
+<TabItem value: "java">
+
+```java
+// EXECUTION OF INSERTION SORT IN JAVA
+
+import java.util.*;
+
+public class InsertionSort {
+	
+	/*
+	 In Insertion sort, we check each element in the array with 
+	 the previous element, resulting in a growing sorted 
+	 output list. With each iteration, we remove one element 
+	 at a time and find the appropriate location within the 
+	 sorted array and insert it there. The iteration continues
+	 until the whole list is sorted.
+	 */
+	
+	static void sort(int[] arr) {
+		//Traverse through the entire array  
+		for(int i=1 ; i<arr.length ; i++) {
+			//initialize the variable that will be used to
+			//find the correct position of the element by "key"
+			int key = arr[i];
+			int j = i-1;
+			
+			//Compare key with each element on the left of
+			//it until an element smaller than it is found.
+			//For descending order, change key<array[j] to key>array[j].			
+			while(j>=0 && arr[j]>key) {
+				arr[j+1] = arr[j];
+				--j;
+			}
+			//When you finish shifting, you can position
+			//"key" in its correct location 
+			arr[j+1] = key;
+		}
+	}
+	
+	//Function to print the array
+	static void printArray(int[] arr) {
+		for(int i=0 ; i<arr.length ; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+
+	//Driver method
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of list:");
+		int n = sc.nextInt();
+		System.out.println("Enter the numbers:");
+		int[] arr = new int[n];
+		for(int i=0 ; i<n ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		System.out.println("After Insertion sort:");
+		sort(arr);
+		printArray(arr);
+	}
+}
+
+</TabItem>
+
 </Tabs>
 
 ## Sample I/O
@@ -202,3 +269,4 @@ After Insertion sort:
 
 - [Ritvij Kumar Sharma](https://github.com/ritvij14) for the C++ implementation.
 - [Keshav Jha](https://github.com/keshav304) for the python implementation.
+- [Apoorva Jain](https://github.com/apoorva0107) for the Java implementation.
