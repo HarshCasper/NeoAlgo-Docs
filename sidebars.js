@@ -24,8 +24,10 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
+
             ],
         },
         {
@@ -47,6 +49,7 @@ module.exports = {
                 "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
+                "sorting-algorithms/shell-sort",
             ],
         },
         {
@@ -70,6 +73,7 @@ module.exports = {
                 "data-structures/tower-of-hanoi",
                 "data-structures/maximum-in-bst",
                 "data-structures/postorder_traversal",
+                "data-structures/double-ended-queue",
                 "data-structures/floor_in_bst"
             ],
         },
@@ -81,6 +85,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence"
             ],
@@ -111,7 +117,7 @@ module.exports = {
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		            "mathematics/perfect-number",
+		        "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
@@ -139,6 +145,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+		"mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
@@ -192,13 +199,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
-
-
 		"competitive-programming/bigmod-algorithm",
-
-
-
-
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
