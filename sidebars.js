@@ -3,19 +3,12 @@ module.exports = {
         {
             type: "category",
             label: "Introduction",
-            items: [
-                "introduction/About-NeoAlgo",
-                "introduction/development-setup",
-                "introduction/contributor-handbook",
-            ],
+            items: ["introduction/About-NeoAlgo", "introduction/development-setup", "introduction/contributor-handbook"],
         },
         {
             type: "category",
             label: "Code Playgrounds",
-            items: [
-                "code-playgrounds/python-playground",
-                "code-playgrounds/java-playground",
-            ],
+            items: ["code-playgrounds/python-playground", "code-playgrounds/java-playground"],
         },
         {
             type: "category",
@@ -36,7 +29,7 @@ module.exports = {
                 "sorting-algorithms/bubble-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
-                'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
                 "sorting-algorithms/sleep-sort",
@@ -62,13 +55,13 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
-		            "data-structures/palindromic-linked-list",
+                "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
-                "data-structures/maximum-in-bst"
+                "data-structures/maximum-in-bst",
             ],
         },
         {
@@ -79,17 +72,14 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/golomb-sequence",
             ],
         },
         {
             type: "category",
             label: "Computational Geometry",
-            items: [
-                "computational-geometry/computational-geometry",
-                "computational-geometry/jarvis-algorithm",
-            ],
+            items: ["computational-geometry/computational-geometry", "computational-geometry/jarvis-algorithm"],
         },
         {
             type: "category",
@@ -103,18 +93,18 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		            "mathematics/number-power-of-2",
+                "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		            "mathematics/perfect-number",
+                "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+                "mathematics/fibonacci-recursion",
+                "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -139,18 +129,14 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
-                "mathematics/boolean-matrix",  
-                "mathematics/count-bits"
+                "mathematics/boolean-matrix",
+                "mathematics/count-bits",
             ],
         },
         {
             type: "category",
             label: "Bit Manipulation",
-            items: [
-                "bit-manipulation/bit-manipulation",
-                "bit-manipulation/brian-kernighan-algorithm",
-                "bit-manipulation/reverse-bits",
-            ],
+            items: ["bit-manipulation/bit-manipulation", "bit-manipulation/brian-kernighan-algorithm", "bit-manipulation/reverse-bits"],
         },
         {
             type: "category",
@@ -160,18 +146,13 @@ module.exports = {
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
 
-
-
-                "graph-algorithms/prims-algorithm", 
-
-		"graph-algorithms/topological-sorting",
-
-
-	             	"graph-algorithms/topological-sorting", 
-
+                "graph-algorithms/prims-algorithm",
 
                 "graph-algorithms/topological-sorting",
 
+                "graph-algorithms/topological-sorting",
+
+                "graph-algorithms/topological-sorting",
             ],
         },
         {
@@ -180,7 +161,7 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
-		"competitive-programming/prefix-sum-algorithm",
+                "competitive-programming/prefix-sum-algorithm",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
@@ -195,10 +176,7 @@ module.exports = {
         {
             type: "category",
             label: "Machine Learning",
-            items: [
-                "machine-learning/machine-learning",
-                "machine-learning/linear-regression",
-            ],
+            items: ["machine-learning/machine-learning", "machine-learning/linear-regression"],
         },
         {
             type: "category",
@@ -216,6 +194,7 @@ module.exports = {
                 "cryptography/burrows-wheeler-transform",
                 "cryptography/affine-cipher",
                 "cryptography/vigenere-cipher",
+                "cryptography/autokey-cipher",
             ],
         },
         {
@@ -226,30 +205,17 @@ module.exports = {
         {
             type: "category",
             label: "Operating Systems",
-            items: [
-                "operating-systems/operating-systems",
-                "operating-systems/banker-algorithm",
-            ],
+            items: ["operating-systems/operating-systems", "operating-systems/banker-algorithm"],
         },
         {
             type: "category",
             label: "Miscellaneous",
-            items: [
-                "miscellaneous/miscellaneous",
-                "miscellaneous/sudoku-solver",
-            ],
+            items: ["miscellaneous/miscellaneous", "miscellaneous/sudoku-solver"],
         },
         {
             type: "category",
             label: "Docusaurus Tutorial",
-            items: [
-                "getting-started",
-                "create-a-page",
-                "create-a-document",
-                "create-a-blog-post",
-                "markdown-features",
-                "thank-you",
-            ],
+            items: ["getting-started", "create-a-page", "create-a-document", "create-a-blog-post", "markdown-features", "thank-you"],
         },
     ],
 };
