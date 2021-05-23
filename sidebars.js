@@ -88,7 +88,8 @@ module.exports = {
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+		            "dynamic-programming/golomb-sequence",
+		    "dynamic-programming/coin-change-problem",
             ],
         },
         {
@@ -145,7 +146,6 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
-		        "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
