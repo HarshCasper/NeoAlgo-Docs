@@ -74,6 +74,7 @@ module.exports = {
                 "data-structures/maximum-in-bst",
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
+                "data-structures/minimum-in-bst",
                 "data-structures/floor_in_bst"
             ],
         },
@@ -88,7 +89,8 @@ module.exports = {
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+		            "dynamic-programming/golomb-sequence",
+		    "dynamic-programming/coin-change-problem",
             ],
         },
         {
@@ -111,7 +113,7 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		            "mathematics/number-power-of-2",
+		        "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
@@ -121,8 +123,8 @@ module.exports = {
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+		        "mathematics/fibonacci-recursion",
+		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -145,7 +147,6 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
-		"mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
