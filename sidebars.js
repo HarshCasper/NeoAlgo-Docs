@@ -20,7 +20,6 @@ module.exports = {
                 "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
-
             ],
         },
         {
@@ -81,9 +80,9 @@ module.exports = {
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/equal-sum-partition",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence",
-		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/golomb-sequence",
+                "dynamic-programming/coin-change-problem",
             ],
         },
         {
@@ -103,7 +102,7 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		            "mathematics/number-power-of-2",
+                "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
@@ -140,7 +139,7 @@ module.exports = {
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
-                "mathematics/boolean-matrix",  
+                "mathematics/boolean-matrix",
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
@@ -159,13 +158,9 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
-
                 "graph-algorithms/prims-algorithm",
-
                 "graph-algorithms/topological-sorting",
-
                 "graph-algorithms/topological-sorting",
-
                 "graph-algorithms/topological-sorting",
             ],
         },
@@ -181,12 +176,11 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
-		"competitive-programming/bigmod-algorithm",
+                "competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
-
             ],
         },
         {
