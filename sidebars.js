@@ -65,7 +65,7 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
-		            "data-structures/palindromic-linked-list",
+		        "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
@@ -75,6 +75,9 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
+                 "data-structures/ceil_in_bst",
+                  "data-structures/height_BST"
+
             ],
         },
         {
@@ -142,7 +145,7 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
@@ -154,6 +157,8 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+                "mathematics/occurrence-of-no.-in-array",
+                "mathematics/Kth-smallest"
             ],
         },
         {
@@ -205,7 +210,8 @@ module.exports = {
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
                 "competitive-programming/right-view-of-BT",
-
+                "competitive-programming/phone-keypad",
+                "competitive-programming/wave-sort",
             ],
         },
         {
