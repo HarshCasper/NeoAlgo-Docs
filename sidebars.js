@@ -24,8 +24,10 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
+
             ],
         },
         {
@@ -47,6 +49,7 @@ module.exports = {
                 "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
+                "sorting-algorithms/shell-sort",
             ],
         },
         {
@@ -69,7 +72,9 @@ module.exports = {
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
                 "data-structures/maximum-in-bst",
-                "data-structures/postorder_traversal"
+                "data-structures/postorder_traversal",
+                "data-structures/double-ended-queue",
+                "data-structures/minimum-in-bst",
             ],
         },
         {
@@ -80,8 +85,11 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+		            "dynamic-programming/golomb-sequence",
+		    "dynamic-programming/coin-change-problem",
             ],
         },
         {
@@ -104,18 +112,18 @@ module.exports = {
                 "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		            "mathematics/number-power-of-2",
+		        "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
                 "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
-		            "mathematics/perfect-number",
+		        "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
                 "mathematics/count-of-digits",
-		            "mathematics/fibonacci-recursion",
-		            "mathematics/catalan-number",
+		        "mathematics/fibonacci-recursion",
+		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
@@ -134,7 +142,7 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
@@ -146,6 +154,7 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+                "mathematics/occurrence-of-no.-in-array"
                 "mathematics/Kth-smallest"
             ],
         },
@@ -192,13 +201,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
-
-
 		"competitive-programming/bigmod-algorithm",
-
-
-
-
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
