@@ -74,6 +74,7 @@ module.exports = {
                 "data-structures/maximum-in-bst",
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
+                "data-structures/minimum-in-bst",
             ],
         },
         {
@@ -141,7 +142,7 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
@@ -153,6 +154,7 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+                "mathematics/occurrence-of-no.-in-array"
                 "mathematics/maximum_element"
             ],
         },
