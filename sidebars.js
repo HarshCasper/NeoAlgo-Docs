@@ -108,6 +108,7 @@ module.exports = {
             label: "Mathematics",
             items: [
                 "mathematics/mathematics",
+                "mathematics/ackermann-function",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
