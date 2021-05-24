@@ -50,8 +50,8 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
-    { label: 'Python', value: 'py', },
     { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
   ]
 }>
 <TabItem value="cpp">
@@ -137,38 +137,9 @@ int main() {
         cout << endl;
         return 0;
 }
-
 ```
+
 </TabItem>
-
-<TabItem value="py">
-
-```python   
-def counting_sort(l, k=None):
-    #  creating an array for counting elements
-    if k == None:
-        arr = [0]*1000
-    else:
-        arr = [0]*(k+1)
-    # counting the occurrence of elements
-    for i in l:
-        arr[i]+=1
-    # generating sorted array
-    l=[]
-    for i in range(len(arr)):
-        l+=[i]*arr[i]
-    return l
-
-
-if __name__ == "__main__":
-    l = list(map(int,input("Enter the elements of the array: ").split()))
-    l = counting_sort(l)
-    print("The sorted array is: ",*l)
-
-
-```
-</TabItem>
-
 <TabItem value="java">
 
 ```java   
@@ -305,6 +276,32 @@ class CountingSort
         System.out.println();
     }
 }
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python   
+def counting_sort(l, k=None):
+    #  creating an array for counting elements
+    if k == None:
+        arr = [0]*1000
+    else:
+        arr = [0]*(k+1)
+    # counting the occurrence of elements
+    for i in l:
+        arr[i]+=1
+    # generating sorted array
+    l=[]
+    for i in range(len(arr)):
+        l+=[i]*arr[i]
+    return l
+
+
+if __name__ == "__main__":
+    l = list(map(int,input("Enter the elements of the array: ").split()))
+    l = counting_sort(l)
+    print("The sorted array is: ",*l)
 
 
 ```
