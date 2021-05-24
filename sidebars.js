@@ -65,7 +65,7 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
-		            "data-structures/palindromic-linked-list",
+		        "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
@@ -75,6 +75,7 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
+                "data-structures/ceil_in_bst"
             ],
         },
         {
