@@ -153,17 +153,10 @@ class HeapSort {
     private static void heapSort(int arr[]) {
         int size = arr.length;
 
-        System.out.println("Time to make first max heap:");
-        long startTime = System.nanoTime();
         // calling buildHeap() to rearrange along with creating max heap
         for(int i = size/2 - 1; i>=0; i--) {
             buildHeap(arr, size, i);
         }
-        long stopTime = System.nanoTime();
-        System.out.println((stopTime - startTime)*0.000000001);
-
-        System.out.println("Time to make sort using max heaps and putting largest element in the end:");
-        startTime = System.nanoTime();
         // exchanging and extracting elements one by one from the final heap to sort the array
         for(int i = size-1; i>0; i--) {
 
@@ -173,8 +166,6 @@ class HeapSort {
             // doing max heap again
             buildHeap(arr, i, 0);
         }
-        stopTime = System.nanoTime();
-        System.out.println((stopTime - startTime)*0.000000001);
     }
 
     private static void buildHeap(int arr[], int size, int i) {
