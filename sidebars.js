@@ -143,7 +143,7 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
@@ -155,6 +155,8 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+                "mathematics/occurrence-of-no.-in-array",
+                "mathematics/Kth-smallest"
             ],
         },
         {
@@ -205,7 +207,8 @@ module.exports = {
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
-
+                "competitive-programming/phone-keypad",
+                "competitive-programming/wave-sort",
             ],
         },
         {
