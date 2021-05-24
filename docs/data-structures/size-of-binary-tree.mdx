@@ -1,0 +1,155 @@
+---
+title: Size of Binary Tree
+slug: /data-structures/size-of-binary-tree
+---
+
+## Introduction
+
+In this article, we will see how to find the size of a binary tree. In other words how many nodes are there in a tree. 
+
+## Explanation 
+In this we are given an binary tree. We have to find the size of that binary tree means total number of nodes in binary tree.
+#### Example 1
+<img src="https://i.imgur.com/himCv7y.jpg?1" width="600" height="350"/>
+
+```
+In the above diagram the binary tree has 5 nodes
+So the size of above binary tree is 5
+
+```
+## Algorithm
+
+For finding size of binary tree, we follow the following algorithm:
+
+* First, we will check that tree is empty or not.
+
+* If tree is empty then simply return 0 because it has zero size.
+
+* Otherwise find the size of left subtree and right subtree recursively.
+
+* Print the size of left subtree + right subtree + 1(for root).
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+// Making structure of node
+struct Node
+{
+    int key;
+
+    // Initialize left child as null
+    struct Node* left=NULL;
+
+    // Initialize right child as null
+    struct Node* right=NULL;
+};
+
+// createnode function for creating new node
+struct Node* createnode(int k)
+{
+    struct Node* newnode;
+    newnode=new Node;
+    newnode->key=k;
+    return newnode;
+}
+
+// getsize function for calculating size of binary tree
+int getsize(Node* root)
+{
+    if(root==NULL)
+      return 0;
+    else
+      return 1+getsize(root->left)+getsize(root->right);
+}
+
+// Main function
+int main()
+{
+    struct Node *root=NULL;
+
+    // creating binary tree
+    root=createnode(44);
+    root->left=createnode(22);
+    root->right=createnode(66);
+    root->left->left=createnode(11);
+    root->left->right=createnode(33);
+    cout<<"Size of binary tree: "<< getsize(root);
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+
+# A binary tree node
+class createnode:
+
+	# for creating new node
+	def __init__(self, data):
+		self.data = data
+		self.left = None
+		self.right = None
+
+# finding size of binary tree
+def size(node):
+
+  # if tree is empty return zero
+	if node is None:
+		return 0
+
+  # else find the size of left subtree and right subtree
+	else:
+		return (1 + size(node.left) + size(node.right))
+
+# creating binary tree
+root = createnode(44)
+root.left = createnode(22)
+root.right = createnode(66)
+root.left.left = createnode(11)
+root.left.right = createnode(33)
+print("Size of binary tree: ")
+
+# printing size of binary tree
+print(size(root))
+     
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+
+<img src="https://i.imgur.com/himCv7y.jpg?1" width="400" height="250"/>
+
+#### Output :
+
+```
+5
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(h)`
+
+where `n` is the number of elements and `h` is the height of binary tree.
