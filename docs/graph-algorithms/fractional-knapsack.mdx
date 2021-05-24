@@ -21,7 +21,6 @@ Consider, number of items as 5, and Max Weight as 100.
 Item | A | B | C | D | E |
 --- | --- | --- | --- |--- |---
 Weight | 10 | 20 | 30 | 40 | 50 |
---- | --- | --- | --- |--- |---
 Profit | 20 | 30 | 66 | 40 | 60 |
 
 **First approach: Taking Weights into consideration**
@@ -33,6 +32,12 @@ In terms of weights the items with highest weights are `D`, `C`, `B`, `A`. The t
 In terms of profit the items with highest profits are ```50% of D```, `E`, `C`. Here if ```100% of D``` is taken then the total weight will exceed `100`. Now since ```50% of D``` is taken so the profit of `D` will also be `50%`. The total profit is `146`(20+60+66).
 
 **Third approach: Taking Profit/Weight(Knapsack approach) into consideration**
+
+Item | A | B | C | D | E |
+--- | --- | --- | --- |--- |---
+Weight | 10 | 20 | 30 | 40 | 50 |
+Profit | 20 | 30 | 66 | 40 | 60 |
+Profit/Weight | 2.0 | 1.5 | 2.2 | 1.1 | 1.2 |
 
 In terms of profit/weight the items with highest profit/weight are ```80% of E```, `B`, `A`, 'C'. Here if ```100% of E``` is taken then the total weight will exceed `100`. Now since ```80% of E``` is taken so the profit of `E` will also be `80%`. The total profit is `164`(48+30+20+66).
 
