@@ -89,6 +89,7 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
   ]
 }>
@@ -139,6 +140,95 @@ int main()
     }
     return 0;
 }
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java  
+import java.util.*;
+
+class HeapSort {
+
+    private static void heapSort(int arr[]) {
+        int size = arr.length;
+
+        System.out.println("Time to make first max heap:");
+        long startTime = System.nanoTime();
+        // calling buildHeap() to rearrange along with creating max heap
+        for(int i = size/2 - 1; i>=0; i--) {
+            buildHeap(arr, size, i);
+        }
+        long stopTime = System.nanoTime();
+        System.out.println((stopTime - startTime)*0.000000001);
+
+        System.out.println("Time to make sort using max heaps and putting largest element in the end:");
+        startTime = System.nanoTime();
+        // exchanging and extracting elements one by one from the final heap to sort the array
+        for(int i = size-1; i>0; i--) {
+
+            // swap the current root and last term
+            swap(arr, i, 0);
+
+            // doing max heap again
+            buildHeap(arr, i, 0);
+        }
+        stopTime = System.nanoTime();
+        System.out.println((stopTime - startTime)*0.000000001);
+    }
+
+    private static void buildHeap(int arr[], int size, int i) {
+
+        int max = i;
+        int leftNode = 2 * i + 1;
+        int rightNode = 2 * i + 2;
+
+        // for max heap root must be greater than both nodes, so we compare to check this
+        if(leftNode<size && arr[leftNode]>arr[max]) {
+            // left node larger than current root
+            max = leftNode;
+        }
+
+        if(rightNode<size && arr[rightNode]>arr[max]) {
+            // right node larger than left node and current root
+            max = rightNode;
+        }
+
+        if (max != i) {
+            // root is not greatest
+            swap(arr, max, i);
+
+            // since this sub-heap got rearranged we need to rearrange all sub-heaps before this recursively
+            buildHeap(arr, size, max);
+        }
+    }
+
+    private static void swap(int arr[], int pos1, int pos2) {
+        int temp = arr[pos1];
+        arr[pos1] = arr[pos2];
+        arr[pos2] = temp;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // taking input array
+        System.out.println("Enter elements to be sorted :");
+        int size = sc.nextInt();
+        int arr[] = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // after sorting
+        for (int i=0; i<arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        sc.close();
+    }
+}
+
 ```
 </TabItem>
 
@@ -231,3 +321,5 @@ Enter elements to be sorted : 5
 
 ## Credits
 * [Avinash Kr. Ranjan](https://github.com/avinashkranjan) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Heap_sort.py)
+
+* [Ritvij Kumar Sharma](https://github.com/ritvij14) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/HeapSort.java)
