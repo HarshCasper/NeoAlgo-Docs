@@ -108,6 +108,7 @@ module.exports = {
             label: "Mathematics",
             items: [
                 "mathematics/mathematics",
+                "mathematics/ackermann-function",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
@@ -149,6 +150,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+                "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
@@ -210,6 +212,7 @@ module.exports = {
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
                 "competitive-programming/right-view-of-BT",
+                "competitive-programming/identical-BT",
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
             ],
