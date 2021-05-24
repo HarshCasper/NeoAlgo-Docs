@@ -204,6 +204,7 @@ module.exports = {
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
+                "competitive-programming/right-view-of-BT",
 
             ],
         },
