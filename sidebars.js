@@ -175,7 +175,8 @@ module.exports = {
 
 
 
-                "graph-algorithms/prims-algorithm", 
+                "graph-algorithms/prims-algorithm",
+                "graph-algorithms/fractional-knapsack", 
 
 		"graph-algorithms/topological-sorting",
 
