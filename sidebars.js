@@ -160,7 +160,8 @@ module.exports = {
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
-                "mathematics/Kth-smallest"
+                "mathematics/Kth-smallest",
+                "mathematics/perfect-cube"
             ],
         },
         {
