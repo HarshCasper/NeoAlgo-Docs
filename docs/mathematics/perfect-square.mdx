@@ -1,0 +1,178 @@
+---
+title: Given number is perfect square
+slug: /mathematics/perfect-square
+---
+
+## Introduction
+
+In this article, we will see how to check that the given number is perfect square or not. A perfect square is a number that can be expressed as the product of two equal integers.
+
+## Explanation 
+
+In this, we have to check that the given number is perfect square or not. For that first we calculate the floor of square root of that number then we multiply with same calculated square root. If the result is equal to the given number then it is the perfect square.
+
+#### Example 1
+
+```
+Given number x = 225
+In the above example, we are given an number.
+We have to check whether the given number is perfect square or not.
+First calculate the floor value of square root of that number and store in res variable.
+int res = floor(square root(x))
+res = 15
+Now, multiply res*res and check whether the given number is equal to res*res or not.
+In this case it is equal so print Yes.
+
+```
+
+#### Example 2
+
+```
+Given number x = 150
+In the above example, we are given an number.
+We have to check whether the given number is perfect square or not.
+First calculate the floor value of square root of that number and store in res variable.
+int res = floor(square root(x))
+res = 12
+Now, multiply res*res and check whether the given number is equal to res*res or not.
+res*res=144 and given number is 150.
+In this case it is not equal so print No.
+
+```
+
+## Algorithm
+
+For finding Maximum element in array, we follow the following steps:
+
+* Initialise a variable res.
+
+* Calculate the floor value of square root of number and store into res.
+
+* Calculate res*res and check given number is equal to res*res or not.
+
+* Print Yes if equal otherwise print No.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function perfect_square 
+string perfect_square(int num)
+{
+  int res;
+
+  // calculating floor value of 
+  // square root of number and 
+  // storing into res variable
+  res = floor(sqrt(num));
+  int sol;
+
+  // calculating res*res and
+  // storing into sol variable
+  sol = res*res;
+
+  // chacking if the sol is 
+  // equal to given number or not
+  if(sol==num)
+  {
+    return "Yes";
+  }
+  else
+  return "No";
+}
+
+// main function
+int main()
+{
+  int num;
+  cout<<"Enter the number: ";
+
+  // Taking number as input
+  cin>>num;
+     
+  cout<<"Given number is Perfect Square: ";  
+  
+  //printing perfect square or not 
+  cout<<perfect_square(num)<<endl;
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+
+# function perfect_square
+def perfect_square(num):
+ 
+    # initialize count with 0
+    res = int(math.sqrt(num))
+    sol = res*res
+  
+    if(sol == num):
+      return "Yes"
+    else:  
+      return "No"
+
+ 
+# Taking number as input
+num = int(input("Enter the number: "))
+ 
+
+print("Given number is Perfect Square: ") 
+# Check whether the given 
+# number is perfect square or not
+print(perfect_square(num))
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input 1:
+
+```
+Enter the number: 225
+```
+#### Output 1:
+
+```
+Given number is Perfect Square: Yes
+```
+
+#### Input 2:
+
+```
+Enter the number: 150
+```
+#### Output 2:
+
+```
+Given number is Perfect Square: No
+```
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(sqrt(n))`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements in array .
