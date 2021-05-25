@@ -215,6 +215,7 @@ module.exports = {
                 "competitive-programming/identical-BT",
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
+                "competitive-programming/wine-selling",
             ],
         },
         {
