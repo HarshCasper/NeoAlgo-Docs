@@ -1,0 +1,163 @@
+---
+title: Minimum element in array
+slug: /mathematics/minimum_element
+---
+
+## Introduction
+
+In this article, we will see how to find the minimum element in a given set of data. Minimum element means the smallest value in a given array.
+
+## Explanation 
+
+In this, we have to find the minimum element or we can say smallest value from the given set of data. For that first we assume that first element of our array is smallest and store into a res variable. Keep updating the res variable when we see smaller element than the previous one.
+
+#### Example 1
+
+<img src="https://i.imgur.com/LRG4ywT.png" width="500" height="50"/>
+
+```
+arr[] = {17, 4, 3, 8, 2, 14, 10, 6}
+In the above example, we are given an array and we have to find the minimum element.
+First initialise a variable res with first element of array that is 17.
+Now iterate on whole aray and keep updating the res value if the curr element is smaller than res.
+So i=1, a[i]<res update res=4.
+i=2, a[i]<res update res=3.
+i=3, a[i]>res ignore.
+i=4, a[i]<res update res=2.
+i=5, a[i]>res ignore.
+i=6, a[i]>res ignore.
+i=7, a[i]>res ignore.
+Return the res which is minimum element in array.
+
+```
+## Algorithm
+
+For finding Maximum element in array, we follow the following steps:
+
+* Initialise a variable res with first element in array.
+
+* Iterate on whole array.
+
+* Keep updating res variable when we see current element is smaller than res.
+
+* Return the res which contain minimum element.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function minimum_element 
+int maximum_element(int a[],int n)
+{
+  int res=a[0];
+  
+  //for finding maximum element in array
+  for(int i=1;i<n;i++)
+  {
+    if(a[i]<res)
+    {
+      res=a[i];
+    }
+  }
+  
+  //after finding res return
+  return res;
+}
+
+// main function
+int main()
+{
+  int size;
+  cout<<"Enter the size of array: ";
+  cin>>size;
+  int a[size];
+  cout<<"Enter the elements of array: ";
+  
+  //input array
+  for(int i=0;i<size;i++)
+  {
+    cin>>a[i];
+  }
+    
+  cout<<"Minimum element in array: ";  
+  
+  //printing minimum element 
+  cout<<minimum_element(a,size)<<endl;
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# function minimum_element
+def minimum_element(a, n):
+ 
+    # initialize count with 0
+    count = a[0]
+    i = 1
+    while n != 1:
+        if a[i] < count:
+            count = a[i]
+            i += 1
+            n -= 1
+ 
+    return count
+ 
+ 
+# Taking size as input
+n = int(input("Enter the size of array: "))
+ 
+#  Taking elements of array as input
+print("Enter the elements of array: ")
+data = []
+for i in range(n):
+    data.append(int(input()))
+ 
+ 
+print("Minimum element in array: ") 
+# Printing the minimum element
+print(minimum_element(data, n))
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input :
+
+```
+Enter the size of array: 8
+Enter the elements of array: 17 4 3 8 2 14 10 6
+```
+#### Output :
+
+```
+Minimum element in array: 2
+```
+
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(n)`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements in array .
