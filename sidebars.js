@@ -169,6 +169,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/toggle-kth-bit",
                 "bit-manipulation/reverse-bits",
             ],
         },
