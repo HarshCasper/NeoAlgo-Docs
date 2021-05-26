@@ -1,0 +1,131 @@
+---
+title: Toggle K'th bit
+slug: /bit-manipulation/toggle-kth-bit
+---
+
+## Introduction
+
+Given a number, toggle the `k`'th bit of the given number, i.e. If the `k`th bit is `1` toggle it to `0` else if it is `0`, toggle it to `1`. Inorder to solve the problem, it is good to have knowledge about Left and Right shift bit operations. The left shift operation denoted by `x<<y` shifts `y` number of bits in `x` to left. It is equivalent to multiplying `x` with `2^y`. Similarly the right shift operation denoted by `x>>y` shifts `y` number of bits in `x` to right. It is equivalent to dividing `x` with `2^y`. 
+
+## Explanation
+
+Consider a number `n` = `24`. Assume that we have to toggle the `k` = `3`th bit.
+
+```
+Consider n = 24,  k = 3
+
+Binary equivalent of n = 11000
+Here the third bit is '0'. So we need to toggle it to '1'.
+
+Binary equivalent of n after toggling its third bit(from the LSB) = 11100 (28)
+```
+
+Hence `28` is the number obtained after toggling the k'th bit.
+
+## Algorithm
+
+Let us assume that the given number be `n` and the value of k be `k`
+
+-   Set `temp` the value of 1 with its bits shifted to left by `k-1` places
+-   Set `ans` the value of `n` xor `temp`
+-   Return `ans`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+/*
+ Program to Toggle kth bit of a number.
+ Given a number we want to toggle the kth  bit of a number .
+
+  Ex:-6 (110) and k=2
+     after toggling  2nd bit our number would be (100) 4.
+ Approach:
+  firstly we will left shift the given number k-1 times.
+  After then we will xor the left shifted result with given number and return
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int  toggle_k_bit(int n,int k)
+{
+   int temp=1<<(k-1);
+
+   return n^temp;
+}
+
+int main()
+{
+    int n,k;
+
+    cout<<"Enter the number: ";
+    cin>>n;
+    cout<<"Enter the value of k(where you need to toggle the k'th bit): ";
+    cin>>k;
+
+    cout<<"The given number, after toggling the k-th bit is "<< toggle_k_bit(n,k)<<"\n";
+
+    return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# Python program to toggle the k-th bit of a number.
+def toggle(num, k):
+    return (num ^ (1 << (k-1)))
+
+
+if __name__ == '__main__':
+    print("Enter the number: ", end="")
+    n = int(input())
+    print("Enter the value of k(where you need to toggle the k'th bit): ", end="")
+    b = int(input())
+    res = toggle(n, b)
+    print("The given number, after toggling the k-th bit is {}".format(res))
+
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number: 33
+Enter the value of k(where you need to toggle the k'th bit): 12
+```
+
+#### Output
+
+```
+The given number, after toggling the k-th bit is 2081.
+```
+
+## Complexity Analysis
+
+-   Time complexity - `O(1)`
+-   Space complexity - `O(1)`
+
+## Credits
+
+-   [Faiz Alam](https://github.com/zhcet19) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/togglebit.cpp)
+-   [Hari Krishnan U](https://github.com/Harikrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/Bit--Manipulation/toggle_kth_bit.py)
