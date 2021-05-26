@@ -26,22 +26,16 @@ But if the given key element is smaller than middle array's element, then key el
 ## Algorithm
 
  - First we will sort the given `array` in `ascending order`.
- - Now, define two variables `low` and `high`. Here `low` refers to `lowest index` and `high` refers to `higher index` of the array.
+ - Now, define two variables `low` and `high`. Here `low` refers to `lowest index` and `high` refers to `highest index` of the array.
  - We will run a loop until `low` is less or equal to `high`.
  - Then we will check whether the `key element` is equal to the `middle element` or not.
  - Here, `middle element` is `(low + high)/2`, 
  - If the `key element` is equal to the `middle element`, then we can say that the `key element` is present in the array.
  - Otherwise, if the `key element` is greater than the `middle element`, then we will set `high` = `middle element - 1`.
  - If the `key element` is less than the `middle element`, then we will set `low` = `middle element + 1`.
- - While runnig this loo
+ - While running this loop if any time, `key element` is not equal to the `middle element`, then we can say that the `key element` is not present in the array.  
+ - Thus, we can check whether `key element` is present in the `array` or not.
 
-
-
-
-
-
-
- - Thus, we will get our resulting value.
 
 ## Code
 
