@@ -57,7 +57,7 @@ module.exports = {
                 "data-structures/queue",
                 "data-structures/Circular-Linked-list",
                 "data-structures/preorder_traversal",
-                "data-structures/palindromic-linked-list",
+              "data-structures/palindromic-linked-list",
                 "data-structures/circular-queue",
                 "data-structures/depth-of-tree",
                 "data-structures/size-of-binary-tree",
@@ -67,6 +67,9 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
+                 "data-structures/ceil_in_bst",
+                  "data-structures/height_BST"
+
             ],
         },
         {
@@ -95,6 +98,7 @@ module.exports = {
             label: "Mathematics",
             items: [
                 "mathematics/mathematics",
+                "mathematics/ackermann-function",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
@@ -132,10 +136,11 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+                "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
@@ -144,12 +149,19 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+                "mathematics/occurrence-of-no.-in-array",
+                "mathematics/Kth-smallest"
             ],
         },
         {
             type: "category",
             label: "Bit Manipulation",
-            items: ["bit-manipulation/bit-manipulation", "bit-manipulation/brian-kernighan-algorithm", "bit-manipulation/reverse-bits"],
+            items: [
+                "bit-manipulation/bit-manipulation",
+                "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/toggle-kth-bit",
+                "bit-manipulation/reverse-bits",
+            ],
         },
         {
             type: "category",
@@ -181,6 +193,10 @@ module.exports = {
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
+                "competitive-programming/right-view-of-BT",
+                "competitive-programming/identical-BT",
+                "competitive-programming/phone-keypad",
+                "competitive-programming/wave-sort",
             ],
         },
         {
