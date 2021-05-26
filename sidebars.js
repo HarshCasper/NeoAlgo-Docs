@@ -27,6 +27,7 @@ module.exports = {
                 "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
+		"searching-algorithms/binary-search",
 
             ],
         },
