@@ -1,0 +1,249 @@
+---
+title: Right View of Binary Tree
+slug: /data-structures/right-view-of-BT
+---
+## Introduction
+
+Given a binary tree, print the first visible nodes from the right of the binary tree.
+
+## Explanation
+
+Let us take an example of a tree so that we get a better understanding of this problem.
+
+<p align="center">
+  <img width="500" height="300" src="https://i.imgur.com/cAl0SrV.png" />
+</p>
+
+In the above picture, the nodes marked with a `✅` i.e. nodes `A, C, D, and G`
+are visible from the right view of the binary tree. However, the nodes marked with 
+a `❌` i.e nodes `B, E, H, F, I` are not visible from the right view of a binary 
+tree because they are hidden by nodes `C, D and G` respectively.
+
+So the right view of this binary tree will be `A C D G`.
+
+## Algorithm
+
+Here we will use the recursive approach to solve this problem.
+
+* Initialize a variable `maxlevel` to `-1` and call the `rightView(node = root, level = 0)` function.
+* In the function, check whether the node is `null`; if yes then return.
+* Check whether the `maxlevel < level`
+  * If true, print value of node.
+  * Set `maxlevel = level`.
+* Make a recursive call to `rightView(node->right, level+1)` function.
+* Make a recursive call to `rightView(node->level, level+1)` function.
+
+## Code 
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },   
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct node {
+  node(int x): data(x), left_child(NULL),
+    right_child(NULL) {}
+  int data;
+  node * left_child;
+  node * right_child;
+};
+
+class bin_tree {
+  node * root;
+  int n = 0;
+  public:
+    // constructor of tree
+    bin_tree() {
+      root = NULL;
+      n = 0;
+    }
+  void insert_data(int x) {
+    //incrase number of element
+    n++;
+    //if tree is empty
+    if (!root) {
+      node * tnode = new node(x);
+      root = tnode;
+    }
+    //if tree if not empty
+    else {
+      node * temp = root;
+      while (1) {
+        //if data to be inserted is less then the
+        //data of current node
+        if (x < temp -> data) {
+          //if left child of current node is not 
+          //present we simple add new node with 
+          //the data to be inserted
+          if (!temp -> left_child) {
+            node * tnode = new node(x);
+            temp -> left_child = tnode;
+            break;
+          }
+          //else we change the current node 
+          //pointer with pointer of left child 
+          //node pointer
+          else
+            temp = temp -> left_child;
+        }
+        //if data to be inserted is grater then 
+        //or equal to the data of current node
+        else {
+          //if right child of current node is not
+          //present we simple add new node with 
+          //the data to be inserted
+          if (!temp -> right_child) {
+            node * tnode = new node(x);
+            temp -> right_child = tnode;
+            break;
+          }
+          //else we change the current node 
+          //pointer with pointer of left child 
+          //node pointer
+          else
+            temp = temp -> right_child;
+        }
+      }
+    }
+  }
+  int size() {
+    return n;
+  }
+
+  void right_view_of_tree();
+};
+
+void bin_tree::right_view_of_tree() {
+  int enterptr = 0, exitptr = 0;
+  node * a[this -> size()];
+
+  if (this -> root)
+    a[enterptr++] = this -> root;
+
+  while (enterptr != exitptr) {
+    // number of nodes at current level 
+    int cn = enterptr - exitptr;
+
+    // Print the righ  most element at the level 
+    cout << a[exitptr] -> data << " ";
+
+    // Traverse all nodes of current level  
+    for (int i = 1; i <= cn; i++) {
+      // Add Rightchild node
+      if (a[exitptr] -> right_child)
+        a[enterptr++] = a[exitptr] -> right_child;
+
+      // Add leftchild node
+      if (a[exitptr] -> left_child)
+        a[enterptr++] = a[exitptr] -> left_child;
+      // Move to next node
+      exitptr++;
+    }
+  }
+}
+
+int main() {
+  bin_tree t;
+  int n;
+  cout << "Enter number of elements in tree: ";
+  cin >> n;
+  cout << "Enter values in a binary tree: ";
+  while (n--) {
+    int k;
+    cin >> k;
+    t.insert_data(k);
+  }
+  cout << "\nRight View of the binary tree is:";
+  t.right_view_of_tree();
+  return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python
+# A class to create a node
+class Node:
+    # Constructor to initialize node
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+# A function to build the tree in preorder form
+def BuildTree():
+    d = int(input())
+    if d == -1:
+        return None
+    root = Node(d)
+    root.left = BuildTree()
+    root.right = BuildTree()
+    return root
+
+
+# A function to print the right view of the binary tree
+def RightView(root, level, maxlevel):
+    # base case
+    if root is None:
+        return
+    if level > maxlevel[0]:
+        print(root.data, end=" ")
+        maxlevel[0] = level
+    # Recursive case
+    RightView(root.right, level + 1, maxlevel)
+    RightView(root.left, level + 1, maxlevel)
+
+print("Enter values in a binary tree:")
+# A function call to build the tree and return root node
+root = BuildTree()
+# maxlevel is defined as a list because it is mutable and we want the changes
+# made to it gets reflected outside the function
+maxlevel = [-1]
+print("Right view of the binary tree is:")
+RightView(root, 0, maxlevel)
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+
+```
+Enter number of elements in tree: 8
+Enter elements to insert in  tree: 50 40 60 55 30 56 70 45
+```
+
+#### Sample Output
+
+```
+Right View of tree : 50 60 70 56
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)` where `N` is the total number of nodes.
+- Space Complexity: 
+  - `O(N)` (C++).
+  - `O(1)` (Python). 
+
+
+## Credits
+
+- [Satyam Dengre](https://github.com/satyampgt4) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/right_view_of_tree.cpp)
+- [Yashmita](https://github.com/yashmita) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Right_view_of_binary_tree.py)

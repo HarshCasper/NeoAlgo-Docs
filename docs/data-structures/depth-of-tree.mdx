@@ -1,0 +1,270 @@
+---
+title: Depth of Tree
+slug: /data-structures/depth-of-tree
+---
+
+## Introduction
+
+The maximum depth of a tree/ height of a tree is the number of edges between the tree's root and its furthest leaf. In contrast, the depth of a node is the number of edges in the path from the root node to that node.
+
+## Explanation
+
+To understand better, let us take an example of a tree.
+
+<p align="center">
+  <img width="600" height="400" src="https://i.imgur.com/TqZUag3.png" />
+</p>
+
+- **Maximum Depth of Tree/ Height of Tree**
+  * In the above example, as we can see, `Node A` is the root node and `Node G` and `Node H` are the tree's leaf nodes. Here `Node F` is a leaf node as well, but to find the maximum depth of the tree, we take only the leaf nodes which are furthest from the root node, so in this example, we will neglect the Node F to find the depth.
+  * Now just by looking at the definition, we can conclude that the maximum depth of the tree is 3 as there are 3 edges between the root node and the furthest leaves. 
+
+<p align="center">
+  <img width="700" height="400" src="https://i.imgur.com/xl6FpfC.png" />
+</p>
+
+- **Depth of a Node**
+  * According to the definition, we can find every node's depth by counting the number of edges from the root node to that node. In the above example, as we can see, `Node A` is the root node, so the number of edges in the path from the root node that is Node A to Node A is 0. So the depth of Node A is `0`.
+  * Similarly for `Node B`, the number of edges in the path from Node A to Node B is 1. So the depth of Node B is `1`. 
+  * We can find the depth of the rest of the nodes in the similar fashion.
+
+<p align="center">
+  <img width="700" height="400" src="https://i.imgur.com/jcB5zNa.png" />
+</p>
+
+## Algorithm
+
+In this section, we will discuss about the algorithmic steps performed to find the depth of tree.
+
+#### Maximum Depth of Tree
+
+* If the root is null, then the depth of the tree is `0`.
+* Else, start from the root and, 
+  * Recursively find the maximum depth of the left sub-tree.
+  * Recursively find the maximum depth of right sub-there.
+* Obtain the larger depth out of them and increment it by one.
+
+#### Depth of a Node
+
+* If the root is null, return `-1`.
+* If the root is equal to the value of the node who's depth we are supposed to find, print depth = 0.
+* Else, recursively check if the node is present in either of the sub-trees.
+* If found, calculate the distance between the root node and the given node.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node {
+    node(int x): data(x), left_child(NULL), right_child(NULL) {}
+    int data;
+    node *left_child;
+    node *right_child;
+};
+
+class bin_tree{
+    node *root;
+public:
+   // constructor of tree
+    bin_tree()
+    {
+        root = NULL;
+    }
+    void insert_data(int x){
+        //if tree is empty
+        if(!root)
+        {
+            node *tnode = new node(x);
+            root = tnode;
+        }
+        //if tree if not empty
+        else
+        {
+            node *temp =root;
+            while(1)
+            {
+                //if data to be inserted is less then the data of current node
+                if(x < temp->data )
+                {
+                    //if left child of current node is node present we simple add new node with the data to be inserted
+                    if(!temp->left_child)
+                        {
+                            node *tnode = new node(x);
+                            temp->left_child = tnode;
+                            break;
+                        }
+                    //else we change the current node pointer with pointer of left child node pointer
+                    else
+                        temp = temp->left_child;
+                }
+                //if data to be inserted is grater then or equal to the data of current node
+                else
+                {
+                    //if right child of current node is node present we simple add new node with the data to be inserted
+                    if(!temp->right_child)
+                        {
+                            node *tnode = new node(x);
+                            temp->right_child = tnode;
+                            break;
+                        }
+                    //else we change the current node pointer with pointer of left child node pointer
+                    else
+                     temp = temp->right_child;
+                }
+            }
+        }
+    }
+
+    int depth(node *level)
+    {
+        if(level == NULL)
+        {
+            return 0;
+        }
+        //depth of left subtree
+        int left_depth = depth(level->left_child);
+        //depth of right subtree
+        int rigth_depth = depth(level->right_child);
+        // depth of tree will max of depth of left subtree and depth of right subtree adding current node;
+        return  max(left_depth,rigth_depth)+1;
+    }
+	
+    //depth of whole tree
+    int depth_of_tree()
+    {
+        return(depth(root));
+    }
+};
+int main() {
+    bin_tree t;
+    int n;
+    cout<<"Enter number of elements in tree: ";
+    cin>>n;
+    cout<< "Enter elements to insert in  tree: ";
+    while(n--)
+    {	
+        int k; cin>>k;
+        t.insert_data(k);
+    }
+    cout<<"\nDepth of tree:"<<t.depth_of_tree()<<endl;
+    return 0;	
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+class tree:
+
+    # A function to build the tree in preorder manner
+    def MakeTree():
+        val = int(input())
+        if val == -1:
+            return None
+        root = TreeNode(val)
+        root.left = tree.MakeTree()
+        root.right = tree.MakeTree()
+        return root
+
+    def get_node_depth(node, val, depth):
+        if node is None:
+            return -1
+
+        if node.val is val:
+            return depth
+
+        l_depth = tree.get_node_depth(node.left, val, depth+1)
+        r_depth = tree.get_node_depth(node.right, val, depth+1)
+
+        return max(l_depth, r_depth)
+
+    def get_maximum_depth(node, depth):
+        if node is None:
+            return -1
+
+        l_depth = 1 + tree.get_maximum_depth(node.left, depth+1)
+        r_depth = 1 + tree.get_maximum_depth(node.right, depth+1)
+
+        return max(l_depth, r_depth)
+
+
+# Creating a tree of the following structure:-
+
+#      1
+#    /   \
+#   2     3
+#  / \   / \
+# 4   5 6   7
+n = int(input("Enter no. of values to insert in tree : "))
+print("Enter values in a binary tree in preorder form: ")
+# A function call to build the tree and return root node
+root = tree.MakeTree()
+# values should be entered in such form 1 2 4 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 -1
+
+# Printing the depth of each node
+print("Depth of each node is : ")
+for i in range(1, n+1):
+    print(tree.get_node_depth(root, i, 0))
+    # Should print : 0 1 1 2 2 2 2
+
+# Printing the maximum depth of the tree
+print("Maximum Depth: ", tree.get_maximum_depth(root, 0))
+# Should print: 2
+
+# Print -1 for the depth if the node is not present in the tree
+print("If element not present", tree.get_node_depth(root, 10, 0))
+# Should print: -1
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample Input
+```
+Enter number of elements in tree: 7
+Enter elements to insert in  tree: 50 60 40 55 30 70 45 
+```
+
+#### Sample Output
+```
+Depth of tree : 3
+```
+
+## Complexity Analysis
+
+#### Time Complexity : `O(n)`
+
+#### Space Complexity : 
+
+* Perfectly Balanced Tree : `O(logn)`
+* Imperfectly Balanced Tree : `O(n)`
+
+## Credits
+
+- [Satyam Dengre](https://github.com/satyampgt4) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/Depth_of_tree.cpp)
+- [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/graphs/Depth_Of_Tree.py)
