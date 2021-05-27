@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -93,7 +94,8 @@ module.exports = {
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
-		    "dynamic-programming/coin-change-problem",
+		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/painting-fence",
             ],
         },
         {
@@ -161,7 +163,9 @@ module.exports = {
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
-                "mathematics/Kth-smallest"
+                "mathematics/Kth-smallest",
+                "mathematics/sieve-of-eratosthenes",
+
             ],
         },
         {
