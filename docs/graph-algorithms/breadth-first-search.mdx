@@ -4,6 +4,7 @@ slug: /graph-algorithms/breadth-first-search
 ---
 
 ## Introduction
+
 Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures.
 It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]),
 and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
@@ -19,8 +20,7 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 - Discovers all vertices at distance k from s before those at distance k+1
 - A level-by-level order traversal<br />
 - For example, in the following graph, we start traversal from vertex 2. When we come to vertex 0, we look for all adjacent vertices of it. 2 is also an adjacent vertex of 0. If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process.
- A Breadth First Traversal of the following graph is 2, 0, 3, 1.<br />
-
+  A Breadth First Traversal of the following graph is 2, 0, 3, 1.<br />
 
 ## Applications of Breadth First Traversal
 
@@ -30,14 +30,13 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 - Pocket Cube (2x2x2 Rubic Cube)<br />
 - Garbage Collector<br />
 
-
 ## Algorithm
 
 - Builds a tree over the graph
 - Pick a source vertex to be the root
 - Find (“discover”) all of its children, then all of their children, etc.
 - Associate vertex “colors” to guide the algorithm
-- white  vertices have not been discovered
+- white vertices have not been discovered
 - All vertices start out white
 - Grey vertices are discovered but not fully explored
 - They may be adjacent to white vertices
@@ -47,8 +46,8 @@ and explores all of the neighbor nodes at the present depth prior to moving on t
 
 ## Code
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs
   defaultValue="cpp"
@@ -62,52 +61,38 @@ import TabItem from '@theme/TabItem';
 <TabItem value="cpp">
 
 ```cpp
-
 #include <iostream>
 #include <queue>
 #include <algorithm>
-
 /*
-Best First Search Algorithm is a search algorithm that is used to find a path between source vertex 
+Best First Search Algorithm is a search algorithm that is used to find a path between source vertex
 and target vertex in an undirected weighted graph. It is a search algorithm that works on a specific
-rule. It is an example of "Informed Search" algorithm as it uses an evaluation function to decide 
+rule. It is an example of "Informed Search" algorithm as it uses an evaluation function to decide
 which adjacent is most promising and then explores it.
 It uses the concept of a priority queue (min heap) to store costs of nodes.
 */
-
 #include <bits/stdc++.h>
 using namespace std;
-
 //Function to implement best first search algorithm
 void bestFirstSearchAlgorithm(int sv, int tv, int n, vector<vector<pair<int, int> > > graph)
 {
-
     //array for keeping track of visited vertices
     vector<bool> visited(n, false);
-
     //min heap priority queue for storing cost of nodes
     priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
-
     //inserted source position in the priority queue
     pq.push(make_pair(0, sv));
-
     //mark source vertex as visited
     visited[sv] = true;
-
     //array to store path from the source to the target vertex
     vector<int> path;
-
     while (!pq.empty()) {
-
         int temp = pq.top().second;
-
         path.push_back(temp);
         pq.pop();
-
         //If target vertex is found then exit from the loop
         if (temp == tv)
             break;
-
         for (int i = 0; i < graph[temp].size(); i++) {
             //For each neighbouring vertex of temp
             // Continue if it is already visited
@@ -120,28 +105,21 @@ void bestFirstSearchAlgorithm(int sv, int tv, int n, vector<vector<pair<int, int
             }
         }
     }
-
     cout << "Path between source vertex and target vertex: " << endl;
     for (int i = 0; i < path.size(); i++) {
         cout << path[i] << " ";
     }
     cout << endl;
 }
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
     vector<vector<pair<int, int> > > graph;
-
     int vertices, edges;
-
     cout << "Input number of vertices and edges" << endl;
     cin >> vertices >> edges;
-
     graph.resize(vertices);
-
     cout << "Input edges: start vertex, end vertex and weight of edge between them" << endl;
     for (int i = 0; i < edges; i++) {
         int a, b, cost;
@@ -149,38 +127,29 @@ int main()
         graph[a].push_back(make_pair(cost, b));
         graph[b].push_back(make_pair(cost, a));
     }
-
     int sv, tv;
-
     cout << "Input Source vertex and target vertex" << endl;
     cin >> sv >> tv;
-
     bestFirstSearchAlgorithm(sv, tv, vertices, graph);
-
     return 0;
 }
-
-
 ```
+
 </TabItem>
 
 <TabItem value="c">
 
 ```c
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
-
 #define size 20
 #define TRUE 1
 #define FALSE 0
-
 int g[size][size];
 int visit[size];
 int Q[size];
 int n;
-
 void main()
 {
     int v1, v2;
@@ -199,8 +168,6 @@ void main()
     {
         for (v1 = 0; v1 < n; v1++)
             visit[v1] = FALSE;
-
-
         printf("Enter the Vertex from which you want to traverse ");
         scanf("%d", &v1);
         if (v1 >= n)
@@ -263,45 +230,39 @@ void bfs(int v1)
         }
     }
 }
-
-
 ```
+
 </TabItem>
-
-
 
 <TabItem value="java">
 
 ```java
-
 import java.util.*;
-
 public class BFS {
-
 	public static void breadthFirst(int edges[][],int V) {
 //		A visited array to mark if the node is visited then not to go there again
 		boolean visited[]=new boolean[V];
-		
+
 		for(int i=0;i<V;i++) {
 			if(!visited[i]) {
 				breadthFirstHelper(edges,visited,i);
 			}
 		}
 	}
-	
+
 	public static void breadthFirstHelper(int edges[][],boolean visited[],int sv) {
-		
+
 		int V=edges.length;
-		
+
 		visited[sv]=true;
-		
+
 		Queue<Integer> queue=new LinkedList<Integer>();
 		queue.add(sv);
-		
+
 		while(!queue.isEmpty()) {
-			
+
 			int size=queue.size();
-			
+
 			for(int i=0;i<size;i++) {
 				int frontNode=queue.poll();
 				for(int j=0;j<V;j++) {
@@ -313,22 +274,22 @@ public class BFS {
 				System.out.print(frontNode+" ");
 			}
 		}
-		
+
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		Scanner sc=new Scanner(System.in);
-	
+
 		System.out.println("Enter the number of vertices in Graph : ");
 		int V=sc.nextInt();
-		
+
 		System.out.println("Enter the number of edges in the Graph : ");
 		int E=sc.nextInt();
-		
+
 //		Adjaceny Matrix :
 		int edges[][]=new int[V][V];
-		
+
 //		Taking edges as input :
 		System.out.println("Enter the edges :");
 		for(int i=0;i<E;i++) {
@@ -337,19 +298,16 @@ public class BFS {
 			edges[sv][ev]=1;
 			edges[ev][sv]=1;
 		}
-		
+
 		System.out.println("BFS Traversal : ");
 		breadthFirst(edges,V);
-
 	}
-	
+
 ```
+
 </TabItem>
-
 ## Sample Input and Output
-
 #### Input : 
-
 ```
 Enter the number of vertices in Graph : 
 4
@@ -360,18 +318,14 @@ Enter the edges :
 1 2
 0 2
 2 3
-
 ```
-
 #### Output
 ```
 BFS Traversal : 
 0 1 2 3 
 ```
-
 ## Complexity
 - Time Complexity: O(V+E) V: Vertices  E: Edges
-
 ## Credits
 - [Manu Gupta](https://github.com/ManuGupta9780) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/Best_First_Search_Algorithm.cpp)
 - [Muthu Annamalai Venkatachalam](https://github.com/muthuannamalai12) for the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/graphs/BFS.c)

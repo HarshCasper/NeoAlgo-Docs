@@ -1,0 +1,156 @@
+---
+title: Left Rotate Bits of a Number
+slug: /bit-manipulation/left-rotate-bits
+---
+
+## Introduction
+
+Given an integer, a rotation is an operation similar to shift operation of bits except that the bits that fall off at one end are put back to the other end. In left rotation, the bits that fall off at left end are put back at right end.
+
+## Explanation
+
+Consider a number `n` = `13` and we have to left rotate the number by `k` = `2` places.
+
+```
+The binary equivalent of the number is 1101
+
+The binary equivalent after left rotating by one place, 1101 becomes 1011 (now k = 1)
+The binary equivalent after left rotating by one place again, 1011 becomes 0111 (now k = 2)
+
+Since k = 2, we can stop the shift operation now.
+
+
+The decimal equivalent of 1011 is 8.
+```
+
+Hence the number obtained by left rotating `n` = `13`, by `k` = `2` places, is 8.
+
+## Algorithm
+
+Let us assume that the given number be `n` and the number of places to shift be `cnt`,
+
+- Declare `cnt` as `cnt` modulo `31`
+- Begin a While loop till `cnt` greater than `0`
+  - Set `msb` as the bitwise AND of `n` right shifted by `31`
+  - Left rotate `n` by one bit
+  - Set `n` as the bitwise OR of `n` and `msb`
+  - Decrement the value of `cnt` by 1
+- Return `n`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+// C++ program to Rotate a number by a specific bits
+#include <bits/stdc++.h>
+using namespace std;
+
+// Left Rotate 'cnt' number of bits of the given number 'n'
+int left_rotate_bits(int n, int cnt)
+{
+    int msb;
+
+    // 32 is the total number of bits used to store an INT variable in C++
+    for(cnt = cnt % 31;cnt>0;cnt--)
+    {
+        //Store the current MSB in a temporary variable
+        msb = (n >> 31) & 1;
+        //Left rotate the given number by one bit
+        n = (n<<1);
+        //Set the dropped MSB as the new LSB
+        n = n | msb;
+    }
+    return n;
+}
+
+int main()
+{
+    int n,cnt,left,right;
+    cout<<"\nEnter the number? ";
+    cin>>n;
+
+    cout<<"How many bits do you want to rotate? ";
+    cin>>cnt;
+
+    //Call the sort function
+    left = left_rotate_bits(n, cnt);
+
+    cout<<"The Left-rotated number is: "<<left<<endl;
+
+    return 0;
+}
+
+
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+# Python program to Left Rotate a number by a specific bits.
+
+
+# Left Rotate 'cnt' number of bits of the given number 'n'
+def left_rotate_bits(n, cnt):
+    cnt = cnt % 31
+    while(cnt > 0):
+        # Store the current MSB in a temporary variable
+        msb = (n >> 31) & 1
+        # Left rotate the given number by one bit
+        n = (n << 1)
+        # Set the dropped MSB as the new LSB
+        n = n | msb
+        # Decrement cnt
+        cnt = cnt - 1
+    return n
+
+
+if __name__ == '__main__':
+    print("Enter the number? ", end="")
+    num = int(input())
+    print("How many bits do you want to rotate? ", end="")
+    cnt = int(input())
+    left = left_rotate_bits(num, cnt)
+    print("The Left-rotated number is: {}".format(left))
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+
+Enter the number? 23
+How many bits do you want to rotate? 12
+```
+
+#### Output
+
+```
+The Left-rotated number is: 94208
+```
+
+## Complexity Analysis
+
+- Time complexity - `O(n)`, where `n` is the given number
+- Space complexity - `O(1)`
+
+## Credits
+
+- [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/Bit--Manipulation/rotate_bits.cpp)
+- [Hari Krishnan U](https://github.com/HariKrishnan6336) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/Bit--Manipulation/left_rotate_bits.py)
