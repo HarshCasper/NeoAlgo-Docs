@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -92,7 +93,8 @@ module.exports = {
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
-		    "dynamic-programming/coin-change-problem",
+		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/painting-fence",
             ],
         },
         {
@@ -108,6 +110,7 @@ module.exports = {
             label: "Mathematics",
             items: [
                 "mathematics/mathematics",
+                "mathematics/ackermann-function",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
@@ -149,6 +152,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+                "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
@@ -159,7 +163,9 @@ module.exports = {
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
+                "mathematics/sieve-of-eratosthenes",
                 "mathematics/gcd-euclidean-algorithm",
+
 
             ],
         },
@@ -169,6 +175,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/toggle-kth-bit",
                 "bit-manipulation/reverse-bits",
             ],
         },
@@ -211,6 +218,8 @@ module.exports = {
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
                 "competitive-programming/top-view-of-BT",
+                "competitive-programming/right-view-of-BT",
+                "competitive-programming/identical-BT",
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
             ],
