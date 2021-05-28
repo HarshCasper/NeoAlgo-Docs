@@ -57,32 +57,24 @@ import TabItem from '@theme/TabItem';
 using namespace std;
 
 //function to convert a positive decimal number into its binary equivalent
-void DecimalToBinary(int decimal){
-	if(decimal == 0){
-		cout<<"0000";
-	}
-	vector<int> binary;
-	double binaryNumber;
-	int rem, i = 1;
-	while(decimal > 0){
-		rem = decimal % 2;
-		binary.push_back(rem);
-		decimal = decimal / 2;
-	}
+long long DecimalToBinary(int decimal) {
+	long long binaryNumber = 0;
+	int remainder, i = 1;
 
-	//reverse the vector
-	reverse(binary.begin(), binary.end());
-	for(int i = 0; i<binary.size(); i++){
-		cout<<binary[i];
+	while (decimal != 0) {
+		remainder = decimal % 2;
+		decimal /= 2;
+		binaryNumber += remainder * i;
+		i *= 10;
 	}
+	return binaryNumber;
 }
 
 int main(){
 	int decimal;
 	cout << "Enter a decimal number : ";
 	cin >> decimal;
-	cout << "Binary equivalent : ";
-	DecimalToBinary(decimal);
+	cout << "Binary equivalent : "<< DecimalToBinary(decimal);
 }
 ```
 
@@ -137,4 +129,5 @@ Binary number:
 
 ## Credits
 
-- [Tanvi Bugdani](https://github.com/tanvi355) for the C++ implementation and Python implementation
+- [Srishti](https://github.com/SrishtiAray07) for the C++ implementation
+- Python implementation
