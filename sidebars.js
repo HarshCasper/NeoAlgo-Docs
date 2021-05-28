@@ -76,9 +76,9 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
-                 "data-structures/ceil_in_bst",
-                  "data-structures/height_BST"
-
+                "data-structures/ceil_in_bst",
+                "data-structures/height_BST",
+                "data-structures/floor_in_bst"
             ],
         },
         {
@@ -152,6 +152,7 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+		"mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/next-prime-number",
@@ -162,6 +163,7 @@ module.exports = {
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
+                "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
                 "mathematics/perfect-cube"
             ],
