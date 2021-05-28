@@ -77,8 +77,8 @@ module.exports = {
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
                  "data-structures/ceil_in_bst",
-                  "data-structures/height_BST"
-
+                  "data-structures/height_BST",
+                "data-structures/swap-nodes-in-LL",
             ],
         },
         {
