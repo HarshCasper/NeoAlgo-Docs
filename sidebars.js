@@ -165,6 +165,7 @@ module.exports = {
                 "mathematics/Kth-smallest",
                 "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
+                "mathematics/perfect-cube"
             ],
         },
         {
