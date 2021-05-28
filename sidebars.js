@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -86,6 +87,10 @@ module.exports = {
                 "dynamic-programming/catalan-number",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/coin-change-problem",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence",
+		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/painting-fence",
             ],
         },
         {
@@ -142,7 +147,6 @@ module.exports = {
                 "mathematics/rotate-matrix-by-90-degree",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
-                "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
                 "mathematics/boolean-matrix",
                 "mathematics/count-bits",
@@ -150,7 +154,9 @@ module.exports = {
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
-                "mathematics/Kth-smallest"
+                "mathematics/Kth-smallest",
+                "mathematics/sieve-of-eratosthenes",
+
             ],
         },
         {

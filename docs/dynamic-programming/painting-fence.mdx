@@ -1,0 +1,142 @@
+---
+title: Painting Fence
+slug: /mathematics/painting-fence
+---
+
+## Introduction
+
+There is a fence with `n` posts, you are given `k` colors to paint the fence. Each post can be painted with one of the `k` colors. You have to paint all the posts with the k colors such that atmost two adjacent posts have the same color. You have to find the total number of ways to paint the fence.
+
+## Explanation
+
+Suppose we have a single post, The number of ways of painting the fence with `k` colors is `k` Now we consider `2` posts, Then the number of ways of painting the second fence with the same color as the first post is `k`, and the number of ways of painting the second post with a different color is `k*(k-1)` as we have `k-1` colors that are different from the first post's color. So the total number of ways of painting `2` fences is `k*(k-1) + k`. Now we consider `3` posts, Then the number of ways of painting the third fence same as the second fence is the number of ways of painting the second fence with a different color that is `k*(k-1)`. The number of ways of painting the third fence using a different color is equal to the total number of ways of painting the second fence times `(k-1)`. Hence the total number of ways of painting `3` fences is `k*(k-1) + (k+k*(k-1))*(k-1)`. This way we can find the total number of ways of painting n fences
+
+## Algorithm
+
+- if `n < 2` or `k < n/2` then
+    - not possible 
+- declare three arrays `total`,`same`,`diff` of length `n-1` 
+- initialise `same[0]` to `k`
+- initialise `diff[0]` to `k*(k-1)`
+- initialise `total[0]` to `k*k`
+- loop from `i = 1` to `n-1`
+    - assign `same[i]` equal to `diff[i-1]`
+    - assign `diff[i]` equal to `total[i-1]*(k-1)`
+    - assign `total[i]` equal to sum of `same[i]` and  `diff[i]`
+- return `total[n-2]`
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+using namespace std;
+
+//function uses permutation logic to output number of possible ways of painting
+
+int paint_fence(int n, int k){          
+    if(n<2 || k<(n/2)){
+        return -1;
+    }
+    int total[n-1],same[n-1],diff[n-1];
+    same[0]=k;
+    diff[0]=k*(k-1);
+    total[0]=k*k;
+    for(int i=1;i<n-1;++i){
+        same[i] = diff[i-1];
+        diff[i] = total[i-1]*(k-1);
+        total[i] = same[i]+diff[i];
+    }
+    return total[n-2];
+}
+
+int main(){
+    int post,color;
+    cout<<"Enter n,Number of Posts\n";
+    cin>>post;
+    cout<<"Enter k,Number of Colors\n";
+    cin>>color;
+    int result = paint_fence(post,color);
+    if(result==-1){
+        cout<<"Painting is not possible following the condition\n";
+    }
+    else{
+        cout<<"Number of Possiblities: "<<result<<"\n";
+    }
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```python
+def paint_fence(n, k):
+    if n < 2 or k < (n/2) :
+        return -1       # n is not enough or k is not enough to obey the condition
+    total = [0]*(n-1)
+    same = [0]*(n-1)
+    diff = [0]*(n-1)
+
+    same[0] = k           # We start from the case 2  (0 as i) till n (n-2 as i)
+    diff[0] = k*(k-1)
+    total[0] = k*k
+    for i in range(1, n-1):
+        same[i] = diff[i-1]
+        diff[i] = total[i-1]*(k-1)
+        total[i] = same[i]+diff[i]
+    return total[n-2]
+
+
+if __name__ == "__main__":
+    post = int(input("Enter n, Number of Posts\n"))
+    color = int(input("Enter k, Number of Colors\n"))
+    result = paint_fence(post, color)
+    if result == -1 :
+        print("Painting is not possible following the condition")
+    else:
+        print("Number of Possiblities:", result)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter n,Number of Posts
+3
+Enter k,Number of Colors
+5
+```
+
+#### Output
+
+```
+Number of Possiblities: 120
+```
+
+## Complexity Analysis
+
+- Time complexity - `O(n)`
+- Space complexity - `O(n)`, where `n` is the number of posts
+
+
+## Credits
+
+-   [Nanda Kishor M Pai](https://github.com/nandakishormpai2001) for the [implementation in C++](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/Paint_Fence.cpp)
+-   [Nanda Kishor M Pai](https://github.com/nandakishormpai2001) for the [implementation in python](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cp/Paint_Fence.py)
