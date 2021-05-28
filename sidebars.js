@@ -163,8 +163,8 @@ module.exports = {
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
+                "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
-
             ],
         },
         {
