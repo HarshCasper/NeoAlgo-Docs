@@ -76,9 +76,9 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
-                 "data-structures/ceil_in_bst",
-                  "data-structures/height_BST"
-
+                "data-structures/ceil_in_bst",
+                "data-structures/height_BST",
+                "data-structures/floor_in_bst"
             ],
         },
         {
