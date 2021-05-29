@@ -1,0 +1,217 @@
+---
+title: Identical Binary Tree
+slug: /competitive-programming/identical-BT
+---
+
+## Introduction
+
+Given two binary trees, check whether both of them are identical or not.
+
+## Explanation
+
+#### Example 1
+
+![Example1](https://user-images.githubusercontent.com/61618767/119145997-d00f6600-ba67-11eb-8034-4b21b1409d89.png)
+
+In the above example, we can see there are two trees, each having 6 nodes and 5 edges.
+Both trees are identical, having the root as 10 and similar left and right subtrees. 
+
+#### Example 2
+
+![untitled](https://user-images.githubusercontent.com/61618767/119168598-af063f80-ba7e-11eb-8ad3-5d97c4dcb857.png)
+
+However, in this example, we can see two trees where **Tree 1** has 5 nodes and 4 edges 
+and **Tree2** has 6 nodes and 5 edges. They are not identical as the right child of node `3` in Tree 1 is not node `10`.
+
+## Algorithm
+
+Here, we will use recursive approach to solve this problem.
+
+* Check whether both trees have root node as `null`.
+  * If yes, `return true`.
+  * Else, if one of them is `null` then `return false`.
+* Check if current node values are equal.
+* Recursively check if the first tree's left and right subtree are identical to the second tree's left and right subtree.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h> 
+using namespace std;
+
+//Define Node as class
+class Node
+{
+public:
+    int val;
+    Node *left;
+    Node *right;
+
+    Node(int d)
+    {
+        val = d;
+        left = NULL, right = NULL;
+    }
+};
+
+// Function to build tree with given input
+Node *buildtree(){
+  int d;
+  cin>>d;
+  Node *root;
+  if(d==-1){
+    return NULL;
+  }
+  root=new Node(d);
+  root->left=buildtree();
+  root->right=buildtree();
+  return root;
+}
+
+//Function to check whether given two binary trees are structurally identical or not
+bool IsIdentical(struct Node* root1, struct Node* root2)
+{
+    //If both are null nodes , return true
+    if(!root1 && !root2)
+      return true;
+    
+    //else if one of them is a null node , return false
+    if(!root1 || !root2)
+      return false;
+
+    // checking whether the value of root1 node is equal to value of root2 node and recursively find if their subtrees are identical
+    return root1->val == root2->val && IsIdentical(root1->left,root2->left) && IsIdentical(root1->right,root2->right);
+}
+                
+// Driver code
+int main()
+{
+    //Input of 1st Tree
+    cout << "Enter value of each node of the 1st Tree in pre order ( if a node is NULL , enter -1 ) : ";
+    // calling the function for making the binary tree
+    Node *root1 = buildtree();
+     //Input of 2nd Tree
+    cout << "Enter value of each node of the 2nd Tree in pre order ( if a node is NULL , enter -1 ) : ";
+    // calling the function for making the binary tree
+    Node *root2 = buildtree();
+
+    //Call the function and print the result
+    if(IsIdentical(root1,root2))
+      cout<<"YESSSS! They are identical!";
+    else
+      cout<<"OPPSSS!! They are not identical!";
+    return 0; 
+}
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```python
+# Class that defines a node of BST
+class BTNode:
+    def __init__(self, data):
+        self.val = data
+        self.left = None
+        self.right = None
+
+
+def check_identical(bst1, bst2):
+    # if bst2 is None & bst1 is not, they are not identical
+    if bst1 and not bst2:
+        return False
+
+    # if bst1 is None & bst2 is not, they are not identical
+    if bst2 and not bst1:
+        return False
+
+    # if both bst1 & bst2 are None
+    if not bst1 and not bst2:
+        return True
+
+    # if both bst1 & bst2 are not empty/None, check if they are identical
+    while bst1 and bst2:
+        # check if current node values are same
+        # check if left and right subtrees are also identical
+        if bst1.val == bst2.val and check_identical(bst1.left, bst2.left) and check_identical(bst1.right, bst2.right):
+            return True
+        else:
+            return False
+
+
+def MakeTree():
+    val = int(input())
+    if val == -1:
+        return None
+    root = BTNode(val)
+    root.left = MakeTree()
+    root.right = MakeTree()
+    return root
+
+
+def main():
+    bst1 = None
+    bst2 = None
+    # Input Binary Tree I
+    print("Enter value of each node of the 1st Tree in pre order ( if a node is NULL , enter -1 ): ")
+    bst1 = MakeTree();
+
+    # Input Binary Tree II
+    print("Enter value of each node of the 2nd Tree in pre order ( if a node is NULL , enter -1 ): ")
+    bst2 = MakeTree();
+
+    # Checking whether the input BTs are identical or not
+    if check_identical(bst1, bst2):
+        print("YESSSS! They are identical!")
+    else:
+        print("OPPSSS!! They are not identical!")
+
+
+if __name__ == '__main__':
+    main()
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+
+```
+Enter value of each node of the 1 st Tree in pre order ( if a node is NULL , enter -1 ): 
+8 3 6 -1 -1 -1 21 -1 30 -1 -1 
+
+Enter value of each node of the 2nd Tree in pre order ( if a node is NULL , enter -1 ): 
+8 3 6 -1 -1 -1 21 -1 30 -1 -1 
+
+```
+
+#### Sample Output 
+
+```
+YESSSS! They are identical!
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)` Where n is the min of no.of nodes of two trees.
+- Space Complexity: `O(h)` Where h is the min of heights of the two trees.
+
+## Credits
+
+- [Nikitha Reddy](https://github.com/Nikitha2309) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Structurally_Identical_Binary_Trees.cpp)
+- [Nandini Bansal](https://github.com/nandinib1999) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/identical_binary_tree.py)
