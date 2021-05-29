@@ -78,7 +78,7 @@ module.exports = {
                 "data-structures/minimum-in-bst",
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
-                "data-structures/floor_in_bst"
+                "data-structures/floor_in_bst",
             ],
         },
         {
@@ -166,7 +166,7 @@ module.exports = {
                 "mathematics/Kth-smallest",
                 "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
-                "mathematics/perfect-cube"
+                "mathematics/perfect-cube",
             ],
         },
         {
