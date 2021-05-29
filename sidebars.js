@@ -222,6 +222,7 @@ module.exports = {
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
                 "competitive-programming/wine-selling",
+                "competitive-programming/dnf-sort",
             ],
         },
         {
