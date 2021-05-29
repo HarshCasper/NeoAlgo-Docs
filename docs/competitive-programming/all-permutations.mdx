@@ -10,7 +10,9 @@ You are given a string containing numbers, the task is to print all the permutat
 ## Explanation 
 
 First we can input the string from the user,
-We will include the first character of the string and make three sub-calls, likewise we will make sub-calls for each digit and generate the strings possible.
+At first we will include the first character of the string and then recursively call the function to include the permutations starting with it.
+Likewise we will visit the second character, make recursive calls to include the permutations starting with it.
+And at last when all the characters are visited, we get all possible permutations.
 
 Let's have few examples: 
 ```
