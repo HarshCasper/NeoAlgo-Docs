@@ -225,6 +225,7 @@ module.exports = {
                 "competitive-programming/wave-sort",
                 "competitive-programming/all-permutations",
                 "competitive-programming/wine-selling",
+                "competitive-programming/N-Queens",
             ],
         },
         {
