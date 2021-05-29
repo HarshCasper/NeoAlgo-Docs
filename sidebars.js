@@ -95,7 +95,7 @@ module.exports = {
 		            "dynamic-programming/golomb-sequence",
 		            "dynamic-programming/coin-change-problem",
                 "dynamic-programming/painting-fence",
-                "dynamic-programming/median_of_two_arrays",
+                "dynamic-programming/median-of-two-arrays",
             ],
         },
         {
