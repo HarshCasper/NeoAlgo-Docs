@@ -1,0 +1,246 @@
+---
+title: NQueens Problem
+slug: /competitive-programming/N-Queens
+---
+
+## Introduction
+
+The n-queens puzzle is the problem of placing n queens on an 
+n x n chessboard such that no two queens attack each other.
+Given an integer n, return all distinct solutions to the n-queens puzzle. 
+You may return the answer in any order.
+Each solution contains a distinct board configuration of the n-queens' placement, 
+where '1' and '0' 
+both indicate a queen and an empty space, respectively.
+
+## Explanation 
+
+First we will start traversing from the left and check if all queens are placed,
+if yes then return true. Then we can call recursively for each row to check if
+we can place the queen, if placing the queen appears to be in the optimal 
+solution, then return true. If no, then we could backtrack to previous rows for 
+the optimal solution.
+
+Let's have few examples: 
+```
+Input 1:
+4
+Output 1:
+0 1 0 0 
+0 0 0 1 
+1 0 0 0 
+0 0 1 0 
+Input 2:
+5
+Output 2:
+1 0 0 0 0 
+0 0 1 0 0 
+0 0 0 0 1 
+0 1 0 0 0 
+0 0 0 1 0 
+```
+
+## Algorithm
+
+-CanPlace function  
+     - While traversing each row
+     - If current element is a queen 
+	- return false
+     - return true
+
+-NQueens function
+     - While traversing each row
+     - If canPlace(board,n,x,y) is true
+	- Place Queen
+	- Recursively call the NQueens for next row 
+     - If canPlace(board,n,x,y) is false
+	- Backtrack to place the previously placed queens correctly
+  
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+bool canPlace(int board[][10],int n,int x,int y)
+{
+    for(int k=0;k<x;k++){
+        if(board[k][y]==1){
+            return false;
+        }
+    }
+    int i=x,j=y;
+    while(i>=0 and j>=0){
+        if(board[i][j]==1){
+            return false;
+        }
+        i--;
+        j--;
+    }
+    i=x,j=y;
+    while(i>=0 and j<n){
+        if(board[i][j]==1){
+            return false;
+        }
+        i--; 
+        j++;
+    }
+    return true;
+}
+
+bool NQueen(int n,int board[][10],int i)
+{
+    if(i==n){
+        for(int x=0;x<n;x++){
+            for(int y=0;y<n;y++){
+                if(board[x][y])
+                    cout<<"1 ";
+                else{
+                    cout<<"0 ";
+                }
+            }
+            cout<<endl;
+        }
+        cout<<endl;
+        return true;
+    }
+    for(int j=0;j<n;j++){
+        if(canPlace(board,n,i,j)){
+            board[i][j] = 1;
+            bool can_place_queen = NQueen(n,board,i+1);
+            if(can_place_queen){
+                return true;
+            }
+            board[i][j] = 0;
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    int board[10][10] = {0};
+    int n;
+    cin>>n;
+    cout<<NQueen(n,board,0);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# NQueens Problem
+n = int(input("Enter the value of n: "))
+board = []
+
+def getBoard():
+    for i in range(n):
+        nthList = []
+        for j in range(n):
+            nthList.append(0)
+        board.append(nthList)
+
+def printBoard():
+    for i in range(n):
+        for j in range(n):
+            print(board[i][j], end = " ")
+        print("")
+        
+def isSafe(row, col):
+    for i in range(n):
+        if board[row][i] == 1:
+            return False
+    for j in range(n):
+        if board[j][col] == 1:
+            return False
+        
+    i = row-1
+    j = col-1
+    while(i>=0 and j>=0):
+        if board[i][j] == 1:
+            return False
+        i = i-1
+        j = j-1
+
+    i = row-1
+    j = col+1
+    while(i>=0 and j<n):
+        if board[i][j] == 1:
+            return False
+        i = i-1
+        j = j+1
+
+    i = row+1
+    j = col-1
+    while(i<n and j>=0):
+        if board[i][j] == 1:
+            return False
+        i = i+1
+        j = j-1
+
+    i = row+1
+    j = col+1
+    while(i<n and j<n):
+        if board[i][j] == 1:
+            return False
+        i = i+1
+        j = j+1
+    return True
+
+def Put(n, count):
+    if count == n:
+        return True
+    for i in range(n):
+        for j in range(n):
+            if isSafe(i, j):
+                board[i][j] = 1
+                count = count+1
+                if Put(n, count) == True:
+                    return True
+                board[i][j] = 0
+                count = count-1
+    return False
+
+getBoard()
+Put(n, 0)
+printBoard()
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+4
+```
+
+#### Output :
+
+```
+0 1 0 0 
+0 0 0 1 
+1 0 0 0 
+0 0 1 0 
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
