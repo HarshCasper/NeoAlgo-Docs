@@ -80,6 +80,7 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
   ]
 }>
@@ -153,6 +154,71 @@ int main(){
         cout<<a[i]<<" ";
     }
     return 0;
+}
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+
+import java.util.Scanner;
+
+public class QuickSort {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements: ");
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter the elements of the array: ");
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+
+        quickSort(arr, 0, n - 1);
+
+        System.out.println("\nThe sorted array is: ");
+        for (int i = 0; i < n; i++)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    /**
+     * @param arr   The array/sub-array to be sorted
+     * @param lower lower index
+     * @param upper upper index
+     */
+    static void quickSort(int arr[], int lower, int upper) {
+        if (lower >= upper)
+            return;
+        int p = partition(arr, lower, upper);
+        quickSort(arr, lower, p - 1);
+        quickSort(arr, p + 1, upper);
+    }
+
+    /**
+     * @param arr   The array of elements
+     * @param lower The lower index of the elements
+     * @param upper The upper index of the elements
+     * @return The index of the pivot element
+     */
+    private static int partition(int arr[], int lower, int upper) {
+        int pivot = arr[upper];
+        int j = lower;
+        int tmp;
+        for (int i = lower; i <= upper; i++) {
+            if (arr[i] < pivot) {
+                tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+                j++;
+            }
+        }
+        tmp = arr[upper];
+        arr[upper] = arr[j];
+        arr[j] = tmp;
+
+        return j;
+    }
 }
 ```
 </TabItem>
@@ -247,3 +313,5 @@ The sorted array is: 11 22 33 44 55
 * [Aditya Saxena](https://github.com/asaxena012) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Quick_Sort.cpp)
 
 * [Ricardo Prins](https://github.com/ricardoprins) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/QuickSort.py)
+
+* [Ansh Mishra](https://github.com/anshmishra010) for the [Java implementation]
