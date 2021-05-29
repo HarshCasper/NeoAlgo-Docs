@@ -1,4 +1,5 @@
 module.exports = {
+
     docs: [
         {
             type: "category",
@@ -75,9 +76,9 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
-                 "data-structures/ceil_in_bst",
-                  "data-structures/height_BST"
-
+                "data-structures/ceil_in_bst",
+                "data-structures/height_BST",
+                "data-structures/floor_in_bst"
             ],
         },
         {
@@ -92,7 +93,8 @@ module.exports = {
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
-		    "dynamic-programming/coin-change-problem",
+		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/painting-fence",
             ],
         },
         {
@@ -150,9 +152,9 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
+		"mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
-                "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/next-prime-number",
                 "mathematics/boolean-matrix",  
                 "mathematics/count-bits",
@@ -160,7 +162,10 @@ module.exports = {
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
                 "mathematics/occurrence-of-no.-in-array",
-                "mathematics/Kth-smallest"
+                "mathematics/Kth-smallest",
+                "mathematics/perfect-square"
+                "mathematics/sieve-of-eratosthenes",
+                "mathematics/perfect-cube"
             ],
         },
         {
@@ -169,6 +174,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/toggle-kth-bit",
                 "bit-manipulation/reverse-bits",
             ],
         },
@@ -216,6 +222,7 @@ module.exports = {
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
                 "competitive-programming/all-permutations",
+                "competitive-programming/wine-selling",
             ],
         },
         {
