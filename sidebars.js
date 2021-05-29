@@ -221,6 +221,7 @@ module.exports = {
                 "competitive-programming/identical-BT",
                 "competitive-programming/phone-keypad",
                 "competitive-programming/wave-sort",
+                "competitive-programming/all-permutations",
                 "competitive-programming/wine-selling",
             ],
         },
