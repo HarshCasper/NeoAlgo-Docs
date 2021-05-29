@@ -1,0 +1,182 @@
+---
+title: Given number is perfect cube
+slug: /mathematics/perfect-cube
+---
+
+## Introduction
+
+In this article, we will see how to check that the given number is perfect cube or not. A perfect cube is a number which is equal to the number, multiplied by itself, three times.
+
+## Explanation 
+
+In this, we have to check that the given number is perfect cube or not. For that first we calculate the floor of cube root of that number then we multiply with same calculated cube root three times. If the result is equal to the given number then it is the perfect cube.
+
+#### Example 1
+
+```
+Given number x = 216
+In the above example, we are given an number.
+We have to check whether the given number is perfect cube or not.
+First calculate the floor value of cube root of that number and store in res variable.
+int res = floor(cube root(x))
+res = 6
+Now, multiply res*res*res and check whether the given number is equal to res*res*res or not.
+In this case it is equal so print Yes.
+
+```
+
+#### Example 2
+
+```
+Given number x = 130
+In the above example, we are given an number.
+We have to check whether the given number is perfect cube or not.
+First calculate the floor value of cube root of that number and store in res variable.
+int res = floor(cube root(x))
+res = 5
+Now, multiply res*res*res and check whether the given number is equal to res*res*res or not.
+res*res*res=125 and given number is 130.
+In this case it is not equal so print No.
+
+```
+
+## Algorithm
+
+For checking whether the given number is perfect cube or not, we follow the following steps:
+
+* Initialise a variable res.
+
+* Calculate the floor value of cube root of number and store into res.
+
+* Calculate res*res*res and check given number is equal to res*res*res or not.
+
+* Print Yes if equal otherwise print No.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function perfect_cube 
+string perfect_cube(int num)
+{
+  int res;
+
+  // calculating floor value of 
+  // cube root of number and 
+  // storing into res variable
+  res = floor(cbrtf(num));
+  int sol;
+
+  // calculating res*res*res and
+  // storing into sol variable
+  sol = (res*res)*res;
+
+  // checking if the sol is 
+  // equal to given number or not
+  if(sol==num)
+  {
+    return "Yes";
+  }
+  else
+  return "No";
+}
+
+// main function
+int main()
+{
+  int num;
+  cout<<"Enter the number: ";
+
+  // Taking number as input
+  cin>>num;
+     
+  cout<<"Given number is Perfect cube: ";  
+  
+  //printing perfect cube or not 
+  cout<<perfect_cube(num)<<endl;
+}
+//Main Ends
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+import math
+import numpy
+
+# function perfect_cube
+def perfect_cube(num):
+ 
+    # initialize count with 0
+    res = int(numpy.cbrt(num))
+
+    # calculating res*res*res
+    # and store into sol
+    sol = (res*res)*res
+  
+    if(sol == num):
+      return "Yes"
+    else:  
+      return "No"
+
+ 
+# Taking number as input
+num = int(input("Enter the number: "))
+ 
+
+print("Given number is Perfect cube: ") 
+# Check whether the given 
+# number is perfect cube or not
+print(perfect_cube(num))
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+
+#### Input 1:
+
+```
+Enter the number: 216
+```
+#### Output 1:
+
+```
+Given number is Perfect cube: Yes
+```
+
+#### Input 2:
+
+```
+Enter the number: 130
+```
+#### Output 2:
+
+```
+Given number is Perfect cube: No
+```
+## Complexity Analysis
+ 
+- **Time Complexity:** `O(logn)`
+
+- **Space Complexity:** `O(1)`
+
+where `n` is the number of elements in array .
