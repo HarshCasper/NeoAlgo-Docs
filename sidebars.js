@@ -162,6 +162,7 @@ module.exports = {
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
                 "mathematics/snake-traversal-of-matrix",
+		            "mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
                 "mathematics/perfect-square"
