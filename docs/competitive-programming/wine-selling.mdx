@@ -1,0 +1,132 @@
+---
+title: Wave Selling Problem
+slug: /competitive-programming/wine-selling
+---
+
+## Introduction
+
+Given n wines in a row, with integers denoting the cost of each wine respectively. 
+Each year you can sell the first or the last wine in the row. 
+Let the initial profits from the wines be P1, P2, P3…Pn. 
+In the Yth year, the profit from the ith wine will be Y*P[i]. 
+The goal is to calculate the maximum profit that can be earned by selling all the wines. 
+
+## Explanation 
+
+We can find the optimal solution by two ways:
+-We can pick either the first wine and multiply with the current year and recursively move to next year 
+-We will select the last wine and multiply with the current year and move recursively to the next part 
+At the end we will select the maximum of the two sub-cases for the optimal solution.
+
+Let's have few examples: 
+```
+Input 1:
+5
+2 4 6 2 5
+Output 1:
+64
+Input 2:
+4
+1 2 3 4
+Output 2:
+30
+```
+
+## Algorithm
+
+- If the length of the array is less than or equal to 1, then return
+	- Take the first wine and multiply with the corresponding year
+	- Recursively call further
+	
+	- Take the last wine and multiply with the corresponding year
+	- Recursively call further
+- At the end add the maximum of the two options
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int profit(int wines[],int i,int j,int year, int dp[][10])
+{
+    if(i>j)
+    {
+        return 0;
+    }
+    if(dp[i][j]!=0)
+    {
+        return dp[i][j];
+    }
+    int op1=wines[i]*year+profit(wines,i+1,j,year+1,dp);
+    int op2=wines[j]*year+profit(wines,i,j-1,year+1,dp);
+    return max(op1,op2);
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter total number of wines: "<<endl;
+    cin>>n;
+    int wines[100],dp[10][10]={0};
+    cout<<"Enter wine prices: "<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>wines[i];
+    }
+    cout<<"The maximum profit is: "<<profit(wines,0,n-1,1,dp)<<endl;
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Wine Selling Problem
+def max_profit(w,y,L,R):
+    if L==R:
+        return y*w[L]
+    option1=y*w[L]+max_profit(w,y+1,L+1,R)
+    option2=y*w[R]+max_profit(w,y+1,L,R-1)
+    return max(option1,option2)
+
+print("Enter the weights: ")
+w=list(map(int,input().split(" ")))
+n=len(w)
+print(max_profit(w,1,0,n-1))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+5
+2 4 6 2 5
+```
+
+#### Output :
+
+```
+64
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
