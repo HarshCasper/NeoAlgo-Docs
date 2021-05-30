@@ -1,0 +1,208 @@
+---
+title: Left View of Binary Tree
+slug: /data-structures/left-view-of-BT
+---
+## Introduction
+
+Given a binary tree, print the first visible nodes from the left of the binary tree.
+
+## Explanation
+
+Let us take an example of a tree so that we get a better understanding of this problem.
+
+<p align="center">
+  <img width="507" height="477" src="https://i.imgur.com/XXpseSU.png" />
+</p>
+
+In the above picture, the nodes marked with a `✅` i.e. nodes `A, B, D, G and F`
+are visible from the left view of the binary tree. However, the nodes marked with 
+a `❌` i.e nodes `C, E, I and H` are not visible from the left view of a binary 
+tree because they are hidden by nodes `B, D and G` respectively.
+
+So the left view of this binary tree will be `A B D G F`.
+
+## Algorithm
+
+Here we will use the recursive approach to solve this problem.
+
+* Initialize a variable `maxlevel` to `-1` and call the `leftView(node = root, level = 0)` function.
+* In the function, check whether the node is `null`; if yes then return.
+* Check whether the `maxlevel < level`
+  * If true, print value of node.
+  * Set `maxlevel = level`.
+* Make a recursive call to `leftView(node->left, level+1)` function.
+* Make a recursive call to `leftView(node->right, level+1)` function.
+
+## Code 
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="java"
+  values={[
+    { label: 'Java', value: 'java', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+// A class to create a node with left and right as childs and val as the key value of that node
+class node {
+    int val;
+    node left;
+    node right;
+
+    public node(int d) {
+        val = d;
+        left = null;
+        right = null;
+    }
+};
+
+class BinaryTree {
+    // "maxlev" is used so that we can differentiate if the left node is of next level or of same level
+    static int maxlev = -1;
+    Scanner sc = new Scanner(System.in);
+
+    public BinaryTree() {
+        node root = null;
+    }
+
+    // A function which creates the binary tree and input the respective nodes using queue
+    public node maketree() {
+        Queue<node> q = new LinkedList<node>();
+        int d = sc.nextInt();
+        node root = new node(d);
+        q.add(root);
+        while (!q.isEmpty()) {
+            node temp = q.peek();
+            q.poll();
+            int l = sc.nextInt();
+            int r = sc.nextInt();
+            if (l != -1) {
+                temp.left = new node(l);
+                q.add(temp.left);
+            }
+            if (r != -1) {
+                temp.right = new node(r);
+                q.add(temp.right);
+            }
+        }
+        return root;
+    }
+
+    public void leftview(node root) {
+        printleft(root, 0);
+    }
+
+    // A function to print the left view of the binary tree
+    static void printleft(node root, int lev) {
+        if (root == null)
+            return;
+        // if the left child node is of new level then print the node and update the maxlev
+        if (maxlev < lev) {
+            System.out.print(root.val + " ");
+            maxlev = lev;
+        }
+
+        printleft(root.left, lev + 1);
+        printleft(root.right, lev + 1);
+        return;
+    }
+
+    // Driver function
+    public static void main(String[] args) throws java.lang.Exception {
+        BinaryTree tree = new BinaryTree();
+        System.out.println("Enter values of binary tree: ");
+        node root = tree.maketree();
+        System.out.println("The left view of the binary tree is: ");
+        tree.leftview(root);
+
+    }
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python
+# A class to create a node
+class Node:
+    # Constructor to initialize node
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+# A function to build the tree in preorder form
+def BuildTree():
+    d = int(input())
+    if d == -1:
+        return None
+    root = Node(d)
+    root.left = BuildTree()
+    root.right = BuildTree()
+    return root
+
+
+# A function to print the left view of the binary tree
+def LeftView(root, level, maxlevel):
+    # base case
+    if root is None:
+        return
+    if level > maxlevel[0]:
+        print(root.data, end=" ")
+        maxlevel[0] = level
+    # Recursive case
+    LeftView(root.left, level + 1, maxlevel)
+    LeftView(root.right, level + 1, maxlevel)
+
+
+print("Enter values in a binary tree:")
+# A function call to build the tree and return root node
+root = BuildTree()
+# maxlevel is defined as a list because it is mutable and we want the changes
+# made to it gets reflected outside the function
+maxlevel = [-1]
+print("The left view of the binary tree is:")
+LeftView(root, 0, maxlevel)
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+
+```
+Enter values of binary tree: 
+1 2 3 4 5 6 -1 -1 -1 -1 -1 -1 -1
+```
+
+#### Sample Output
+
+```
+The left view of the binary tree is: 
+1 2 4
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)` where `N` is the total number of nodes.
+- Space Complexity: 
+  - `O(N)`, since queue has been used for `N` nodes (Java).
+  - `O(1)` (Python). 
+
+
+## Credits
+
+- [Shahina](https://github.com/shahina-bano) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/graphs/left_view_binary_tree.java)
+- [Yashmita](https://github.com/yashmita) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/graphs/Left_view_of_binary_tree.py)
