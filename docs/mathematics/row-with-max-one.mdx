@@ -1,0 +1,172 @@
+---
+title: Row with Max 1's
+slug: /mathematics/row-with-max-one
+---
+
+## Introduction
+
+We are given a matrix of size `N*M` which only contains `0` and `1`. Each row of the matrix is sorted. We have to find the row with the highest number of `1`. If two rows are having the same number of `1` then return the row which is having a minimum index.
+
+## Explanation 
+
+We can do it by traversing each row of the matrix and keeping the count of maximum `1`, but this method is time-consuming. Its time complexity is `O(Row*Column)`. We will see another approach to find the row with maximum `1` in time complexity `O(Row+Column)`.
+
+Let's have few examples: 
+```
+Input 1:
+1 1 
+1 1 
+
+Output 1:
+Row with max 1's: 0
+
+Input 2:
+0 0 0
+1 1 1
+
+Output 2:
+Row with max 1's: 1
+```
+
+## Algorithm
+
+- Initialize `i to 0`, `j to M-1`, `row_no to -1`. 
+- While `i` is less than `n` and `j` is greater than equal to `0`
+    - If `matrix[i][j]` is equal to `1`
+        - Change `row_no` to `i`
+        - Decrease `j` by 1.
+    - Else 
+        - Increase `i` by 1.
+- Return `row_no`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to find row with max 1's
+
+int row_with_max1s(int * arr, int n, int m) 
+{
+    int i = 0;
+    int j = m - 1;
+    int row = -1;
+    while (i < n && j >= 0) 
+    {
+        if ( * (arr + i * m + j) == 1) 
+        {
+            row = i;
+            j--;
+        } 
+        else 
+        {
+            i++;
+        }
+    }
+    return row;
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+
+    cout << "Enter the elements of Matrix: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    cout << "Row with max 1's: " << row_with_max1s((int * ) arr, row, col) << endl;
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to find row with max 1's
+
+def row_with_max1s(matrix, n, m):
+    i = 0
+    j = m - 1
+    row = -1
+    while i < n and j >= 0:
+        if matrix[i][j] == 1:
+            row = i
+            j -= 1
+        else:
+            i += 1
+    return row
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+
+    print("Row with max 1's:", row_with_max1s(matrix, row, col))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix row-wise: 
+0
+0
+0
+0
+0
+1
+0
+1
+1
+```
+
+#### Output :
+
+```
+Row with max 1's: 2
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row+Column)`
+- Space Complexity: `O(1)`
