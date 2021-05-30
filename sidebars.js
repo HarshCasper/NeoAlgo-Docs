@@ -91,6 +91,7 @@ module.exports = {
             items: [
                 "dynamic-programming/dynamic-programming",
                 "dynamic-programming/egg-dropping-problem",
+
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
                 "dynamic-programming/catalan-number",
@@ -128,8 +129,14 @@ module.exports = {
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
-                "mathematics/extended-euclidean-Algorithm",
                 "mathematics/mystery-number",
+                "mathematics/sum-of-divisors",
+                "mathematics/count-of-divisors",
+                "mathematics/count-of-digits",		        
+                "mathematics/extended-euclidean-Algorithm",
+                "mathematics/perfect-number",                
+                "mathematics/fibonacci-recursion",
+                "mathematics/catalan-number",
 		        "mathematics/perfect-number",
                 "mathematics/sum-of-divisors",
                 "mathematics/count-of-divisors",
@@ -196,17 +203,9 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
-
-
-
-                "graph-algorithms/prims-algorithm", 
-
-		"graph-algorithms/topological-sorting",
-
-
+                "graph-algorithms/prims-algorithm",
+		            "graph-algorithms/topological-sorting",
 	             	"graph-algorithms/topological-sorting", 
-
-
                 "graph-algorithms/topological-sorting",
 
             ],
@@ -217,14 +216,16 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
-		"competitive-programming/prefix-sum-algorithm",
+                "competitive-programming/max-number-from-array",
+                "competitive-programming/factorial-of-large-number",
+	            	"competitive-programming/prefix-sum-algorithm",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
-		"competitive-programming/bigmod-algorithm",
+	              "competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
@@ -282,6 +283,7 @@ module.exports = {
             items: [
                 "miscellaneous/miscellaneous",
                 "miscellaneous/sudoku-solver",
+                "miscellaneous/moore-voting-algorithm",
             ],
         },
         {
