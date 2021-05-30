@@ -25,8 +25,11 @@ module.exports = {
                 "searching-algorithms/searching-algorithms",
                 "searching-algorithms/linear-search",
                 "searching-algorithms/interpolation-search",
+                "searching-algorithms/two-pointer",
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
+		"searching-algorithms/binary-search",
+
             ],
         },
         {
@@ -48,6 +51,7 @@ module.exports = {
                 "sorting-algorithms/cocktail-sort",
                 "sorting-algorithms/wiggle-sort",
                 "sorting-algorithms/stooge-sort",
+                "sorting-algorithms/shell-sort",
             ],
         },
         {
@@ -72,6 +76,13 @@ module.exports = {
                 "data-structures/size-of-binary-tree",
                 "data-structures/inorder_traversal",
                 "data-structures/tower-of-hanoi",
+                "data-structures/maximum-in-bst",
+                "data-structures/postorder_traversal",
+                "data-structures/double-ended-queue",
+                "data-structures/minimum-in-bst",
+                "data-structures/ceil_in_bst",
+                "data-structures/height_BST",
+                "data-structures/floor_in_bst"
             ],
         },
         {
@@ -82,10 +93,14 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
                 "dynamic-programming/catalan-number",
 		            "dynamic-programming/golomb-sequence",
+		            "dynamic-programming/coin-change-problem",
+                "dynamic-programming/painting-fence",
             ],
         },
         {
@@ -101,13 +116,15 @@ module.exports = {
             label: "Mathematics",
             items: [
                 "mathematics/mathematics",
+                "mathematics/ackermann-function",
                 "mathematics/armstrong-number",
                 "mathematics/factorial-of-number",
                 "mathematics/magic-number",
                 "mathematics/happy-number",
+                "mathematics/prime-number",
                 "mathematics/krishnamurthy-number",
                 "mathematics/neon-number",
-		"mathematics/number-power-of-2",
+		        "mathematics/number-power-of-2",
                 "mathematics/anagram-number",
                 "mathematics/sum-of-digits",
                 "mathematics/palindrome-number",
@@ -120,6 +137,7 @@ module.exports = {
 		        "mathematics/fibonacci-recursion",
 		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
+                "mathematics/next-permutation",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
                 "mathematics/gcd-of-two-numbers",
@@ -137,12 +155,28 @@ module.exports = {
                 "mathematics/matrix-addition",
                 "mathematics/matrix-transpose",
                 "mathematics/matrix-multiplication",
-                "mathematics/hexagonal-number",
+                 "mathematics/hexagonal-number",
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
-                "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/product-of-count-of-bits-of-each-elements"
+                "mathematics/product-of-count-of-bits-of-each-elements",
+
+                "mathematics/product-of-count-of-bits-of-each-elements",
+                "mathematics/anti-diagonal-traversal-of-matrix",
+                "mathematics/next-prime-number",
+                "mathematics/boolean-matrix",  
+                "mathematics/count-bits",
+                "mathematics/searching-in-matrix",
+                "mathematics/row-with-max-one",
+                "mathematics/snake-traversal-of-matrix",
+		            "mathematics/smallest-prime-factor-of-any-number",
+                "mathematics/occurrence-of-no.-in-array",
+                "mathematics/Kth-smallest",
+                "mathematics/perfect-square"
+                "mathematics/sieve-of-eratosthenes",
+                "mathematics/perfect-cube"
+
             ],
         },
         {
@@ -151,6 +185,7 @@ module.exports = {
             items: [
                 "bit-manipulation/bit-manipulation",
                 "bit-manipulation/brian-kernighan-algorithm",
+                "bit-manipulation/toggle-kth-bit",
                 "bit-manipulation/reverse-bits",
             ],
         },
@@ -161,7 +196,19 @@ module.exports = {
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+
+
+
+                "graph-algorithms/prims-algorithm", 
+
+		"graph-algorithms/topological-sorting",
+
+
+	             	"graph-algorithms/topological-sorting", 
+
+
                 "graph-algorithms/topological-sorting",
+
             ],
         },
         {
@@ -170,10 +217,24 @@ module.exports = {
             items: [
                 "competitive-programming/competitive-programming",
                 "competitive-programming/anagram-numbers",
+		"competitive-programming/prefix-sum-algorithm",
+                "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
+                "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
+		"competitive-programming/bigmod-algorithm",
+                "competitive-programming/generate-subsequences",
+                "competitive-programming/generate-valid-parantheses",
+                "competitive-programming/left-view-of-BT",
+                "competitive-programming/top-view-of-BT",
+                "competitive-programming/right-view-of-BT",
+                "competitive-programming/identical-BT",
+                "competitive-programming/phone-keypad",
+                "competitive-programming/wave-sort",
+                "competitive-programming/all-permutations",
+                "competitive-programming/wine-selling",
             ],
         },
         {
