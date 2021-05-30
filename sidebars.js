@@ -187,6 +187,7 @@ module.exports = {
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
+                "mathematics/decimal-to-binary",
                 "mathematics/snake-traversal-of-matrix",
 		            "mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/occurrence-of-no.-in-array",
