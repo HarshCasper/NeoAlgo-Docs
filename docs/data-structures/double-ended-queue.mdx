@@ -1,0 +1,409 @@
+---
+title: Double Ended Queue
+slug: /data-structures/double-ended-queue
+---
+
+## Introduction
+
+Double ended queue or dequeue is a special type of queue wherein elements can be 
+inserted or deleted from both ends i.e front and rear.
+It follows all the properties of a basic queue as well as a few additional properties.
+
+![Dequeue](https://user-images.githubusercontent.com/61618767/118658342-ea4c0880-b809-11eb-83f2-44e63d9da2d6.png)
+
+## Basic Operations
+
+It uses a **Circular Array** to perform the operations given below : 
+
+* `EnqueueAtFront` : Inserts an element to the **front** of dequeue
+* `DequeueAtFront` : Deletes an element from the **front** of dequeue
+* `EnqueueAtRear` : Inserts an element from the **rear** of dequeue
+* `DequeueAtRear` : Deletes an element from the **rear** of dequeue
+
+## Algorithm
+
+This section will discuss the algorithmic steps performed on the [basic operations](#basic-operations) of a double ended queue.
+
+#### EnqueueAtFront
+
+* Check whether the queue is full :
+  * If true, print "OVERFLOW" and exit.
+  * If false, go to next step.
+* Check if `front == -1` that is queue is empty : 
+  * If so, increment front and rear pointer.
+  * Else, decrement front in circular manner and insert the element.
+
+#### DequeueAtFront
+
+* Check whether the queue is empty :
+  * If true, print "UNDERFLOW" and exit.
+  * If false, go to next step.
+* Initialize a variable with value of front pointer.
+* If there is only one element in the queue :
+  * Reset the front and rear pointers to `-1`
+  * Else, decrement front in circular manner.
+* Return the value stored in the temporary variable.
+
+#### EnqueueAtRear 
+
+* Check whether the queue is full :
+  * If true, print "OVERFLOW" and exit.
+  * If false, go to next step.
+* Check if `rear == -1` that is queue is empty : 
+  * If so, increment front and rear pointer.
+  * Else, increment rear in circular manner and insert the element.
+
+#### DequeueAtRear
+
+* Check whether the queue is empty :
+  * If true, print "UNDERFLOW" and exit.
+  * If false, go to next step.
+* Initialize a variable with value of rear pointer.
+* If there is only one element in the queue :
+  * Reset the front and rear pointers to `-1`
+  * Else, increment rear in circular manner.
+* Return the value stored in the temporary variable.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+//Declare dequeue with an array arr, front and rear as members
+typedef struct
+{
+    int arr[10];
+    int front, rear;
+} dequeue;
+dequeue dq;
+
+//to insert an element to the front of double ended queue
+void enqueue_front(int n)
+{
+    //If dequeue is not full
+    if ((dq.rear + 1) % 10 != dq.front)
+    {
+        //If dequeue is empty insert as first element
+        if (dq.front == -1)
+        {
+            dq.front = 0;
+            dq.rear = 0;
+        }
+        //decrement front in circular manner and insert
+        else
+            dq.front = (dq.front + 9) % 10;
+        dq.arr[dq.front] = n;
+    }
+}
+
+//to insert an element to the rear of double ended queue
+void enqueue_rear(int n)
+{
+    if ((dq.rear + 1) % 10 != dq.front)
+    {
+        if (dq.rear == -1)
+        {
+            dq.front = 0;
+            dq.rear = 0;
+        }
+        //increment rear in circular manner and insert
+        else
+            dq.rear = (dq.rear + 1) % 10;
+        dq.arr[dq.rear] = n;
+    }
+}
+
+//to delete an element and return it from the front of dequeue
+int delete_front()
+{
+    int item;
+    //If dequeue is empty
+    if (dq.front == -1)
+        return -1;
+    else
+    {
+        item = dq.arr[dq.front];
+        //if there is only one element
+        if (dq.front == dq.rear)
+        {
+            dq.front = -1;
+            dq.rear = -1;
+        }
+        else
+            dq.front = (dq.front + 1) % 10;
+    }
+    return item;
+}
+
+//to delete an element and return it from the rear of dequeue
+int delete_rear()
+{
+    int item;
+    if (dq.rear == -1)
+        return -1;
+    else
+    {
+        item = dq.arr[dq.rear];
+        if (dq.front == dq.rear)
+        {
+            dq.front = -1;
+            dq.rear = -1;
+        }
+        else
+            dq.rear = (dq.rear + 9)%10;
+    }
+    return item;
+}
+
+//to display the double ended queue from front to rear
+void display()
+{
+    //If dequeue is not empty
+    if (dq.front!=-1){
+        if (dq.front <= dq.rear)
+        {
+            for (int i = dq.front; i <= dq.rear; i++)
+                printf("%d ", dq.arr[i]);
+        }
+        else
+        {
+            for (int i = dq.front; i <= 9; i++)
+                printf("%d ", dq.arr[i]);
+            for (int i = 0; i <= dq.rear; i++)
+                printf("%d ", dq.arr[i]);
+        }
+        printf("\n");
+    }
+    else
+        printf("Empty Dequeue!");
+}
+
+//driver code
+int main()
+{
+    int q, t, n;
+    printf("1. Insert at front\n2. Insert at rear\n3. Delete from front\n");
+    printf("4. Delete from rear\n5. Display Dequeue\n");
+    //input no of queries
+    printf("\nEnter the number of queries: ");
+    scanf("%d", &q);
+    dq.front = -1;
+    dq.rear = -1;
+
+    //menu driven program to insert,delete or display dequeue
+    while (q--)
+    {
+        printf("Enter a choice: ");
+        scanf("%d", &t);
+        switch (t)
+        {
+        case 1:
+            printf("Enter the value to be inserted: ");
+            scanf("%d", &n);
+            enqueue_front(n);
+            break;
+        case 2:
+            printf("Enter the value to be inserted: ");
+            scanf("%d", &n);
+            enqueue_rear(n);
+            break;
+        case 3:
+            printf("Enter the value to be deleted: ");
+            printf("%d\n", delete_front());
+            break;
+        case 4:
+            printf("Enter the value to be deleted: ");
+            printf("%d\n", delete_rear());
+            break;
+        case 5:
+            display();
+            break;
+        }
+    }
+    return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# to insert an element to the front of double ended queue
+def enqueue_front(n):
+    global rear
+    global front
+    global dequeue
+    # If dequeue is not full
+    if ((rear + 1) % 10 != front):
+        # If dequeue is empty insert as first element
+        if front == -1:
+            front = 0
+            rear = 0
+        # decrement front in circular manner and insert
+        else:
+            front = (front + 9) % 10
+        dequeue[front] = n
+
+
+# to insert an element to the rear of double ended queue
+def enqueue_rear(n):
+    global rear
+    global front
+    global dequeue
+    if ((rear + 1) % 10 != front):
+        if (rear == -1):
+
+            front = 0
+            rear = 0
+        # increment rear in circular manner and insert
+        else:
+            rear = (rear + 1) % 10
+        dequeue[rear] = n
+
+
+# to delete an element and return it from the front of dequeue
+def delete_front():
+    global rear
+    global front
+    global dequeue
+    item = -1
+    # If dequeue is empty
+    if (front == -1):
+        return -1
+    else:
+        item = dequeue[front]
+        # if there is only one element
+        if (front == rear):
+            front = -1
+            rear = -1
+        else:
+            front = (front + 1) % 10
+    return item
+
+
+# to delete an element and return it from the rear of dequeue
+def delete_rear():
+    global rear
+    global front
+    global dequeue
+    item = -1
+    if (rear == -1):
+        return -1
+    else:
+        item = dequeue[rear]
+        if (front == rear):
+            front = -1
+            rear = -1
+        else:
+            rear = (rear + 9) % 10
+    return item
+
+
+# to display the double ended queue from front to rear
+def display():
+    global rear
+    global front
+    global dequeue
+    if (front <= rear):
+        for i in range(front, rear+1):
+            print(dequeue[i], end=" ")
+    else:
+        for i in range(front, 10):
+            print(dequeue[i], end=" ")
+        for i in range(0, rear+1):
+            print(dequeue[i], end=" ")
+    print("\n")
+
+
+# driver code
+def main():
+    global dequeue
+    global rear
+    global front
+    rear = -1
+    front = -1
+    dequeue = [None]*10
+    # menu driven program to insert,delete or display dequeue
+    print("1.Insert At front\n2.Insert At rear\n3.Delete from front\n4.Delete from rear")
+    print("5.Display Dequeue\n6.Exit\nChoose an option")
+    opt = int(input())
+    while opt != 6:
+        if opt == 1:
+            n = int(input("Enter the value to be inserted: "))
+            enqueue_front(n)
+
+        if opt == 2:
+            n = int(input("Enter the value to be inserted: "))
+            enqueue_rear(n)
+
+        if opt == 3:
+            print(str(delete_front())+" is deleted")
+
+        if opt == 4:
+            print(str(delete_rear())+" is deleted")
+
+        if opt == 5:
+            display()
+
+        print("Choose an option")
+        opt = int(input())
+
+main()
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+```
+1. Insert at front
+2. Insert at rear
+3. Delete from front
+4. Delete from rear
+5. Display Dequeue
+
+Enter the number of queries: 5
+Enter a choice: 1
+Enter the value to be inserted: 3
+Enter a choice: 2
+Enter the value to be inserted: 1
+Enter a choice: 1
+Enter the value to be inserted: 5
+Enter a choice: 1
+Enter the value to be inserted: 4
+Enter a choice: 5
+```
+
+#### Sample Output
+
+```
+ 4 5 3 1
+```
+
+## Complexity Analysis
+
+#### Time Complexity:
+
+* Insertion and deletion operations : `O(1)`
+* Display function : `O(n)`
+
+**Space Complexity** : `O(1)`
+
+## Credits
+
+- [Aishwarya A J](https://github.com/aish2002) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/Double_Ended_Queue.cpp) and [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/ds/Double_Ended_queue.py)

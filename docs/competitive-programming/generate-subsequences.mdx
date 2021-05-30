@@ -1,0 +1,127 @@
+---
+title: Generate All Subsequences of a String
+slug: /competitive-programming/generate-subsequences
+---
+
+## Introduction
+
+Given a string containing n characters, find out all the subsequences of the string.
+
+## Explanation 
+
+We can do it by first taking an empty string. Initially, there will be two separate cases,
+Firstly, including the current character in the output string and then recursively calling the function.
+The second will be, excluding the current encountered character and then recursively calling the function.
+
+Let's have few examples: 
+```
+Input 1:
+Enter string:
+abc
+Output 1:
+The subsequences are: abc ab ac a bc b c
+Input 2:
+Enter string:
+abcd
+Output 2:
+The subsequences are: abcd abc abd ab acd ac ad a bcd bc bd b cd c d
+```
+
+## Algorithm
+
+- Initialize an empty array(out)
+    - If the input string reaches its end
+        - Add a NULL character at the end
+	- Print the subsequence
+
+    - Include the current character out[j]=in[i]
+	- recursively call the function
+
+    - Exclude the current character
+	- recursively call the function
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void generate_subsequence(char *in,char *out,int i,int j)
+{
+	if(in[i]=='\0')
+	{
+		out[j]='\0';
+		cout<<out<<" ";
+		return;
+	}
+	out[j]=in[i];
+	generate_subsequence(in,out,i+1,j+1);
+
+	generate_subsequence(in,out,i+1,j);
+}
+
+int main()
+{
+	char input[100];
+	char output[10];
+	cout<<"Enter string: "<<endl;
+	cin>>input;
+	cout<<"The subsequences are: ";
+	generate_subsequence(input,output,0,0);
+	return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Generate all subsets of a string
+def printSubsets(str,output):
+    if len(str)==0:
+        print(output)
+        return
+    printSubsets(str[1:],output)
+    newOutput=output+str[0]
+    printSubsets(str[1:],newOutput)
+    return
+
+if __name__ == '__main__':
+    str=input("Enter string: ")
+    printSubsets(str,"")
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter string:
+abc
+```
+
+#### Output :
+
+```
+The subsequences are: abc ab ac a bc b c
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
