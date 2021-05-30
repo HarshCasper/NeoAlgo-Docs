@@ -1,0 +1,185 @@
+---
+title: Snake Traversal of Matrix
+slug: /mathematics/snake-traversal-of-matrix
+---
+
+## Introduction
+
+We are given a matrix of size `M*N` and we need to print its snake traversal. Snake Traversal refers to that traversal of the matrix in which even rows are printed in the same order and odd rows are printed in reverse order.
+
+## Explanation 
+
+We can do it by traversing the entire matrix row by row. If we encountered an even row print it in the same order. If we encounter an odd row print it in reverse order. For a deeper understanding look at the figure given below.
+
+<img src="https://i.imgur.com/YzQAD3K.jpg" width="177" height="172" /><br/><br/>
+
+Let's have few examples: 
+```
+Input 1:
+1 2
+3 4
+
+Output 1:
+Snake Traversal of Matrix: 1 2 4 3
+
+Input 2:
+1 2 1
+3 1 3
+1 4 1
+
+Output 2:
+Snake Traversal of Matrix: 1 2 1 3 1 3 1 4 1
+```
+
+## Algorithm
+
+- Iterate `i` from `0 to M`
+    - If `i` is Even 
+        - Iterate `j` from `0 to N`
+            - Print `Matrix[i][j]`.
+    - If `i` is Odd
+        - Iterate `j` from `N-1 to 0`
+            - Print `Matrix[i][j]`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+// Function to print matrix in snake pattern
+
+void snake_pattern(int * matrix, int n, int m) 
+{
+    int i = 0;
+    while(i < n)
+    {
+        if (i % 2 == 0) 
+        {
+            int j = 0;
+            while(j < m)
+            {
+                cout << * (matrix + i * m + j) << " ";
+                j++;
+            }
+        } 
+        else 
+        {
+            int j = m-1;
+            while (j >= 0)
+            {
+                cout << * (matrix + i * m + j) << " ";
+                j--;
+            }
+        }
+        i++;
+    }
+}
+
+int main() 
+{
+    int row, col;
+    cout << "Enter the number of rows: ";
+    cin >> row;
+
+    cout << "Enter the number of columns: ";
+    cin >> col;
+
+    int arr[row][col];
+    cout << "Enter the elements of Matrix row-wise: " << endl;
+
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    cout << "Snake Traversal of Matrix: ";
+    snake_pattern((int * ) arr, row, col);
+    return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Function to print matrix in snake pattern
+
+def snake_pattern(matrix, n, m):
+    i = 0
+    while i < n:
+        if i % 2 == 0:
+            j = 0
+            while j < m:
+                print(matrix[i][j], end=" ")
+                j += 1
+        else:
+            j = m - 1
+            while j >= 0:
+                print(matrix[i][j], end=" ")
+                j -= 1
+        i += 1
+
+if __name__ == "__main__":
+    row = int(input("Enter the number of rows: "))
+    col = int(input("Enter the number of columns: "))
+
+    matrix = []
+    print("Enter the elements of Matrix row-wise: ")
+
+    for i in range(row):
+        a = []
+        for j in range(col):
+            a.append(int(input()))
+        matrix.append(a)
+    
+    print("Snake Traversal of Matrix:", end = " ")
+    snake_pattern(matrix, row, col)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number of rows: 3
+Enter the number of columns: 3
+Enter the elements of Matrix row-wise: 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+#### Output :
+
+```
+Snake Traversal of Matrix: 1 2 3 6 5 4 7 8 9
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(Row*Column)`
+- Space Complexity: `O(1)`
