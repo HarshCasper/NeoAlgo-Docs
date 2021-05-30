@@ -79,8 +79,8 @@ module.exports = {
                 "dynamic-programming/egg-dropping-problem",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence"
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/edit-distance",
             ],
         },
         {
