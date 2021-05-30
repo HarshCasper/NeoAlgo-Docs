@@ -1,0 +1,237 @@
+---
+title: Smallest Prime Factor of any Number
+slug: /mathematics/smallest-prime-factor-of-any-number
+---
+
+## Introduction
+
+In this article, we will learn about Smallest Prime Factor of any Number.
+Let us say, You want to know the `smallest prime factor` of `35345`. You can calculate it by performing some steps.
+
+
+## Explanation
+
+Let us have one example:
+
+```
+Let us say, you are given the number 35345. To know the smallest prime factor of this number, we will run a loop
+to find the divisors of this number simultaneously will check whether the divisor is prime or not.
+
+```
+
+## Algorithm
+
+ - First we will check whether the given `number` is even or not.
+ - If the given number is `even`, then `smallest prime factor` of given `number` is `2`. As all even number is divisable by `2` and `2` is
+ a `prime` number. So, in this case, the `smallest prime factor` will be `2`.
+ - If the given number is `odd`, then we will run a loop from `3` to `sqrt(number)`.
+ - While running the loop, if we find a `divisor` of given number, we will again check if the `divisor` is `prime` or not.
+ - If the `divisor` is `prime`, we can say that we have got our `smallest prime factor`.
+ - For example, `5` is the `smallest prime factor` of `25`.
+ - After running the loop, if we did not get `smallest prime factor` of given number, then we can say that 
+ the given `number` itself is a `prime` number and `smallest prime factor` of this number is our given `number`.
+ - Thus, we can get `smallest prime factor` of any given `number` in `O(sqrt(number)`.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool check_prime(int number)
+{
+    /* check whether number is prime or not */
+    for(int i = 3; i * i <= number; i += 2)
+    {
+        if(number % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int get_smallest_prime_factor(int number)
+{
+    int get_factor = 0;
+    /*
+    loop runs till sqrt( number )
+    for not getting precision errors
+    use i * i <= number
+    */
+    for(int i = 3 ; i * i <= number; i += 2)
+    {
+        if(number % i == 0)
+        {
+            get_factor = 1;
+            int prime = check_prime(i);
+            if(prime)
+            {
+                /* that means the number is smallest prime factor */
+                return i;
+            }
+        }
+    }
+    if(!get_factor)
+    {
+        /*
+        that means the number itself it's smallest prime factor.
+        Ex : 17
+        so we can return the number.
+        */
+        return number;
+    }
+}
+
+int main()
+{
+    cout << "Enter the number : \n";
+    int number;
+    cin >> number;
+    /*
+    if the number is even, we can say that the smallest prime factor
+    is 2 for any even number.
+    because 2 is prime and it's a factor of
+    every even number.
+    */
+    if(! (number & 1) )
+    {
+        cout << "Smallest prime factor for this number is : " << "2" << endl;
+    }
+    else if(number & 1)
+    {
+        int smallest_prime_factor = get_smallest_prime_factor(number);
+        cout << "Smallest prime factor for this number is : " ;
+        cout << smallest_prime_factor << endl;
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+import java.lang.*;
+import java.math.*;
+
+public class SmallestPrimeFactor
+{
+    //this function checks whether a number is prime or not
+    static int check_prime(int number)
+    {
+       for(int i = 3; i * i <= number; i += 2)
+       {
+          if(number % i == 0)
+          {
+              return 0;
+          }
+       }
+       return 1;
+    }
+
+    //this function gives us the smallest prime factor of a number
+    static int get_smallest_prime_factor(int number)
+    {
+        int get_factor = 0;
+        /* loop runs till sqrt( number ) for not any getting precision errors
+         use i * i <= number */
+         for(int i = 3 ; i * i <= number; i += 2)
+         {
+             if(number % i == 0)
+             {
+                get_factor = 1;
+                int prime = check_prime(i);
+                if(prime == 1)
+                {
+                  // that means the number is smallest prime factor 
+                   get_factor = i;
+                   break;
+                 }
+             }
+        }
+        if(get_factor == 0)
+        {
+        /*
+        that means the number itself it's smallest prime factor.
+        Ex : 17 so we can return the number. */
+          return number;
+        }
+        return get_factor;
+    }
+
+    public static void main(String args[])  
+    {
+        Scanner scan = new Scanner(System.in);
+	System.out.print("Enter the number : \n");
+	int number = scan.nextInt();
+
+        /* if the number is even, we can say that the smallest prime factor
+        is 2 for any even number. because 2 is prime and it's a factor of
+        every even number. */
+        if(number % 2 == 0)
+        {
+            System.out.println("Smallest prime factor for this number is : 2");
+        }
+        else if(number % 2 == 1)
+        {
+            int smallest_prime_factor = get_smallest_prime_factor(number);
+            System.out.print("Smallest prime factor for this number is : ");
+            System.out.println(smallest_prime_factor);
+        }
+        scan.close();
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the number :
+435346
+```
+
+#### Output
+
+```
+Smallest prime factor for this number is : 2
+```
+
+#### Input
+
+```
+Enter the number :
+35345
+```
+
+#### Output
+
+```
+Smallest prime factor for this number is : 5
+```
+
+## Complexity Analysis
+
+  - Time complexity : `O(sqrt(N))`
+  - Space complexity: `O(1)`
+
+## Credits
+
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/smallest_prime_factor.cpp)
+  - [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/math/smallest_prime_factor.java)
