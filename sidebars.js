@@ -224,6 +224,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
+                "competitive-programming/first-occurence-1",
                 "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
