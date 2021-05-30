@@ -61,6 +61,9 @@ module.exports = {
                 "data-structures/data-structures",
                 "data-structures/binary-tree",
                 "data-structures/Singly-Linked-list",
+                 "data-structures/binary-search-tree",
+                "data-structures/preorder_traversal",
+
                 "data-structures/binary-search-tree",
                 "data-structures/preorder_traversal",
                 "data-structures/stack-data-structure",
@@ -216,6 +219,7 @@ module.exports = {
                 "competitive-programming/max-number-from-array",
                 "competitive-programming/factorial-of-large-number",
                 "competitive-programming/max-number-from-array",
+                "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/diameter-of-BT",
 		"competitive-programming/bigmod-algorithm",
