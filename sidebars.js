@@ -82,7 +82,8 @@ module.exports = {
                 "data-structures/minimum-in-bst",
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
-                "data-structures/floor_in_bst"
+                "data-structures/floor_in_bst",
+                "data-structures/invert-binary-tree",
             ],
         },
         {
