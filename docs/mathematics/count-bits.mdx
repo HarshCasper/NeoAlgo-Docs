@@ -1,0 +1,124 @@
+---
+title: Count no. of bits in a number
+slug: /mathematics/count-bits
+---
+
+## Introduction
+
+In this article, we will see how to count number of bits in a number. We are given a number and we have to count the number of bits in its binary representation.
+
+## Explanation 
+
+We are given a number and we have to print the number of bits in binary representation of that number.
+
+#### Example 1
+
+```
+Given number: 6
+Binary representation of given number(6)=110
+So number of bits in 6 is 3
+Print 3
+```
+## Algorithm
+
+For count number of bits in a number, we follow the following algorithm:
+
+- First, we convert the number into its binary representation.
+- Count number of bits in binary representation.
+- Print the value of count.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function for counting number of bits
+int count_bits(int n)
+{
+  //initialize count with 0
+   int count=0;
+   
+   //  counting number of bits in binary representation of number
+   while(n!=0)
+   {
+     count++;
+     n=n/2;
+   }
+   return count;
+}
+
+//main function
+int main()
+{
+  int n;
+
+  //Taking number as input
+  cout<<"Enter the number: ";
+  cin>>n;
+
+  //Printing count of bits of given number
+  cout<<count_bits(n)<<endl;
+  return 0;
+}
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# function count_bits for counting number of bits in binary representation
+def count_bits(n):
+    
+    # initialize count with 0
+    count=0
+    while(n!=0):
+      count+=1
+      n=n//2
+    
+    return count
+  
+# Taking number as input 
+n = int(input("Enter the number: "))
+#Printing count of bits of given number 
+print(count_bits(n))
+   
+    
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+Enter the number: 10
+
+```
+#### Output :
+
+```
+4
+```
+
+## Complexity Analysis
+ 
+- Time Complexity: `O(logn)`
+
+- Space Complexity: `O(1)`
+
+where `n` is the number of elements.
