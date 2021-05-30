@@ -132,6 +132,7 @@ module.exports = {
 		        "mathematics/fibonacci-recursion",
 		        "mathematics/catalan-number",
                 "mathematics/reverse-a-number",
+                "mathematics/next-permutation",
                 "mathematics/automorphic-number",
                 "mathematics/double-factorial",
                 "mathematics/gcd-of-two-numbers",
@@ -153,7 +154,9 @@ module.exports = {
                 "mathematics/spiral-traversal-of-matrix",
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
-		"mathematics/product-of-count-of-bits-of-each-elements",
+                "mathematics/product-of-count-of-bits-of-each-elements"
+                "mathematics/product-of-count-of-bits-of-each-elements",
+
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/next-prime-number",
@@ -168,6 +171,7 @@ module.exports = {
                 "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
                 "mathematics/perfect-cube"
+
             ],
         },
         {
