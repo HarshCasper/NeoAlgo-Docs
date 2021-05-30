@@ -1,0 +1,273 @@
+---
+title: Middle Element of Linked List
+slug: /data-structures/middle-element-of-LL
+---
+## Introduction
+
+A Linked List is a linear data structure that includes a series of connected nodes.
+Each node stores the data and the address of the next node.
+In this article, we will find the middle element of the linked list using 2 methods.
+
+## Explanation
+
+Let us understand this problem using few examples.
+
+#### Example 1
+
+![example1](https://user-images.githubusercontent.com/61618767/119497025-b466d100-bd81-11eb-9063-9001ce2ff9a1.png)
+
+In this example, there are 5(odd) nodes in the linked list and the middle element of these 5 nodes is 40. 
+So the output will be `20`.
+
+#### Example 2
+
+![example2](https://user-images.githubusercontent.com/61618767/119498675-7ff41480-bd83-11eb-9c68-343aa52de8fa.png)
+
+In this example, there are 6(even) nodes in the linked list and we have 2 middle nodes i.e Node 40 and Node 50.   
+In such cases, we need to print the second middle element. So the output will be `50`.
+
+## Algorithm
+
+Middle Element can be extracted using following two methods:
+
+#### Naive Approach
+
+* Count the length of the nodes in the given linked list.
+* Intialize a pointer variable and point it to `head`.
+* Run a loop from `0 to length/2`.
+* Print the value that the pointer has.
+
+#### Efficient Approach
+
+* Intialize two pointers `p` and `q` pointing to the head initially.
+* Increment both of them where p moves one node at a time and q moves two nodes at a time until `q` and `q->next` is not `NULL`.
+* Print the value of pointer `p`.
+
+## Code 
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },   
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Node{
+public:
+        int data;
+        Node* next;
+};
+
+Node* head = new Node;
+
+void create(int arr[], int n){
+        Node* temp;
+        Node* tail;
+
+        head->data = arr[0];
+        head->next = nullptr;
+        tail = head;
+
+        // creates the linked list from array
+        for (int i = 1; i < n; i++){
+                temp = new Node;
+                temp->data = arr[i];
+                temp->next = nullptr;
+                tail->next = temp;
+                tail = temp;
+        }
+}
+
+// counts the length of list and prints the value at length/2
+void MiddleNode1(Node* p){
+
+        int length = 0;
+
+        // counts the length
+        while (p){
+                length++;
+                p = p->next;
+        }
+
+        int index = (int) ceil(length / 2.0);
+
+        Node* q = head;
+
+        // traverses to the middle element
+        for (int i = 0; i < index - 1; i++){
+                q = q->next;
+        }
+        cout << "Middle Element (Method-I): " << q->data << endl;
+}
+
+// uses two pointers where 1st jumps two steps to reach end while the 2nd reaches middle element
+void MiddleNode2(Node* p){
+
+        Node* q = p;
+
+        while (q){
+
+                // q jumps two steps
+                q = q->next;
+                if (q){
+                        q = q->next;
+                }
+
+                // p jumps one step
+                if (q){
+                        p = p->next;
+                }
+        }
+        cout << "Middle Element (Method-II): " << p->data << endl;
+}
+
+int main() {
+
+        int n;
+        cout<<"Enter the size of list"<<endl;
+        cin>>n;
+        int arr[n];
+        cout<<"Enter the elements of linked list"<<endl;
+
+        // inputs the list in an array
+        for(int i = 0; i < n; i++){
+                cin>>arr[i];
+        }
+
+        create(arr,n);
+
+        MiddleNode1(head);
+        MiddleNode2(head);
+
+        return 0;
+}
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+public class MiddleOfLinkedList {
+	Node head;
+    	static class Node {
+		int data;
+		Node next;
+			Node(int data) {
+            			this.data = data;
+			}
+    		}
+ 
+    public void addToTheLast(Node node) {
+ 
+        if (head == null) {
+            head = node;
+        }
+	else {
+            Node temp = head;
+            while (temp.next != null)
+                temp = temp.next;
+		temp.next = node;
+        }
+    }
+ 
+    public void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.format("%d ", temp.data);
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+ 
+    // This function will find middle element in linkedlist
+    public Node findMiddleNode(Node head){
+    	Node pointer1, pointer2;       
+    	pointer1 = pointer2 = head;	 
+    	int i = 0;
+    	while(pointer1.next != null){
+    		if(i == 0){
+    			pointer1 = pointer1.next;
+    			i=1;
+    		}
+    		else if(i == 1){
+    			pointer1 = pointer1.next  
+    			pointer2 = pointer2.next;
+    			i=0;
+    		}
+    	}	
+    	return pointer2; 
+    }
+    	
+    //Main Method
+    public static void main(String[] args) {
+        MiddleOfLinkedList list = new MiddleOfLinkedList();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of Linked List:");
+        int n = sc.nextInt();
+        System.out.println("Enter the data of Linked List:");
+        int num = sc.nextInt();
+        Node head = new Node(num);
+        list.addToTheLast(head);
+        Node tail = head;
+        for(int i=0; i<n-1; i++){
+            num = sc.nextInt();
+            tail.next = new Node(num);
+            tail = tail.next;
+        }
+        list.printList();
+        Node middle = list.findMiddleNode(head);
+        System.out.println("Middle Element (Method II) : "+ middle.data);
+    }
+}
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Sample input
+
+```
+(For Odd Elements)
+Enter the size of linked list: 5
+Enter the elements of linked list : 20 30 40 50 60 
+
+(For Even Elements)
+Enter the size of linked list: 6
+Enter the elements of linked list : 20 30 40 50 60 70
+```
+
+#### Sample Output
+
+```
+(For Odd Elements)
+Middle Element (Method-I): 40
+Middle Element (Method-II): 40
+
+(For Even Elements)
+Middle Element (Method-I): 50
+Middle Element (Method-II): 50
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)` where `N` is the total number of nodes.
+- Space Complexity: `O(1)` 
+
+
+## Credits
+
+- [Sarthak Saxena](https://github.com/Sarthak-9) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/ds/linked_list_middle_element.cpp)
+- [Priya Srivastava](https://github.com/Priya730) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/ds/MiddleOfLinkedList.java)
