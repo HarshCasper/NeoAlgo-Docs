@@ -1,0 +1,129 @@
+---
+title: First occurence of 1 in a sorted array of 0 and 1
+slug: /competitive-programming/first-occurence-1
+---
+
+## Introduction
+
+Given an array of 0s and 1s in the sorted array, our objective is to find the position of the occurence of the first `1`.
+
+## Explanation
+
+Binary search algorithm is used in the problem. We divide the array continuously into halves and search for the first index of `1` in each subparts. Let us take an example to illustrate the same. Let the array be `0,0,1,1`.
+<img src="https://i.imgur.com/ddbRw1J.png" /><br />
+
+## Algorithm
+
+- Find the middle index. 
+- Check whether the element at the middle index is `1` or not.
+- Check whether the middle index is zero or whether the element at the position just before the middle index is zero or not.
+- If the above conditions are true then the middle index is the first occurrence of `1` in the array.
+- If the middle index is not zero and the element at the position just before the middle index is not zero:
+    - Then repeat the above process for the subarray before the middle index if the middle element is `1`.
+    - Then repeat the above process for the right subarray if the middle element is not `1`. 
+
+## Examples
+
+#### Example 1
+
+```
+Let the array be 0,1,1.
+The lower index is 0 and upper index is 2.
+The middle index is 1.
+The element present at index 1 is 1 and the element before it is 0.
+So the index 1 is the first occurence of first 1 in array. The position is 2.
+```
+
+#### Example 2
+
+```
+Let the array be 0,0.
+The lower index is 0 and upper index is 1.
+The middle index is 0.
+The element at the middle index is 0. 
+The lower index is changed to middle index+1.
+However the lower index has become equal to the upper index. So -1 is returned. Occurence of 1 not found.
+```
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', }
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int binSearch(int a[],int n)
+{
+    int l=0,r=n-1,mid=0;
+    while(l<=r)
+    {
+        mid=(l+r)/2;
+        if(a[mid]==1 && (mid==0 || a[mid-1]==0))
+        return mid+1;
+        else if(a[mid]==1)
+        r=mid-1;
+        else l=mid+1;
+    }
+    return -1;
+}
+int main()
+{
+    cout<<"Enter the number of elements: ";
+    int n;
+    cin>>n;
+    int a[n];
+    cout<<"Enter only 1 and 0 in sorted order\n";
+    for(int i=0;i<n;i++)
+    cin>>a[i];
+    sort(a,a+n);
+    cout<<"Position of the first 1 = "<<binSearch(a,n)<<"\n;
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input 
+
+```
+Enter the number of elements: 5
+Enter only 1 and 0 in sorted order
+1 1 1 1 1
+```
+### Output
+```
+Position of the first 1 = 1
+```
+
+### Input
+
+```
+Enter the number of elements: 3
+Enter only 1 and 0 in sorted order
+0 0 1
+```
+
+### Output
+```
+Position of the first 1 = 3
+```
+
+## Complexity Analysis
+
+* Time Complexity: `O(nlogn)`
+* Space Complexity : `O(1)`
+
+## Credit
+
+* [Sayani Mallick](https://github.com/SAY-droid427/) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/first1_binsearch.cpp)
