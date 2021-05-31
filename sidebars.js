@@ -107,6 +107,7 @@ module.exports = {
                 "dynamic-programming/equal-sum-partition",
 		            "dynamic-programming/coin-change-problem",
                 "dynamic-programming/painting-fence",
+                "dynamic-programming/median-of-two-arrays",
             ],
         },
         {

@@ -1,0 +1,241 @@
+---
+title: Median of Two Arrays
+slug: /dynamic-programming/median-of-two-arrays
+---
+
+## Introduction
+
+This is an algorithm by which two sorted or two unsorted arrys are merged and then the median of two arrays is found.
+This can be done either by a  linear and simpler approach or by mathematical approach.
+
+## Explanation
+
+* Taking a third array, merge the two arrays.
+* Then sort the arrays in ascending or descending order.
+* There are two cases: 
+
+- **Case 1:** m+n is odd, the median is at (m+n)/2 th index in the array obtained after merging both the arrays.
+- **Case 2:** m+n is even, the median will be average of elements at index ((m+n)/2 – 1) and (m+n)/2 in the array obtained after merging both the arrays.
+
+## Quick Example :
+
+Consider two arrays:
+
+A | -5 | 3 | 6 |
+B | -12 | 4 | 10 |
+
+* Now in a third array merge the `A` and `B`.
+
+C | -5 | 3 | 6 | -12 | 4 | 10 |
+
+* Now sort C
+
+C | -12 | -5 | 3 | 4 | 6 | 10 |
+
+**Step 1:**
+
+![Screenshot (267)](https://user-images.githubusercontent.com/60662775/120217071-707a3d00-c255-11eb-8e8e-a0992b25841e.png)
+
+**Step 2:**
+
+![Screenshot (268)](https://user-images.githubusercontent.com/60662775/120217081-75d78780-c255-11eb-9ef5-b0fa1d7de07a.png)
+
+**Step 3:**
+
+![Screenshot (269)](https://user-images.githubusercontent.com/60662775/120217095-796b0e80-c255-11eb-8a55-411eba644b05.png)
+
+**Step 4:**
+
+![Screenshot (270)](https://user-images.githubusercontent.com/60662775/120217103-7cfe9580-c255-11eb-908f-43c4263d7599.png)
+
+**Step 5:**
+
+![Screenshot (272)](https://user-images.githubusercontent.com/60662775/120217112-7ff98600-c255-11eb-9369-1d908bd34cf7.png)
+
+* Since the length of `C` is 11 which is odd therefore we will use (m+n)/2 to find the median (where `m` and `n` are lengths of `A` and `B` respectively).
+* `m` is `5` and `n` is `6`
+* Therefore the `median` of the merged arrays is `(5+6)/2` which is 5.5. Since there is no index number with decimal number so everytime we take the `ceil` value.
+* Therefore the ```median of two arrays``` is `6th` element i.e, `3`. 
+
+## Algorithm
+
+- Given two arrays are sorted. So they can be merged in O(m+n) time. Create a variable count to have a count of elements in the output array.
+- If the value of (m+n) is odd then there is only one median else the median is the average of elements at index (m+n)/2 and ((m+n)/2 – 1).
+- To merge the both arrays, keep two indices i and j initially assigned to 0. Compare the ith index of 1st array and jth index of second, increase the index of the smallest element and increase the count.
+- Check if the count reached (m+n) / 2 if (m+n) is odd and store the element, if even store the average of (m+n)/2 th and (m+n)/2 -1 th element and print it.
+
+## Code 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+//C++ program for Median of two arrays
+#include<bits/stdc++.h>
+using namespace std;
+
+// Function to find Median of two Sorted array of different size 
+int solve()
+{
+    // Input n1 = size of array 1
+    //   Input n2 = size of array 2 
+    int n1, n2;
+    cout << "Enter length of two arrays: ";
+    cin >> n1 >> n2;
+
+    cout << "Enter elements of two arrays: ";
+    int arr1[n1], arr2[n2];
+
+    // Input values in array 1 
+    for (int i = 0; i < n1; ++i)
+    {
+        cin >> arr1[i];
+    }
+
+    // Input values in array 2 
+    for (int i = 0; i < n2; ++i)
+    {
+        cin >> arr2[i];
+    }
+
+    // Create a vector 
+    vector<int> v;
+
+    // Push array 1 element in vector 
+    for (int i = 0; i < n1; ++i)
+    {
+        v.push_back(arr1[i]);
+    }
+
+    // Push array 2 element in vector 
+    for (int i = 0; i < n2; ++i)
+    {
+        v.push_back(arr2[i]);
+    }
+
+    // Sort the given vector 
+    sort(v.begin(), v.end());
+    
+    // Find medina using this formula 
+    int mid = v[v.size() / 2];
+    
+    // Return Calculated median
+    return mid;
+}
+
+int main()
+{
+    int Median = solve();
+
+    cout << "Median of two arrays is: " << Median <<endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// Java Program for Median of two arrays
+import java.io.*;
+import java.util.*;
+
+class Median_of_2_sorted_array {
+    static double findMedianSortedArrays(int[] arr1, int[] arr2) {
+    // length of the merged array
+    int arr3length = arr1.length + arr2.length;
+        int arr3[] = new int[arr3length];
+        int j=0;
+        //storing the elements of both arrays into nums3
+        for(int i =0;i<arr1.length;i++)
+        {
+            arr3[j++] = arr1[i];
+        }
+        for(int i =0;i<arr2.length;i++)
+        {
+            arr3[j++] = arr2[i];
+        }
+        //sorting nums3 array
+        Arrays.sort(arr3);
+    double mid;
+    //checking if length of merged array is odd
+    
+    if(arr3length % 2 != 0) {
+        //return the median
+        mid = arr3[arr3length / 2>>0];
+        return mid;
+    } 
+    //if the length is odd
+    else {
+        //median is the average of two mid elements
+        double first = arr3[arr3.length / 2>>0];
+        double second = arr3[(arr3.length / 2 >> 0 )-1];
+        mid =  first + second;
+        return( mid ) / 2;
+    }
+
+    }
+
+    public static void main(String args[]) 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter length of two arrays: ");
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        System.out.println("Enter elements of two arrays: ");
+        int arr1[] = new int[n];
+        int arr2[] = new int[m];
+        for(int i = 0;i < n; i++)
+          arr1[i] = sc.nextInt();
+
+        for(int i = 0;i < m; i++)
+            arr2[i] = sc.nextInt();
+
+        System.out.println("Median of two arrays is: " + findMedianSortedArrays(arr1,arr2));
+        
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+```
+Enter length of two arrays: 
+2 1
+
+Enter elements of two arrays: 
+1 3
+2
+
+```
+
+#### Output :
+
+```
+Median of two arrays is:
+2
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(nlogn)`
+- Space Complexity: `O(n)`
+
+
+
+## Credits
+
+- [Saurabh Chachere](https://github.com/CSAURABH) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/other/Median_of_two_Sorted_arrays_of_different_size.cpp)
+- [Amit Kumar Mishra](https://github.com/Amit366) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/cp/Median_of_two_sorted_arrays.java)
+
