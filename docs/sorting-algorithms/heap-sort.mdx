@@ -91,6 +91,7 @@ import TabItem from '@theme/TabItem';
     { label: 'C++', value: 'cpp', },
     { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
+    { label: 'Dart', value: 'dart', },
   ]
 }>
 <TabItem value="cpp">
@@ -278,6 +279,88 @@ for d in data:
     print(d, end = " ")
 ```
 </TabItem>
+<TabItem value="dart">
+
+```dart
+/*
+HEAP SORT
+It is a sorting technique based on the heap data structure.
+Heap is a complete binary tree, in which every level except the last, is filled
+completely with its nodes, and nodes are far left.
+We implement this sorting in an array using Max Heap, in which the parent node 
+value is greater than it child node values. 
+*/
+
+import 'dart:io';
+
+void swap(List arr, int i1, int i2) {
+  // Swapping elements in array
+  int temp = arr[i1];
+  arr[i1] = arr[i2];
+  arr[i2] = temp;
+}
+
+void maxHeap(List arr, int n, int i) {
+  // Making a max heap (root = largest element) using complete binary tree in array.
+  // Setting indices for root, left child and right child.
+  int root = i;
+  int left_c = (2 * i) + 1;
+  int right_c = (2 * i) + 2;
+
+  // If left child is greater than root, changing the index of root accordingly
+  if (left_c < n && arr[left_c] > arr[root]) {
+    root = left_c;
+  }
+
+  // If right child is greater than root, changing the index of root accordingly
+  if (right_c < n && arr[right_c] > arr[root]) {
+    root = right_c;
+  }
+
+  // Recursively calling maxHeap till we set the largest element at root
+  if (root != i) {
+    swap(arr, i, root);
+    maxHeap(arr, n, root);
+  }
+}
+
+void heapSort(arr, n) {
+  for (int i = (n ~/ 2); i >= 0; i--) {
+    // Building maximum heap
+    maxHeap(arr, n, i);
+  }
+
+  for (int i = n - 1; i >= 1; i--) {
+    // Move current root to end and sorting it
+    swap(arr, 0, i);
+
+    // Bringing largest element to root
+    maxHeap(arr, i, 0);
+  }
+}
+
+main() {
+  var array = [];
+
+  var n, ele;
+  print('Enter the number of elements: ');
+  n = stdin.readLineSync();
+  n = int.parse(n);
+
+  print('Enter value for element : ');
+  for (int i = 1; i <= n; i++) {
+    
+    ele = stdin.readLineSync();
+    ele = int.parse(ele);
+    array.add(ele);
+  }
+
+  heapSort(array, n);
+  print('The sorted array is $array');
+}
+
+```
+</TabItem>
 
 </Tabs>
 
@@ -314,3 +397,5 @@ Enter elements to be sorted : 5
 * [Avinash Kr. Ranjan](https://github.com/avinashkranjan) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Heap_sort.py)
 
 * [Ritvij Kumar Sharma](https://github.com/ritvij14) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/HeapSort.java)
+
+* [Rohini Rao](https://github.com/RohiniRG) for the [Dart implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Dart/sort/Heap_Sort.dart)

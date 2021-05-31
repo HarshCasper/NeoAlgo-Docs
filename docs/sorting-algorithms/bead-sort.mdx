@@ -43,6 +43,7 @@ import TabItem from '@theme/TabItem';
     { label: 'Java', value: 'java', },
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
+    { label: 'Dart', value: 'dart', },
   ]
 }>
 <TabItem value="c">
@@ -298,6 +299,76 @@ if __name__ == "__main__":
     print("After sorting :")
     print(bead_sort(a))
 
+  <TabItem value="dart">
+
+```Dart
+
+/**
+Sorting algorithm that is also called Gravity Sort. It can be visualised as
+beads of an abacus falling under the influence fo gravity with the row having
+the most beads is at the bottom and least is at top.
+ */
+import 'dart:io';
+
+enum SortStatus { BEAD, BLANK, NULL }
+// function that implements bead sort
+List beadSort(List arr) {
+  // finding max item to decide width of the abacus
+  int max = 0;
+  for (int item in arr) {
+    if (item > max) {
+      max = item;
+    }
+  }
+
+  // setting the abacus
+  List abacus = List.generate(arr.length, (index) => new List.filled(max, SortStatus.NULL),
+      growable: false);
+  List level = [];
+  for (int i = 0; i < max; i++) {
+    level.add(0);
+    for (int j = 0; j < arr.length; j++) {
+      abacus[j][i] = SortStatus.BLANK;
+    }
+  }
+
+  // adding the beads
+  for (int item in arr) {
+    for (int j = 0; item > 0; j++, item--) {
+      abacus[level[j]++][j] = SortStatus.BEAD;
+    }
+  }
+
+  // counting beads
+  for (int i = 0; i < arr.length; i++) {
+    int number = 0;
+    for (int j = 0;
+        j < max && abacus[arr.length - 1 - i][j] == SortStatus.BEAD;
+        j++) {
+      number++;
+    }
+    arr[i] = number;
+  }
+  return arr;
+}
+
+// main function, entry point of the program
+void main() {
+  print("Enter the number of elements :");
+  int size = int.parse(stdin.readLineSync()!);
+  List arr = [];
+  print("Enter the elements to be sorted :");
+  for (int i = 0; i < size; i++) {
+    arr.add(int.parse(stdin.readLineSync()!));
+  }
+  // sorting
+  arr = beadSort(arr);
+  print("After sorting");
+  for (int i = 0; i < size; i++) {
+    print(arr[i]);
+  }
+}
+
 ```
 
 </TabItem>
@@ -332,3 +403,4 @@ Here `S` is the sum of all beads.
 - [Monika Jha](https://github.com/m-code12) contributed the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Bead_Sort.cpp)
 - [Monika Jha](https://github.com/m-code12) contributed the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/beadSort.c)
 - [A N U S H](https://github.com/anushkrishnav) contributed the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Bead_Sort.py)
+- [Ritvij Kumar Sharma](https://github.com/ritvij14) contributed the [Dart implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Dart/sort/BeadSort.dart)
