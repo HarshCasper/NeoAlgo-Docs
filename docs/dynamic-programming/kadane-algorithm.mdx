@@ -91,6 +91,7 @@ import TabItem from '@theme/TabItem';
   defaultValue="cpp"
   values={[
     { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
   ]
 }>
@@ -140,6 +141,49 @@ int main()
     cout << "Maximum sum of contiguous subarray: "<<kadane(arr, n) << endl;
     return 0;
 } 
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+
+/*
+Kadane's Algorithm gives us the maximum sum out of all possible contiguous subarray in a one-dimensional array. 
+It is a Dynamic Programming based algorithm because it uses the previously computed data for further computations. 
+It is the most optimal solution for finding the maximum sum contiguous subarray. It has many applications like genomic sequence analysis and computer vision.
+*/
+
+import java.util.*;
+ class abc
+{   static long findMaxSumArray(long arr[],int x)
+    {   long currentSum=0,maxSum=0;int i;
+
+        for(i=0;i<x;i++)
+        {currentSum+=arr[i];
+            if(currentSum<0)
+            currentSum=0;
+        maxSum=Math.max(currentSum,maxSum);}
+
+
+        return maxSum;
+    }
+    public static void main()
+    {
+        Scanner sc=new Scanner(System.in);
+        int i,j,k,l,m,n;
+        System.out.println("Enter the size of array: ");
+        n=sc.nextInt();long sum=0,maxSum=0;
+        long a[]=new long[n];
+        for(i=0;i<n;i++)
+        a[i]=sc.nextLong();
+
+        sum=findMaxSumArray(a,n);
+        System.out.println("Maximum sum of contiguous subarray:");
+        System.out.println(sum);
+    }
+}
+
 ```
 </TabItem>
 
@@ -212,4 +256,7 @@ Maximum sum of contiguous subarray: 15
 ## Credits
 * [Janhavi Soni](https://github.com/JanhaviSoni) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/Kadane_Algorithm.cpp)
 
+* [Parjanya Aditya Shukla](https://github.com/parjanyaacoder) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/pull/267/files)
+
 * [Sangeeta Mishra](https://github.com/SangeetaMishra) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/other/Kadanes_Algorithm.py)
+
