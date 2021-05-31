@@ -249,6 +249,7 @@ module.exports = {
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
+                "competitive-programming/next-smallest-right",
                 "competitive-programming/next-greatest-left",
                 "competitive-programming/next-smallest-left",
 	              "competitive-programming/bigmod-algorithm",
