@@ -33,6 +33,7 @@ import TabItem from "@theme/TabItem";
     { label: 'C++', value: 'cpp', },
     { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
+    { label: 'Dart', value: 'dart', },
     { label: 'Go', value: 'go', },
   ]
 }>
@@ -206,7 +207,57 @@ if __name__ == "__main__":
 ```
 
 </TabItem>
-<TabItem value="go">
+<TabItem value="dart">
+
+```dart
+
+/**
+Function to sort a list of inputs using Insertion sort technique.
+In every iteration we choose one value and put it at a position after
+comparing it with all the other elements before it in the list.
+ */
+import 'dart:io';
+
+// function that implements insertion sort
+List insertionSort(List arr) {
+
+  // this loop runs from 2nd element
+  for (int i = 1; i < arr.length; i++) {
+    int k = i - 1;
+    int temp = arr[i];
+
+    // this loop compares all elements before temp with temp
+    // and changes positions
+    while (k >= 0 && arr[k] > temp) {
+      arr[k + 1] = arr[k];
+      k--;
+    }
+
+    // after shifting we have one spot for temp, so we place it there
+    // and close the loop
+    arr[k + 1] = temp;
+  }
+  return arr;
+}
+
+// main function, entry point of the program
+void main() {
+  print("Enter the size of list:");
+  int size = int.parse(stdin.readLineSync()!);
+  List arr = [];
+  print("Enter the numbers:");
+  for (int i = 0; i < size; i++) {
+    arr.add(int.parse(stdin.readLineSync()!));
+  }
+
+  // sorting
+  arr = insertionSort(arr);
+  print("After Insertion sort: ");
+  for (int i = 0; i < size; i++) {
+    print(arr[i]);
+  }
+
+  <TabItem value="go">
 
 ```go
 
@@ -317,4 +368,5 @@ After Insertion sort:
 - [Ritvij Kumar Sharma](https://github.com/ritvij14) for the C++ implementation.
 - [Keshav Jha](https://github.com/keshav304) for the python implementation.
 - [Ansh Mishra](https://github.com/anshmishra010) for Java implementation.
+- [Ritvij Kumar Sharma](https://github.com/ritvij14) for the Dart implementation
 - [subham sarkar](https://github.com/subham-deepsource) for Go implementation.
