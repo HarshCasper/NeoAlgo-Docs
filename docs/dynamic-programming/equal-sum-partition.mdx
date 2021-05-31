@@ -144,11 +144,11 @@ int main(){
     
     //Function call to check whether the array can be divided into two subsets of equal sum or not.
     if(EqualPartition(my_array, array_len)){
-        cout<<"Yes"<<"\n";
+        cout<<"Equal sum partition possible"<<"\n";
 
     }
     else{
-        cout<<"No"<<"\n";
+        cout<<"Equal sum partition not possible"<<"\n";
     }
       
 	return 0;
@@ -200,9 +200,72 @@ if __name__ == "__main__":
     ans = Partition_Problem(n, a)
 
     if ans:
-        print("Yes")
+        print("Equal sum partition possible")
     else:
-        print("No")
+        print("Equal sum partition not possible")
+
+
+```
+
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+class Main
+{
+    static boolean equalPartitionSubset(int a[],int n, int sum)
+    {
+        boolean [][] dp = new boolean[sum+1][n+1];
+
+        //Base conditions
+        for(int i=0;i<n+1;i++)
+        dp[0][i]=true;
+
+        for(int j=0;j<sum+1;j++)
+        dp[j][0]=false;
+
+        for(int i=1;i<sum+1;i++)
+        {
+            for(int j=1;j<n+1;j++)
+            {
+                if(a[j-1]>i)
+                dp[i][j]=dp[i][j-1];
+                if(a[j-1]<=i)
+                dp[i][j]=dp[i][j-1] || dp[i-a[j-1]][j-1];
+            }
+        }
+        return dp[sum][n];
+    }
+
+    public static void main(String args[])
+    {
+        Scanner scanner = new Scanner( System.in );        
+        System.out.println("Enter number of elements: ");
+        int n = scanner.nextInt();
+        System.out.println("Enter the elements: ");
+        int a[]=new int[n];
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            a[i]=scanner.nextInt();   
+            sum+=a[i]; 
+        }
+
+        if(sum%2!=0)
+        System.out.println("Equal sum partition not possible");
+        else 
+        {
+            boolean res=equalPartitionSubset(a,n,sum/2);
+            if(res)
+            System.out.println("Equal sum partition possible");
+            else 
+            System.out.println("Equal sum partition not possible");
+        }
+    }
+}
 
 
 ```
@@ -265,3 +328,4 @@ No
 
 - [Nandini Tiwari](https://github.com/nandinit02) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/dp/Equal_sum_partition.cpp)
 - [Akash Kumar Bhagat](https://github.com/charlie219) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/Partition_Problem.py)
+- [Sayani Mallick](https://github.com/SAY-droid427) for the Java implementation

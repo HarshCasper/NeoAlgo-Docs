@@ -1,0 +1,165 @@
+---
+title: Checking for balnced parenthesis
+slug: /competitive-programming/balanced-brackets
+---
+
+## Introduction
+
+Given a string, find out if the brackets in it are balanced or not. If they are balanced, then the output should be `Balanced Parenthesis` otherwise `Unbalanced Parenthesis`.
+
+## Explanation
+
+Stack as a data structure has many applications, especially because of its 'Last In, First Out' principle. One of the famous applications is to find out whether the string consists of balanced parentheis or not. We use stack to push the opening parenthesis into it and on encountering a closing parenthesis, we compare the top of the stack and check whether it is the corresponding opening parenthesis of the closing stack. If it is not then it is balanced. However, if after complete traversal of the string the stack is not empty, then it means that the string does not have balanced parenthesis.
+
+## Algorithm
+
+- Initialize a stack.
+- Start the scanning of the string from the beginning.
+- If an opening parenthesis(one of the following: `{`,`[`,`(`) is encountered, push it to the stack.
+- If a closing parenthesis(one of the following: `}`,`]`,`)`) is encountered, check if the top of the stack is its corresponding opening parenthesis.
+- If the stack is empty or the closing parenthesis does not match the opening one, then the string is unbalanced.
+- If all the closing braces are matched with their corresponding open parenthesis, but the stack is not empty, then string is unbalanced otherwise balanced.
+
+## Examples
+
+#### Example 1
+
+```
+Let the string be (}).
+The first element ( is pushed into stack.
+The next element } is closing parenthesis.
+The topmost element is not its corresponding closing parenthesis.
+Hence the string has unbalanced parenthesis.
+```
+
+#### Example 2
+
+```
+Let the string be ([]).
+The first element ( is pushed into stack.
+The next element [ is puched into stack.
+The next element ] is closing square bracket.
+The top most element of the stack is its corresponding closing parenthesis. Hence [ is popped from stack.
+The next element ) is closing parenthesis.
+The topmost element is (, hence popped from stack.
+The stack is empty and string is traversed, hence it has balanced parenthesis.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+// function to check if brackets are balanced
+bool areBracketsBalanced(string expr)
+{
+    stack<char> s;
+    char x;
+
+    // Traversing the Expression
+    for (int i = 0; i < expr.length(); i++)
+    {
+        if (expr[i] == '(' || expr[i] == '[' || expr[i] == '{')
+        {
+            // Push the element in the stack
+            s.push(expr[i]);
+            continue;
+        }
+
+        // IF current current character is not opening
+        // bracket, then it must be closing. So stack
+        // cannot be empty at this point.
+        if (s.empty())
+            return false;
+
+        switch (expr[i])
+        {
+        case ')':
+
+            // Store the top element in a
+            x = s.top();
+            s.pop();
+            if (x == '{' || x == '[')
+                return false;
+            break;
+
+        case '}':
+
+            // Store the top element in b
+            x = s.top();
+            s.pop();
+            if (x == '(' || x == '[')
+                return false;
+            break;
+
+        case ']':
+
+            // Store the top element in c
+            x = s.top();
+            s.pop();
+            if (x == '(' || x == '{')
+                return false;
+            break;
+        }
+    }
+
+    // Check Empty Stack
+    return (s.empty());
+}
+
+// Driver code
+int main()
+{
+    string expr;
+    cout << "Enter an expression: " << endl;
+    cin >> expr;
+
+    // Function call
+    if (areBracketsBalanced(expr))
+        cout << "Balanced Parenthesis";
+    else
+        cout << "Unbalanced Parenthesis";
+    return 0;
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O 
+
+#### Input
+
+```
+Enter an expression:
+((a+b)+(c-d+f))
+```
+
+#### Output
+
+```
+Balanced Parenthesis
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+- Space Complexity: `O(n)`
+
+## Credits
+
+- [Girish Garg](https://github.com/gargVader) for [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/stack/Check_for_balanced_parenthesis.cpp)
