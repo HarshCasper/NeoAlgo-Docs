@@ -1,0 +1,252 @@
+---
+title: Binary search
+slug: /searching-algorithms/binary-search
+---
+
+## Introduction
+
+In this article, we will learn about Binary Search Algorithm.
+Let us say, You want to search an element in a sorted array or list. This can be done by using Binary Search algorithm.
+
+
+## Explanation
+
+Let us have one example:
+
+```
+Let us say, you are given a key element and an array. You want to know that whether the key element is present in the array or not.
+Suppose, given key element is 56 and array is [12,35,49,56,99].
+
+Now, we will compare the given key element with array's middle element, which is 49.
+If the given key element is greater than middle array's element, then key element can be present only in Right side of the array.
+But if the given key element is smaller than middle array's element, then key element can be present only in Left side of given the array.
+```
+
+## Algorithm
+
+ - First we will sort the given `array` in `ascending order`.
+ - Now, define two variables `low` and `high`. Here `low` refers to `lowest index` and `high` refers to `highest index` of the array.
+ - We will run a loop until `low` is less or equal to `high`.
+ - Then we will check whether the `key element` is equal to the `middle element` or not.
+ - Here, `middle element` is `(low + high)/2`.
+ - If the `key element` is equal to the `middle element`, then we can say that the `key element` is present in the array.
+ - Otherwise, if the `key element` is greater than the `middle element`, then we will set `high` = `middle element - 1`.
+ - If the `key element` is less than the `middle element`, then we will set `low` = `middle element + 1`.
+ - While running this loop if any time, `key element` is not equal to the `middle element`, then we can say that the `key element` is not present in the array.  
+ - Thus, we can check whether `key element` is present in the `array` or not.
+
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+//Function which returns true if element found in an array, else returns false.
+
+bool binary_search(int arr[], int search_element, int lb, int ub) {
+    while (lb <= ub) {
+        int mid = lb + (ub - lb) / 2;
+        if (arr[mid] == search_element) {
+            return true;
+        } else if (arr[mid] > search_element) {
+            ub = mid - 1;
+        } else {
+            lb = mid + 1;
+        }
+    }
+    return false;
+}
+
+/** Main function */
+int main() {
+    int n, search_element;
+    int *arr = nullptr;
+   
+
+        cout << "Enter the size of an array : " << std::endl;
+        cin >> n;
+
+        // dynamic memory allocation
+        arr = new int[n];
+
+        cout << "Enter the elements in an array : " << std::endl;
+        for (int i = 0 ; i < n ; i++) {
+            cin >> arr[i];
+        }
+
+        sort(arr, arr + n);
+
+        cout << "Enter the element to search : " << std::endl;
+        cin >> search_element;
+
+        // call to binary search function
+        bool result = binary_search(arr, search_element, 0, n);
+
+        if(result) {
+            cout << "Element is found." << std::endl;
+        } else {
+            cout << "Element is not found." << std::endl;
+        }
+        // free memory after use
+        delete[] arr;
+    
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```py
+def binarySearch(arr, l, r, x): 
+    # Check base case 
+    if r >= l: 
+        mid = l + (r - l) // 2
+
+        # If element is present at the middle itself 
+        if arr[mid] == x: 
+            return mid 
+        
+        # If element is smaller than mid, then it 
+        # can only be present in left subarray 
+        elif arr[mid] > x: 
+            return binarySearch(arr, l, mid-1, x) 
+
+        # Else the element can only be present 
+        # in right subarray 
+        else: 
+            return binarySearch(arr, mid + 1, r, x) 
+
+    else: 
+        # Element is not present in the array 
+        return -1
+
+# Driver Code 
+n=int(input("Enter the size of the array:"))
+print("Enter the elements of the array in sorted order: \n")
+a=input()
+arr=a.split()
+for i in range(0,len(arr)):
+    a[i]=int(a[i])
+    
+# Function call 
+result = binarySearch(arr, 0, len(arr)-1, x) 
+
+if result != -1: 
+    print ("Element is found") 
+else: 
+    print ("Element is not found") 
+```
+</TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.*;
+
+public class Binary_search {
+	//binary search algorithm explanation in its readme file in wiki section
+	//this can performed recursively also
+	//The average and worst case time complexity is O(log n)
+	//The space complexity is O(1).
+	static int binSearch(int[] a, int l, int h, int key) {
+		while (l<= h) {
+			int mid = (l + h) / 2;
+			if (key == a[mid])
+				return mid + 1; //index starts from zero so position has to be incremented by one.
+			else if (key < a[mid])
+				h = mid - 1;
+			else
+				l = mid + 1;
+		}
+		return -1;
+	}
+	public static void main(String[] args) {
+		//to perform binary search the array must be in sorted order
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the size of an array :");
+		int length = sc.nextInt();
+		int arr[] = new int[length];
+		System.out.print("Enter the elements in an array :");
+		for (int i = 0; i < length; i++) {
+			arr[i] = sc.nextInt();
+		}
+		// to sort the array if not sorted
+		Arrays.sort(arr);
+		System.out.print("Enter the element to search : ");
+		int value = sc.nextInt();
+
+		int index = binSearch(arr, 0, length - 1, value);
+		if (index == -1)
+			System.out.println("Element is not found");
+		else
+			System.out.println("Element is found.");
+	}
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input
+
+```
+Enter the size of an array :
+6
+Enter the elements in an array :
+45 67 23 56 12 34
+Enter the element to search :
+56
+```
+
+#### Output
+
+```
+Element is found.
+```
+
+#### Input
+
+```
+Enter the size of an array :
+6
+Enter the elements in an array :
+34 67 12 6 23 87
+Enter the element to search :
+68
+```
+
+#### Output
+
+```
+Element is not found.
+```
+
+## Complexity Analysis
+
+  - Time complexity : `O(log N)`
+  - Space complexity: `O(1)`
+
+## Credits
+
+  - [Dibyajyoti Mondal](https://github.com/djm-1) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Binary_Search.cpp)
+  - [Yash Maheshwari](https://github.com/ymaheshwari1) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/search/Binary_search.java)
+  - [Ricardo Prins](https://github.com/ricardoprins) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/binarysearch.py)
