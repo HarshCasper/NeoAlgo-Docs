@@ -1,0 +1,346 @@
+---
+title: Depth First Search
+slug: /graph-algorithms/depth-first-search
+---
+
+## Introduction
+
+Depth First Search or DFS uses stack data structure. The algorithm starts with an initial node of the Graph and goes deeper and deeper until it finds a node that has no children called the **dead node**. Then it starts backtracking from the dead node towards the most recent
+node that is yet to be completely unexplored. Here the unvisited nodes are named as **discovery edges** while the ones that lead to an already visited node are called **block edges**.
+
+## How does is work?
+
+Consider a six node graph where the number of edges are four:
+- Edge from `vertex A to vertex B`
+- Edge from `vertex B to vertex C`
+- Edge from `vertex A to vertex C`
+- Edge from `vertex D to vertex E`
+
+### The depth first traversal of the above will be as follows:
+
+|![1](https://user-images.githubusercontent.com/70858557/115229930-40f1f400-a131-11eb-9732-c7f45ac38975.PNG)|
+|---	|
+|![2](https://user-images.githubusercontent.com/70858557/115229939-45b6a800-a131-11eb-9438-4e93dc66cab4.PNG)|
+|![3](https://user-images.githubusercontent.com/70858557/115229943-46e7d500-a131-11eb-8f3f-d19cf2856d3c.PNG)| 
+|![4](https://user-images.githubusercontent.com/70858557/115229946-47806b80-a131-11eb-8265-924bcc158ddb.PNG)| 
+|![5](https://user-images.githubusercontent.com/70858557/115229947-47806b80-a131-11eb-94a6-fc80ca30fd0a.PNG)| 
+
+## Algorithm
+
+- Set status as ready state for each node in the Graph. 
+- Push the first node to the stack and set its status as waiting state.
+- Pop the top node and after processing set its status as processed state.
+- push on the stack all the neighbours of top node that are in the ready state.
+- change the status of the top node and set its status to waiting state.
+- Repeat the steps until the stack is empty.
+
+## Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="c"
+  values={[
+    { label: 'C', value: 'c', },
+    { label: 'C++' , value: 'cpp'}, 
+    { label: 'Python', value: 'py', },
+  ]
+}>
+
+<TabItem value="c">
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+
+#define MAX 20
+#define TRUE 1
+#define FALSE 0
+
+
+int g[MAX][MAX];
+int v[MAX];
+int n;
+
+void main()
+{
+    int v1, v2;
+    char ans;
+    void create();
+    void Dfs(int);
+    create();
+    getchar();
+    do
+    {
+        for (v1 = 0; v1 < n; v1++)
+        v[v1] = FALSE;
+        printf("Enter the Vertex from which you want to traverse ");
+        scanf("%d", &v1);
+        if (v1 >= MAX)
+            printf("Invalid Vertex\n");
+        else
+        {
+            printf("The Depth First Search of the Graph is\n");
+            Dfs(v1);
+        }
+        printf("\nDo you want to traverse By any other node?");
+        ans = getchar();
+    } while (ans == 'y');
+}
+void create()
+{
+    int ch, v1, v2, flag;
+    char ans = 'y';
+    getch();
+
+    for (v1 = 0; v1 < n; v1++)
+        for (v2 = 0; v2 < n; v2++)
+            g[v1][v2] = FALSE;
+    printf("\nEnter no. of nodes");
+    scanf("%d", &n);
+    do
+    {
+        scanf("%d%d", &v1, &v2);
+        if (v1 >= n || v2 >= n)
+            printf("Invalid Vertex Value\n");
+        else
+        {
+            g[v1][v2] = TRUE;
+            g[v2][v1] = TRUE;
+        }
+        printf("\n\nAdd more edges??(y/n)");
+        ans = getchar();
+    } while (ans == 'y');
+}
+void Dfs(int v1)
+{
+    int v2;
+    printf("% d",v1);
+        v[v1] = TRUE;
+    for (v2 = 0; v2 < MAX; v2++)
+        if (g[v1][v2] == TRUE && v[v2] == FALSE)
+            Dfs(v2);
+}
+```
+
+</TabItem>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+void dfs(int source, vector <int> adj[],bool visited[]){
+    // visit the source
+    cout<<source<<" ";
+    // mark visited as true
+    visited[source] = true;
+    // Traverse all its adjacents
+    for(auto s:adj[source]){
+        // Check if the adjacent is not visited
+        if(!visited[s]){
+            // Do the same for this vertex i.e. call dfs for this adjacent as source
+            // This lets you reach the depth of the graph, So you traverse down a hirearchy instead of going to all adjacents as we do in bfs
+            dfs(s,adj,visited);
+        }
+    }
+}
+int main(){
+    int n,m; cin>>n>>m;
+    vector <int> adj[n];
+    int a,b;
+    for(int i=0;i<m;i++){
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    bool visited[n];
+    memset(visited,false,sizeof(visited));
+    // Calling dfs for all non visited graphs to cover non connected compnents in graph
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+            dfs(i,adj,visited);
+        }
+    }cout<<endl;
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem value="py">
+
+```python
+class Graph:
+
+    def __init__(self):
+        # graph declared to a dictionary
+        self.graph = {}
+        # visited nodes are maintained in this set
+        self.visited = set()
+
+    def add_vertex(self, vertex):
+        # vertex is added to the graph dictionary and it's adjacency list is declared
+        self.graph[vertex] = []
+    
+    def add_edge(self, source, destination):
+        # directional edges are added in this function
+        # the edge is directional, i.e., going from source to destination
+
+        # conditional statements in case the vertex aren't present in the graph
+        if destination not in self.graph or source not in self.graph:
+            if source not in self.graph:
+                print(str(source)+' is not a vertex')    
+                # 1 is returned to avoid stopping the running of the program allows the user to re-enter values
+                return 1 
+            if destination not in self.graph:
+                print('\n'+str(destination)+' is not a vertex.')
+                # 1 is returned to avoid stopping the running of the program allows the user to re-enter values
+                return 1     
+
+        # edge is added to the graph, from source to destination
+        self.graph[source].append(destination)
+
+    def add_edge_bidirected(self, vertex1, vertex2):
+        # bidirectional graph edges are added in this function
+        # the edge is bidirectional, i.e., the edge goes both ways
+
+        # conditional statements to check if the vertices are present
+        if vertex2 not in self.graph or vertex1 not in self.graph:
+            if vertex1 not in self.graph:
+                print('\n'+str(vertex1)+' is not a vertex'+'\n')
+                # 1 is returned to avoid stopping the running of the program allows the user to re-enter values
+                return 1    
+            if destination not in self.graph:
+                print('\n'+str(vertex2)+' is not a vertex.'+'\n')
+                # 1 is returned to avoid stopping the running of the program allows the user to re-enter values
+                return 1    
+        
+        # edges are added to the adjacency list
+        self.graph[vertex1].append(vertex2)
+        self.graph[vertex2].append(vertex1)
+
+    def dfs_helper(self, start):
+        # function to assist in calling dfs
+        # also prints the final dfs traversal
+
+        # checks if the start node is in the graph
+        if start not in self.graph:
+            print('\n'+str(start)+' not in graph.'+'\n')
+            # 1 is returned to avoid stopping the running of the program,
+            # allows the user to re-enter the start vertex
+            return 1 
+        
+        # dfs implementation starts
+        print('\n'+'Implementing DFS...')
+        # the dfs traversal is appended to the list at each visit
+        self.traversal = [] 
+        self.dfs(start)
+
+        traversal_length = len(self.traversal)
+        # prints the dfs implementation neatly
+        for i in range(traversal_length):
+            if i == (traversal_length-1):
+                print(str(self.traversal[i]))
+            else:
+                print(str(self.traversal[i])+' -> ',end="")
+            
+    def dfs(self, node):
+        # dfs function
+        # checks if the node was already visited
+        if node not in self.visited:     
+        # if the node wasn't visited, it's added to the traversal       
+            self.traversal.append(node)         
+            self.visited.add(node)          
+             # the node is marked visited   
+            for neighbour in self.graph[node]:  
+            # neighbouring vertices are explored one after the other     
+                self.dfs(neighbour)
+        
+# Code Implementation starts here
+if __name__ == "__main__":
+    # To Implement Depth-First Search for Bi-Directional Graphs,
+    # replace G.add_edge in lines 99 and 105 with G.add_edge_bidirectional
+
+    # Graph instance is created
+    G = Graph()
+
+    # Number of vertices in the graph is read from user input
+    number_of_vertices = int(input('How many vertices are in the graph? '))
+
+    # vertices are added to the graph
+    for v in range(number_of_vertices):
+        G.add_vertex(str(input("Enter Vertex: ")))
+
+    # Number of edges in the graph read from user input
+    number_of_edges = int(input('\n'+'How many edges are in the Graph? '))
+
+    # edges are added to the graph
+    for e in range(number_of_edges):
+        source, destination = input("Enter Source and Destination vertices separated by a space: ").split()
+        val = G.add_edge(source, destination)
+
+        # If the incorrecct vertex was given, the values are taken again for this iteration
+        # This is added to not skip over a count of the edge
+        while val == 1:
+            source, destination = input("Enter Source and Destination vertices separated by a space: ").split()
+            val = G.add_edge(source, destination)
+
+    # start node for the dfs traversal is taken from the user
+    start_node = input('\n'+"Enter the Start Node for traversal: ")
+
+    # dfs is implemented
+    return_value = G.dfs_helper(start_node)
+
+    # If the user entered a non-existent vertex as start node, the following is implemented
+    # 1 is returned if the vertex is non existent
+    while (return_value == 1):
+        start_node = input('\n'+"Enter the Start Node for traversal: ")
+        return_value = G.dfs_helper(start_node)
+
+```
+</TabItem>
+</Tabs>
+
+## Sample Input & Output
+
+#### Sample Input
+
+```
+Enter no. of nodes 4
+0 1
+Add more edges??(y/n)y
+0 2
+Add more edges??(y/n)y
+1 3
+Add more edges??(y/n)y
+2 3
+Add more edges??(y/n)
+Enter the Vertex from which you want to traverse : 1
+```
+#### Sample Output
+
+```
+The Depth First Search of the Graph is
+1
+0
+2
+3
+```
+
+## Complexity Analysis
+
+Here V is the number of vertices and E is the number of edges
+
+- **Time Complexity:**  `O(V+E)`
+- **Space Complexity:** `O(V)`
+
+## Credits
+
+- [Muthu Annamalai Venkatachalam](https://github.com/muthuannamalai12) for the [C Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/graphs/DFS.c)
+- [Dhruv Panwar](https://github.com/dhruvinfo28) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/graphs/dfs_of_a_graph.cpp)
+- [Soumya Vemuri](https://github.com/soumyavemuri) [Ricardo Prins](https://github.com/ricardoprins) and [A N U S H](https://github.com/anushkrishnav) for [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/dfs.py)
