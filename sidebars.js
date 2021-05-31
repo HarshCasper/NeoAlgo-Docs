@@ -85,6 +85,9 @@ module.exports = {
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
                 "data-structures/middle-element-of-LL",
+                "data-structures/ceil_in_bst",
+                "data-structures/height_BST",
+                "data-structures/floor_in_bst",
                 "data-structures/floor_in_bst"
                 "data-structures/invert-binary-tree",
             ],
@@ -180,7 +183,6 @@ module.exports = {
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
 		            "mathematics/product-of-count-of-bits-of-each-elements",
-                "mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
@@ -194,7 +196,7 @@ module.exports = {
 		            "mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
-                "mathematics/perfect-square"
+                "mathematics/perfect-square",
                 "mathematics/sieve-of-eratosthenes",
                 "mathematics/perfect-cube"
 
