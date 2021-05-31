@@ -1,0 +1,128 @@
+---
+title: Postfix to Prefix Conversion
+slug: /data-structures/postfix-to-prefix
+---
+
+## Introduction
+
+A postfix  expression is of the form operand1 operand2 operator, whereas a prefix expression is of the form operand operator1 operator2.Converting a postfix expression to prefix expression is one of the many applications of stacks due to its 'Last in First Out' policy. 
+
+## Algorithm
+
+- Scan the postfix expression from left to right.
+- If the symbol is an operand, push it to the stack.
+- If the symbol is an operator, pop two operands from the stack. 
+- Create a string by concatenating the two operands and the operator before them. 
+- Push the resultant string back to stack.
+
+## Explanation
+
+Let the string be A+B. We aim to convert this string into a prefix string by scanning the string sequentially. Let us visualize how the stack works in this case.
+
+<img src="https://i.imgur.com/jPjsyXm.png" width="700" height="500" /><br/><br/>
+
+## Examples
+
+#### Example 1
+
+```
+Let the string be AB+.
+A is pushes to the stack.
+B is pushed to the stack.
++ is an operator.
+A and B are popped back and expression +AB is printed.
+```
+
+#### Example 2
+
+```
+Let the string be AB+C+.
+A and B are pushed to stack.
++ is an operator, so A and B are popped out and the string +AB is pushed to stack.
+C is pushed to stack.
++ is operator, so the two elements of the stack are popped out and the string ++ABC is pushed to stack.
+```
+
+## Code
+
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', }
+  ]
+}>
+
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void postfixToPrefix(string s)
+{
+    stack<string> str;
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]=='/' || s[i]=='^')
+        {
+            string operand1=str.top();
+            str.pop();
+            string operand2=str.top();
+            str.pop();
+            //Creating the string by concatenating the operator and the operands
+            string prefix_part=s[i]+operand2+operand1;
+            str.push(prefix_part);
+        }
+        else
+        {
+            str.push(string(1,s[i]));
+        }
+    }
+    while(!str.empty())
+    {
+        cout<<str.top();
+        str.pop();
+    }
+}
+
+//Driver code
+int main()
+{
+    string s;
+    cout<<"Enter the postfix expression:\n";
+    cin>>s;
+    cout<<"Prefix expression:\n";
+    postfixToPrefix(s);
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Input
+
+```
+Enter the postfix expression:
+ABC/-A
+```
+
+#### Output
+
+```
+Prefix Expression:
+A-A/BC
+```
+
+## Complexity Analysis
+
+- Space Complexity : `O(n)`
+- Time Comlexity : `O(n)`
+
+## Credits
+
+- [Sayani Mallick](https://github.com/SAY-droid427) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/stack/postfix_to_prefix.cpp)

@@ -36,6 +36,7 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java',},
   ]
 }>
 <TabItem value="cpp">
@@ -108,6 +109,45 @@ for d in data:
 ```
 </TabItem>
 
+<TabItem value="java">
+
+```java
+import java.util.*;
+ class SelectionSort
+{
+	public static void main(String[] args)
+    {
+		   int indexI,arrayLength,indexJ,temp=0,minElementIndex=0;
+		   Scanner sc=new Scanner(System.in);
+		   System.out.println("Enter the size of array");
+		   arrayLength=sc.nextInt();
+		   int array[]=new int[arrayLength];
+		   System.out.println("Enter Elements of array: ");
+		   for(indexI=0;indexI<arrayLength;indexI++)
+		   array[indexI]=sc.nextInt();
+         System.out.println("Enter elements of array: ");
+		   for(indexI=0;indexI<arrayLength;indexI++)
+		   {   
+		       minElementIndex=indexI;
+		       for(indexJ=indexI+1;indexJ<=arrayLength-1;indexJ++)
+		       {
+		           if(array[minElementIndex]>array[indexJ])
+		           minElementIndex=indexJ;
+		         }
+		           
+		           temp=array[indexI];
+		           array[indexI]=array[minElementIndex];
+		           array[minElementIndex]=temp;
+		         }
+		     
+		     for(indexI=0;indexI<arrayLength;indexI++)
+		     System.out.println(array[indexI]);
+		   }
+}
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Sample Input and Output
@@ -141,3 +181,7 @@ Enter the elements of array:
 - Space Complexity: O (1)
 
 ## Credits
+
+- [Tushar Khandelwal](https://github.com/tk315) for the C++ and Java implementation.
+- [Parjanya Aditya Shukla](https://github.com/parjanyaacoder) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/SelectionSort.java)
+

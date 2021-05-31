@@ -1,0 +1,280 @@
+---
+title: Fractional Knapsack
+slug: /graph-algorithms/fractional-knapsack
+---
+
+## Introduction
+
+Fractional Knapsack is a `greedy` approach to optimize the value of materials which fit in a knapsack of fixed volume.
+
+## Explanation
+
+* Compute the value per ```Profit upon Weight(Vi/Wi)``` for each item.
+* As a Greedy Strategy, we take the item with the highest ```Profit upon Weight``` ratio.
+* If the supply of that element is exhausted and we can still carry more, we take as much as possible of the element with the next ```Profit upon Weight``` ratio.
+
+## Quick Example :
+
+In this example we shall find out the maximum profit of the items.
+Consider, number of items as 5, and Max Weight as 100.
+
+Item | A | B | C | D | E |
+--- | --- | --- | --- |--- |---
+Weight | 10 | 20 | 30 | 40 | 50 |
+Profit | 20 | 30 | 66 | 40 | 60 |
+
+**First approach: Taking Weights into consideration**
+
+In terms of weights the items with highest weights are `D`, `C`, `B`, `A`. The total profit is `156`(40+66+30+20).
+
+**Second approach: Taking Profit into consideration**
+
+In terms of profit the items with highest profits are ```50% of D```, `E`, `C`. Here if ```100% of D``` is taken then the total weight will exceed `100`. Now since ```50% of D``` is taken so the profit of `D` will also be `50%`. The total profit is `146`(20+60+66).
+
+**Third approach: Taking Profit/Weight(Knapsack approach) into consideration**
+
+Item | A | B | C | D | E |
+--- | --- | --- | --- |--- |---
+Weight | 10 | 20 | 30 | 40 | 50 |
+Profit | 20 | 30 | 66 | 40 | 60 |
+Profit/Weight | 2.0 | 1.5 | 2.2 | 1.1 | 1.2 |
+
+In terms of profit/weight the items with highest profit/weight are ```80% of E```, `B`, `A`, 'C'. Here if ```100% of E``` is taken then the total weight will exceed `100`. Now since ```80% of E``` is taken so the profit of `E` will also be `80%`. The total profit is `164`(48+30+20+66).
+
+Since the profit obtained is greater than both the above approaches therefore, we can rightly use ```Fractional Knapsack```.
+
+## Algorithm
+
+- Find the `profit/weight` ratio for each given item.
+- Sort the items based on the ratio of `profit/weight`.
+- Then start picking up the item with the highest `ratio` until that item is completely taken up. After that we will move to the next highest.
+
+## Code 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+// C++ Program for Prim's Algorithm
+#include <iostream>
+using namespace std;
+// A function to sort the arrays according to profit/weight
+void sort_arr(float ratio[], float profit[], float weight[], int n) 
+{
+    float temp;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (ratio[j] < ratio[j + 1])
+            {
+                temp = ratio[j];
+                ratio[j] = ratio[j + 1];
+                ratio[j + 1] = temp;
+
+                temp = weight[j];
+                weight[j] = weight[j + 1];
+                weight[j + 1] = temp;
+
+                temp = profit[j];
+                profit[j] = profit[j + 1];
+                profit[j + 1] = temp;
+            }
+}
+
+//function to calculate max value in knapsack.
+int knapsack_fraction(float weight[], float ratio[], float profit[], int n, int capacity) 
+{
+    int final = 0;
+    int i;
+    //iterating over all items
+    for (i = 0; i < n; i++) 
+    {
+        //checking if current weight is greater tahn break i.e this weight can't be put into knapsack.
+        if (weight[i] > capacity) 
+            break;
+        //else add profir to final varibale i.e max profit and update capacity accordingly
+        else 
+        {
+            final = final + profit[i];
+            capacity = capacity - weight[i];
+        }
+    }
+    //for fraction amount of item
+    if (i < n) 
+        final = final + (ratio[i] * capacity);
+    return final;
+}
+
+int main()
+{
+    float weight[20], profit[20], ratio[20], final, temp, capacity, amount;
+    int n, i, j;
+    cout << "Enter number of items :";
+    cin >> n;
+    //accepting the profit and weight values for given value of n.
+    for (i = 0; i < n; i++) 
+    {
+        cout << "Enter Profit and weight for item" << i + 1;
+        cin >> profit[i] >> weight[i];
+    }
+    cout << "Enter the capacity of knapsack :" << endl;
+    cin >> capacity;
+    //making the new array and storing ratio (profit/weight)
+    for (i = 0; i < n; i++)
+        ratio[i] = profit[i] / weight[i];
+    //first sort the array acc to Profit/weight
+    sort_arr(ratio, profit, weight, n); 
+    //call the function to calculate max profit.
+    int ans = knapsack_fraction(weight, ratio, profit, n, capacity); 
+    cout << "The Maximum Profit is : " << ans << endl;
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+// Java Program for Fractional Knapsack
+import java.util.*;
+
+public class FractionalKnapsack {
+
+    /* Pair class used to store the weight, value, and ratio of value:weight of a particular item */
+    static class Pair{
+        int wt;
+        int val;
+        double ratio;
+    }
+    
+    /* Used to sort all items based on their value:weight ratio in descending order */
+    static class SortByRatio implements Comparator<Pair>{
+        public int compare(Pair a, Pair b){
+            if(b.ratio >= a.ratio){
+                return 1;
+            }else{
+                return -1;
+            }
+        }
+    }
+
+    /* Function created to get maximum Profit */
+    public static int getMaxProfit(int[] weights, int[] values, int capacity) {
+
+        /* Creating a pairs array which stores all the items according to their weight,value and ratio */
+        Pair pairs[] = new Pair[weights.length];
+
+        /* Adding items to the pairs array */
+        for(int i=0; i<weights.length; i++){
+
+            Pair p = new Pair();
+            p.val = values[i];
+            p.wt = weights[i];
+            double wt = weights[i];
+            double val = values[i];
+            
+            p.ratio = val/wt;       
+            pairs[i] = p; 
+        }
+
+        /* Sorting the pairs array based on their ratio */
+        Arrays.sort(pairs, new SortByRatio());
+
+        /* Initializing an ans variable */
+        int ans = 0;
+
+        /* Traversing through all items in the array */
+        for(Pair p : pairs){
+
+            /* Including a particular item, if we can accommodate it */
+            if(p.wt <= capacity){
+                ans += p.val;
+                capacity-=p.wt;
+            }
+            /* Taking the fractional value of the item if we cannot accommodate it */
+            else{
+                ans += (p.ratio * capacity);
+
+                /* Breaking from loop as we reached our peak capacity */
+                break;
+            }
+        }
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter number of items: ");
+        int items = input.nextInt();
+        
+        System.out.println("Enter Profit and weight for item: ");
+        int weights[] = new int[items];
+        int values[] = new int[items];
+        System.out.println("Enter the capacity of knapsack: ");
+        int capacity = 0;
+
+        for(int i=0; i<items; i++){
+            weights[i] = input.nextInt();
+        }
+
+        for(int i=0; i<items; i++){
+            values[i] = input.nextInt();
+        }
+
+        capacity = input.nextInt();
+
+        input.close();
+
+        System.out.println("The Maximum Profit is : " + getMaxProfit(weights, values, capacity));
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+```
+Enter number of elements:
+5
+
+Enter Profit and weight for item:
+5 2
+3 1
+6 3
+8 1
+10 6
+
+Enter the capacity of knapsack: 
+15
+```
+
+#### Output :
+
+```
+The Maximum Profit is : 
+32
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+- Space Complexity: `O(n)`
+
+
+
+## Credits
+
+- [Divyang Bagla](https://github.com/bagladivyang03) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/other/knapsackfraction.cpp)
+- [Coder_Srinivas](https://github.com/Coder-Srinivas) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/Greedy_Algorithms/FractionalKnapsack.java)
