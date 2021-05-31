@@ -21,16 +21,18 @@ This can be done either by a  linear and simpler approach or by mathematical app
 
 Consider two arrays:
 
-A | -5 | 3 | 6 | 12 | 15 |
-B | -12 | -10 | -6 | -3 | 4 | 10 |
+A | -5 | 3 | 6 |
+B | -12 | 4 | 10 |
 
 * Now in a third array merge the `A` and `B`.
 
-C | -5 | 3 | 6 | 12 | 15 | -12 | -10 | -6 | -3 | 4 | 10 |
+C | -5 | 3 | 6 | -12 | 4 | 10 |
 
 * Now sort C
 
-C | -12 | -10 | -6 | -5 | -3 | 3 | 4 | 6 | 10 | 12 | 15 |
+C | -12 | -5 | 3 | 4 | 6 | 10 |
+
+![ab578a34-7050-494e-996a-ddafd86712c1](https://user-images.githubusercontent.com/60662775/120203106-f8a41680-c244-11eb-8fc2-f7f7d64141c9.jpg)
 
 * Since the length of `C` is 11 which is odd therefore we will use (m+n)/2 to find the median (where `m` and `n` are lengths of `A` and `B` respectively).
 * `m` is `5` and `n` is `6`
@@ -62,11 +64,11 @@ import TabItem from '@theme/TabItem';
 #include<bits/stdc++.h>
 using namespace std;
 
-/* Function to find Median of two Sorted array of different size */
+// Function to find Median of two Sorted array of different size 
 int solve()
 {
-    /* Input n1 = size of array 1
-       Input n2 = size of array 2 */
+    // Input n1 = size of array 1
+    //   Input n2 = size of array 2 
     int n1, n2;
     cout << "Enter length of two arrays: ";
     cin >> n1 >> n2;
@@ -74,40 +76,40 @@ int solve()
     cout << "Enter elements of two arrays: ";
     int arr1[n1], arr2[n2];
 
-    /* Input values in array 1 */
+    // Input values in array 1 
     for (int i = 0; i < n1; ++i)
     {
         cin >> arr1[i];
     }
 
-    /* Input values in array 2 */
+    // Input values in array 2 
     for (int i = 0; i < n2; ++i)
     {
         cin >> arr2[i];
     }
 
-    /* Create a vector */
+    // Create a vector 
     vector<int> v;
 
-    /* Push array 1 element in vector */
+    // Push array 1 element in vector 
     for (int i = 0; i < n1; ++i)
     {
         v.push_back(arr1[i]);
     }
 
-    /* Push array 2 element in vector */
+    // Push array 2 element in vector 
     for (int i = 0; i < n2; ++i)
     {
         v.push_back(arr2[i]);
     }
 
-    /* Sort the given vector */
+    // Sort the given vector 
     sort(v.begin(), v.end());
     
-    /* Find medina using this formula */
+    // Find medina using this formula 
     int mid = v[v.size() / 2];
     
-    /* Return Calculated median */
+    // Return Calculated median
     return mid;
 }
 
