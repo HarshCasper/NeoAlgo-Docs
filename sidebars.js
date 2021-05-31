@@ -101,15 +101,10 @@ module.exports = {
                 "dynamic-programming/unbounded-knapsack",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence",
                 "dynamic-programming/catalan-number",
+                "dynamic-programming/edit-distance",
               	"dynamic-programming/cutting-a-rod",
                 "dynamic-programming/equal-sum-partition",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence",
-                "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence",
 		            "dynamic-programming/coin-change-problem",
                 "dynamic-programming/painting-fence",
             ],
@@ -226,11 +221,7 @@ module.exports = {
 
                 "graph-algorithms/prims-algorithm",
                 "graph-algorithms/fractional-knapsack", 
-
-		"graph-algorithms/topological-sorting",
-
-
-
+		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm", 
 		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm",
@@ -259,6 +250,7 @@ module.exports = {
                 "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
                 "competitive-programming/next-greatest-left",
+                "competitive-programming/next-smallest-left",
 	              "competitive-programming/bigmod-algorithm",
                 "competitive-programming/balanced-brackets",
 		            "competitive-programming/bigmod-algorithm",
