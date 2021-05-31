@@ -68,6 +68,8 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
+  	{ label: 'Java', value: 'java', },
+    { label: 'Dart', value: 'dart', },
   ]
 }>
 <TabItem value="cpp">
@@ -277,6 +279,88 @@ print()
 ```
 
 </TabItem>
+
+<TabItem value="dart">
+
+```dart
+
+/*
+COCKTAIL SORT IN DART
+Cocktail Sort is a variation of Bubble sort. 
+Cocktail Sort traverses through a given array in both directions alternatively,
+in a similar fashion of Bubble sort where comparision is performed between 
+consecutive elements. 
+*/
+
+import 'dart:io';
+
+CocktailSort(var arr, int n) {
+  bool flag = true;
+  int first = 0;
+  int last = n - 1;
+
+  while (flag) {
+    // resetting the flag
+    flag = false;
+
+    // loop from left to right and performing comparisons 
+    // through the iterations to check for greater values
+    for (int i = first; i < last; ++i) {
+      if (arr[i] > arr[i + 1]) {
+        int temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+        flag = true;
+      }
+    }
+
+    // if no swapping occured, the array is sorted
+    if (!flag) break;
+
+    // Resetting the flag
+    flag = false;
+    --last;
+
+    // loop from right to left and performing comparisons 
+    // through the iterations to check for greater values
+    for (int i = last - 1; i >= first; --i) {
+      if (arr[i] > arr[i + 1]) {
+        int temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+        flag = true;
+      }
+    }
+
+    ++first;
+  }
+}
+
+main() {
+  // Driver code to generate the required input/output
+  var array = [];
+
+  var n, ele;
+  print('Enter the number of Elements: ');
+  n = stdin.readLineSync();
+  n = int.parse(n);
+
+  print('Enter the numbers:');
+  for (int i = 1; i <= n; i++) {
+    ele = stdin.readLineSync();
+    ele = int.parse(ele);
+    array.add(ele);
+  }
+
+  print('Sorted array is: );
+  CocktailSort(array, n);
+  print(array);
+}
+
+
+```
+
+</TabItem>
 </Tabs>
 
 ## Sample Input and Output
@@ -306,3 +390,4 @@ Sorted array is: 1 2 3 6 8 10
   - [Sushobhan Pramanik](https://github.com/sahebsunny) for the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/sort/Cocktail_shaker_sort.cpp)
   - [Rutuja Dhanawade](https://github.com/rutujadhanawade) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/cocktail_sort.py)
   - [Ritvij Kumar Sharma](https://github.com/ritvij14) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/CocktailSort.java)
+  - [Rohini Rao](https://github.com/RohiniRG) for the [Dart Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Dart/sort/Cocktail_Sort.dart)

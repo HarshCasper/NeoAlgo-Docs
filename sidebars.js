@@ -81,13 +81,14 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
+                "data-structures/swap-nodes-in-LL",
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
                 "data-structures/middle-element-of-LL",
-                "data-structures/floor_in_bst"
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
                 "data-structures/floor_in_bst",
+                "data-structures/floor_in_bst"
                 "data-structures/invert-binary-tree",
             ],
         },
@@ -182,7 +183,6 @@ module.exports = {
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
 		            "mathematics/product-of-count-of-bits-of-each-elements",
-                "mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
@@ -196,9 +196,9 @@ module.exports = {
 		            "mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
-                "mathematics/perfect-square"
+                "mathematics/perfect-square",
                 "mathematics/sieve-of-eratosthenes",
-                "mathematics/perfect-cube"
+                "mathematics/perfect-cube",
 
             ],
         },
@@ -218,11 +218,24 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/depth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+
+
+
+
+                "graph-algorithms/prims-algorithm",
+                "graph-algorithms/fractional-knapsack", 
+
+		"graph-algorithms/topological-sorting",
+
+
+
                 "graph-algorithms/prims-algorithm", 
 		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm",
 		            "graph-algorithms/topological-sorting",
+
 	             	"graph-algorithms/topological-sorting", 
                 "graph-algorithms/topological-sorting",
             ],
@@ -243,9 +256,12 @@ module.exports = {
                 "competitive-programming/first-occurence-1",
                 "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
+                "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
                 "competitive-programming/next-greatest-left",
 	              "competitive-programming/bigmod-algorithm",
+                "competitive-programming/balanced-brackets",
+		            "competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",

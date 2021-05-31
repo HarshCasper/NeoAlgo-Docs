@@ -49,11 +49,76 @@ import TabItem from '@theme/TabItem';
 <Tabs
   defaultValue="cpp"
   values={[
+    { label: 'C', value: 'c', },  
     { label: 'C++', value: 'cpp', },
     { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
   ]
 }>
+<TabItem value="c">
+
+```c
+/*
+Counting sort is an algorithm for sorting a collection of objects according to keys that are small integers 
+i.e; it is an integer sorting algorithm. It operates by counting the number of objects that have each distinct 
+key value, and using arithmetic on those counts to determine the positions of each key value in the output sequence.
+*/
+
+#include <stdio.h>  
+
+// function for perfroming sorting
+int countingSort(int A[], int k, int n){
+ // base variables   
+ int i, j;
+ // for storing the data 
+ int B[15], C[100];
+ for (i = 0; i <= k; i++){
+   C[i] = 0;
+ }
+
+ for (j = 1; j <= n; j++){
+   C[A[j]] = C[A[j]] + 1;
+ }
+
+ for (i = 1; i <= k; i++){
+   C[i] = C[i] + C[i-1];
+ }
+
+ // iterating
+ for (j = n; j >= 1; j--){
+   B[C[A[j]]] = A[j];
+   C[A[j]] = C[A[j]] - 1;
+ }
+ printf("The Sorted array is : ");
+ // printing the sorted array
+ for (i = 1; i <= n; i++){
+   printf("%d ", B[i]);
+ }
+ return 0;
+}
+
+// main function
+int main(){
+ int n, k = 0, A[15], i;
+ printf("Enter the number of input : ");
+ // input number
+ scanf("%d", &n);
+ printf("\nEnter the elements to be sorted :\n");
+ for (i = 1; i <= n; i++){
+   scanf("%d", &A[i]);
+   if (A[i] > k) {
+      k = A[i]; }   
+ }
+
+ countingSort(A, k, n);
+ printf("\n");
+ return 0;
+}
+
+
+```
+
+</TabItem>
 <TabItem value="cpp">
 
 ```cpp
@@ -364,3 +429,5 @@ Here `n` is size of an array , and `k` is element range of the array.
 * [Ananya9878](https://github.com/Ananya9878) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/sort/Counting_Sort.py)
 
 * [Samir Rajesh Prajapati](https://github.com/samir-0711) for the [Java implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/sort/CountingSort.java)
+
+* [Japneet Kaur Bhatia](https://github.com/japneetbhatia) for the [C implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C/sort/countingSort.c)

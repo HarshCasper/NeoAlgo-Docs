@@ -53,6 +53,7 @@ import TabItem from "@theme/TabItem";
   values={[
     { label: 'C++', value: 'cpp', },
     { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java' },
   ]
 }>
 
@@ -100,38 +101,14 @@ int main()
   std::cout << "Enter the size of array: ";
   std::cin >> num;
   int arr[num]; //Creating array of the size num
-  std::cout << "Enter elements: " << std::endl;
+  std::cout << "Enter elements in sorted order: " << std::endl;
 
   for (int i = 0; i < num; i++) //Enter the elements in the array
   {
     std::cin >> arr[i];
   }
 
-  //Sorting our array
-
   int n = sizeof(arr) / sizeof(arr[0]);
-
-
-  cout << "The elements entered are:" << std::endl;
-  cout << "[";
-  for (int i = 0; i < n; ++i) {
-    cout << arr[i];
-    if(i < n-1)
-      cout << ", ";
-  }
-  cout << "]";
-
-
-  sort(arr, arr + n);
-
-  cout << "\nThe sorted array is: " << std::endl;
-  cout << "[";
-  for (int i = 0; i < n; ++i) {
-    cout << arr[i];
-    if(i < n-1)
-      cout << ", ";
-  }
-  cout << "]";
 
   //Entering the searching element
   std::cout << "\n\nEnter the element to be searched: " << std::endl;
@@ -199,17 +176,10 @@ def main():
 
     # Entering the elements in the array
 
-    print ('Enter elements :')
+    print ('Enter elements in sorted order: ')
     for index in range(0, size):
         ele = int(input())
         arr.append(ele)
-    print ('The elements entered are:\n', arr, '\n')
-
-    # Sorting our array
-
-    print ('The sorted array is: ')
-    arr.sort()
-    print (arr, '\n')
 
     # Entering the searching element
 
@@ -229,6 +199,58 @@ main()
 ```
 
 </TabItem>
+
+<TabItem value="java">
+
+```java
+import java.util.Scanner;
+// JAVA Implementation of recursive Interpolation Search
+
+public class InterpolationSearch {
+  int findEleByInterSearching(int arr[], int low, int high, int key) {
+    if (high >= low && key >= arr[low] && key <= arr[high]) {
+      //if value of high and low ae same
+      if (low == high) {
+        // value of key compared with element at index low
+        if (arr[low] == key) return low;
+        else return - 1;
+      }
+      //determining the position of the key element in an array
+      int pos = low + (((high - low) / (arr[high] - arr[low])) * (key - arr[low]));
+      // value of key compared with element at index low
+      if (arr[pos] == key) return pos;
+      /* If element key  is smaller than pos value
+                    then it can only be present in left subarray */
+      if (arr[pos] > key) return findEleByInterSearching(arr, low, pos - 1, key);
+      /* Else the element key  can only be present 
+                   in right subarray */
+      if (arr[pos] < key) return findEleByInterSearching(arr, pos + 1, high, key);
+    }
+    return - 1;
+  }
+  // Driver method to test above 
+  public static void main(String args[]) {
+    InterpolationSearch s = new InterpolationSearch();
+    Scanner sc = new Scanner(System. in );
+    System.out.println("Enter the size of array: ");
+    int size = sc.nextInt();
+    sc.nextLine();
+    int sortedarr[] = new int[size];
+    System.out.println("Enter elements in sorted order: ");
+    for (int index = 0; index < size; index++) {
+      sortedarr[index] = sc.nextInt();
+    }
+    System.out.println("Enter the element to be searched:");
+    int searchKey = sc.nextInt();
+    int position = s.findEleByInterSearching(sortedarr, 0, size - 1, searchKey);
+    System.out.println("Output :");
+    if (position == -1) System.out.println("Element not found");
+    else System.out.println("Element found at index " + position);
+  }
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## Sample I/O
@@ -236,26 +258,15 @@ main()
 ### Sample Input
 
 ```
-5
-1
-5
-7
-2
-9
-7
+Enter the size of array: 5
+Enter elements in sorted order: 
+1 2 5 7 9
+Enter element to be searched: 7
 ```
 
 ### Sample Output
 
 ```
-Enter the size of array : 5
-Enter elements :
-The elements entered are:
-[1, 5, 7, 2, 9]
-The sorted array is:
-[1, 2, 5, 7, 9]
-
-Enter the element to be searched: 7
 Element found at index 3
 ```
 
@@ -274,3 +285,4 @@ Element found at index 3
 ## Credits
 
 - [Sharvari Raut](https://github.com/sharur7) for the [Python Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/search/Interpolation_Search.py) and the [C++ Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/search/Interpolation_Search.cpp)
+- [Nutan](https://github.com/nutanaarohi123) for the [Java Implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Java/search/Interpolation_search.java)

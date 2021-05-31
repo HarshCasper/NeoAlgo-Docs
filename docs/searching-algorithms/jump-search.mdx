@@ -47,12 +47,78 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-  defaultValue="java"
+  defaultValue="cpp"
   values={[
+    { label: 'C++', value: 'cpp', },  
     { label: 'Java', value: 'java', },
     { label: 'Python', value: 'py', },
   ]
 }>
+<TabItem value="cpp">
+
+```cpp
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+
+int jump_search(int a[], int n, int find)
+{
+    int step = sqrt(n);
+    int pre_step = 0;
+    while (a[min(step, n) - 1]  < find) 
+    { 
+        pre_step = step; 
+        step += sqrt(n); 
+        if (pre_step >= n)
+        {
+            return -1;	
+        } 
+    }
+    while(a[pre_step] < find)
+    {
+        pre_step++;
+        if(pre_step == min(step,n))
+        {
+            return -1;
+        }
+    }
+    if(a[pre_step] == find)
+    {
+        return pre_step;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int main()
+{
+    int n,search;
+    cout << "Enter size of the array: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the array in sorted order: ";
+    for(int i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+    cout << "Enter the element to be searched for: ";
+    cin >> search;
+    int result = jump_search(arr,n,search);
+    if(result == -1)
+    {
+        cout << search << " was not found!" << endl;
+    }
+    else
+    {
+        cout << search << " was found at index " << result+1 << endl;
+    }
+    return 0;
+}
+```
+</TabItem>
 <TabItem value="java">
 
 ```java
