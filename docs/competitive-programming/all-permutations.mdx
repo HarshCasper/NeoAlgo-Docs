@@ -1,0 +1,138 @@
+---
+title: All Permutations of a string
+slug: /competitive-programming/all-permutations
+---
+
+## Introduction
+
+You are given a string containing numbers, the task is to print all the permutations of the entered string. 
+
+## Explanation 
+
+First we can input the string from the user,
+At first we will include the first character of the string and then recursively call the function to include the permutations starting with it.
+Likewise we will visit the second character, make recursive calls to include the permutations starting with it.
+And at last when all the characters are visited, we get all possible permutations.
+
+Let's have few examples: 
+```
+Input 1:
+abc
+Output 1:
+abc
+acb
+bac
+bca
+cab
+cba
+Input 2:
+def
+Output 2:
+def
+dfe
+edf
+efd
+fde
+fed
+```
+
+## Algorithm
+
+    - If the input string reaches its end
+	- Print the string
+
+    - make a for loop of 'j' from 0 to end of the string
+	- swap the elements in[i] and in[j]
+	- Make a recursive call furthur to incorporate furthur permutations
+	- Backtrack by swapping again
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void permute(string in, int i)
+{
+    if(in[i]=='\0')
+    {
+      cout<<in<<endl; 
+      return;
+    }
+
+    for(int j=i;in[j]!='\0';j++)
+    {
+       swap(in[i],in[j]);
+       permute(in,i+1);
+    }
+}
+
+int main()
+{
+   string in;
+   cout<<"Enter string: "<<endl;
+   cin>>in;
+   cout<<"all permutations are: "<<endl;
+   permute(in,0);
+   return 0;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# All permutations
+def permutations(word):
+    if len(word)==1:
+        return [word]
+    perms=permutations(word[1:])
+    char=word[0]
+    result=[]
+    for perm in perms:
+        for i in range(len(perm)+1):
+            result.append(perm[:i]+char+perm[i:])
+    return result
+
+word=input("Enter string: ")
+print(permutations(word))
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+abc
+```
+
+#### Output :
+
+```
+abc
+acb
+bac
+bca
+cab
+cba
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
