@@ -218,6 +218,7 @@ module.exports = {
             items: [
                 "graph-algorithms/graph-algorithms",
                 "graph-algorithms/breadth-first-search",
+                "graph-algorithms/depth-first-search",
                 "graph-algorithms/kruskals-algorithm",
                 "graph-algorithms/prims-algorithm", 
 		            "graph-algorithms/topological-sorting",
