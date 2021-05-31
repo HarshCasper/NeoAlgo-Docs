@@ -1,0 +1,133 @@
+---
+title: Decimal to Binary Conversion
+slug: /mathematics/decimal-to-binary
+---
+
+## Introduction
+
+Decimal numbers are numbers having base 10 and binary numbers are numbers having base 2.
+It is possible to convert the numbers from one number system into another.
+In this article, we will see how to convert a positive decimal number into its binary equivalent.
+
+## Explanation
+
+We need to keep storing the remainder in a vector (list in case of Python) while dividing the number by 2 and print the stored values in reverse order.
+This method is known as `double dabble method`.
+
+Let's have one example:
+```
+Let 8 be our decimal number.
+Using the double dabble method,
+
+Division    Remainder    List
+8 / 2           0          0
+4 / 2           0          0, 0
+2 / 2           0          0, 0, 0
+1 / 2           1          0, 0, 0, 1
+
+Binary number : 1000
+```
+
+## Algorithm
+
+- Check if the given decimal is 0. If it is, then its binary equivalent is also 0, hence print it.
+- Create a vector of integers named _binary_.
+- While the given decimal is not equal to 0,
+    - Obtain the remainder i.e. `remainder = decimal % 2`
+    - Add remainder to the vector.
+    - Divide the number by 2 i.e. `decimal = decimal / 2`
+- Reverse the vector and print it.
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+//function to convert a positive decimal number into its binary equivalent
+long long DecimalToBinary(int decimal) {
+	long long binaryNumber = 0;
+	int remainder, i = 1;
+
+	while (decimal != 0) {
+		remainder = decimal % 2;
+		decimal /= 2;
+		binaryNumber += remainder * i;
+		i *= 10;
+	}
+	return binaryNumber;
+}
+
+int main(){
+	int decimal;
+	cout << "Enter a decimal number : ";
+	cin >> decimal;
+	cout << "Binary equivalent : "<< DecimalToBinary(decimal);
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+#Function to convert a positive decimal number into its binary equivalent
+def DecimalToBinary(decimal):
+    if decimal == 0:
+        print('0000')
+        return
+    else:
+        binary = []
+        while decimal != 0:
+            rem = decimal % 2
+            binary.append(rem)
+            decimal = decimal // 2
+
+    binary.reverse()
+    for bit in binary:
+        print(bit, end="")
+
+#executable code
+decimal = int(input("Enter a decimal number to be converted to binary : "))
+print("Binary number : ")
+DecimalToBinary(decimal)
+```
+
+</TabItem>
+</Tabs>
+
+## Sample Input and Output
+
+### Input:
+
+```
+Enter a decimal number to be converted into binary: 13
+```
+
+### Output:
+
+```
+Binary number:
+1101
+```
+
+## Complexity Analysis
+
+- Time  complexity : `O(n)`
+- Space complexity : `O(1)`
+
+## Credits
+
+- [Srishti](https://github.com/SrishtiAray07) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/math/Convert_decimal_to_binary.cpp)
+- [Tanvi Bugdani](https://github.com/tanvi355) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/math/positive_decimal_to_binary.py)
