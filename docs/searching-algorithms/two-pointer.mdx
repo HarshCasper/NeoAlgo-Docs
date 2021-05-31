@@ -72,11 +72,59 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-  defaultValue="java"
+  defaultValue="cpp"
   values={[
     { label: 'Java', value: 'java', },
+    { label: 'C++', value: 'cpp', },
   ]
 }>
+
+<TabItem value="cpp">
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int ar[100009];
+
+void Pair_exist_by_Two_Pointer_Method(int ar[], int N, int X)
+{
+    int i = 0, j = N - 1, cur_sum = 0;
+    while(i < j)
+    {
+        cur_sum = ar[i] + ar[j];
+        if(cur_sum == X)
+        {
+           cout<<"The sum of these two digits "<<ar[i]<<","<<ar[j]<<"will be equal to "<<X; 
+        }
+        else if(cur_sum < X)
+        {
+            i++;
+        }
+        else if (cur_sum > X )
+        {
+            j--;
+        }
+    }
+}
+
+
+int main()
+{
+	int N, X;
+  cout<<"Please enter length of the array: ";
+	cin >> N;
+  cout<<"Please enter value the sum you want to be: ";
+  cin >> X;
+  cout<<"Enter array: ";
+	for(int i = 0; i < N; i++)
+    {
+        cin >> ar[i];
+    }
+  Pair_exist_by_Two_Pointer_Method(ar , N , X);    
+```
+
+</TabItem>
 
 <TabItem value="java">
 
@@ -107,9 +155,9 @@ import java.util.Scanner;
   }
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Please enter length of the array : ");
+    System.out.println("Please enter length of the array: ");
     int l = scan.nextInt();
-    System.out.println("Please enter value the sum you want to be : ");
+    System.out.println("Please enter value the sum you want to be: ");
     int k = scan.nextInt();
     int array[] = new int[l];
     for (int n = 0; n < l - 1; n++) {
@@ -127,11 +175,11 @@ import java.util.Scanner;
 #### Input
 
 ```
- Please enter length of the array :
+ Please enter length of the array:
  10
  Please enter value the sum you want to be :
  10
- enter array
+ Enter array:
  2 3 4 4 5 6 7 8 9 1
   ```
 
@@ -145,3 +193,8 @@ The sum of these two digit 4,6 will be equal to 10
 
   - Time Complexity : `O(n)`
   - Space Complexity: `O(n)`
+
+## Credits
+
+- [Raiyan Bashir Mahin](https://github.com/RaiyanMahin) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/Two_Pointers_Method.cpp)
+- []
