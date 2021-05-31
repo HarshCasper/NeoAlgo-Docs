@@ -197,12 +197,8 @@ module.exports = {
                 "mathematics/Kth-smallest",
                 "mathematics/perfect-square"
                 "mathematics/sieve-of-eratosthenes",
-<<<<<<< HEAD
-                "mathematics/perfect-cube",
-=======
                 "mathematics/perfect-cube"
 
->>>>>>> bd5038dbd55eb521c35fcc77d4121bddc44163f8
             ],
         },
         {
