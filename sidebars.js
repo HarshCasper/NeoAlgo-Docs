@@ -226,11 +226,7 @@ module.exports = {
 
                 "graph-algorithms/prims-algorithm",
                 "graph-algorithms/fractional-knapsack", 
-
-		"graph-algorithms/topological-sorting",
-
-
-
+		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm", 
 		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm",
@@ -258,6 +254,8 @@ module.exports = {
                 "competitive-programming/reverse-of-string",
                 "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
+                "competitive-programming/next-smallest-left",
+	              "competitive-programming/bigmod-algorithm",
                 "competitive-programming/balanced-brackets",
 		            "competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
