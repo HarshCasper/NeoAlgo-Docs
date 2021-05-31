@@ -254,6 +254,7 @@ module.exports = {
                 "competitive-programming/first-occurence-1",
                 "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
+                "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
 		            "competitive-programming/bigmod-algorithm",
 	              "competitive-programming/bigmod-algorithm",
