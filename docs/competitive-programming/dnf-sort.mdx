@@ -1,0 +1,159 @@
+---
+title: Dutch National Flag
+slug: /competitive-programming/dnf-sort
+---
+
+## Introduction
+Given an unsorted array consisting 0s, 1s and 2s. The task is to write a function that sorts the given array. 
+The functions should put all 0s first, then all 1s and all 2s in last.
+
+## Explanation 
+
+First we will take a mid pointer which will be initialised to 0, a high pointer initialised to n-1 and a low pointer initialized to 0.
+Now while mid pointer is less than high pointer, swap the mid pointer with the low pointer, this will bring all the zeros at the start.
+Likewise if we encounter a one, then we won't swap anything because the ones are supposed to be in the middle of the array.
+If we encounter a two, then we swap the mid and the high pointers, this will bring all the twos at the end.
+
+Let's have few examples: 
+```
+Input 1:
+5
+1 2 0 2 1
+Output 1:
+0 1 1 2 2 
+Input 2:
+7
+1 2 0 2 1 2 1
+Output 2:
+0 1 1 1 2 2 2 
+```
+
+## Algorithm
+
+- Take the input array
+- lo=0,mid=0,hi=n-1
+- while mid <= hi
+	- if array[mid]=0
+		- swap array[mid], array[lo]
+		- increment lo and mid pointers
+	- if array[mid]=1
+		- increment mid pointer
+	- if array[hi]=2
+		- swap array[mid], array[hi]
+		- decrement mid	
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void DNFSort(int arr[],int n )
+{
+    int lo = 0;
+    int mid = 0;
+    int hi = n-1;
+    while(mid<=hi)
+    {
+        if(arr[mid] == 0)
+        {
+            swap(arr[mid], arr[lo]);
+            lo++;
+            mid++;
+        }
+        else if(arr[mid] == 1)
+        { 
+            mid++;
+        }
+        else if(arr[mid] == 2)
+        {
+            swap(arr[mid], arr[hi]); 
+            hi--;
+        }
+    }
+    return;
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter total numbers: "<<endl;
+    cin>>n;
+    int arr[1000];
+    cout<<"Enter array elements: "<<endl;
+    for (int i = 0; i < n; ++i)
+    {
+        cin>>arr[i];
+    }
+    DNFSort(arr, n);
+    cout<<"Sorted array is: "<<endl;
+    for (int i = 0; i < n; ++i)
+    {
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+} 
+
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python   
+# Dutch National Flag Sort
+def dnf_sort(alist):
+    lo = 0
+    mid = 0
+    hi = len(alist) - 1
+    while mid<=hi:
+        if alist[mid]==0:
+            alist[mid],alist[lo] = alist[lo],alist[mid]
+            lo=lo+1
+            mid=mid+1
+        if alist[mid]==1:
+            mid=mid+1
+        if alist[mid]==2:
+            alist[mid],alist[hi] = alist[hi],alist[mid]
+            hi=hi-1
+            
+alist = input('Enter the list of numbers: ').split()
+alist = [int(x) for x in alist]
+dnf_sort(alist)
+print('Sorted list: ', end='')
+print(alist)
+```
+</TabItem>
+
+</Tabs>
+
+## Sample Input and Output
+
+#### Input :
+
+```
+5
+1 2 0 2 1
+```
+
+#### Output :
+
+```
+0 1 1 2 2
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
