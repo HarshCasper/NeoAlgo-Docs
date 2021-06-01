@@ -30,7 +30,7 @@ module.exports = {
             items: [
                 "sorting-algorithms/sorting-algorithms",
                 "sorting-algorithms/bubble-sort",
-		  "sorting-algorithms/circle-sort",
+		            "sorting-algorithms/circle-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
                 "sorting-algorithms/insertion-sort",
@@ -73,13 +73,14 @@ module.exports = {
                 "data-structures/postorder_traversal",
                 "data-structures/double-ended-queue",
                 "data-structures/minimum-in-bst",
+                "data-structures/swap-nodes-in-LL",
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
                 "data-structures/middle-element-of-LL",
-                "data-structures/floor_in_bst"
                 "data-structures/ceil_in_bst",
                 "data-structures/height_BST",
                 "data-structures/floor_in_bst",
+                "data-structures/floor_in_bst"
                 "data-structures/invert-binary-tree",
             ],
         },
@@ -92,9 +93,8 @@ module.exports = {
                 "dynamic-programming/unbounded-knapsack",
                 "dynamic-programming/golomb-sequence",
                 "dynamic-programming/kadane-algorithm",
-		            "dynamic-programming/catalan-number",
-		            "dynamic-programming/golomb-sequence",
                 "dynamic-programming/catalan-number",
+                "dynamic-programming/edit-distance",
               	"dynamic-programming/cutting-a-rod",
                 "dynamic-programming/equal-sum-partition",
                 "dynamic-programming/catalan-number",
@@ -106,6 +106,7 @@ module.exports = {
 		            "dynamic-programming/golomb-sequence",
 		            "dynamic-programming/coin-change-problem",
                 "dynamic-programming/painting-fence",
+                "dynamic-programming/median-of-two-arrays",
             ],
         },
         {
@@ -174,7 +175,6 @@ module.exports = {
                 "mathematics/tetrahedral-number",
                 "mathematics/rotate-matrix-by-90-degree",
 		            "mathematics/product-of-count-of-bits-of-each-elements",
-                "mathematics/product-of-count-of-bits-of-each-elements"
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
@@ -188,9 +188,9 @@ module.exports = {
 		            "mathematics/smallest-prime-factor-of-any-number",
                 "mathematics/occurrence-of-no.-in-array",
                 "mathematics/Kth-smallest",
-                "mathematics/perfect-square"
+                "mathematics/perfect-square",
                 "mathematics/sieve-of-eratosthenes",
-                "mathematics/perfect-cube"
+                "mathematics/perfect-cube",
 
             ],
         },
@@ -212,6 +212,13 @@ module.exports = {
                 "graph-algorithms/breadth-first-search",
                 "graph-algorithms/depth-first-search",
                 "graph-algorithms/kruskals-algorithm",
+
+
+
+
+                "graph-algorithms/prims-algorithm",
+                "graph-algorithms/fractional-knapsack", 
+		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm", 
 		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm",
@@ -236,9 +243,16 @@ module.exports = {
                 "competitive-programming/first-occurence-1",
                 "competitive-programming/next-greatest-to-right",
                 "competitive-programming/reverse-of-string",
+                "competitive-programming/reverse-words-in-string",
                 "competitive-programming/diameter-of-BT",
-		            "competitive-programming/bigmod-algorithm",
+                "competitive-programming/activity-selection",
+                "competitive-programming/postfix-to-prefix",
+                "competitive-programming/next-smallest-right",
+                "competitive-programming/next-greatest-left",
+                "competitive-programming/next-smallest-left",
 	              "competitive-programming/bigmod-algorithm",
+                "competitive-programming/balanced-brackets",
+		            "competitive-programming/bigmod-algorithm",
                 "competitive-programming/generate-subsequences",
                 "competitive-programming/generate-valid-parantheses",
                 "competitive-programming/left-view-of-BT",
@@ -249,6 +263,8 @@ module.exports = {
                 "competitive-programming/wave-sort",
                 "competitive-programming/all-permutations",
                 "competitive-programming/wine-selling",
+                "competitive-programming/dnf-sort",
+                "competitive-programming/N-Queens",
             ],
         },
         {

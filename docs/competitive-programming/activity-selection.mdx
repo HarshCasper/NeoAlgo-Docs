@@ -1,0 +1,187 @@
+---
+title: Activity Seclection
+slug: /competitive-programming/activity-selection
+---
+
+## Introduction
+
+You are given n activities (from 0 to n-1) with their start and finish times. Select the maximum number of activities that can be performed by a single person, 
+assuming that a person can only work on a single activity at a time.
+
+## Algorithm
+
+- Take inputs of the starting times and ending times of each activity.
+- Sort the activities according to the ending times in ascending times.
+- For each activity, check whether the ending time of the activity is less than the starting time of the next.
+- If it is so, then the activity can be performed otherwise not.
+
+## Examples
+
+#### Example 1
+
+```
+Let the starting and ending times be as follows:
+
+Activity 1: Starting time: 10 Ending time: 20
+Activity 2: Starting time: 12 Ending time: 15
+Activity 3: Starting time: 20 Ending time: 30
+
+Sort the array according to the ending times.
+
+Activity 2: Starting time: 12 Ending time: 15
+Activity 1: Starting time: 10 Ending time: 20
+Activity 3: Starting time: 20 Ending time: 30
+
+The ending time of the Activity 2 is greater than the activity 1, hence cannot be preformed.
+Ending time of Activity 1 is equal to Activity 3 and so can be performed.
+So maximum number of activities that can be performed are 2.
+```
+
+#### Example 2
+
+```
+Let the starting and ending times be as follows:
+Activity 1: Starting time: 10 Ending time: 12
+Activity 2: Starting time: 12 Ending time: 15
+
+Sort the array according to the ending times.
+
+Activity 1: Starting time: 10 Ending time: 12
+Activity 2: Starting time: 12 Ending time: 15
+
+The ending time of the Activity 1 is less than the starting time of the Activity 2.
+Both tasks can be performed.
+Maximum number of activities that can be performed are 2.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include<bits/stdc++.h>
+#include<iostream>
+#include<algorithm>
+#include<utility>
+
+using namespace std;
+ //made compare function for sorting
+bool compare(pair<int,int> a,pair <int ,int> b)        
+{
+	return a.second<b.second;
+}
+
+int activitySelection()
+{
+        int num,count;                                     
+		count=1;                                           
+		
+		cout<<"Enter no. of activities: ";
+		cin>>num;
+		//A dynamic array of pairs
+		pair<int,int>* arr = new pair<int,int>[num];      
+        
+		cout<<"Enter start and end time of activities: "<<endl;
+		for(int i=0;i<num;i++)
+		{
+			cin>>arr[i].first>>arr[i].second;
+		}
+        // Inbuilt Sorting Function taking compare function as a parameter 
+		sort(arr,arr+num,compare);                        
+
+		int prev=0;
+
+		for(int curr=1;curr<num;curr++)
+		{
+			if(arr[prev].second<=arr[curr].first)
+			{
+				count++;
+				prev=curr;
+			}
+		}
+}
+
+int main() 
+{
+    int count=activitySelection(); 
+	cout<<"Maximum number of activities: "<<count;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+
+```python 
+def final_activities():
+    row = int(input("Enter number of activities: "))
+    # 2d list is used to enter the start and end time of jobs
+    Activity = []
+    print("Enter start and end times of activities: ")
+    for x in range(row):
+        print("Elements of row", end = " ")
+        print(x)
+        arr = []
+        for _ in range(0, 2):
+            arr.append(int(input()))
+        Activity.append(arr)
+    # sorting the 2d list according to the second key
+    Activity.sort(key=lambda sec: sec[1])
+
+    ptr = 0
+    # matrix for activities selected
+    activity_selected = []
+    # initial activity is always selected
+    activity_selected.append(Activity[ptr])
+
+    # If the starting time of next activity is greater than/equal
+    # to the end time of previous, then it will be selected
+    count=0
+    for itr in range(1, row):
+        if Activity[ptr][1] <= Activity[itr][0]:
+            activity_selected.append(Activity[itr])
+            ptr = itr
+            count=count+1
+    # printing the selected activities
+    print("Maximum number of activities: ")
+    print(count)
+
+
+if __name__ == "__main__":
+    final_activities()  
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Input
+
+```
+Enter number of activities: 3
+Enter start and end time of activities:
+10 20
+12 25
+20 35
+```
+#### Output
+
+```
+Maximum number of activities: 2
+```
+
+## Complexity Analysis
+
+## Credits
+
+- [Neehit Goyal](https://github.com/NEEHITGOYAL) for the [C++ implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/C-Plus-Plus/cp/Activity_Selection.cpp)
+- [Shahina](https://github.com/shahina-bano) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/cp/activity_selection.py)

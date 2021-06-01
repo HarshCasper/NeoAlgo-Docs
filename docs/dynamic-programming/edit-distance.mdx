@@ -1,0 +1,194 @@
+---
+title: Edit distance
+slug: /dynamic-programming/edit-distance
+---
+
+## Introduction
+
+Given two strings, find the minimum number of edits - deletion, addition or replacement to convert the first string into the second string. 
+
+## Algorithm
+
+- Form a table, that is, a two dimensional array.
+- Satisfy the base conditions.
+- If the length of the first string is zero, then minimum number of edits required to convert it to second string is equal to length of the second string.
+- If the length of the second string is zero, then minimum number of edits required to convert it to first string is equal to length of the second string.
+- Match the characters of the two strings.
+- If they match then no edits required.
+- If they donot match, then choose the minimum of addition, deletion and replacement.
+- Repeat till the end of the strings.
+
+## Explanation
+
+The problem of edit distance can also be solved using recursion, but then it suffers from the problem of overlapping subproblems. Hence dynamic programming approach is used to calculate the minimum edit distance.
+
+## Examples
+
+#### Example 1
+
+```
+Let the first string be man and second string be men.
+We use dynamic programming and form a table.
+Fill the base conditions.
+The first character m matches in both strings, so no edits required.
+The second character in man is a and in men is e so replacement is chosen and 1 edit done.
+The next character is n in both so no edit.
+Finally the number of edits is 1.
+```
+
+#### Example 2
+
+```
+Let the first string be an and second be ant.
+The letter a matches, no edit.
+The letter n matches no edit.
+The first string has no more characters whereas the second one has t.
+Addition of t to first string done.
+The minimum number of edits is 1.
+```
+
+## Code
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Python', value: 'py', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+#include <vector> // for 2D vector
+using namespace std;
+
+//Edit distance DP approach
+int edit_distance_dp (string &x, string &y)
+{
+    int len_x = x.length();
+    int len_y = y.length();
+
+    vector<vector<int> > dp (len_x+1, vector<int> (len_y+1,0));
+    //base case
+    //making last row and column of dp array 0
+    for(int i=0;i<=len_x;i++)
+        dp[i][0]=i;
+    for(int j=0;j<=len_y;j++)
+        dp[0][j]=j;
+
+    for(int i=1;i<=len_x;i++)
+    {
+        for(int j=1;j<=len_y;j++)
+        {
+            if(x[i-1]==y[j-1]) //if matches
+                dp[i][j] = dp[i-1][j-1];
+            else     //if doesn't match
+                dp[i][j] = 1+min(dp[i-1][j],min(dp[i][j-1],dp[i-1][j-1]));
+        }
+
+    }
+    //return last element
+    return dp[len_x][len_y];  
+}
+
+int main()
+{
+    string str1,str2;
+    cout <<"Enter first string: ";
+    cin>>str1;
+    cout <<"Enter second string: ";
+    cin>>str2;
+
+    int m=str1.length();
+    int n=str2.length();
+
+    cout<<"Minimum number of edits required: ";
+    cout<<edit_distance_dp(str1,str2)<<endl;
+}
+```
+</TabItem>
+
+<TabItem value="py">
+```python
+ 
+def editDist(first_string, second_string):
+    # Length of both strings
+    first_length = len(first_string)
+    second_length = len(second_string)
+
+    # Distance table for computing edit distance
+    # Initializing edit distances as 0
+    distance = [[0 for x in range(second_length + 1)]
+                for x in range(first_length + 1)]
+
+    # Looping and comparing each letter of first_string with each of second_string
+    for first_sub_string in range(first_length + 1):
+        for second_sub_string in range(second_length + 1):
+
+            if first_sub_string == 0:
+                # first_sub_string is empty, so insert all charecters of second_sub_string
+                distance[first_sub_string][second_sub_string] = second_sub_string
+
+            elif second_sub_string == 0:
+                # second_sub_string is empty, so insert all charecters of first_sub_string
+                distance[first_sub_string][second_sub_string] = first_sub_string
+
+            elif first_string[first_sub_string - 1] == second_string[second_sub_string - 1]:
+                # If last charecters of both substring are same, no operation required here
+                # It's value will be equal to the edit distance of the substring without this same charecters ie. Diagonal value
+                distance[first_sub_string][second_sub_string] = distance[
+                    first_sub_string - 1
+                ][second_sub_string - 1]
+
+            else:
+                # If last charecters of both substring are not same, we can either insert, remove or replace a charecter
+                # We choose minimum possible edit distance of the substrings before performing operation
+                # and we add 1 to edit distance for the one operation we need to perform to convert first_string to second_string
+                distance[first_sub_string][second_sub_string] = 1 + min(
+                    distance[first_sub_string][second_sub_string - 1],  # Insert
+                    distance[first_sub_string - 1][second_sub_string],  # Remove
+                    distance[first_sub_string - 1][second_sub_string - 1],  # Replace
+                )
+    return distance[first_length][second_length]
+
+
+if __name__ == '__main__':
+    print("Enter First string: ")
+    first_string = input()
+    print("Enter Second string: ")
+    second_string = input()
+    print("Minimum number of edits required: ",
+          editDist(first_string, second_string))
+
+```
+</TabItem>
+</Tabs>
+
+## Sample I/O
+
+#### Input
+
+```
+Enter first string: sunday
+Enter second string: saturday
+```
+
+#### Output
+
+```
+Minimum number of edits required: 3
+```
+
+## Complexity Analysis
+
+- Time Complexity: `O(n^2)`
+- Space Complexity: `O(n^2)`
+
+## Credits
+
+- [joshithagandra](https://github.com/Joshitha18) for the [C++ implementation](https://github.com/Joshitha18)
+- [Kartik P. Patel](https://github.com/kartikp36) for the [Python implementation](https://github.com/TesseractCoding/NeoAlgo/blob/master/Python/dp/EditDistance.py)
