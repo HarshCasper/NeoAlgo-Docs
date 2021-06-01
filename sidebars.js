@@ -4,19 +4,12 @@ module.exports = {
         {
             type: "category",
             label: "Introduction",
-            items: [
-                "introduction/About-NeoAlgo",
-                "introduction/development-setup",
-                "introduction/contributor-handbook",
-            ],
+            items: ["introduction/About-NeoAlgo", "introduction/development-setup", "introduction/contributor-handbook"],
         },
         {
             type: "category",
             label: "Code Playgrounds",
-            items: [
-                "code-playgrounds/python-playground",
-                "code-playgrounds/java-playground",
-            ],
+            items: ["code-playgrounds/python-playground", "code-playgrounds/java-playground"],
         },
         {
             type: "category",
@@ -29,7 +22,6 @@ module.exports = {
                 "searching-algorithms/jump-search",
                 "searching-algorithms/exponential-search",
 		            "searching-algorithms/binary-search",
-
             ],
         },
         {
@@ -38,10 +30,10 @@ module.exports = {
             items: [
                 "sorting-algorithms/sorting-algorithms",
                 "sorting-algorithms/bubble-sort",
-		  "sorting-algorithms/circle-sort",
+		            "sorting-algorithms/circle-sort",
                 "sorting-algorithms/selection-sort",
                 "sorting-algorithms/heap-sort",
-                'sorting-algorithms/insertion-sort',
+                "sorting-algorithms/insertion-sort",
                 "sorting-algorithms/merge-sort",
                 "sorting-algorithms/quick-sort",
                 "sorting-algorithms/sleep-sort",
@@ -105,6 +97,13 @@ module.exports = {
                 "dynamic-programming/edit-distance",
               	"dynamic-programming/cutting-a-rod",
                 "dynamic-programming/equal-sum-partition",
+                "dynamic-programming/catalan-number",
+                "dynamic-programming/golomb-sequence",
+                "dynamic-programming/coin-change-problem",
+		            "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence",
+                "dynamic-programming/catalan-number",
+		            "dynamic-programming/golomb-sequence",
 		            "dynamic-programming/coin-change-problem",
                 "dynamic-programming/painting-fence",
                 "dynamic-programming/median-of-two-arrays",
@@ -113,10 +112,7 @@ module.exports = {
         {
             type: "category",
             label: "Computational Geometry",
-            items: [
-                "computational-geometry/computational-geometry",
-                "computational-geometry/jarvis-algorithm",
-            ],
+            items: ["computational-geometry/computational-geometry", "computational-geometry/jarvis-algorithm"],
         },
         {
             type: "category",
@@ -183,7 +179,7 @@ module.exports = {
                 "mathematics/product-of-count-of-bits-of-each-elements",
                 "mathematics/anti-diagonal-traversal-of-matrix",
                 "mathematics/next-prime-number",
-                "mathematics/boolean-matrix",  
+                "mathematics/boolean-matrix",
                 "mathematics/count-bits",
                 "mathematics/searching-in-matrix",
                 "mathematics/row-with-max-one",
@@ -227,7 +223,6 @@ module.exports = {
 		            "graph-algorithms/topological-sorting",
                 "graph-algorithms/prims-algorithm",
 		            "graph-algorithms/topological-sorting",
-
 	             	"graph-algorithms/topological-sorting", 
                 "graph-algorithms/topological-sorting",
             ],
@@ -275,10 +270,7 @@ module.exports = {
         {
             type: "category",
             label: "Machine Learning",
-            items: [
-                "machine-learning/machine-learning",
-                "machine-learning/linear-regression",
-            ],
+            items: ["machine-learning/machine-learning", "machine-learning/linear-regression"],
         },
         {
             type: "category",
@@ -296,6 +288,7 @@ module.exports = {
                 "cryptography/burrows-wheeler-transform",
                 "cryptography/affine-cipher",
                 "cryptography/vigenere-cipher",
+                "cryptography/autokey-cipher",
             ],
         },
         {
@@ -306,10 +299,7 @@ module.exports = {
         {
             type: "category",
             label: "Operating Systems",
-            items: [
-                "operating-systems/operating-systems",
-                "operating-systems/banker-algorithm",
-            ],
+            items: ["operating-systems/operating-systems", "operating-systems/banker-algorithm"],
         },
         {
             type: "category",
@@ -323,14 +313,7 @@ module.exports = {
         {
             type: "category",
             label: "Docusaurus Tutorial",
-            items: [
-                "getting-started",
-                "create-a-page",
-                "create-a-document",
-                "create-a-blog-post",
-                "markdown-features",
-                "thank-you",
-            ],
+            items: ["getting-started", "create-a-page", "create-a-document", "create-a-blog-post", "markdown-features", "thank-you"],
         },
     ],
 };

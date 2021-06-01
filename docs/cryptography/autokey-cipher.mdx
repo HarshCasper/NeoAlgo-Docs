@@ -1,0 +1,336 @@
+---
+title: Auto Key Cipher
+slug: /cryptography/autokey-cipher
+---
+
+# Introduction
+
+Autokey (Autoclave) Cipher is a Symmetric polyalphabetic (Polyceaser) substitution cipher. This algorithm is about changing plaintext letters based on secret key letters.
+Each letter of the message is shifted along some alphabet positions. The number of positions is equal to the place in the alphabet of the current key letter.
+
+Note: Cipher text is also called as encrypted text(don't confuse). And we're assuming index starting from 0 not 1.
+
+# Formula
+
+### Encryption
+
+> `Ei = (Pi + Ki) mod 26`
+
+### Decryption
+
+> `Di = (Ei - Ki + 26) mod 26`
+
+Where
+
+> Ei: Encrypted text
+> Pi: Plain Text values
+> Ki: Plain Text values after adding key.
+
+</br>
+
+# Explanation
+
+## Encryption
+
+First of all, we need a key and a plaintext. Key can be a alphabet or a number.
+
+</br>
+**Step-1:** Now, the first step is to convert all letter in plaintext either to lowercase or uppercase. And now get the equivalent alphabetic values of plaintext.
+Consider,
+Plaintext: HELLO,
+Key: 11.
+
+> `text[i] = toupper(text[i]);` > `int value = text[i] - 'A';`
+
+**Step-2:** Now, shift the values of plaintext towards right and add key(11) at first. Last value of plaintext will discarded. (7 4 11 11 14) are the values of plaintext. Now, the cipher text will be (11 7 4 11 11).
+
+**Step-3:** Now, add both the above number. Cipher values will be (18 11 15 22 25). Now, convert this values to equivalent characters. Here, if the number/sum exceed 26, then we need to start from beginning.
+
+Then the resultant will be our Cipher Text or Encrypted Text.
+Cipher Text: S L P W Z
+
+**_Encryption Analysis:_**
+
+```
+Plain Text:	        H	E	L	L	O
+Equi Alphabet No.:	7	4	11	11	14
+Key:	            11	7	4	11	11	(Added Key at first index and right shift)
+                  +
+Cipher Values:	    18	11	15	22	25	(Equivalent Alphabet Number)
+Cipher Key:	        S	L	P	W	Z
+```
+
+</br>
+
+## Decryption
+
+**Step-4:** Now, Decryption is Same as Encryption except one change. In Encryption, we shift the values towards right by adding/placing key at first index. Here in Decryption, we shift the values towards left by adding/placing key at last index.
+Now, repeat the Step-1 and Step-2 for the cipher text by implementing this change.
+
+Then the resultant will be our Plain Text or Decrypted Text.
+Decrypted Text: H E L L O
+
+</br>
+
+**_Decryption Analysis:_**
+
+```
+Plain Text:	         S	 L	P	W	Z
+Equi Alphabet No.:  18	11	15	22	25
+Key:	            11	15	22	25	11	(Added Key at last index and left shift)
+                   -
+Cipher Values:	    7	4	11	11	14	(Equivalent Alphabet Number)
+Cipher Key:	        H	E	L	L	O
+```
+
+</br>
+
+# Code
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="cpp"
+  values={[
+    { label: 'C++', value: 'cpp', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="cpp">
+
+```cpp
+#include <iostream>
+
+std::string autokeycipher(std::string text, char key, int encrypt)
+{
+    /* The first step is to convert all letter in plaintext either to lowercase or uppercase.*/
+    for (int i = 0; i < text.length(); ++i)
+    {
+        // Converting to Upper
+        if (isalpha(text[i]))
+        {
+            text[i] = toupper(text[i]);
+        }
+    }
+
+    // now get the equivalent alphabetic values of plaintext.
+    int nextkey, keyvalue, result;
+    nextkey = toupper(key) - 'A';
+
+    // Shift the values of plaintext towards right and add key at first.
+    // Now, add both the above number.
+    for (int i = 0; i < text.length(); ++i)
+    {
+        if (isalpha(text[i]))
+        {
+            keyvalue = nextkey;
+            if (encrypt)
+            {
+                nextkey = text[i] - 'A';
+                // if the number/sum exceed 26, then we will start from beginning.
+                text[i] = (text[i] - 'A' + keyvalue) % 26 + 'A';
+            }
+            else
+            {
+                result = (text[i] - 'A' - keyvalue) % 26 + 'A';
+                text[i] = result < 'A' ? (result + 26) : (result);
+                nextkey = text[i] - 'A';
+            }
+        }
+    }
+    return text;
+}
+
+// driver code
+int main(int argc, char **argv)
+{
+    char key;
+    std::string plaintext;
+
+    std::cout << "Enter the Single Key word: ";
+    std::cin >> key;
+
+    std::cout << "Enter the Plain Text: ";
+    std::cin >> plaintext;
+
+    std::cout << std::endl
+              << "The Plain Text is: " << plaintext;
+
+    // 3rd argument decides whither to do 1-Encryption or 0-Decryption.
+
+    // Encryption(passing 3rd argument as 1)
+    std::string ciphertext = autokeycipher(plaintext, key, 1);
+    std::cout << std::endl
+              << "The Text after Encryption(Cipher text) is: " << ciphertext;
+    // Decryption(passing 3rd argument as 0)
+    std::string decryptedtext = autokeycipher(ciphertext, key, 0);
+    std::cout << std::endl
+              << "After Decryption the Text is: " << decryptedtext;
+
+    return 0;
+}
+
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+public class autokey
+{
+    // Generating keys for the given text
+    public static String createkey(String plaintext, int keycount, HashMap<Character, Integer> hashmap1, HashMap<Integer, Character> hashmap2)
+    {
+        char keytextarray[] = plaintext.toLowerCase().toCharArray();
+        int temp = keycount % 26;
+
+        for(int i = 0; i < plaintext.length(); ++i)
+        {
+            int a = hashmap1.get(plaintext.charAt(i));
+             // if the number/sum exceed 26, then we will start from beginning.
+            if(i == 0)
+            {
+                a = (a + temp) % 26;
+            }
+            else
+            {
+                a = (a + hashmap1.get(plaintext.charAt(i - 1))) % 26;
+            }
+            keytextarray[i] = hashmap2.get(a);
+        }
+        return new String(keytextarray);
+    }
+
+    // Formula for Encryption:  `Ei = (Pi + Ki) mod 26`
+    public static String encryption(String plaintext, String keytext, HashMap<Character, Integer> hashmap1, HashMap<Integer, Character> hashmap2)
+    {
+        char plaintextarray[] = plaintext.toLowerCase().toCharArray();
+        for(int i = 0; i < plaintext.length(); ++i)
+        {
+            int a = hashmap1.get(plaintext.charAt(i));
+            int b = hashmap1.get(keytext.charAt(i));
+            a = (a + b) % 26;
+            plaintextarray[i] = hashmap2.get(a);
+        }
+        return new String(plaintextarray);
+        // returns the encrypted string
+    }
+
+    // Formula for Decryption:  `Di = (Ei - Ki + 26) mod 26`
+    public static String decryption(String encrypted, String keytext, HashMap<Character, Integer> hashmap1, HashMap<Integer, Character> hashmap2)
+    {
+        char encryptedarray[] = encrypted.toLowerCase().toCharArray();
+        for(int i = 0; i < encrypted.length(); ++i)
+        {
+            int a = hashmap1.get(encrypted.charAt(i));
+            int b = hashmap1.get(keytext.charAt(i));
+            a -= b;
+            if(a < 0)
+            {
+                int x;
+                x = Math.abs(a) % 26;
+                a = 26 - x;
+            }
+            else
+            {
+                a %= 26;
+            }
+            encryptedarray[i] = hashmap2.get(a);
+        }
+        // returns the decrypted string
+        return new String(encryptedarray);
+    }
+
+    // driver code
+    public static void main(String[] args) throws IOException
+    {
+        int keycount = 0;
+        String plaintext = null, keytext = null, encrypted = null, decrypted = null;
+        HashMap<Character, Integer> hashmap1 = new HashMap<Character, Integer>();
+        HashMap<Integer, Character> hashmap2 = new HashMap<Integer, Character>();
+        BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(System.in));
+
+        for(int i = 0; i < 26; ++i)
+        {
+            hashmap1.put((char)(i + 97), i);
+            hashmap2.put(i,(char)(i + 97));
+        }
+
+        System.out.print("Enter the Plain Text : ");
+        plaintext = bufferedreader.readLine();
+
+        System.out.print("Enter Key: ");
+        keycount = Integer.parseInt(bufferedreader.readLine());
+
+        // Plain text
+        System.out.println("Plain Text is: " + plaintext);
+        keytext = createkey(plaintext, keycount, hashmap1, hashmap2);
+        // Encryption
+        encrypted = encryption(plaintext, keytext, hashmap1, hashmap2);
+        System.out.println("Encrypted Text: " + keytext);
+        // decryption
+        decrypted = decryption(encrypted, keytext, hashmap1, hashmap2);
+        System.out.println("Decrypted Text: " + decrypted);
+
+        bufferedreader.close();
+    }
+}
+
+```
+
+</TabItem>
+</Tabs>
+
+</br>
+
+## Sample Input and Output
+
+</br>
+
+### Input:
+
+> Enter the Single Key word: L //In A-Z, L will be at 11 index.
+> Enter the Plain Text: hello
+
+### Output:
+
+> The Plain Text is: hello
+> The Text after Encryption(Cipher text) is: slpwz
+> After Decryption the Text is: hello
+
+</br>
+
+# Complexity Analysis and Logic
+
+Note: From all this step, we're accessing same letters and values at multiple times for multiple operations. below, few lines will complete all the operations.
+
+### For Encryption
+
+```
+keyvalue = value;
+value = text[i] - 'A';
+text[i] = (text[i] - 'A' + keyvalue) % 26 + 'A';
+```
+
+### For Decryption
+
+```
+keyvalue = value;
+result = (text[i] - 'A' - keyvalue) % 26 + 'A';
+text[i] = result < 'A' ? (result + 26) : (result);
+value = text[i] - 'A';
+```
+
+-   Time complexity: `O(n)`
+
+</br>
+
+# Credits
+
+-   [Ravi Kanth Gojur](https://github.com/ravireddy07/)
